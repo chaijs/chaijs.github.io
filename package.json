@@ -1,0 +1,27 @@
+{
+  "private": true,
+  "author": "Jake Luer <jake@alogicalparadox.com>",
+  "name": "chai-docs",
+  "description": "Chaijs.com documentation site.",
+  "version": "1.0.0",
+  "homepage": "http://chaijs.com",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chaijs/chai-docs.git"
+  },
+  "main": "./app",
+  "dependencies": {
+    "express": "3.0.0alpha4",
+    "filtr": "0.2.x",
+    "codex": "0.2.x",
+    "superagent": "0.4.x",
+    "jade": "0.25.x",
+    "marked": "0.2.x",
+    "highlight.js": "1.2.x"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}

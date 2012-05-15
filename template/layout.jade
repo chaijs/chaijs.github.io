@@ -9,10 +9,10 @@ html(lang='en')
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js')
     script(src=site.ghbaseurl + '/public/js/jquery-mousewheel.js')
     script(src=site.ghbaseurl + '/public/js/antiscroll.js')
-    script(src=site.ghbaseurl + '/public/js/main.js')
+    script(src=site.ghbaseurl + '/public/js/main.js?' + site.version)
     block scripts
-    link(rel='stylesheet', href=site.ghbaseurl + '/public/css/antiscroll.css', type='text/css', media='all')
-    link(rel='stylesheet', href=site.ghbaseurl + '/public/css/main.css', type='text/css', media='all')
+    link(rel='stylesheet', href=site.ghbaseurl + '/public/css/antiscroll.css?' + site.version, type='text/css', media='all')
+    link(rel='stylesheet', href=site.ghbaseurl + '/public/css/main.css?' + site.version, type='text/css', media='all')
     - if (site.mixpanel)
       script(type='text/javascript')
         var mpq = [];

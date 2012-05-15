@@ -41,7 +41,18 @@ module.exports = [
       { 'sinon-chai.js': 'https://raw.github.com/domenic/sinon-chai/master/lib/sinon-chai.js' }
     }
 
-  , { name: 'Chai jQuery'
+  , { name: 'Chai as Promised'
+    , desc: 'Extends Chai with assertions about promises.'
+    , url: 'chai-as-promised'
+    , link: 'http://github.com/domenic/chai-as-promised'
+    , tags: [ 'async' ]
+    , pkg: 'https://raw.github.com/domenic/chai-as-promised/master/package.json'
+    , markdown: 'https://raw.github.com/domenic/chai-as-promised/master/README.md'
+    , browser:
+      { 'chai-as-promised.js': 'https://raw.github.com/domenic/chai-as-promised/master/lib/chai-as-promised.js' }
+    }
+
+ , { name: 'Chai jQuery'
     , desc: 'Extend Chai with assertions for the DOM and jQuery.'
     , url: 'chai-jquery'
     , link: 'https://github.com/chaijs/chai-spies'

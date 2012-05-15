@@ -1,4 +1,6 @@
 var filtr = require('filtr')
+  , fs = require('fs')
+  , join = require('path').join
   , highlight = require('highlight.js')
   , marked = require('marked')
   , plugins = require('../plugins')
@@ -13,7 +15,6 @@ plugins.forEach(function (plug) {
     if (!~site_tags.indexOf(tag)) site_tags.push(tag);
   });
 });
-
 
 function sortAlpha (a, b) {
   if ('object' === typeof a) a = a.name;
@@ -33,10 +34,7 @@ site_tags.forEach(function (tag) {
   plugin_tags[tag] = res;
 });
 
-var site_locals = {
-    ghbaseurl: ''
-  , title: 'Chai'
-}
+var site_locals = JSON.parse(fs.readFileSync(join(__dirname, '..', 'data', 'codex.json'))).locals;
 
 app.get('/plugins', function (req, res) {
   var locals = {

@@ -13,7 +13,7 @@ html(lang='en')
     block scripts
     link(rel='stylesheet', href=site.ghbaseurl + '/public/css/antiscroll.css', type='text/css', media='all')
     link(rel='stylesheet', href=site.ghbaseurl + '/public/css/main.css', type='text/css', media='all')
-    - if (site.mixpanel && true == false)
+    - if (site.mixpanel)
       script(type='text/javascript')
         var mpq = [];
         mpq.push(["init", "#{site.mixpanel}"]);
@@ -24,7 +24,7 @@ html(lang='en')
         [f].concat(Array.prototype.slice.call(arguments,0)))}};d=["init","track","track_links",
         "track_forms","register","register_once","identify","name_tag","set_config"];for(c=0;c<
         d.length;c++){mpq[d[c]]=e(d[c])}})();
-    - if (site.googleanalytics && true == false)
+    - if (site.googleanalytics)
       script(type='text/javascript')
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', '#{site.googleanalytics}']);

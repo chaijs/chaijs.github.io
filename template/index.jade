@@ -84,7 +84,8 @@ block content
               h3.fancy= section.title
               .code-sample!= section.prepared
               .more-wrap
-                a(href='#', class='more') Visit #{section.title} Guide
+                - hrf = section.title.toLowerCase()
+                a(href=site.ghbaseurl + '/guide/styles/#' + hrf, class='more') Visit #{section.title} Guide
                   span.arrow &rarr;
     .rowInside
       article.grid_12.hrline

@@ -7,6 +7,7 @@ app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 
 app.use(express.bodyParser());
+app.use(express.staticCache());
 app.use(app.router);
 
 require('./routes');

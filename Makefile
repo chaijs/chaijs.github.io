@@ -6,6 +6,9 @@ docs: clean-docs
 	@cp -R chai/test/*.js out/public/js/tests
 
 clean-docs:
-	@rm -rf docs/out
+	@rm -rf out
 
-.PHONY: docs clean-docs
+docs-server:
+	@node app.js
+
+.PHONY: docs clean-docs docs-server

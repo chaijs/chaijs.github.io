@@ -90,6 +90,12 @@ app.get('/plugins/:id', function (req, res, next) {
   if (!plugin.cache)
     plugin.cache = {};
 
+  if (plugin.cache.date) {
+    var now = new Date().getTime();
+    if (now - plugin.cache.date > 3600000)
+      plugin.cache = {};
+  }
+
   if (!plugin.cache.html) {
     request
       .get(plugin.markdown)
@@ -102,7 +108,7 @@ app.get('/plugins/:id', function (req, res, next) {
           html = '<p>Error parsing markdown.</p>';
         }
         plugin.cache.html = html;
-        plugin.cache.date = new Date();
+        plugin.cache.date = new Date().getTime();
         render();
       });
   } else {
@@ -144,6 +150,7 @@ function parseMarkdown (text) {
     if (token.type == 'code') {
       var lang = token.lang || 'javascript';
       if (lang == 'js') lang = 'javascript';
+      if (lang == 'html') lang = 'xml';
       token.text = highlight.highlight(lang, token.text).value;
       token.escaped = true;
     }

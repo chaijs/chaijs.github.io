@@ -351,7 +351,7 @@ span.accented span.faccentr {
   overflow: hidden;
 }
 .box-wrap {
-  margin-bottom: 50px;
+  margin-bottom: 5px;
 }
 .sticky {
   position: fixed;
@@ -481,7 +481,7 @@ body.index header .header-wrap .installation .card .card-inner .download-banner 
   float: left;
   font-family: "Bitstream Vera Sans Mono", "Courier", monospace;
   width: 210px;
-  line-height: 40px;
+  line-height: 42px;
   text-align: center;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -551,6 +551,10 @@ body.index header .header-wrap .installation .card .card-inner .download-banner 
   display: inline-block;
   padding: 0 31px 0px 8px;
   position: relative;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  color: #a40802;
   text-align: center;
   font-family: "Redressed", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 20px;
@@ -558,7 +562,7 @@ body.index header .header-wrap .installation .card .card-inner .download-banner 
   float: left;
   padding-right: 8px;
   width: 194px;
-  line-height: 40px;
+  line-height: 42px;
 }
 body.index header .header-wrap .installation .card .card-inner .download-banner .button-alt span.arrow {
   text-align: center;
@@ -578,6 +582,14 @@ body.index header .header-wrap .installation .card .card-inner .download-banner 
   overflow: hidden;
   font-size: 24px;
   text-indent: -15px;
+}
+body.index header .header-wrap .installation .card .card-inner .download-banner .button-alt:hover {
+  color: #fff;
+  background-color: #a40802;
+}
+body.index header .header-wrap .installation .card .card-inner .download-banner .button-alt:hover span.arrow {
+  color: #a40802;
+  background-color: #fff;
 }
 body.index header .header-wrap .installation .card .card-inner .download-banner .dsp-left {
   margin-right: 10px;
@@ -764,6 +776,10 @@ section#content p code {
   display: inline-block;
   padding: 0 31px 0px 8px;
   position: relative;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  color: #a40802;
 }
 .panels article .more-wrap .more span.arrow {
   text-align: center;
@@ -783,6 +799,14 @@ section#content p code {
   overflow: hidden;
   font-size: 24px;
   text-indent: -15px;
+}
+.panels article .more-wrap .more:hover {
+  color: #fff;
+  background-color: #a40802;
+}
+.panels article .more-wrap .more:hover span.arrow {
+  color: #a40802;
+  background-color: #fff;
 }
 .panels article h3 {
   margin-top: 0px;

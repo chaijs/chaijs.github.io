@@ -58,6 +58,8 @@ button-simple()
   display inline-block
   padding 0 31px 0px 8px
   position relative
+  border-radius 3px
+  color #A40802
   span.arrow
     text-align center
     text-shadow none
@@ -74,7 +76,12 @@ button-simple()
     overflow hidden
     font-size 24px
     text-indent -15px
-  
+  &:hover
+    color #fff
+    background-color #A40802
+    span.arrow
+      color #A40802
+      background-color #fff
 
 body
   font 14px/1.5 font_primary
@@ -161,7 +168,7 @@ span.accented
     overflow hidden
 
 .box-wrap
-  margin-bottom 50px
+  margin-bottom 5px
 
 .sticky
   position fixed
@@ -252,7 +259,7 @@ body.index
                 float left
                 font-family "Bitstream Vera Sans Mono", "Courier", monospace
                 width 210px
-                line-height 40px
+                line-height 42px
                 text-align center
                 border-radius 3px
                 box-shadow 0px 0px 1px #666
@@ -275,7 +282,7 @@ body.index
                 float left
                 padding-right 8px
                 width 194px
-                line-height 40px
+                line-height 42px
               .dsp-left
                 margin-right 10px
               .dsp-right

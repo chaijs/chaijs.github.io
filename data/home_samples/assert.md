@@ -7,5 +7,5 @@
     assert.typeOf(foo, 'string');
     assert.equal(foo, 'bar');
     assert.length(foo, 3)
-    assert.ownProperty(tea, 'favors');
+    assert.property(tea, 'favors');
     assert.length(tea.flavors, 3);

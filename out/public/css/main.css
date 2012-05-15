@@ -975,6 +975,9 @@ section#content p code {
   height: 100px;
   background: transparent url("/public/img/chai-icons.png") no-repeat 0px 0px;
 }
+.panels article.code .code-sample pre {
+  overflow-x: visible;
+}
 .panels article.code,
 .panels article.subscribe,
 .panels article.github,

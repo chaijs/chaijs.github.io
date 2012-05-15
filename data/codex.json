@@ -18,12 +18,12 @@
     , "files": [
           { "name": "bdd"
           , "title": "expect / should [bdd]"
-          , "file": "../../lib/assertion.js"
+          , "file": "../chai/lib/assertion.js"
           , "description": "The BDD style allows you to write your assertions in a natural, self-describing manner."
           , "render-file": false }
         , { "name": "assert"
           , "title": "assert [tdd]"
-          , "file": "../../lib/interface/assert.js"
+          , "file": "../chai/lib/interface/assert.js"
           , "description": "The TDD style allows you to write your assertions using the classic 'assert dot' notation."
           , "render-file": false }
       ]

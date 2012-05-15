@@ -12,7 +12,6 @@
     <script src="/public/js/main.js"></script>
     <link rel="stylesheet" href="/public/css/antiscroll.css" type="text/css" media="all">
     <link rel="stylesheet" href="/public/css/main.css" type="text/css" media="all">
-    <link href="http://fonts.googleapis.com/css?family=Lato:300|Redressed" rel="stylesheet" type="text/css">
   </head>
   <body class="api">
     <nav id="primary">
@@ -35,7 +34,7 @@
           <div class="list box-wrap antiscroll-wrap">
             <div class="box">
               <div class="antiscroll-inner">
-                <div class="box-inner"><a id="assert" class="item">assert</a><a id="fail" class="item">fail</a><a id="ok" class="item">ok</a><a id="equal" class="item">equal</a><a id="notEqual" class="item">notEqual</a><a id="strictEqual" class="item">strictEqual</a><a id="notStrictEqual" class="item">notStrictEqual</a><a id="deepEqual" class="item">deepEqual</a><a id="notDeepEqual" class="item">notDeepEqual</a><a id="isTrue" class="item">isTrue</a><a id="isFalse" class="item">isFalse</a><a id="isNull" class="item">isNull</a><a id="isNotNull" class="item">isNotNull</a><a id="isUndefined" class="item">isUndefined</a><a id="isUndefined" class="item">isUndefined</a><a id="isFunction" class="item">isFunction</a><a id="isNotFunction" class="item">isNotFunction</a><a id="isObject" class="item">isObject</a><a id="isNotObject" class="item">isNotObject</a><a id="isArray" class="item">isArray</a><a id="isNotArray" class="item">isNotArray</a><a id="isString" class="item">isString</a><a id="isNotString" class="item">isNotString</a><a id="isNumber" class="item">isNumber</a><a id="isNotNumber" class="item">isNotNumber</a><a id="isBoolean" class="item">isBoolean</a><a id="isNotBoolean" class="item">isNotBoolean</a><a id="typeOf" class="item">typeOf</a><a id="notTypeOf" class="item">notTypeOf</a><a id="instanceOf" class="item">instanceOf</a><a id="notInstanceOf" class="item">notInstanceOf</a><a id="include" class="item">include</a><a id="match" class="item">match</a><a id="notMatch" class="item">notMatch</a><a id="property" class="item">property</a><a id="notOwnProperty" class="item">notOwnProperty</a><a id="propertyVal" class="item">propertyVal</a><a id="propertyNotVal" class="item">propertyNotVal</a><a id="length" class="item">length</a><a id="throws" class="item">throws / throw</a><a id="doesNotThrow" class="item">doesNotThrow</a><a id="operator" class="item">operator</a>
+                <div class="box-inner"><a href="#assert" class="scroll item">assert</a><a href="#fail" class="scroll item">fail</a><a href="#ok" class="scroll item">ok</a><a href="#equal" class="scroll item">equal</a><a href="#notEqual" class="scroll item">notEqual</a><a href="#strictEqual" class="scroll item">strictEqual</a><a href="#notStrictEqual" class="scroll item">notStrictEqual</a><a href="#deepEqual" class="scroll item">deepEqual</a><a href="#notDeepEqual" class="scroll item">notDeepEqual</a><a href="#isTrue" class="scroll item">isTrue</a><a href="#isFalse" class="scroll item">isFalse</a><a href="#isNull" class="scroll item">isNull</a><a href="#isNotNull" class="scroll item">isNotNull</a><a href="#isUndefined" class="scroll item">isUndefined</a><a href="#isUndefined" class="scroll item">isUndefined</a><a href="#isFunction" class="scroll item">isFunction</a><a href="#isNotFunction" class="scroll item">isNotFunction</a><a href="#isObject" class="scroll item">isObject</a><a href="#isNotObject" class="scroll item">isNotObject</a><a href="#isArray" class="scroll item">isArray</a><a href="#isNotArray" class="scroll item">isNotArray</a><a href="#isString" class="scroll item">isString</a><a href="#isNotString" class="scroll item">isNotString</a><a href="#isNumber" class="scroll item">isNumber</a><a href="#isNotNumber" class="scroll item">isNotNumber</a><a href="#isBoolean" class="scroll item">isBoolean</a><a href="#isNotBoolean" class="scroll item">isNotBoolean</a><a href="#typeOf" class="scroll item">typeOf</a><a href="#notTypeOf" class="scroll item">notTypeOf</a><a href="#instanceOf" class="scroll item">instanceOf</a><a href="#notInstanceOf" class="scroll item">notInstanceOf</a><a href="#include" class="scroll item">include</a><a href="#match" class="scroll item">match</a><a href="#notMatch" class="scroll item">notMatch</a><a href="#property" class="scroll item">property</a><a href="#notOwnProperty" class="scroll item">notOwnProperty</a><a href="#propertyVal" class="scroll item">propertyVal</a><a href="#propertyNotVal" class="scroll item">propertyNotVal</a><a href="#length" class="scroll item">length</a><a href="#throws" class="scroll item">throws / throw</a><a href="#doesNotThrow" class="scroll item">doesNotThrow</a><a href="#operator" class="scroll item">operator</a>
                 </div>
               </div>
             </div>
@@ -44,9 +43,8 @@
         <div class="documentation">
           <div class="wrap">
             <div class="rendered">
-              <article><h2>Assert API</h2>
-</article>
-              <div id="assert" class="segment">
+              <article></article>
+              <div id="assert-section" class="segment">
                 <div class="summary"><h3>assert(expressions, errorMessage)</h3>
 </div>
                 <ul class="tags">
@@ -57,7 +55,7 @@
 </p>
 </div>
               </div>
-              <div id="fail" class="segment">
+              <div id="fail-section" class="segment">
                 <div class="summary"><h3>.fail(actual, expect, msg, operator)</h3>
 </div>
                 <ul class="tags">
@@ -70,7 +68,7 @@
 </p>
 </div>
               </div>
-              <div id="ok" class="segment">
+              <div id="ok-section" class="segment">
                 <div class="summary"><h3>.ok(object, [message])</h3>
 </div>
                 <ul class="tags">
@@ -84,7 +82,7 @@
  assert.ok(<span class="literal">false</span>, <span class="string">'this will fail'</span>);</code></pre>
 </div>
               </div>
-              <div id="equal" class="segment">
+              <div id="equal-section" class="segment">
                 <div class="summary"><h3>.equal(actual, expected, [message])</h3>
 </div>
                 <ul class="tags">
@@ -98,7 +96,7 @@
 <pre><code> assert.equal(<span class="number">3</span>, <span class="number">3</span>, <span class="string">'these numbers are equal'</span>);</code></pre>
 </div>
               </div>
-              <div id="notEqual" class="segment">
+              <div id="notEqual-section" class="segment">
                 <div class="summary"><h3>.notEqual(actual, expected, [message])</h3>
 </div>
                 <ul class="tags">
@@ -112,7 +110,7 @@
 <pre><code> assert.notEqual(<span class="number">3</span>, <span class="number">4</span>, <span class="string">'these numbers are not equal'</span>);</code></pre>
 </div>
               </div>
-              <div id="strictEqual" class="segment">
+              <div id="strictEqual-section" class="segment">
                 <div class="summary"><h3>.strictEqual(actual, expected, [message])</h3>
 </div>
                 <ul class="tags">
@@ -126,7 +124,7 @@
 <pre><code> assert.strictEqual(<span class="literal">true</span>, <span class="literal">true</span>, <span class="string">'these booleans are strictly equal'</span>);</code></pre>
 </div>
               </div>
-              <div id="notStrictEqual" class="segment">
+              <div id="notStrictEqual-section" class="segment">
                 <div class="summary"><h3>.notStrictEqual(actual, expected, [message])</h3>
 </div>
                 <ul class="tags">
@@ -140,7 +138,7 @@
 <pre><code> assert.notStrictEqual(<span class="number">1</span>, <span class="literal">true</span>, <span class="string">'these booleans are not strictly equal'</span>);</code></pre>
 </div>
               </div>
-              <div id="deepEqual" class="segment">
+              <div id="deepEqual-section" class="segment">
                 <div class="summary"><h3>.deepEqual(actual, expected, [message])</h3>
 </div>
                 <ul class="tags">
@@ -154,7 +152,7 @@
 <pre><code> assert.deepEqual({ tea: <span class="string">'green'</span> }, { tea: <span class="string">'green'</span> });</code></pre>
 </div>
               </div>
-              <div id="notDeepEqual" class="segment">
+              <div id="notDeepEqual-section" class="segment">
                 <div class="summary"><h3>.notDeepEqual(actual, expected, [message])</h3>
 </div>
                 <ul class="tags">
@@ -168,7 +166,7 @@
 <pre><code> assert.notDeepEqual({ tea: <span class="string">'green'</span> }, { tea: <span class="string">'jasmine'</span> });</code></pre>
 </div>
               </div>
-              <div id="isTrue" class="segment">
+              <div id="isTrue-section" class="segment">
                 <div class="summary"><h3>.isTrue(value, [message])</h3>
 </div>
                 <ul class="tags">
@@ -182,7 +180,7 @@
  assert.isTrue(tea_served, <span class="string">'the tea has been served'</span>);</code></pre>
 </div>
               </div>
-              <div id="isFalse" class="segment">
+              <div id="isFalse-section" class="segment">
                 <div class="summary"><h3>.isFalse(value, [message])</h3>
 </div>
                 <ul class="tags">
@@ -196,7 +194,7 @@
  assert.isFalse(tea_served, <span class="string">'no tea yet? hmm...'</span>);</code></pre>
 </div>
               </div>
-              <div id="isNull" class="segment">
+              <div id="isNull-section" class="segment">
                 <div class="summary"><h3>.isNull(value, [message])</h3>
 </div>
                 <ul class="tags">
@@ -209,7 +207,7 @@
 <pre><code> assert.isNull(err, <span class="string">'no errors'</span>);</code></pre>
 </div>
               </div>
-              <div id="isNotNull" class="segment">
+              <div id="isNotNull-section" class="segment">
                 <div class="summary"><h3>.isNotNull(value, [message])</h3>
 </div>
                 <ul class="tags">
@@ -223,7 +221,7 @@
  assert.isNotNull(tea, <span class="string">'great, time for tea!'</span>);</code></pre>
 </div>
               </div>
-              <div id="isUndefined" class="segment">
+              <div id="isUndefined-section" class="segment">
                 <div class="summary"><h3>.isUndefined(value, [message])</h3>
 </div>
                 <ul class="tags">
@@ -236,7 +234,7 @@
 <pre><code> assert.isUndefined(tea, <span class="string">'no tea defined'</span>);</code></pre>
 </div>
               </div>
-              <div id="isUndefined" class="segment">
+              <div id="isUndefined-section" class="segment">
                 <div class="summary"><h3>.isDefined(value, [message])</h3>
 </div>
                 <ul class="tags">
@@ -250,7 +248,7 @@
  assert.isDefined(tea, <span class="string">'no tea defined'</span>);</code></pre>
 </div>
               </div>
-              <div id="isFunction" class="segment">
+              <div id="isFunction-section" class="segment">
                 <div class="summary"><h3>.isFunction(value, [message])</h3>
 </div>
                 <ul class="tags">
@@ -264,7 +262,7 @@
  assert.isFunction(serve_tea, <span class="string">'great, we can have tea now'</span>);</code></pre>
 </div>
               </div>
-              <div id="isNotFunction" class="segment">
+              <div id="isNotFunction-section" class="segment">
                 <div class="summary"><h3>.isNotFunction(value, [message])</h3>
 </div>
                 <ul class="tags">
@@ -278,7 +276,7 @@
  assert.isNotFunction(serve_tea, <span class="string">'great, we can have tea now'</span>);</code></pre>
 </div>
               </div>
-              <div id="isObject" class="segment">
+              <div id="isObject-section" class="segment">
                 <div class="summary"><h3>.isObject(value, [message])</h3>
 </div>
                 <ul class="tags">
@@ -292,7 +290,7 @@
  assert.isObject(selection, <span class="string">'tea selection is an object'</span>);</code></pre>
 </div>
               </div>
-              <div id="isNotObject" class="segment">
+              <div id="isNotObject-section" class="segment">
                 <div class="summary"><h3>.isNotObject(value, [message])</h3>
 </div>
                 <ul class="tags">
@@ -306,7 +304,7 @@
  assert.isObject(selection, <span class="string">'tea selection is not an object'</span>);</code></pre>
 </div>
               </div>
-              <div id="isArray" class="segment">
+              <div id="isArray-section" class="segment">
                 <div class="summary"><h3>.isArray(value, [message])</h3>
 </div>
                 <ul class="tags">
@@ -320,7 +318,7 @@
  assert.isArray(menu, <span class="string">'what kind of tea do we want?'</span>);</code></pre>
 </div>
               </div>
-              <div id="isNotArray" class="segment">
+              <div id="isNotArray-section" class="segment">
                 <div class="summary"><h3>.isArray(value, [message])</h3>
 </div>
                 <ul class="tags">
@@ -334,7 +332,7 @@
  assert.isNotArray(menu, <span class="string">'what kind of tea do we want?'</span>);</code></pre>
 </div>
               </div>
-              <div id="isString" class="segment">
+              <div id="isString-section" class="segment">
                 <div class="summary"><h3>.isString(value, [message])</h3>
 </div>
                 <ul class="tags">
@@ -348,7 +346,7 @@
  assert.isString(tea_order, <span class="string">'order placed'</span>);</code></pre>
 </div>
               </div>
-              <div id="isNotString" class="segment">
+              <div id="isNotString-section" class="segment">
                 <div class="summary"><h3>.isNotString(value, [message])</h3>
 </div>
                 <ul class="tags">
@@ -362,7 +360,7 @@
  assert.isNotString(tea_order, <span class="string">'order placed'</span>);</code></pre>
 </div>
               </div>
-              <div id="isNumber" class="segment">
+              <div id="isNumber-section" class="segment">
                 <div class="summary"><h3>.isNumber(value, [message])</h3>
 </div>
                 <ul class="tags">
@@ -376,7 +374,7 @@
  assert.isNumber(cups, <span class="string">'how many cups'</span>);</code></pre>
 </div>
               </div>
-              <div id="isNotNumber" class="segment">
+              <div id="isNotNumber-section" class="segment">
                 <div class="summary"><h3>.isNotNumber(value, [message])</h3>
 </div>
                 <ul class="tags">
@@ -390,7 +388,7 @@
  assert.isNotNumber(cups, <span class="string">'how many cups'</span>);</code></pre>
 </div>
               </div>
-              <div id="isBoolean" class="segment">
+              <div id="isBoolean-section" class="segment">
                 <div class="summary"><h3>.isBoolean(value, [message])</h3>
 </div>
                 <ul class="tags">
@@ -407,7 +405,7 @@
  assert.isBoolean(tea_served, <span class="string">'has tea been served'</span>);</code></pre>
 </div>
               </div>
-              <div id="isNotBoolean" class="segment">
+              <div id="isNotBoolean-section" class="segment">
                 <div class="summary"><h3>.isNotBoolean(value, [message])</h3>
 </div>
                 <ul class="tags">
@@ -424,7 +422,7 @@
  assert.isNotBoolean(tea_served, <span class="string">'has tea been served'</span>);</code></pre>
 </div>
               </div>
-              <div id="typeOf" class="segment">
+              <div id="typeOf-section" class="segment">
                 <div class="summary"><h3>.typeOf(value, name, [message])</h3>
 </div>
                 <ul class="tags">
@@ -438,7 +436,7 @@
 <pre><code> assert.typeOf(<span class="string">'tea'</span>, <span class="string">'string'</span>, <span class="string">'we have a string'</span>);</code></pre>
 </div>
               </div>
-              <div id="notTypeOf" class="segment">
+              <div id="notTypeOf-section" class="segment">
                 <div class="summary"><h3>.notTypeOf(value, name, [message])</h3>
 </div>
                 <ul class="tags">
@@ -452,7 +450,7 @@
 <pre><code> assert.notTypeOf(<span class="string">'tea'</span>, <span class="string">'string'</span>, <span class="string">'we have a string'</span>);</code></pre>
 </div>
               </div>
-              <div id="instanceOf" class="segment">
+              <div id="instanceOf-section" class="segment">
                 <div class="summary"><h3>.instanceOf(object, constructor, [message])</h3>
 </div>
                 <ul class="tags">
@@ -469,7 +467,7 @@
  assert.instanceOf(Chai, Tea, <span class="string">'chai is an instance of tea'</span>);</code></pre>
 </div>
               </div>
-              <div id="notInstanceOf" class="segment">
+              <div id="notInstanceOf-section" class="segment">
                 <div class="summary"><h3>.notInstanceOf(object, constructor, [message])</h3>
 </div>
                 <ul class="tags">
@@ -486,7 +484,7 @@
  assert.notInstanceOf(Chai, Tea, <span class="string">'chai is an instance of tea'</span>);</code></pre>
 </div>
               </div>
-              <div id="include" class="segment">
+              <div id="include-section" class="segment">
                 <div class="summary"><h3>.include(value, includes, [message])</h3>
 </div>
                 <ul class="tags">
@@ -502,7 +500,7 @@ for strings and arrays.
  assert.include([ 1, 2, 3], 3, 'array contains value);</code></pre>
 </div>
               </div>
-              <div id="match" class="segment">
+              <div id="match-section" class="segment">
                 <div class="summary"><h3>.match(value, regex, [message])</h3>
 </div>
                 <ul class="tags">
@@ -516,7 +514,7 @@ for strings and arrays.
 <pre><code> assert.match(<span class="string">'foobar'</span>, <span class="regexp">/^foo/</span>, <span class="string">'Regexp matches'</span>);</code></pre>
 </div>
               </div>
-              <div id="notMatch" class="segment">
+              <div id="notMatch-section" class="segment">
                 <div class="summary"><h3>.notMatch(value, regex, [message])</h3>
 </div>
                 <ul class="tags">
@@ -530,7 +528,7 @@ for strings and arrays.
 <pre><code> assert.notMatch(<span class="string">'foobar'</span>, <span class="regexp">/^foo/</span>, <span class="string">'Regexp matches'</span>);</code></pre>
 </div>
               </div>
-              <div id="property" class="segment">
+              <div id="property-section" class="segment">
                 <div class="summary"><h3>.property(object, property, [message])</h3>
 </div>
                 <ul class="tags">
@@ -544,7 +542,7 @@ for strings and arrays.
 <pre><code> assert.property({ tea: { green: <span class="string">'matcha'</span> }}, <span class="string">'tea.green'</span>);</code></pre>
 </div>
               </div>
-              <div id="notOwnProperty" class="segment">
+              <div id="notOwnProperty-section" class="segment">
                 <div class="summary"><h3>.notOwnProperty(object, property, [message])</h3>
 </div>
                 <ul class="tags">
@@ -558,7 +556,7 @@ for strings and arrays.
 <pre><code> assert.ownProperty({ tea: { green: <span class="string">'matcha'</span> }}, <span class="string">'tea.oolong'</span>);</code></pre>
 </div>
               </div>
-              <div id="propertyVal" class="segment">
+              <div id="propertyVal-section" class="segment">
                 <div class="summary"><h3>.propertyVal(object, property, value, [message])</h3>
 </div>
                 <ul class="tags">
@@ -574,7 +572,7 @@ Can use dot-notation for deep reference.
 <pre><code> assert.propertyVal({ tea: { green: <span class="string">'matcha'</span> }}, <span class="string">'tea.green'</span>, <span class="string">'matcha'</span>);</code></pre>
 </div>
               </div>
-              <div id="propertyNotVal" class="segment">
+              <div id="propertyNotVal-section" class="segment">
                 <div class="summary"><h3>.propertyNotVal(object, property, value, [message])</h3>
 </div>
                 <ul class="tags">
@@ -590,7 +588,7 @@ does not equal  <code>value</code>. Can use dot-notation for deep reference.
 <pre><code> assert.propertyNotVal({ tea: { green: <span class="string">'matcha'</span> }}, <span class="string">'tea.green'</span>, <span class="string">'konacha'</span>);</code></pre>
 </div>
               </div>
-              <div id="length" class="segment">
+              <div id="length-section" class="segment">
                 <div class="summary"><h3>.lengthOf(object, length, [message])</h3>
 </div>
                 <ul class="tags">
@@ -605,7 +603,7 @@ does not equal  <code>value</code>. Can use dot-notation for deep reference.
  assert.lengthOf(<span class="string">'foobar'</span>, <span class="number">5</span>, <span class="string">'String has length of 6'</span>);</code></pre>
 </div>
               </div>
-              <div id="throws" class="segment">
+              <div id="throws-section" class="segment">
                 <div class="summary"><h3>.throws(function, [constructor/regexp], [message])</h3>
 </div>
                 <ul class="tags">
@@ -622,7 +620,7 @@ type of error.
 <pre><code> assert.<span class="keyword">throw</span>(fn, ReferenceError, <span class="string">'function throw reference error'</span>);</code></pre>
 </div>
               </div>
-              <div id="doesNotThrow" class="segment">
+              <div id="doesNotThrow-section" class="segment">
                 <div class="summary"><h3>.doesNotThrow(function, [constructor/regexp], [message])</h3>
 </div>
                 <ul class="tags">
@@ -640,7 +638,7 @@ type of error.
  assert.doesNotThrow(fn, Error, <span class="string">'function throw reference error'</span>);</code></pre>
 </div>
               </div>
-              <div id="operator" class="segment">
+              <div id="operator-section" class="segment">
                 <div class="summary"><h3>.operator(val, operator, val2, [message])</h3>
 </div>
                 <ul class="tags">

@@ -19,12 +19,42 @@
           { "name": "bdd"
           , "title": "expect / should [bdd]"
           , "file": "../chai/lib/assertion.js"
-          , "description": "The BDD style allows you to write your assertions in a natural, self-describing manner."
+          , "description": ""
           , "render-file": false }
         , { "name": "assert"
           , "title": "assert [tdd]"
           , "file": "../chai/lib/interface/assert.js"
-          , "description": "The TDD style allows you to write your assertions using the classic 'assert dot' notation."
+          , "description": ""
+          , "render-file": false }
+        , { "name": "plugins"
+          , "title": "utility : addMethod"
+          , "file": "../chai/lib/utils/addMethod.js"
+          , "description": ""
+          , "render-file": false }
+        , { "name": "plugins"
+          , "title": "utility : addProperty"
+          , "file": "../chai/lib/utils/addProperty.js"
+          , "description": ""
+          , "render-file": false }
+        , { "name": "plugins"
+          , "title": "utility : overwriteMethod"
+          , "file": "../chai/lib/utils/overwriteMethod.js"
+          , "description": ""
+          , "render-file": false }
+        , { "name": "plugins"
+          , "title": "utility : overwriteProperty"
+          , "file": "../chai/lib/utils/overwriteProperty.js"
+          , "description": ""
+          , "render-file": false }
+        , { "name": "plugins"
+          , "title": "utility : flag"
+          , "file": "../chai/lib/utils/flag.js"
+          , "description": ""
+          , "render-file": false }
+        , { "name": "plugins"
+          , "title": "utility : getPathValue"
+          , "file": "../chai/lib/utils/getPathValue.js"
+          , "description": ""
           , "render-file": false }
       ]
     }

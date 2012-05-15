@@ -1,3 +1,4 @@
+@import url("http://fonts.googleapis.com/css?family=Lato:300|Redressed");
 html,
 body,
 div,
@@ -1620,6 +1621,11 @@ body.tests .documentation .wrap,
 body.api-index .documentation .wrap,
 body.api .documentation .wrap {
   padding: 20px;
+}
+body.tests .documentation .wrap .segment,
+body.api-index .documentation .wrap .segment,
+body.api .documentation .wrap .segment {
+  margin-bottom: 40px;
 }
 body.tests .documentation .wrap ul.tags,
 body.api-index .documentation .wrap ul.tags,

@@ -12,7 +12,6 @@
     <script src="/public/js/main.js"></script>
     <link rel="stylesheet" href="/public/css/antiscroll.css" type="text/css" media="all">
     <link rel="stylesheet" href="/public/css/main.css" type="text/css" media="all">
-    <link href="http://fonts.googleapis.com/css?family=Lato:300|Redressed" rel="stylesheet" type="text/css">
   </head>
   <body class="api">
     <nav id="primary">
@@ -35,7 +34,7 @@
           <div class="list box-wrap antiscroll-wrap">
             <div class="box">
               <div class="antiscroll-inner">
-                <div class="box-inner"><a id="language chains" class="item">language chains</a><a id="not" class="item">not</a><a id="a" class="item">a / an</a><a id="include" class="item">include / contain</a><a id="ok" class="item">ok</a><a id="true" class="item">true</a><a id="false" class="item">false</a><a id="null" class="item">null</a><a id="undefined" class="item">undefined</a><a id="exist" class="item">exist</a><a id="empty" class="item">empty</a><a id="arguments" class="item">arguments</a><a id="equal" class="item">equal</a><a id="eql" class="item">eql</a><a id="above" class="item">above / gt</a><a id="below" class="item">below / lt</a><a id="within" class="item">within</a><a id="instanceof" class="item">instanceof / instanceOf</a><a id="property" class="item">property</a><a id="ownProperty" class="item">ownProperty / haveOwnProperty</a><a id="length" class="item">length / lengthOf</a><a id="match" class="item">match</a><a id="string" class="item">string</a><a id="keys" class="item">keys / key</a><a id="throw" class="item">throw / throws / Throw</a><a id="respondTo" class="item">respondTo</a><a id="satisfy" class="item">satisfy</a><a id="closeTo" class="item">closeTo</a>
+                <div class="box-inner"><a href="#language chains" class="scroll item">language chains</a><a href="#not" class="scroll item">not</a><a href="#a" class="scroll item">a / an</a><a href="#include" class="scroll item">include / contain</a><a href="#ok" class="scroll item">ok</a><a href="#true" class="scroll item">true</a><a href="#false" class="scroll item">false</a><a href="#null" class="scroll item">null</a><a href="#undefined" class="scroll item">undefined</a><a href="#exist" class="scroll item">exist</a><a href="#empty" class="scroll item">empty</a><a href="#arguments" class="scroll item">arguments</a><a href="#equal" class="scroll item">equal</a><a href="#eql" class="scroll item">eql</a><a href="#above" class="scroll item">above / gt</a><a href="#below" class="scroll item">below / lt</a><a href="#within" class="scroll item">within</a><a href="#instanceof" class="scroll item">instanceof / instanceOf</a><a href="#property" class="scroll item">property</a><a href="#ownProperty" class="scroll item">ownProperty / haveOwnProperty</a><a href="#length" class="scroll item">length / lengthOf</a><a href="#match" class="scroll item">match</a><a href="#string" class="scroll item">string</a><a href="#keys" class="scroll item">keys / key</a><a href="#throw" class="scroll item">throw / throws / Throw</a><a href="#respondTo" class="scroll item">respondTo</a><a href="#satisfy" class="scroll item">satisfy</a><a href="#closeTo" class="scroll item">closeTo</a>
                 </div>
               </div>
             </div>
@@ -44,9 +43,8 @@
         <div class="documentation">
           <div class="wrap">
             <div class="rendered">
-              <article><h2>Language Guide</h2>
-</article>
-              <div id="language chains" class="segment">
+              <article></article>
+              <div id="language chains-section" class="segment">
                 <div class="summary"><h3>Language Chains</h3>
 </div>
                 <ul class="tags">
@@ -71,7 +69,7 @@ have been overwritten by a plugin.
 </ul>
 </div>
               </div>
-              <div id="not" class="segment">
+              <div id="not-section" class="segment">
                 <div class="summary"><h3>.not</h3>
 </div>
                 <ul class="tags">
@@ -86,7 +84,7 @@ have been overwritten by a plugin.
 </p>
 </div>
               </div>
-              <div id="a" class="segment">
+              <div id="a-section" class="segment">
                 <div class="summary"><h3>.a(type)</h3>
 </div>
                 <ul class="tags">
@@ -105,7 +103,7 @@ expect({ foo: <span class="string">'bar'</span> }).to.be.an(<span class="string"
 expect(foo).to.be.an.<span class="keyword">instanceof</span>(Foo);</code></pre>
 </div>
               </div>
-              <div id="include" class="segment">
+              <div id="include-section" class="segment">
                 <div class="summary"><h3>.include(value)</h3>
 </div>
                 <ul class="tags">
@@ -122,7 +120,7 @@ expect(<span class="string">'foobar'</span>).to.contain(<span class="string">'fo
 expect({ foo: <span class="string">'bar'</span>, hello: <span class="string">'universe'</span> }).to.include.keys(<span class="string">'foo'</span>);</code></pre>
 </div>
               </div>
-              <div id="ok" class="segment">
+              <div id="ok-section" class="segment">
                 <div class="summary"><h3>.ok</h3>
 </div>
                 <ul class="tags">
@@ -137,7 +135,7 @@ expect(undefined).to.not.be.ok;
 expect(<span class="literal">null</span>).to.not.be.ok;</code></pre>
 </div>
               </div>
-              <div id="true" class="segment">
+              <div id="true-section" class="segment">
                 <div class="summary"><h3>.true</h3>
 </div>
                 <ul class="tags">
@@ -149,7 +147,7 @@ expect(<span class="literal">null</span>).to.not.be.ok;</code></pre>
 expect(<span class="number">1</span>).to.not.be.<span class="literal">true</span>;</code></pre>
 </div>
               </div>
-              <div id="false" class="segment">
+              <div id="false-section" class="segment">
                 <div class="summary"><h3>.false</h3>
 </div>
                 <ul class="tags">
@@ -161,7 +159,7 @@ expect(<span class="number">1</span>).to.not.be.<span class="literal">true</span
 expect(<span class="number">0</span>).to.not.be.<span class="literal">false</span>;</code></pre>
 </div>
               </div>
-              <div id="null" class="segment">
+              <div id="null-section" class="segment">
                 <div class="summary"><h3>.null</h3>
 </div>
                 <ul class="tags">
@@ -173,7 +171,7 @@ expect(<span class="number">0</span>).to.not.be.<span class="literal">false</spa
 expect(undefined).not.to.be.<span class="literal">null</span>;</code></pre>
 </div>
               </div>
-              <div id="undefined" class="segment">
+              <div id="undefined-section" class="segment">
                 <div class="summary"><h3>.undefined</h3>
 </div>
                 <ul class="tags">
@@ -185,7 +183,7 @@ expect(undefined).not.to.be.<span class="literal">null</span>;</code></pre>
  expect(<span class="literal">null</span>).to.not.be.undefined;</code></pre>
 </div>
               </div>
-              <div id="exist" class="segment">
+              <div id="exist-section" class="segment">
                 <div class="summary"><h3>.exist</h3>
 </div>
                 <ul class="tags">
@@ -200,7 +198,7 @@ expect(foo).to.exist;
 expect(bar).to.not.exist;</code></pre>
 </div>
               </div>
-              <div id="empty" class="segment">
+              <div id="empty-section" class="segment">
                 <div class="summary"><h3>.empty</h3>
 </div>
                 <ul class="tags">
@@ -215,7 +213,7 @@ expect(<span class="string">''</span>).to.be.empty;
 expect({}).to.be.empty;</code></pre>
 </div>
               </div>
-              <div id="arguments" class="segment">
+              <div id="arguments-section" class="segment">
                 <div class="summary"><h3>.arguments</h3>
 </div>
                 <ul class="tags">
@@ -228,7 +226,7 @@ expect({}).to.be.empty;</code></pre>
 }</code></pre>
 </div>
               </div>
-              <div id="equal" class="segment">
+              <div id="equal-section" class="segment">
                 <div class="summary"><h3>.equal(value)</h3>
 </div>
                 <ul class="tags">
@@ -242,7 +240,7 @@ expect(<span class="number">42</span>).to.equal(<span class="number">42</span>);
 expect(<span class="number">1</span>).to.not.equal(<span class="literal">true</span>);</code></pre>
 </div>
               </div>
-              <div id="eql" class="segment">
+              <div id="eql-section" class="segment">
                 <div class="summary"><h3>.eql(value)</h3>
 </div>
                 <ul class="tags">
@@ -255,7 +253,7 @@ expect(<span class="number">1</span>).to.not.equal(<span class="literal">true</s
 expect([ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ]).to.eql([ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ]);</code></pre>
 </div>
               </div>
-              <div id="above" class="segment">
+              <div id="above-section" class="segment">
                 <div class="summary"><h3>.above(value)</h3>
 </div>
                 <ul class="tags">
@@ -267,7 +265,7 @@ expect([ <span class="number">1</span>, <span class="number">2</span>, <span cla
 <pre><code>expect(<span class="number">10</span>).to.be.above(<span class="number">5</span>);</code></pre>
 </div>
               </div>
-              <div id="below" class="segment">
+              <div id="below-section" class="segment">
                 <div class="summary"><h3>.below(value)</h3>
 </div>
                 <ul class="tags">
@@ -279,7 +277,7 @@ expect([ <span class="number">1</span>, <span class="number">2</span>, <span cla
 <pre><code>expect(<span class="number">5</span>).to.be.below(<span class="number">10</span>);</code></pre>
 </div>
               </div>
-              <div id="within" class="segment">
+              <div id="within-section" class="segment">
                 <div class="summary"><h3>.within(start, finish)</h3>
 </div>
                 <ul class="tags">
@@ -292,7 +290,7 @@ expect([ <span class="number">1</span>, <span class="number">2</span>, <span cla
 <pre><code>expect(<span class="number">7</span>).to.be.within(<span class="number">5</span>,<span class="number">10</span>);</code></pre>
 </div>
               </div>
-              <div id="instanceof" class="segment">
+              <div id="instanceof-section" class="segment">
                 <div class="summary"><h3>.instanceof(constructor)</h3>
 </div>
                 <ul class="tags">
@@ -308,7 +306,7 @@ expect(Chai).to.be.an.<span class="keyword">instanceof</span>(Tea);
 expect([ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ]).to.be.<span class="keyword">instanceof</span>(Array);</code></pre>
 </div>
               </div>
-              <div id="property" class="segment">
+              <div id="property-section" class="segment">
                 <div class="summary"><h3>.property(name, [value])</h3>
 </div>
                 <ul class="tags">
@@ -336,7 +334,7 @@ expect(deepObj).to.have.property(<span class="string">'teas[1]'</span>, <span cl
 expect(deepObj).to.have.property(<span class="string">'teas[2].tea'</span>, <span class="string">'konacha'</span>);</code></pre>
 </div>
               </div>
-              <div id="ownProperty" class="segment">
+              <div id="ownProperty-section" class="segment">
                 <div class="summary"><h3>.ownProperty(name)</h3>
 </div>
                 <ul class="tags">
@@ -348,7 +346,7 @@ expect(deepObj).to.have.property(<span class="string">'teas[2].tea'</span>, <spa
 <pre><code>expect(<span class="string">'test'</span>).to.have.ownProperty(<span class="string">'length'</span>);</code></pre>
 </div>
               </div>
-              <div id="length" class="segment">
+              <div id="length-section" class="segment">
                 <div class="summary"><h3>.length(val)</h3>
 </div>
                 <ul class="tags">
@@ -361,7 +359,7 @@ expect(deepObj).to.have.property(<span class="string">'teas[2].tea'</span>, <spa
 expect(<span class="string">'foobar'</span>).to.have.length(<span class="number">6</span>);</code></pre>
 </div>
               </div>
-              <div id="match" class="segment">
+              <div id="match-section" class="segment">
                 <div class="summary"><h3>.match(regexp)</h3>
 </div>
                 <ul class="tags">
@@ -373,7 +371,7 @@ expect(<span class="string">'foobar'</span>).to.have.length(<span class="number"
 <pre><code>expect(<span class="string">'foobar'</span>).to.match(<span class="regexp">/^foo/</span>);</code></pre>
 </div>
               </div>
-              <div id="string" class="segment">
+              <div id="string-section" class="segment">
                 <div class="summary"><h3>.string(string)</h3>
 </div>
                 <ul class="tags">
@@ -385,7 +383,7 @@ expect(<span class="string">'foobar'</span>).to.have.length(<span class="number"
 <pre><code>expect(<span class="string">'foobar'</span>).to.have.string(<span class="string">'bar'</span>);</code></pre>
 </div>
               </div>
-              <div id="keys" class="segment">
+              <div id="keys-section" class="segment">
                 <div class="summary"><h3>.keys(key1, [key2], [...])</h3>
 </div>
                 <ul class="tags">
@@ -399,7 +397,7 @@ using the <code>include</code> or <code>contain</code> modifier.
 expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span>, baz: <span class="number">3</span> }).to.contain.keys(<span class="string">'foo'</span>, <span class="string">'bar'</span>);</code></pre>
 </div>
               </div>
-              <div id="throw" class="segment">
+              <div id="throw-section" class="segment">
                 <div class="summary"><h3>.throw(constructor)</h3>
 </div>
                 <ul class="tags">
@@ -431,7 +429,7 @@ is to use <code>and</code>.
    .and.not.<span class="keyword">throw</span>(<span class="regexp">/good function/</span>);</code></pre>
 </div>
               </div>
-              <div id="respondTo" class="segment">
+              <div id="respondTo-section" class="segment">
                 <div class="summary"><h3>.respondTo(method)</h3>
 </div>
                 <ul class="tags">
@@ -444,7 +442,7 @@ is to use <code>and</code>.
 expect(obj).to.respondTo(<span class="string">'bar'</span>);</code></pre>
 </div>
               </div>
-              <div id="satisfy" class="segment">
+              <div id="satisfy-section" class="segment">
                 <div class="summary"><h3>.satisfy(method)</h3>
 </div>
                 <ul class="tags">
@@ -456,7 +454,7 @@ expect(obj).to.respondTo(<span class="string">'bar'</span>);</code></pre>
 <pre><code>expect(<span class="number">1</span>).to.satisfy(<span class="keyword">function</span>(num) { <span class="keyword">return</span> num > <span class="number">0</span>; });</code></pre>
 </div>
               </div>
-              <div id="closeTo" class="segment">
+              <div id="closeTo-section" class="segment">
                 <div class="summary"><h3>.closeTo(expected, delta)</h3>
 </div>
                 <ul class="tags">

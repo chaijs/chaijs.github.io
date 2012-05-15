@@ -5,11 +5,14 @@ $(function () {
     var section = $(this).attr('href')
       , $scrollto = $(section + '-section');
 
-    console.log(section, $scrollto);
     $('html,body').animate({
       scrollTop: $scrollto.offset().top - 90
     });
   });
 
-  $('.box-wrap').antiscroll({ autoHide: false }).data('antiscroll');
+  setTimeout(function () {
+    $('.box-wrap')
+      .antiscroll({ autoHide: false })
+      .data('antiscroll');
+  }, 500);
 });

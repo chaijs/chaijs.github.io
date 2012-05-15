@@ -12,7 +12,6 @@
     <script src="/public/js/main.js"></script>
     <link rel="stylesheet" href="/public/css/antiscroll.css" type="text/css" media="all">
     <link rel="stylesheet" href="/public/css/main.css" type="text/css" media="all">
-    <link href="http://fonts.googleapis.com/css?family=Lato:300|Redressed" rel="stylesheet" type="text/css">
   </head>
   <body class="api">
     <nav id="primary">
@@ -35,7 +34,7 @@
           <div class="list box-wrap antiscroll-wrap">
             <div class="box">
               <div class="antiscroll-inner">
-                <div class="box-inner">
+                <div class="box-inner"><a href="#addMethod" class="scroll item">addMethod</a><a href="#addProperty" class="scroll item">addProperty</a><a href="#overwriteMethod" class="scroll item">overwriteMethod</a><a href="#overwriteProperty" class="scroll item">overwriteProperty</a><a href="#flag" class="scroll item">flag</a><a href="#getPathValue" class="scroll item">getPathValue</a>
                 </div>
               </div>
             </div>
@@ -45,6 +44,168 @@
           <div class="wrap">
             <div class="rendered">
               <article></article>
+              <div id="addMethod-section" class="segment">
+                <div class="summary"><h3>addMethod (ctx, name, method)</h3>
+</div>
+                <ul class="tags">
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">ctx</span><span class="desc">object to which the method is added</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">name</span><span class="desc">of method to add</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">method</span><span class="desc">function to be used for name</span></li>
+                </ul>
+                <div class="description"><p>Adds a method to the prototype of an object.
+
+</p>
+<pre><code>utils.addMethod(chai.Assertion.prototype, <span class="string">'foo'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(str)</span> {</span>
+  <span class="keyword">var</span> obj = utils.flag(<span class="keyword">this</span>, <span class="string">'object'</span>);
+  <span class="keyword">new</span> chai.Assertion(obj).to.be.equal(str);
+});</code></pre>
+<p>Can also be accessed directly from <code>chai.Assertion</code>.
+
+</p>
+<pre><code>chai.Assertion.addMethod(<span class="string">'foo'</span>, fn);</code></pre>
+<p>Then can be used as any other assertion.
+
+</p>
+<pre><code>expect(fooStr).to.be.foo(<span class="string">'bar'</span>);</code></pre>
+</div>
+              </div>
+              <div id="addProperty-section" class="segment">
+                <div class="summary"><h3>addProperty (ctx, name, getter)</h3>
+</div>
+                <ul class="tags">
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">ctx</span><span class="desc">object to which the property is added</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">name</span><span class="desc">of property to add</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">getter</span><span class="desc">function to be used for name</span></li>
+                </ul>
+                <div class="description"><p>Adds a property to the prototype of an object.
+
+</p>
+<pre><code>utils.addProperty(chai.Assertion.prototype, <span class="string">'foo'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+  <span class="keyword">var</span> obj = utils.flag(<span class="keyword">this</span>, <span class="string">'object'</span>);
+  <span class="keyword">new</span> chai.Assertion(obj).to.be.<span class="keyword">instanceof</span>(Foo);
+});</code></pre>
+<p>Can also be accessed directly from <code>chai.Assertion</code>.
+
+</p>
+<pre><code>chai.Assertion.addProperty(<span class="string">'foo'</span>, fn);</code></pre>
+<p>Then can be used as any other assertion.
+
+</p>
+<pre><code>expect(myFoo).to.be.foo;</code></pre>
+</div>
+              </div>
+              <div id="overwriteMethod-section" class="segment">
+                <div class="summary"><h3>overwriteMethod (ctx, name, fn)</h3>
+</div>
+                <ul class="tags">
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">ctx</span><span class="desc">object whose method is to be overwritten</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">name</span><span class="desc">of method to overwrite</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">method</span><span class="desc">function that returns a function to be used for name</span></li>
+                </ul>
+                <div class="description"><p>Overwites an already existing method and provides
+access to previous function. Must return function
+to be used for name.
+
+</p>
+<pre><code>utils.overwriteMethod(chai.Assertion.prototype, <span class="string">'equal'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(_super)</span> {</span>
+  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">(str)</span> {</span>
+    <span class="keyword">var</span> obj = utils.flag(<span class="keyword">this</span>, <span class="string">'object'</span>);
+    <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> Foo) {
+      <span class="keyword">new</span> chai.Assertion(obj.value).to.equal(str);
+    } <span class="keyword">else</span> {
+      _super.apply(<span class="keyword">this</span>, arguments);
+    }
+  }
+});</code></pre>
+<p>Can also be accessed directly from <code>chai.Assertion</code>.
+
+</p>
+<pre><code>chai.Assertion.overwriteMethod(<span class="string">'foo'</span>, fn);</code></pre>
+<p>Then can be used as any other assertion.
+
+</p>
+<pre><code>expect(myFoo).to.equal(<span class="string">'bar'</span>);</code></pre>
+</div>
+              </div>
+              <div id="overwriteProperty-section" class="segment">
+                <div class="summary"><h3>overwriteProperty (ctx, name, fn)</h3>
+</div>
+                <ul class="tags">
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">ctx</span><span class="desc">object whose property is to be overwritten</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">name</span><span class="desc">of property to overwrite</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">getter</span><span class="desc">function that returns a getter function to be used for name</span></li>
+                </ul>
+                <div class="description"><p>Overwites an already existing property getter and provides
+access to previous value. Must return function to use as getter.
+
+</p>
+<pre><code>utils.overwriteProperty(chai.Assertion.prototype, <span class="string">'ok'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(_super)</span> {</span>
+  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+    <span class="keyword">var</span> obj = utils.flag(<span class="keyword">this</span>, <span class="string">'object'</span>);
+    <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> Foo) {
+      <span class="keyword">new</span> chai.Assertion(obj.name).to.equal(<span class="string">'bar'</span>);
+    } <span class="keyword">else</span> {
+      _super.call(<span class="keyword">this</span>);
+    }
+  }
+});</code></pre>
+<p>Can also be accessed directly from <code>chai.Assertion</code>.
+
+</p>
+<pre><code>chai.Assertion.overwriteProperty(<span class="string">'foo'</span>, fn);</code></pre>
+<p>Then can be used as any other assertion.
+
+</p>
+<pre><code>expect(myFoo).to.be.ok;</code></pre>
+</div>
+              </div>
+              <div id="flag-section" class="segment">
+                <div class="summary"><h3>flag(object ,key, [value])</h3>
+</div>
+                <ul class="tags">
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">object</span><span class="desc">(constructed Assertion</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">key</span><span class="desc"></span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc">(optional)</span></li>
+                </ul>
+                <div class="description"><p>Get or set a flag value on an object. If a
+value is provided it will be set, else it will
+return the currently set value or <code>undefined</code> if
+the value is not set.
+
+</p>
+<pre><code>utils.flag(<span class="keyword">this</span>, <span class="string">'foo'</span>, <span class="string">'bar'</span>); <span class="comment">// setter</span>
+utils.flag(<span class="keyword">this</span>, <span class="string">'foo'</span>); <span class="comment">// getter, returns `bar`</span></code></pre>
+</div>
+              </div>
+              <div id="getPathValue-section" class="segment">
+                <div class="summary"><h3>.getPathValue(path, object)</h3>
+</div>
+                <ul class="tags">
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">path</span><span class="desc"></span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">object</span><span class="desc"></span></li>
+                </ul>
+                <div class="description"><p>This allows the retrieval of values in an
+object given a string path.
+
+</p>
+<pre><code><span class="keyword">var</span> obj = {
+    prop1: {
+        arr: [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]
+      , str: <span class="string">'Hello'</span>
+    }
+  , prop2: {
+        arr: [ { nested: <span class="string">'Universe'</span> } ]
+      , str: <span class="string">'Hello again!'</span>
+    }
+}</code></pre>
+<p>The following would be the results.
+
+</p>
+<pre><code>getPathValue(<span class="string">'prop1.str'</span>, obj); <span class="comment">// Hello</span>
+getPathValue(<span class="string">'prop1.att[2]'</span>, obj); <span class="comment">// b</span>
+getPathValue(<span class="string">'prop2.arr[0].nested'</span>, obj); <span class="comment">// Universe</span></code></pre>
+</div>
+              </div>
             </div>
           </div>
         </div>

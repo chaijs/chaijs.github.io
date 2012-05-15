@@ -585,6 +585,10 @@ body.index header .header-wrap .installation .card .card-inner .download-banner 
 body.index header .header-wrap .installation .card .card-inner .download-banner .dsp-right {
   margin-left: 10px;
 }
+body.index header .header-wrap .installation .card .card-inner .download-banner .dsp-full {
+  width: 420px;
+  margin-top: -10px;
+}
 body.index header .header-wrap .installation .card .card-inner .tech-links {
   text-align: center;
   position: absolute;

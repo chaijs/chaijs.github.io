@@ -37,19 +37,20 @@ block header
                     a.toggle(href='#node') Node
                     a.toggle(href='#browser') Browser
                 .download-banner 
-                  .description Chai is included as part of the <code>konacha</code> gem.
-                  a.button-alt.dsp-left(href='#') GitHub Project
-                  a.button.dsp-right(href='#') View Rails Guide
+                  .description Chai is available through Konacha, a modern
+                    | test harness that takes full advantage of Rails 3 features such as the
+                    | asset pipeline and engines.
+                  a.button-alt.dsp-full(href='https://github.com/jfirebaugh/konacha', target='_blank') Konacha GitHub Project
               .tech-links
-                a(href='#') Issues
+                a(href='https://github.com/chaijs/chai/issues', target='_blank') Issues
                 | &nbsp;|&nbsp;
-                a(href='#') Upgrade notes
+                a(href='https://github.com/chaijs/chai', target='_blank') Fork on GitHub
                 | &nbsp;|&nbsp;
-                a(href='#') Changelog
+                a(href='https://github.com/chaijs/chai/blob/master/History.md', target='_blank') Changelog
                 | &nbsp;|&nbsp;
-                a(href='#') Community
+                a(href='http://groups.google.com/group/chaijs', target='_blank') Google Group
                 | &nbsp;|&nbsp;
-                a(href='#') Build status
+                a(href='http://travis-ci.org/#!/chaijs/chai', target='_blank') Build Status
       .callouts
         #guide.call
           a(href=site.ghbaseurl + '/guide')
@@ -75,7 +76,7 @@ block content
     .rowInside
       article.grid_12.hrline
       article.grid_12.desc
-        h2.plain Chai has interfaces... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et purus libero, et elementum diam. Sed auctor semper dictum. Morbi vitae mauris ac velit vehicula elementum ac et massa. Donec posuere.
+        h2.plain Chai has several interfaces that allow the developer to choose the most comfortable. The chain-capable BDD styles provide an expressive language &amp; readable style, while the TDD assert style provides a more classical feel. 
       if (files.home_samples)
         for section in files.home_samples
           article.grid_4.code.contrast
@@ -88,7 +89,7 @@ block content
     .rowInside
       article.grid_12.hrline
       article.grid_12.desc
-        h2.plain Plugins extend Chai... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et purus libero, et elementum diam. Sed auctor semper dictum. Morbi vitae mauris ac velit vehicula elementum ac et massa. Donec posuere.
+        h2.plain Plugins extend Chai's assertions to new contexts such as vendor integration &amp; object construction. Developers can build their own plugins to share with community or use the plugin pattern to DRY up existing tests.
       article#plugin-featured.grid_6.plugin-box.contrast
         .plugin-title
           h2.plain.accent-wrap
@@ -106,7 +107,7 @@ block content
           .icon
         .wrap
           h3.fancy Custom Plugins
-          p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lacinia amet.
+          p Browse our growing directory of custom plugins &amp; vendor integrations to find the best tool for your needs.
           .more-wrap
             a(href='#', class='more') Browse Plugins
               span.arrow &rarr;
@@ -115,26 +116,24 @@ block content
           .icon
         .wrap
           h3.fancy Develop Plugins
-          p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lacinia amet.
+          p Chai has an extensivity utility belt for plugin developers. Learn how to build your plugins &amp; share. 
           .more-wrap
             a(href='#', class='more') Plugin Guide 
               span.arrow &rarr;
     .rowInside
       article.grid_12.hrline
-      article.grid_12.desc
-        h2.plain Chai's awesome community... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et purus libero, et elementum diam. Sed auctor semper dictum. Morbi vitae mauris ac velit vehicula elementum ac et massa. Donec posuere.
       article.github.grid_6.contrast
         .wrap
           span.img &nbsp;
           h3.fancy Powered by Open Source
-          p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vehicula odio sit amet dolor porta non lacinia risus molestie. Nulla posuere.
+          p Chai is hosted on GitHub. Have a suggestion or found a bug? Fork this project to get started. Even this documentation site is open source and available for contribution. 
           .more-wrap
             a(href='#', class='more') Fork me on GitHub
               span.arrow &rarr;
       article.community.grid_6.contrast
         .wrap
           h3.fancy Involved Community
-          p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vehicula odio sit amet dolor porta non lacinia risus molestie. Nulla posuere.
+          p We have an active mailing list available at our <a href="http://groups.google.com/group/chaijs" target="_blank">Google Group</a>, or drop by freenode IRC #chaijs channel to get help anytime.
           .more-wrap
-            a(href='#', class='more') Visit Google Group
+            a(href='http://groups.google.com/group/chaijs', class='more', target='_blank') Visit Google Group
               span.arrow &rarr;

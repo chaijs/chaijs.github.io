@@ -55,7 +55,7 @@ module.exports = [
  , { name: 'Chai jQuery'
     , desc: 'Extend Chai with assertions for the DOM and jQuery.'
     , url: 'chai-jquery'
-    , link: 'https://github.com/chaijs/chai-spies'
+    , link: 'https://github.com/chaijs/chai-jquery'
     , tags: [ 'vendor', 'dom' ]
     , pkg: 'https://raw.github.com/chaijs/chai-jquery/master/package.json'
     , markdown: 'https://raw.github.com/chaijs/chai-jquery/master/README.md'

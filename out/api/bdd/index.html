@@ -9,9 +9,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?1.0.0"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?1.0.0" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?1.0.0" type="text/css" media="all">
+    <script src="/public/js/main.js?1.0.1"></script>
+    <link rel="stylesheet" href="/public/css/antiscroll.css?1.0.1" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?1.0.1" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -55,7 +55,7 @@
           <div class="list box-wrap antiscroll-wrap">
             <div class="box">
               <div class="antiscroll-inner">
-                <div class="box-inner"><a href="#language chains" class="scroll item">language chains</a><a href="#not" class="scroll item">not</a><a href="#a" class="scroll item">a / an</a><a href="#include" class="scroll item">include / contain</a><a href="#ok" class="scroll item">ok</a><a href="#true" class="scroll item">true</a><a href="#false" class="scroll item">false</a><a href="#null" class="scroll item">null</a><a href="#undefined" class="scroll item">undefined</a><a href="#exist" class="scroll item">exist</a><a href="#empty" class="scroll item">empty</a><a href="#arguments" class="scroll item">arguments</a><a href="#equal" class="scroll item">equal</a><a href="#eql" class="scroll item">eql</a><a href="#above" class="scroll item">above / gt</a><a href="#below" class="scroll item">below / lt</a><a href="#within" class="scroll item">within</a><a href="#instanceof" class="scroll item">instanceof / instanceOf</a><a href="#property" class="scroll item">property</a><a href="#ownProperty" class="scroll item">ownProperty / haveOwnProperty</a><a href="#length" class="scroll item">length / lengthOf</a><a href="#match" class="scroll item">match</a><a href="#string" class="scroll item">string</a><a href="#keys" class="scroll item">keys / key</a><a href="#throw" class="scroll item">throw / throws / Throw</a><a href="#respondTo" class="scroll item">respondTo</a><a href="#satisfy" class="scroll item">satisfy</a><a href="#closeTo" class="scroll item">closeTo</a>
+                <div class="box-inner"><a href="#language chains" class="scroll item">language chains</a><a href="#not" class="scroll item">not</a><a href="#deep" class="scroll item">deep</a><a href="#a" class="scroll item">a / an</a><a href="#include" class="scroll item">include / contain</a><a href="#ok" class="scroll item">ok</a><a href="#true" class="scroll item">true</a><a href="#false" class="scroll item">false</a><a href="#null" class="scroll item">null</a><a href="#undefined" class="scroll item">undefined</a><a href="#exist" class="scroll item">exist</a><a href="#empty" class="scroll item">empty</a><a href="#arguments" class="scroll item">arguments</a><a href="#equal" class="scroll item">equal</a><a href="#eql" class="scroll item">eql</a><a href="#above" class="scroll item">above / gt</a><a href="#below" class="scroll item">below / lt</a><a href="#within" class="scroll item">within</a><a href="#instanceof" class="scroll item">instanceof / instanceOf</a><a href="#property" class="scroll item">property</a><a href="#ownProperty" class="scroll item">ownProperty / haveOwnProperty</a><a href="#length" class="scroll item">length / lengthOf</a><a href="#match" class="scroll item">match</a><a href="#string" class="scroll item">string</a><a href="#keys" class="scroll item">keys / key</a><a href="#throw" class="scroll item">throw / throws / Throw</a><a href="#respondTo" class="scroll item">respondTo</a><a href="#satisfy" class="scroll item">satisfy</a><a href="#closeTo" class="scroll item">closeTo</a>
                 </div>
               </div>
             </div>
@@ -98,11 +98,24 @@ have been overwritten by a plugin.
                 <div class="description"><p>Negates any of assertions following in the chain.
 
 </p>
-<p>   expect(foo).to.not.equal(&#39;bar&#39;);
-   expect(goodFn).to.not.throw(Error);
-   expect({ foo: &#39;baz&#39; }).to.have.property(&#39;foo&#39;)
-     .and.not.equal(&#39;bar&#39;);
+<pre><code>expect(foo).to.not.equal(<span class="string">'bar'</span>);
+expect(goodFn).to.not.<span class="keyword">throw</span>(Error);
+expect({ foo: <span class="string">'baz'</span> }).to.have.property(<span class="string">'foo'</span>)
+  .and.not.equal(<span class="string">'bar'</span>);</code></pre>
+</div>
+              </div>
+              <div id="deep-section" class="segment">
+                <div class="summary"><h3>.deep</h3>
+</div>
+                <ul class="tags">
+                </ul>
+                <div class="description"><p>Sets the <code>deep</code> flag, later used by the <code>equal</code> and
+<code>property</code> assertions.
+
 </p>
+<pre><code>expect(foo).to.deep.equal({ bar: <span class="string">'baz'</span> });
+expect({ foo: { bar: { baz: <span class="string">'quux'</span> } } })
+  .to.have.deep.property(<span class="string">'foo.bar.baz'</span>, <span class="string">'quux'</span>);</code></pre>
 </div>
               </div>
               <div id="a-section" class="segment">
@@ -112,13 +125,15 @@ have been overwritten by a plugin.
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">type</span><span class="desc"></span></li>
                 </ul>
                 <div class="description"><p>The <code>a</code> and <code>an</code> assertions are aliases that can be
-used either as property languague chains or to assert
-typeof.
+used either as language chains or to assert a value&#39;s
+type (as revealed by <code>Object.prototype.toString</code>).
 
 </p>
 <pre><code><span class="comment">// typeof</span>
 expect(<span class="string">'test'</span>).to.be.a(<span class="string">'string'</span>);
 expect({ foo: <span class="string">'bar'</span> }).to.be.an(<span class="string">'object'</span>);
+expect(<span class="literal">null</span>).to.be.a(<span class="string">'null'</span>);
+expect(undefined).to.be.an(<span class="string">'undefined'</span>);
 
 <span class="comment">// language chain</span>
 expect(foo).to.be.an.<span class="keyword">instanceof</span>(Foo);</code></pre>
@@ -130,10 +145,10 @@ expect(foo).to.be.an.<span class="keyword">instanceof</span>(Foo);</code></pre>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object | String | Number &#125;</span><span class="name">obj</span><span class="desc"></span></li>
                 </ul>
-                <div class="description"><p>The <code>include</code> and <code>contain</code> assertions can be used as either a property
-based language chain or as a method to assert the inclusion of an object
-in an Array or substring in string. When used as a property langugae chain,
-it toggles the <code>contain</code> flag for the <code>keys</code> assertion.
+                <div class="description"><p>The <code>include</code> and <code>contain</code> assertions can be used as either property
+based language chains or as methods to assert the inclusion of an object
+in an array or a substring in a string. When used as language chains,
+they toggle the <code>contain</code> flag for the <code>keys</code> assertion.
 
 </p>
 <pre><code>expect([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]).to.include(<span class="number">2</span>);
@@ -146,7 +161,7 @@ expect({ foo: <span class="string">'bar'</span>, hello: <span class="string">'un
 </div>
                 <ul class="tags">
                 </ul>
-                <div class="description"><p>Assert object truthiness.
+                <div class="description"><p>Asserts that the target is truthy.
 
 </p>
 <pre><code>expect(<span class="string">'everthing'</span>).to.be.ok;
@@ -161,7 +176,7 @@ expect(<span class="literal">null</span>).to.not.be.ok;</code></pre>
 </div>
                 <ul class="tags">
                 </ul>
-                <div class="description"><p>Assert object is true
+                <div class="description"><p>Asserts that the target is <code>true</code>.
 
 </p>
 <pre><code>expect(<span class="literal">true</span>).to.be.<span class="literal">true</span>;
@@ -173,7 +188,7 @@ expect(<span class="number">1</span>).to.not.be.<span class="literal">true</span
 </div>
                 <ul class="tags">
                 </ul>
-                <div class="description"><p>Assert object is false
+                <div class="description"><p>Asserts that the target is <code>false</code>.
 
 </p>
 <pre><code>expect(<span class="literal">false</span>).to.be.<span class="literal">false</span>;
@@ -185,7 +200,7 @@ expect(<span class="number">0</span>).to.not.be.<span class="literal">false</spa
 </div>
                 <ul class="tags">
                 </ul>
-                <div class="description"><p>Assert object is null
+                <div class="description"><p>Asserts that the target is <code>null</code>.
 
 </p>
 <pre><code>expect(<span class="literal">null</span>).to.be.<span class="literal">null</span>;
@@ -197,7 +212,7 @@ expect(undefined).not.to.be.<span class="literal">null</span>;</code></pre>
 </div>
                 <ul class="tags">
                 </ul>
-                <div class="description"><p>Assert object is undefined
+                <div class="description"><p>Asserts that the target is <code>undefined</code>.
 
 </p>
 <pre><code> expect(undefined).to.be.undefined;
@@ -209,14 +224,16 @@ expect(undefined).not.to.be.<span class="literal">null</span>;</code></pre>
 </div>
                 <ul class="tags">
                 </ul>
-                <div class="description"><p>Assert object exists (null).
+                <div class="description"><p>Asserts that the target is neither <code>null</code> nor <code>undefined</code>.
 
 </p>
 <pre><code><span class="keyword">var</span> foo = <span class="string">'hi'</span>
-  , bar;
+  , bar = <span class="literal">null</span>
+  , baz;
 
 expect(foo).to.exist;
-expect(bar).to.not.exist;</code></pre>
+expect(bar).to.not.exist;
+expect(baz).to.not.exist;</code></pre>
 </div>
               </div>
               <div id="empty-section" class="segment">
@@ -224,8 +241,8 @@ expect(bar).to.not.exist;</code></pre>
 </div>
                 <ul class="tags">
                 </ul>
-                <div class="description"><p>Assert object&#39;s length to be <code>0</code>. For arrays, it check
-the length property. For objects it gets the count of
+                <div class="description"><p>Asserts that the target&#39;s length is <code>0</code>. For arrays, it checks
+the <code>length</code> property. For objects, it gets the count of
 enumerable keys.
 
 </p>
@@ -239,7 +256,7 @@ expect({}).to.be.empty;</code></pre>
 </div>
                 <ul class="tags">
                 </ul>
-                <div class="description"><p>Assert object is an instanceof arguments.
+                <div class="description"><p>Asserts that the target is an arguments object.
 
 </p>
 <pre><code><span class="function"><span class="keyword">function</span> <span class="title">test</span> <span class="params">()</span> {</span>
@@ -253,21 +270,25 @@ expect({}).to.be.empty;</code></pre>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc"></span></li>
                 </ul>
-                <div class="description"><p>Assert strict equality (===).
+                <div class="description"><p>Asserts that the target is strictly equal (<code>===</code>) to <code>value</code>.
+Alternately, if the <code>deep</code> flag is set, asserts that
+the target is deeply equal to <code>value</code>.
 
 </p>
 <pre><code>expect(<span class="string">'hello'</span>).to.equal(<span class="string">'hello'</span>);
 expect(<span class="number">42</span>).to.equal(<span class="number">42</span>);
-expect(<span class="number">1</span>).to.not.equal(<span class="literal">true</span>);</code></pre>
+expect(<span class="number">1</span>).to.not.equal(<span class="literal">true</span>);
+expect({ foo: <span class="string">'bar'</span> }).to.not.equal({ foo: <span class="string">'bar'</span> });
+expect({ foo: <span class="string">'bar'</span> }).to.deep.equal({ foo: <span class="string">'bar'</span> });</code></pre>
 </div>
               </div>
               <div id="eql-section" class="segment">
                 <div class="summary"><h3>.eql(value)</h3>
 </div>
                 <ul class="tags">
-                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; * &#125;</span><span class="name">value</span><span class="desc"></span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc"></span></li>
                 </ul>
-                <div class="description"><p>Assert deep equality.
+                <div class="description"><p>Asserts that the target is deeply equal to <code>value</code>.
 
 </p>
 <pre><code>expect({ foo: <span class="string">'bar'</span> }).to.eql({ foo: <span class="string">'bar'</span> });
@@ -280,7 +301,7 @@ expect([ <span class="number">1</span>, <span class="number">2</span>, <span cla
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Number &#125;</span><span class="name">value</span><span class="desc"></span></li>
                 </ul>
-                <div class="description"><p>Assert greater than <code>value</code>.
+                <div class="description"><p>Asserts that the target is greater than <code>value</code>.
 
 </p>
 <pre><code>expect(<span class="number">10</span>).to.be.above(<span class="number">5</span>);</code></pre>
@@ -292,7 +313,7 @@ expect([ <span class="number">1</span>, <span class="number">2</span>, <span cla
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Number &#125;</span><span class="name">value</span><span class="desc"></span></li>
                 </ul>
-                <div class="description"><p>Assert less than <code>value</code>.
+                <div class="description"><p>Asserts that the target is less than <code>value</code>.
 
 </p>
 <pre><code>expect(<span class="number">5</span>).to.be.below(<span class="number">10</span>);</code></pre>
@@ -305,7 +326,7 @@ expect([ <span class="number">1</span>, <span class="number">2</span>, <span cla
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Number &#125;</span><span class="name">start</span><span class="desc">lowerbound inclusive</span></li>
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Number &#125;</span><span class="name">finish</span><span class="desc">upperbound inclusive</span></li>
                 </ul>
-                <div class="description"><p>Assert that a number is within a range.
+                <div class="description"><p>Asserts that the target is within a range.
 
 </p>
 <pre><code>expect(<span class="number">7</span>).to.be.within(<span class="number">5</span>,<span class="number">10</span>);</code></pre>
@@ -315,9 +336,9 @@ expect([ <span class="number">1</span>, <span class="number">2</span>, <span cla
                 <div class="summary"><h3>.instanceof(constructor)</h3>
 </div>
                 <ul class="tags">
-                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Constructor &#125;</span><span class="name"></span><span class="desc"></span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Constructor &#125;</span><span class="name">constructor</span><span class="desc"></span></li>
                 </ul>
-                <div class="description"><p>Assert instanceof.
+                <div class="description"><p>Asserts that the target is an instance of <code>constructor</code>.
 
 </p>
 <pre><code><span class="keyword">var</span> Tea = <span class="function"><span class="keyword">function</span> <span class="params">(name)</span> {</span> <span class="keyword">this</span>.name = name; }
@@ -334,12 +355,14 @@ expect([ <span class="number">1</span>, <span class="number">2</span>, <span cla
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">name</span><span class="desc"></span></li>
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc">(optional)</span></li>
                 </ul>
-                <div class="description"><p>Assert that property of <code>name</code> exists, optionally with <code>value</code>.
-Can use dot-notation for deep reference.
+                <div class="description"><p>Asserts that the target has a property <code>name</code>, optionally asserting that
+the value of that property is strictly equal to  <code>value</code>.
+If the <code>deep</code> flag is set, you can use dot- and bracket-notation for deep
+references into objects and arrays.
 
 </p>
-<pre><code><span class="comment">// legacy / simple referencing</span>
-<span class="keyword">var</span> obj = { foo: <span class="string">'bar'</span> }
+<pre><code><span class="comment">// simple referencing</span>
+<span class="keyword">var</span> obj = { foo: <span class="string">'bar'</span> };
 expect(obj).to.have.property(<span class="string">'foo'</span>);
 expect(obj).to.have.property(<span class="string">'foo'</span>, <span class="string">'bar'</span>);
 expect(obj).to.have.property(<span class="string">'foo'</span>).to.be.a(<span class="string">'string'</span>);
@@ -350,9 +373,9 @@ expect(obj).to.have.property(<span class="string">'foo'</span>).to.be.a(<span cl
   , teas: [ <span class="string">'chai'</span>, <span class="string">'matcha'</span>, { tea: <span class="string">'konacha'</span> } ]
 };
 
-expect(deepObj).to.have.property(<span class="string">'green.tea'</span>, <span class="string">'matcha'</span>);
-expect(deepObj).to.have.property(<span class="string">'teas[1]'</span>, <span class="string">'matcha'</span>);
-expect(deepObj).to.have.property(<span class="string">'teas[2].tea'</span>, <span class="string">'konacha'</span>);</code></pre>
+expect(deepObj).to.have.deep.property(<span class="string">'green.tea'</span>, <span class="string">'matcha'</span>);
+expect(deepObj).to.have.deep.property(<span class="string">'teas[1]'</span>, <span class="string">'matcha'</span>);
+expect(deepObj).to.have.deep.property(<span class="string">'teas[2].tea'</span>, <span class="string">'konacha'</span>);</code></pre>
 </div>
               </div>
               <div id="ownProperty-section" class="segment">
@@ -361,19 +384,19 @@ expect(deepObj).to.have.property(<span class="string">'teas[2].tea'</span>, <spa
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">name</span><span class="desc"></span></li>
                 </ul>
-                <div class="description"><p>Assert that has own property by <code>name</code>.
+                <div class="description"><p>Asserts that the target has an own property <code>name</code>.
 
 </p>
 <pre><code>expect(<span class="string">'test'</span>).to.have.ownProperty(<span class="string">'length'</span>);</code></pre>
 </div>
               </div>
               <div id="length-section" class="segment">
-                <div class="summary"><h3>.length(val)</h3>
+                <div class="summary"><h3>.length(value)</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Number &#125;</span><span class="name">length</span><span class="desc"></span></li>
                 </ul>
-                <div class="description"><p>Assert that object has expected length.
+                <div class="description"><p>Asserts that the target&#39;s <code>length</code> property has the expected value.
 
 </p>
 <pre><code>expect([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]).to.have.length(<span class="number">3</span>);
@@ -386,7 +409,7 @@ expect(<span class="string">'foobar'</span>).to.have.length(<span class="number"
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; RegExp &#125;</span><span class="name">RegularExpression</span><span class="desc"></span></li>
                 </ul>
-                <div class="description"><p>Assert that matches regular expression.
+                <div class="description"><p>Asserts that the target matches a regular expression.
 
 </p>
 <pre><code>expect(<span class="string">'foobar'</span>).to.match(<span class="regexp">/^foo/</span>);</code></pre>
@@ -398,7 +421,7 @@ expect(<span class="string">'foobar'</span>).to.have.length(<span class="number"
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">string</span><span class="desc"></span></li>
                 </ul>
-                <div class="description"><p>Assert inclusion of string in string.
+                <div class="description"><p>Asserts that the string target contains another string.
 
 </p>
 <pre><code>expect(<span class="string">'foobar'</span>).to.have.string(<span class="string">'bar'</span>);</code></pre>
@@ -408,10 +431,11 @@ expect(<span class="string">'foobar'</span>).to.have.length(<span class="number"
                 <div class="summary"><h3>.keys(key1, [key2], [...])</h3>
 </div>
                 <ul class="tags">
-                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String | Array &#125;</span><span class="name">Keys</span><span class="desc"></span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String... | Array &#125;</span><span class="name">keys</span><span class="desc"></span></li>
                 </ul>
-                <div class="description"><p>Assert exact keys or the inclusing of keys
-using the <code>include</code> or <code>contain</code> modifier.
+                <div class="description"><p>Asserts that the target has exactly the given keys, or
+asserts the inclusion of some keys when using the
+<code>include</code> or <code>contain</code> modifiers.
 
 </p>
 <pre><code>expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span> }).to.have.keys([<span class="string">'foo'</span>, <span class="string">'bar'</span>]);
@@ -426,7 +450,7 @@ expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span>,
                   <li class="tag"><span class="type">&#64;see</span><span class="type"><a href="" target="_blank">https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error#Error_types</a></span>
                   </li>
                 </ul>
-                <div class="description"><p>Assert that a function will throw a specific type of error, or specific type of error
+                <div class="description"><p>Asserts that the function target will throw a specific error, or specific type of error
 (as determined using <code>instanceof</code>), optionally with a RegExp or string inclusion test
 for the error&#39;s message.
 
@@ -456,7 +480,7 @@ is to use <code>and</code>.
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">method</span><span class="desc"></span></li>
                 </ul>
-                <div class="description"><p>Assert that object/class will respond to a method.
+                <div class="description"><p>Asserts that the object or class target will respond to a method.
 
 </p>
 <pre><code>expect(Klass).to.respondTo(<span class="string">'bar'</span>);
@@ -469,7 +493,7 @@ expect(obj).to.respondTo(<span class="string">'bar'</span>);</code></pre>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">matcher</span><span class="desc"></span></li>
                 </ul>
-                <div class="description"><p>Assert that passes a truth test.
+                <div class="description"><p>Asserts that the target passes a given truth test.
 
 </p>
 <pre><code>expect(<span class="number">1</span>).to.satisfy(<span class="keyword">function</span>(num) { <span class="keyword">return</span> num > <span class="number">0</span>; });</code></pre>
@@ -482,7 +506,7 @@ expect(obj).to.respondTo(<span class="string">'bar'</span>);</code></pre>
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Number &#125;</span><span class="name">expected</span><span class="desc"></span></li>
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Number &#125;</span><span class="name">delta</span><span class="desc"></span></li>
                 </ul>
-                <div class="description"><p>Assert that actual is equal to +/- delta.
+                <div class="description"><p>Asserts that the target is equal <code>expected</code>, to within a +/- <code>delta</code> range.
 
 </p>
 <pre><code>expect(<span class="number">1.5</span>).to.be.closeTo(<span class="number">1</span>, <span class="number">0.5</span>);</code></pre>

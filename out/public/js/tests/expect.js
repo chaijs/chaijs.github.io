@@ -212,7 +212,7 @@ suite('expect', function () {
 
     err(function(){
       expect(4).to.eql(3);
-    }, 'expected 4 to equal 3');
+    }, 'expected 4 to deeply equal 3');
   });
 
   test('equal(val)', function(){
@@ -230,6 +230,7 @@ suite('expect', function () {
 
   test('deep.equal(val)', function(){
     expect({ foo: 'bar' }).to.deep.equal({ foo: 'bar' });
+    expect({ foo: 'bar' }).not.to.deep.equal({ foo: 'baz' });
   });
 
   test('empty', function(){

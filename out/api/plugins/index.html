@@ -55,7 +55,7 @@
           <div class="list box-wrap antiscroll-wrap">
             <div class="box">
               <div class="antiscroll-inner">
-                <div class="box-inner"><a href="#addMethod" class="scroll item">addMethod</a><a href="#addProperty" class="scroll item">addProperty</a><a href="#overwriteMethod" class="scroll item">overwriteMethod</a><a href="#overwriteProperty" class="scroll item">overwriteProperty</a><a href="#flag" class="scroll item">flag</a><a href="#getPathValue" class="scroll item">getPathValue</a>
+                <div class="box-inner"><a href="#addMethod" class="scroll item">addMethod</a><a href="#addProperty" class="scroll item">addProperty</a><a href="#overwriteMethod" class="scroll item">overwriteMethod</a><a href="#overwriteProperty" class="scroll item">overwriteProperty</a><a href="#addChainableMethod" class="scroll item">addChainableMethod</a><a href="#flag" class="scroll item">flag</a><a href="#getAllFlags" class="scroll item">getAllFlags</a><a href="#getPathValue" class="scroll item">getPathValue</a>
                 </div>
               </div>
             </div>
@@ -180,6 +180,34 @@ access to previous value. Must return function to use as getter.
 <pre><code>expect(myFoo).to.be.ok;</code></pre>
 </div>
               </div>
+              <div id="addChainableMethod-section" class="segment">
+                <div class="summary"><h3>addChainableMethod (ctx, name, method, chainingBehavior)</h3>
+</div>
+                <ul class="tags">
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">ctx</span><span class="desc">object to which the method is added</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">name</span><span class="desc">of method to add</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">method</span><span class="desc">function to be used for `name`, when called</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">chainingBehavior</span><span class="desc">function to be called every time the property is accessed</span></li>
+                </ul>
+                <div class="description"><p>Adds a method to an object, such that the method can also be chained.
+
+</p>
+<pre><code>utils.addChainableMethod(chai.Assertion.prototype, <span class="string">'foo'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(str)</span> {</span>
+  <span class="keyword">var</span> obj = utils.flag(<span class="keyword">this</span>, <span class="string">'object'</span>);
+  <span class="keyword">new</span> chai.Assertion(obj).to.be.equal(str);
+});</code></pre>
+<p>Can also be accessed directly from <code>chai.Assertion</code>.
+
+</p>
+<pre><code>chai.Assertion.addChainableMethod(<span class="string">'foo'</span>, fn, chainingBehavior);</code></pre>
+<p>The result can then be used as both a method assertion, executing both <code>method</code> and
+<code>chainingBehavior</code>, or as a language chain, which only executes <code>chainingBehavior</code>.
+
+</p>
+<pre><code>expect(fooStr).to.be.foo(<span class="string">'bar'</span>);
+expect(fooStr).to.be.foo.equal(<span class="string">'foo'</span>);</code></pre>
+</div>
+              </div>
               <div id="flag-section" class="segment">
                 <div class="summary"><h3>flag(object ,key, [value])</h3>
 </div>
@@ -196,6 +224,28 @@ the value is not set.
 </p>
 <pre><code>utils.flag(<span class="keyword">this</span>, <span class="string">'foo'</span>, <span class="string">'bar'</span>); <span class="comment">// setter</span>
 utils.flag(<span class="keyword">this</span>, <span class="string">'foo'</span>); <span class="comment">// getter, returns `bar`</span></code></pre>
+</div>
+              </div>
+              <div id="getAllFlags-section" class="segment">
+                <div class="summary"><h3>transferFlags(assertion, object, includeAll = true)</h3>
+</div>
+                <ul class="tags">
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Assertion &#125;</span><span class="name">assertion</span><span class="desc">the assertion to transfer the flags from</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">object</span><span class="desc">the object to transfer the flags too; usually a new assertion</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Boolean &#125;</span><span class="name">includeAll</span><span class="desc"></span></li>
+                </ul>
+                <div class="description"><p>Transfer all the flags for <code>assertion</code> to <code>object</code>. If
+<code>includeAll</code> is set to <code>false</code>, then the base Chai
+assertion flags (namely <code>object</code>, <code>ssfi</code>, and <code>message</code>)
+will not be transferred.
+
+
+</p>
+<pre><code><span class="keyword">var</span> newAssertion = <span class="keyword">new</span> Assertion();
+utils.transferFlags(assertion, newAssertion);
+
+<span class="keyword">var</span> anotherAsseriton = <span class="keyword">new</span> Assertion(myObj);
+utils.transferFlags(assertion, anotherAssertion, <span class="literal">false</span>);</code></pre>
 </div>
               </div>
               <div id="getPathValue-section" class="segment">

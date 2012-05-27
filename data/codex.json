@@ -47,8 +47,18 @@
           , "description": ""
           , "render-file": false }
         , { "name": "plugins"
+          , "title": "utility : addChainableMethod"
+          , "file": "../chai/lib/utils/addChainableMethod.js"
+          , "description": ""
+          , "render-file": false }
+        , { "name": "plugins"
           , "title": "utility : flag"
           , "file": "../chai/lib/utils/flag.js"
+          , "description": ""
+          , "render-file": false }
+        , { "name": "plugins"
+          , "title": "utility : transferFlags"
+          , "file": "../chai/lib/utils/transferFlags.js"
           , "description": ""
           , "render-file": false }
         , { "name": "plugins"

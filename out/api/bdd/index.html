@@ -9,9 +9,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?1.0.3"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?1.0.3" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?1.0.3" type="text/css" media="all">
+    <script src="/public/js/main.js?1.0.4"></script>
+    <link rel="stylesheet" href="/public/css/antiscroll.css?1.0.4" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?1.0.4" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -55,7 +55,7 @@
           <div class="list box-wrap antiscroll-wrap">
             <div class="box">
               <div class="antiscroll-inner">
-                <div class="box-inner"><a href="#language chains" class="scroll item">language chains</a><a href="#not" class="scroll item">not</a><a href="#deep" class="scroll item">deep</a><a href="#a" class="scroll item">a / an</a><a href="#include" class="scroll item">include / contain</a><a href="#ok" class="scroll item">ok</a><a href="#true" class="scroll item">true</a><a href="#false" class="scroll item">false</a><a href="#null" class="scroll item">null</a><a href="#undefined" class="scroll item">undefined</a><a href="#exist" class="scroll item">exist</a><a href="#empty" class="scroll item">empty</a><a href="#arguments" class="scroll item">arguments</a><a href="#equal" class="scroll item">equal</a><a href="#eql" class="scroll item">eql</a><a href="#above" class="scroll item">above / gt</a><a href="#below" class="scroll item">below / lt</a><a href="#within" class="scroll item">within</a><a href="#instanceof" class="scroll item">instanceof / instanceOf</a><a href="#property" class="scroll item">property</a><a href="#ownProperty" class="scroll item">ownProperty / haveOwnProperty</a><a href="#length" class="scroll item">length / lengthOf</a><a href="#match" class="scroll item">match</a><a href="#string" class="scroll item">string</a><a href="#keys" class="scroll item">keys / key</a><a href="#throw" class="scroll item">throw / throws / Throw</a><a href="#respondTo" class="scroll item">respondTo</a><a href="#satisfy" class="scroll item">satisfy</a><a href="#closeTo" class="scroll item">closeTo</a>
+                <div class="box-inner"><a href="#language chains" class="scroll item">language chains</a><a href="#not" class="scroll item">not</a><a href="#deep" class="scroll item">deep</a><a href="#a" class="scroll item">a / an</a><a href="#include" class="scroll item">include / contain</a><a href="#ok" class="scroll item">ok</a><a href="#true" class="scroll item">true</a><a href="#false" class="scroll item">false</a><a href="#null" class="scroll item">null</a><a href="#undefined" class="scroll item">undefined</a><a href="#exist" class="scroll item">exist</a><a href="#empty" class="scroll item">empty</a><a href="#arguments" class="scroll item">arguments / Arguments</a><a href="#equal" class="scroll item">equal</a><a href="#eql" class="scroll item">eql</a><a href="#above" class="scroll item">above / gt</a><a href="#below" class="scroll item">below / lt</a><a href="#within" class="scroll item">within</a><a href="#instanceof" class="scroll item">instanceof / instanceOf</a><a href="#property" class="scroll item">property</a><a href="#ownProperty" class="scroll item">ownProperty / haveOwnProperty</a><a href="#length" class="scroll item">length / lengthOf</a><a href="#match" class="scroll item">match</a><a href="#string" class="scroll item">string</a><a href="#keys" class="scroll item">keys / key</a><a href="#throw" class="scroll item">throw / throws / Throw</a><a href="#respondTo" class="scroll item">respondTo</a><a href="#itself" class="scroll item">itself</a><a href="#satisfy" class="scroll item">satisfy</a><a href="#closeTo" class="scroll item">closeTo</a>
                 </div>
               </div>
             </div>
@@ -483,8 +483,34 @@ is to use <code>and</code>.
                 <div class="description"><p>Asserts that the object or class target will respond to a method.
 
 </p>
-<pre><code>expect(Klass).to.respondTo(<span class="string">'bar'</span>);
+<pre><code>Klass.prototype.bar = <span class="keyword">function</span>(){};
+expect(Klass).to.respondTo(<span class="string">'bar'</span>);
 expect(obj).to.respondTo(<span class="string">'bar'</span>);</code></pre>
+<p>To check if a constructor will respond to a static function,
+set the <code>itself</code> flag.
+
+</p>
+<p>   Klass.baz = function(){};
+   expect(Klass).itself.to.respondTo(&#39;baz&#39;);
+</p>
+</div>
+              </div>
+              <div id="itself-section" class="segment">
+                <div class="summary"><h3>.itself</h3>
+</div>
+                <ul class="tags">
+                </ul>
+                <div class="description"><p>Sets the <code>itself</code> flag, later used by the <code>respondTo</code> assertion.
+
+</p>
+<p>   function Foo() {}
+   Foo.bar = function() {}
+   Foo.prototype.baz = function() {}
+
+</p>
+<p>   expect(Foo).itself.to.respondTo(&#39;bar&#39;);
+   expect(Foo).itself.not.to.respondTo(&#39;baz&#39;);
+</p>
 </div>
               </div>
               <div id="satisfy-section" class="segment">

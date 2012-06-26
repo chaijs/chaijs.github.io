@@ -55,7 +55,7 @@
           <div class="list box-wrap antiscroll-wrap">
             <div class="box">
               <div class="antiscroll-inner">
-                <div class="box-inner"><a href="#language chains" class="scroll item">language chains</a><a href="#not" class="scroll item">not</a><a href="#deep" class="scroll item">deep</a><a href="#a" class="scroll item">a / an</a><a href="#include" class="scroll item">include / contain</a><a href="#ok" class="scroll item">ok</a><a href="#true" class="scroll item">true</a><a href="#false" class="scroll item">false</a><a href="#null" class="scroll item">null</a><a href="#undefined" class="scroll item">undefined</a><a href="#exist" class="scroll item">exist</a><a href="#empty" class="scroll item">empty</a><a href="#arguments" class="scroll item">arguments / Arguments</a><a href="#equal" class="scroll item">equal</a><a href="#eql" class="scroll item">eql</a><a href="#above" class="scroll item">above / gt</a><a href="#below" class="scroll item">below / lt</a><a href="#within" class="scroll item">within</a><a href="#instanceof" class="scroll item">instanceof / instanceOf</a><a href="#property" class="scroll item">property</a><a href="#ownProperty" class="scroll item">ownProperty / haveOwnProperty</a><a href="#length" class="scroll item">length / lengthOf</a><a href="#match" class="scroll item">match</a><a href="#string" class="scroll item">string</a><a href="#keys" class="scroll item">keys / key</a><a href="#throw" class="scroll item">throw / throws / Throw</a><a href="#respondTo" class="scroll item">respondTo</a><a href="#itself" class="scroll item">itself</a><a href="#satisfy" class="scroll item">satisfy</a><a href="#closeTo" class="scroll item">closeTo</a>
+                <div class="box-inner"><a href="#language chains" class="scroll item">language chains</a><a href="#not" class="scroll item">not</a><a href="#deep" class="scroll item">deep</a><a href="#a" class="scroll item">a / an</a><a href="#include" class="scroll item">include / contain</a><a href="#ok" class="scroll item">ok</a><a href="#true" class="scroll item">true</a><a href="#false" class="scroll item">false</a><a href="#null" class="scroll item">null</a><a href="#undefined" class="scroll item">undefined</a><a href="#exist" class="scroll item">exist</a><a href="#empty" class="scroll item">empty</a><a href="#arguments" class="scroll item">arguments / Arguments</a><a href="#equal" class="scroll item">equal / eq / deep.equal</a><a href="#eql" class="scroll item">eql</a><a href="#above" class="scroll item">above / gt / greaterThan</a><a href="#below" class="scroll item">below / lt / lessThan</a><a href="#within" class="scroll item">within</a><a href="#instanceof" class="scroll item">instanceof / instanceOf</a><a href="#property" class="scroll item">property / deep.property</a><a href="#ownProperty" class="scroll item">ownProperty / haveOwnProperty</a><a href="#length" class="scroll item">length / lengthOf</a><a href="#match" class="scroll item">match</a><a href="#string" class="scroll item">string</a><a href="#keys" class="scroll item">keys / key</a><a href="#throw" class="scroll item">throw / throws / Throw</a><a href="#respondTo" class="scroll item">respondTo</a><a href="#itself" class="scroll item">itself</a><a href="#satisfy" class="scroll item">satisfy</a><a href="#closeTo" class="scroll item">closeTo</a>
                 </div>
               </div>
             </div>
@@ -64,7 +64,14 @@
         <div class="documentation">
           <div class="wrap">
             <div class="rendered">
-              <article></article>
+              <article><h1>BDD</h1>
+<p>The BDD styles are <code>expect</code> and <code>should</code>. Both use the same chainable language to 
+construct assertions, but they differ in the how an assertion is initially constructed.
+Check out the <a href="/guide/styles">Style Guide</a> for a comparison.
+
+</p>
+<h2>API Reference</h2>
+</article>
               <div id="language chains-section" class="segment">
                 <div class="summary"><h3>Language Chains</h3>
 </div>
@@ -84,6 +91,7 @@ have been overwritten by a plugin.
 <li>be</li>
 <li>been</li>
 <li>is</li>
+<li>that</li>
 <li>and</li>
 <li>have</li>
 <li>with</li>
@@ -305,6 +313,14 @@ expect([ <span class="number">1</span>, <span class="number">2</span>, <span cla
 
 </p>
 <pre><code>expect(<span class="number">10</span>).to.be.above(<span class="number">5</span>);</code></pre>
+<p>Can also be used in conjunction with <code>length</code> to
+assert a minimum length. The benefit being a
+more informative error message than if the length
+was supplied directly.
+
+</p>
+<pre><code>expect(<span class="string">'foo'</span>).to.have.length.above(<span class="number">2</span>);
+expect([ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ]).to.have.length.above(<span class="number">2</span>);</code></pre>
 </div>
               </div>
               <div id="below-section" class="segment">
@@ -317,6 +333,14 @@ expect([ <span class="number">1</span>, <span class="number">2</span>, <span cla
 
 </p>
 <pre><code>expect(<span class="number">5</span>).to.be.below(<span class="number">10</span>);</code></pre>
+<p>Can also be used in conjunction with <code>length</code> to
+assert a maximum length. The benefit being a
+more informative error message than if the length
+was supplied directly.
+
+</p>
+<pre><code>expect(<span class="string">'foo'</span>).to.have.length.below(<span class="number">4</span>);
+expect([ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ]).to.have.length.below(<span class="number">4</span>);</code></pre>
 </div>
               </div>
               <div id="within-section" class="segment">
@@ -330,6 +354,14 @@ expect([ <span class="number">1</span>, <span class="number">2</span>, <span cla
 
 </p>
 <pre><code>expect(<span class="number">7</span>).to.be.within(<span class="number">5</span>,<span class="number">10</span>);</code></pre>
+<p>Can also be used in conjunction with <code>length</code> to
+assert a length range. The benefit being a
+more informative error message than if the length
+was supplied directly.
+
+</p>
+<pre><code>expect(<span class="string">'foo'</span>).to.have.length.within(<span class="number">2</span>,<span class="number">4</span>);
+expect([ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ]).to.have.length.within(<span class="number">2</span>,<span class="number">4</span>);</code></pre>
 </div>
               </div>
               <div id="instanceof-section" class="segment">
@@ -365,7 +397,6 @@ references into objects and arrays.
 <span class="keyword">var</span> obj = { foo: <span class="string">'bar'</span> };
 expect(obj).to.have.property(<span class="string">'foo'</span>);
 expect(obj).to.have.property(<span class="string">'foo'</span>, <span class="string">'bar'</span>);
-expect(obj).to.have.property(<span class="string">'foo'</span>).to.be.a(<span class="string">'string'</span>);
 
 <span class="comment">// deep referencing</span>
 <span class="keyword">var</span> deepObj = {
@@ -376,6 +407,33 @@ expect(obj).to.have.property(<span class="string">'foo'</span>).to.be.a(<span cl
 expect(deepObj).to.have.deep.property(<span class="string">'green.tea'</span>, <span class="string">'matcha'</span>);
 expect(deepObj).to.have.deep.property(<span class="string">'teas[1]'</span>, <span class="string">'matcha'</span>);
 expect(deepObj).to.have.deep.property(<span class="string">'teas[2].tea'</span>, <span class="string">'konacha'</span>);</code></pre>
+<p>You can also use an array as the starting point of a <code>deep.property</code>
+assertion, or traverse nested arrays.
+
+</p>
+<pre><code><span class="keyword">var</span> arr = [
+    [ <span class="string">'chai'</span>, <span class="string">'matcha'</span>, <span class="string">'konacha'</span> ]
+  , [ { tea: <span class="string">'chai'</span> }
+    , { tea: <span class="string">'matcha'</span> }
+    , { tea: <span class="string">'konacha'</span> } ]
+];
+
+expect(arr).to.have.deep.property(<span class="string">'[0][1]'</span>, <span class="string">'matcha'</span>);
+expect(arr).to.have.deep.property(<span class="string">'[1][2].tea'</span>, <span class="string">'konacha'</span>);</code></pre>
+<p>Furthermore, <code>property</code> changes the subject of the assertion
+to be the value of that property from the original object. This
+permits for further chainable assertions on that property.
+
+</p>
+<pre><code>expect(obj).to.have.property(<span class="string">'foo'</span>)
+  .that.is.a(<span class="string">'string'</span>);
+expect(deepObj).to.have.property(<span class="string">'green'</span>)
+  .that.is.an(<span class="string">'object'</span>)
+  .that.deep.equals({ tea: <span class="string">'matcha'</span> });
+expect(deepObj).to.have.property(<span class="string">'teas'</span>)
+  .that.is.an(<span class="string">'array'</span>)
+  .<span class="keyword">with</span>.deep.property(<span class="string">'[2]'</span>)
+    .that.deep.equals({ tea: <span class="string">'konacha'</span> });</code></pre>
 </div>
               </div>
               <div id="ownProperty-section" class="segment">
@@ -396,11 +454,22 @@ expect(deepObj).to.have.deep.property(<span class="string">'teas[2].tea'</span>,
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Number &#125;</span><span class="name">length</span><span class="desc"></span></li>
                 </ul>
-                <div class="description"><p>Asserts that the target&#39;s <code>length</code> property has the expected value.
+                <div class="description"><p>Asserts that the target&#39;s <code>length</code> property has
+the expected value.
 
 </p>
-<pre><code>expect([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]).to.have.length(<span class="number">3</span>);
+<pre><code>expect([ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]).to.have.length(<span class="number">3</span>);
 expect(<span class="string">'foobar'</span>).to.have.length(<span class="number">6</span>);</code></pre>
+<p>Can also be used as a chain precursor to a value
+comparison for the length property.
+
+</p>
+<pre><code>expect(<span class="string">'foo'</span>).to.have.length.above(<span class="number">2</span>);
+expect([ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ]).to.have.length.above(<span class="number">2</span>);
+expect(<span class="string">'foo'</span>).to.have.length.below(<span class="number">4</span>);
+expect([ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ]).to.have.length.below(<span class="number">4</span>);
+expect(<span class="string">'foo'</span>).to.have.length.within(<span class="number">2</span>,<span class="number">4</span>);
+expect([ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ]).to.have.length.within(<span class="number">2</span>,<span class="number">4</span>);</code></pre>
 </div>
               </div>
               <div id="match-section" class="segment">

@@ -61,8 +61,11 @@
           <div id="styles" class="item primary "><span class="expand">+</span><span class="collapse">-</span><a href="/guide/styles/" class="title">Assertion Styles</a></div>
           <div id="styles" class="subitems"><a href="/guide/styles/#assert" id="assert" class="item secondary group-styles">Assert</a><a href="/guide/styles/#expect" id="expect" class="item secondary group-styles">Expect</a><a href="/guide/styles/#should" id="should" class="item secondary group-styles">Should</a><a href="/guide/styles/#differences" id="differences" class="item secondary group-styles">Differences</a><a href="/guide/styles/#should-extras" id="should-extras" class="item secondary group-styles">Should Extras</a><a href="/guide/styles/#configure" id="configure" class="item secondary group-styles">Configuration</a>
           </div>
-          <div id="plugins" class="item primary "><span class="expand">+</span><span class="collapse">-</span><a href="/guide/plugins/" class="title">Plugins</a></div>
-          <div id="plugins" class="subitems">
+          <div id="plugins" class="item primary "><span class="expand">+</span><span class="collapse">-</span><a href="/guide/plugins/" class="title">Core Plugin Concepts</a></div>
+          <div id="plugins" class="subitems"><a href="/guide/plugins/#use" id="use" class="item secondary group-plugins">Accessing Utilities</a><a href="/guide/plugins/#flags" id="flags" class="item secondary group-plugins">Using Flags</a><a href="/guide/plugins/#assert" id="assert" class="item secondary group-plugins">Composing an Assertion</a>
+          </div>
+          <div id="helpers" class="item primary "><span class="expand">+</span><span class="collapse">-</span><a href="/guide/helpers/" class="title">Building a Helper</a></div>
+          <div id="helpers" class="subitems"><a href="/guide/helpers/#add_language_chain" id="add_language_chain" class="item secondary group-helpers">Adding Language Chains</a><a href="/guide/helpers/#add_property" id="add_property" class="item secondary group-helpers">Adding Properties</a><a href="/guide/helpers/#add_method" id="add_method" class="item secondary group-helpers">Adding Methods</a><a href="/guide/helpers/#add_method_as_property" id="add_method_as_property" class="item secondary group-helpers">Methods as Properties</a><a href="/guide/helpers/#overwrite_language_chain" id="overwrite_language_chain" class="item secondary group-helpers">Overwriting Language Chains</a><a href="/guide/helpers/#overwrite_property" id="overwrite_property" class="item secondary group-helpers">Overwriting Properties</a><a href="/guide/helpers/#overwrite_method" id="overwrite_method" class="item secondary group-helpers">Overwriting Methods</a><a href="/guide/helpers/#overwrite_caveats" id="overwrite_caveats" class="item secondary group-helpers">Overwriting Caveats</a>
           </div>
           <div id="resources" class="item primary "><span class="expand">+</span><span class="collapse">-</span><a href="/guide/resources/" class="title">Resources</a></div>
           <div id="resources" class="subitems"><a href="/guide/resources/#help" id="help" class="item secondary group-resources">Getting Help</a><a href="/guide/resources/#contributor" id="contributor" class="item secondary group-resources">Contributing</a>
@@ -71,7 +74,8 @@
         <div class="documentation">
           <div class="wrap">
             <div class="rendered">
-              <div class="header"><p>Chai is available for both node.js and the browser using any
+              <div class="header"><h1>Installation</h1>
+<p>Chai is available for both node.js and the browser using any
 test framework you like. There are also a number of other tools
 that include Chai.
 </p>
@@ -81,21 +85,35 @@ that include Chai.
 
 </p>
 <pre><code>npm install chai</code></pre>
-<p>Recommend adding it to <code>package.json</code> devDependancies.
+<p>Recommend adding it to <code>package.json</code> devDependancies using a <code>*</code> as the version tag.
+This will ensure that you always have the most recent version after running <code>npm install</code>,
+which can be especially powerful when paired with a continuous integration tool.
+
 </p>
+<pre><code class="lang-javascript">devDependancies: {
+  <span class="string">"chai"</span>: <span class="string">"*"</span>,
+  <span class="string">"mocha"</span>: <span class="string">"*"</span> <span class="comment">// our preference, but you can use any test runner you like</span>
+}</code></pre>
 </article>
               <article id="browser-section"><h3>Browser</h3>
 <p>Include the chai browser build in your testing suite.
 
 </p>
 <pre><code>&lt;script src="chai.js" type="text/javascript">&lt;/script></code></pre>
-<p>Currently supports all modern browsers: IE 9+, Chrome 7+, FireFox 4+, Safari 5+. 
+<p>This will provide <code>chai</code> as a global object, or <code>define</code> it if you are using AMD.
 
 </p>
-<p>Want to know if your browser is compatible? Run the <a href="/api/test/">online test suite</a>.
+<p>The latest tagged version will be available for hot-linking at <a href="/chai.js"><a href="http://chaijs.com/chai.js">http://chaijs.com/chai.js</a></a>.
+If you prefer to host yourself, use the <code>chai.js</code> file from the root of the github project.
+We recommend that you always use a version tag as your starting point, so the 
+<a href="https://github.com/chaijs/chai/tags">tag download list</a> is the best place to start.
 
 </p>
-<p>The latest tagged version will also be available for hot-linking at <a href="/chai.js"><a href="http://chaijs.com/chai.js">http://chaijs.com/chai.js</a></a>.
+<p>Currently supports all modern browsers: IE 9+, Chrome 7+, FireFox 4+, Safari 5+. Please note
+that the <code>should</code> style is currently not compatible with IE9. 
+
+</p>
+<p>If you want to know if your browser is compatible, run the <a href="/api/test/">online test suite</a>.
 </p>
 </article>
               <article id="other-section"><h3>Other Platforms</h3>

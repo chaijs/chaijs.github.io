@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Plugins - Chai</title>
+    <title>Core Plugin Concepts - Chai</title>
     <script type="text/javascript">
       var ghuser = 'logicalparadox'
         , ghproject = 'chai';
@@ -61,8 +61,11 @@
           <div id="styles" class="item primary "><span class="expand">+</span><span class="collapse">-</span><a href="/guide/styles/" class="title">Assertion Styles</a></div>
           <div id="styles" class="subitems"><a href="/guide/styles/#assert" id="assert" class="item secondary group-styles">Assert</a><a href="/guide/styles/#expect" id="expect" class="item secondary group-styles">Expect</a><a href="/guide/styles/#should" id="should" class="item secondary group-styles">Should</a><a href="/guide/styles/#differences" id="differences" class="item secondary group-styles">Differences</a><a href="/guide/styles/#should-extras" id="should-extras" class="item secondary group-styles">Should Extras</a><a href="/guide/styles/#configure" id="configure" class="item secondary group-styles">Configuration</a>
           </div>
-          <div id="plugins" class="item primary active expanded"><span class="expand">+</span><span class="collapse">-</span><a href="/guide/plugins/" class="title">Plugins</a></div>
-          <div id="plugins" class="subitems">
+          <div id="plugins" class="item primary active expanded"><span class="expand">+</span><span class="collapse">-</span><a href="/guide/plugins/" class="title">Core Plugin Concepts</a></div>
+          <div id="plugins" class="subitems"><a href="#use" id="use" class="item secondary expanded scroll group-plugins">Accessing Utilities</a><a href="#flags" id="flags" class="item secondary expanded scroll group-plugins">Using Flags</a><a href="#assert" id="assert" class="item secondary expanded scroll group-plugins">Composing an Assertion</a>
+          </div>
+          <div id="helpers" class="item primary "><span class="expand">+</span><span class="collapse">-</span><a href="/guide/helpers/" class="title">Building a Helper</a></div>
+          <div id="helpers" class="subitems"><a href="/guide/helpers/#add_language_chain" id="add_language_chain" class="item secondary group-helpers">Adding Language Chains</a><a href="/guide/helpers/#add_property" id="add_property" class="item secondary group-helpers">Adding Properties</a><a href="/guide/helpers/#add_method" id="add_method" class="item secondary group-helpers">Adding Methods</a><a href="/guide/helpers/#add_method_as_property" id="add_method_as_property" class="item secondary group-helpers">Methods as Properties</a><a href="/guide/helpers/#overwrite_language_chain" id="overwrite_language_chain" class="item secondary group-helpers">Overwriting Language Chains</a><a href="/guide/helpers/#overwrite_property" id="overwrite_property" class="item secondary group-helpers">Overwriting Properties</a><a href="/guide/helpers/#overwrite_method" id="overwrite_method" class="item secondary group-helpers">Overwriting Methods</a><a href="/guide/helpers/#overwrite_caveats" id="overwrite_caveats" class="item secondary group-helpers">Overwriting Caveats</a>
           </div>
           <div id="resources" class="item primary "><span class="expand">+</span><span class="collapse">-</span><a href="/guide/resources/" class="title">Resources</a></div>
           <div id="resources" class="subitems"><a href="/guide/resources/#help" id="help" class="item secondary group-resources">Getting Help</a><a href="/guide/resources/#contributor" id="contributor" class="item secondary group-resources">Contributing</a>
@@ -71,9 +74,165 @@
         <div class="documentation">
           <div class="wrap">
             <div class="rendered">
-              <div class="header"><p>Section coming soon.
+              <div class="header"><h1>Core Plugin Concepts</h1>
+<p>Plugins are for more than just writing vendor integrations. As a tester, one can write
+a plugin to validate input data, assert schema validation on an object, or ensure proper behavior
+on a dom element. The API is flexible enough that any syncronous tasks can easily be encapsulated
+within a single assertion and reused throughout your tests.
+
+</p>
+<p>This tutorial will show you how to access Chai&#39;s plugin API, use flags to transfer data through
+the language chain, and write your first assertion (and thorough error messages). Once you have 
+finished here, <a href="/guide/helpers">Building a Helper</a> will show you how to compose properties and
+methods for use on the Chai language chain.
 </p>
 </div>
+              <article id="use-section"><h2>Accessing Utilties</h2>
+<p>Chai comes with a number of utilities to assist in the construction of assertions,
+but it does not provide these directly on the <code>chai</code> export. These can be accessed 
+by using the <code>use</code> method of the chai export, which accepts a single function as
+an argument.
+
+</p>
+<pre><code class="lang-javascript">chai.use(<span class="function"><span class="keyword">function</span> <span class="params">(_chai, utils)</span> {</span>
+  <span class="comment">// ...</span>
+});</code></pre>
+<p>The function which will be used gets passes two parameters to it&#39;s scope. The first
+is the <code>chai</code> export, the second is an object containing a number of utility 
+methods (will get to those in a minute).
+
+</p>
+<p>The <code>chai</code> export is included so that you can build helpers that can be used
+in multiple test files, or package your helpers as a plugin to share with the
+community. A more appropriate pattern for creating helpers is as follows...
+
+</p>
+<p>For our helper file: <code>test/helpers/model.js</code>
+
+</p>
+<pre><code class="lang-javascript">module.exports = <span class="function"><span class="keyword">function</span> <span class="params">(chai, utils)</span> {</span>
+  <span class="keyword">var</span> Assertion = chai.Assertion;
+
+  <span class="comment">// your helpers here</span>
+};</code></pre>
+<p>And, for our actual test: <code>test/person.js</code>
+
+</p>
+<pre><code class="lang-javascript"><span class="keyword">var</span> chai = require(<span class="string">'chai'</span>)
+  , chaiModel = require(<span class="string">'./helpers/model'</span>)
+  , expect = chai.expect;
+
+chai.use(chaiModel);</code></pre>
+<p>For the rest of this document, we will assume this structure...
+
+</p>
+<ul>
+<li>helper in external file</li>
+<li><code>chai.Assertion</code> assigned to the <code>Assertion</code> variable</li>
+<li>all of our helpers will be inside exported function, located where indicated</li>
+</ul>
+<p>The <code>Assertion</code> variable is now a constructor for an assertion chain. Simply,
+when you do <code>expect(obj)</code>, it is no different than invoking <code>new Assertion(obj)</code>.
+</p>
+</article>
+              <article id="flags-section"><h2>Using Flags</h2>
+<p>The upper-most core concept of how assertions work internally is the concept of flags.
+Each assertion has a set of mostly arbitray flags, or a key:value pairs, associated with it.
+Chai uses a small number of these internally, but the store is also available for developers
+to expand on. 
+
+</p>
+<h3>flag usage</h3>
+<p>The flag utility is exposed as <code>utils.flag</code> from within our <code>use</code> function. It can function
+as both a getter or setter depending on the number of arguments passed to it.
+
+</p>
+<pre><code class="lang-javascript"><span class="keyword">var</span> myAssert = <span class="keyword">new</span> Assertion(obj);
+utils.flag(myAssert, <span class="string">'owner'</span>, <span class="string">'me'</span>); <span class="comment">// sets key `owner` to `me`</span>
+<span class="keyword">var</span> owner = utils.flag(myAssert, <span class="string">'owner'</span>); <span class="comment">// get key `owner', returns value</span></code></pre>
+<h3>object flag</h3>
+<p>The most important of Chai&#39;s reservered flags is the <code>object</code> flag. This is the subject
+of an assertion.
+
+</p>
+<pre><code class="lang-javascript"><span class="keyword">var</span> myAssert = <span class="keyword">new</span> Assertion(<span class="string">'Arthur Dent'</span>);
+<span class="keyword">var</span> obj = flag(myAssert, <span class="string">'object'</span>); <span class="comment">// obj === 'Arthur Dent';</span></code></pre>
+<p>This flag is so often used that a shortcut was provided as the <code>_obj</code> property of a 
+constructed assertion.
+
+</p>
+<pre><code class="lang-javascript"><span class="keyword">var</span> obj = myAssert._obj; <span class="comment">// obj === `Arthur Dent`</span></code></pre>
+<p>The following flags are used by Chai&#39;s core assertions. Side-effects may occur should you
+interfere.
+
+</p>
+<ul>
+<li><code>object</code></li>
+<li><code>ssfi</code>: start stack function - used to prevent callback stacks from being shown in
+errors.</li>
+<li><code>message</code>: additional information to include with an error when using <code>assert</code> interface.</li>
+<li><code>negate</code>: set when <code>.not</code> is included in the chain.</li>
+<li><code>deep</code>: set when <code>.deep</code> is included in the chain. used by <code>equal</code> and <code>property</code></li>
+<li><code>contains</code>: set when <code>include</code> or <code>contain</code> is used as a property.
+changes the behavior of <code>keys</code>.</li>
+<li><code>lengthOf</code>: sent when <code>length</code> is used as a property. changes the behavior of 
+<code>above</code>, <code>below</code>, and <code>within</code>.</li>
+</ul>
+</article>
+              <article id="assert-section"><h2>Composing an Assertion</h2>
+<p>Before we beging adding methods and properties to the language chain, we should
+first examine how invoke an assertion, and the expected behavior should it fail.
+
+</p>
+<p>For this, each constructed <code>Assertion</code> has a method called simply <code>assert</code>. It accepts
+many parameters and its behavior can change depending on whether an assertion was 
+negated or not.
+
+</p>
+<h3>Basic Assertion</h3>
+<p>To begin, we will construct Arthur again, then we can assert that he is who he says he is.
+
+</p>
+<pre><code class="lang-javascript"><span class="keyword">var</span> arthur = <span class="keyword">new</span> Assertion(<span class="string">'Arthur Dent'</span>);
+
+arthur.assert(
+    arthur._obj === <span class="string">'Arthur Dent'</span>
+  , <span class="string">"expected #{this} to be 'Arthur Dent'"</span>
+  , <span class="string">"expected #{this} to not be 'Arthur Dent'"</span>
+);</code></pre>
+<p>Chai will then check the truth test; if it is <code>true</code> then the assertion passed, but if it is <code>false</code>
+the assertion failed and the first error message will be throw as part of an <code>chai.AssertionError</code>.
+Conversely, if the language chain was negated, it will consider <code>false</code> a pass and <code>true</code> a failure. 
+The second error message will be included in the thrown error instead.
+
+</p>
+<p>At minimum, the <code>assert</code> method requires three arguments...
+
+</p>
+<ul>
+<li>a truth test</li>
+<li>a string error message should it fail</li>
+<li>a string error message should it be negated and fail</li>
+</ul>
+<p>You can also additionally include...
+
+</p>
+<ul>
+<li>the expected value</li>
+<li>the actual value, which will default to <code>_obj</code></li>
+</ul>
+<h3>Composing Error Messages</h3>
+<p>As you can see from the above example, Chai can except a template tag to dynamically compose 
+the error message. When used, these template tags will be replaced with a stringified replacement
+of the object in question. There are three template tags available.
+
+</p>
+<ul>
+<li><code>#{this}</code>: the <code>_obj</code> of the assertion</li>
+<li><code>#{exp}</code>: the expected value, if it was provided in <code>assert</code></li>
+<li><code>#{act}</code>: the actual value, defaults to <code>_obj</code> but can be overwritten by value provided in <code>assert</code></li>
+</ul>
+</article>
             </div>
           </div>
         </div>

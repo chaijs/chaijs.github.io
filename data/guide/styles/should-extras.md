@@ -4,7 +4,7 @@
   render-file: false
 ---
 
-## Should Extras
+### Should Extras
 
 Given that `should` works by extending `Object.prototype`, there are
 some scenarios where `should` will not work. Mainly, if you are trying

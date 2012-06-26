@@ -328,6 +328,12 @@ em {
   font-style: italic;
   font-weight: bold;
 }
+blockquote {
+  margin: 50px;
+  font-style: italic;
+  font-size: 16px;
+  color: #30759c;
+}
 .accent-wrap {
   text-align: center;
 }
@@ -692,7 +698,8 @@ section#content:after {
   clear: both;
 }
 section#content h1 {
-  margin-top: 30px;
+  font-size: 2.5em;
+  color: #30759c;
 }
 section#content h2 {
   padding-top: 15px;
@@ -700,7 +707,7 @@ section#content h2 {
 }
 section#content p code {
   padding: 3px 5px;
-  background: #f6ebd4;
+  background: #fcfaf4;
 }
 .panels {
   zoom: 1;

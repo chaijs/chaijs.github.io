@@ -13,6 +13,9 @@ block content
           span.star
           a.title(href=section.href)= section.title
         .line
+    for section in files.guide
+      - group = section.href.split('/').filter(function (l) { return l.length ? true : false });
+      - var isActive = file.href === section.href ? 'active ' : '';
       - if (group.length == 2)
         .item.primary(id=group[1], class=isActive + ((isActive) ? 'expanded' : ''))
           span.expand +

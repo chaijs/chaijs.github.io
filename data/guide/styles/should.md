@@ -4,7 +4,7 @@
   render-file: false
 ---
 
-## Should
+### Should
 
 The `should` style allows for the same chainable assertions as the
 the `expect` interface, however is extends each object with a `should`

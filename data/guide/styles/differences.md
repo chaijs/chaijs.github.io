@@ -4,7 +4,7 @@
   render-file: false
 ---
 
-## Differences
+### Differences
 
 First of all, notice that the `expect` require is just a reference to the 
 `expect` function, whereas with the `should` require, the function is 

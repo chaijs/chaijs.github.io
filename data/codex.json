@@ -18,52 +18,52 @@
     , "files": [
           { "name": "bdd"
           , "title": "expect / should [bdd]"
-          , "file": "../chai/lib/assertion.js"
+          , "file": "../chai/lib/chai/core/assertions.js"
           , "description": ""
           , "render-file": false }
         , { "name": "assert"
           , "title": "assert [tdd]"
-          , "file": "../chai/lib/interface/assert.js"
+          , "file": "../chai/lib/chai/interface/assert.js"
           , "description": ""
           , "render-file": false }
         , { "name": "plugins"
           , "title": "utility : addMethod"
-          , "file": "../chai/lib/utils/addMethod.js"
+          , "file": "../chai/lib/chai/utils/addMethod.js"
           , "description": ""
           , "render-file": false }
         , { "name": "plugins"
           , "title": "utility : addProperty"
-          , "file": "../chai/lib/utils/addProperty.js"
+          , "file": "../chai/lib/chai/utils/addProperty.js"
           , "description": ""
           , "render-file": false }
         , { "name": "plugins"
           , "title": "utility : overwriteMethod"
-          , "file": "../chai/lib/utils/overwriteMethod.js"
+          , "file": "../chai/lib/chai/utils/overwriteMethod.js"
           , "description": ""
           , "render-file": false }
         , { "name": "plugins"
           , "title": "utility : overwriteProperty"
-          , "file": "../chai/lib/utils/overwriteProperty.js"
+          , "file": "../chai/lib/chai/utils/overwriteProperty.js"
           , "description": ""
           , "render-file": false }
         , { "name": "plugins"
           , "title": "utility : addChainableMethod"
-          , "file": "../chai/lib/utils/addChainableMethod.js"
+          , "file": "../chai/lib/chai/utils/addChainableMethod.js"
           , "description": ""
           , "render-file": false }
         , { "name": "plugins"
           , "title": "utility : flag"
-          , "file": "../chai/lib/utils/flag.js"
+          , "file": "../chai/lib/chai/utils/flag.js"
           , "description": ""
           , "render-file": false }
         , { "name": "plugins"
           , "title": "utility : transferFlags"
-          , "file": "../chai/lib/utils/transferFlags.js"
+          , "file": "../chai/lib/chai/utils/transferFlags.js"
           , "description": ""
           , "render-file": false }
         , { "name": "plugins"
           , "title": "utility : getPathValue"
-          , "file": "../chai/lib/utils/getPathValue.js"
+          , "file": "../chai/lib/chai/utils/getPathValue.js"
           , "description": ""
           , "render-file": false }
       ]

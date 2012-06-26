@@ -3,10 +3,10 @@
   weight: 0
 ---
 
-Extend Chai with assertions for the DOM and jQuery.
+Extend Chai with assertions for the Sinon.JS mocking framework.
 
-    $('#header').should.have.attr('foo');
-    $('#header').should.have.data('foo');
-    $('.name').should.have.html('<em>John Doe</em>');
-    $('.checked').should.be.checked;
-    $('.header').should.have.id('#main');
+    var listener = sinon.spy();
+    eventEmitter.on('event', listener);
+    eventEmitter.emit('event', 'chai', 'tea');
+    listener.should.have.been.calledWith('chai', 'tea');
+    listener.should.have.been.calledOnce;

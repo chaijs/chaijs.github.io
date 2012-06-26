@@ -61,8 +61,11 @@
           <div id="styles" class="item primary "><span class="expand">+</span><span class="collapse">-</span><a href="/guide/styles/" class="title">Assertion Styles</a></div>
           <div id="styles" class="subitems"><a href="/guide/styles/#assert" id="assert" class="item secondary group-styles">Assert</a><a href="/guide/styles/#expect" id="expect" class="item secondary group-styles">Expect</a><a href="/guide/styles/#should" id="should" class="item secondary group-styles">Should</a><a href="/guide/styles/#differences" id="differences" class="item secondary group-styles">Differences</a><a href="/guide/styles/#should-extras" id="should-extras" class="item secondary group-styles">Should Extras</a><a href="/guide/styles/#configure" id="configure" class="item secondary group-styles">Configuration</a>
           </div>
-          <div id="plugins" class="item primary "><span class="expand">+</span><span class="collapse">-</span><a href="/guide/plugins/" class="title">Plugins</a></div>
-          <div id="plugins" class="subitems">
+          <div id="plugins" class="item primary "><span class="expand">+</span><span class="collapse">-</span><a href="/guide/plugins/" class="title">Core Plugin Concepts</a></div>
+          <div id="plugins" class="subitems"><a href="/guide/plugins/#use" id="use" class="item secondary group-plugins">Accessing Utilities</a><a href="/guide/plugins/#flags" id="flags" class="item secondary group-plugins">Using Flags</a><a href="/guide/plugins/#assert" id="assert" class="item secondary group-plugins">Composing an Assertion</a>
+          </div>
+          <div id="helpers" class="item primary "><span class="expand">+</span><span class="collapse">-</span><a href="/guide/helpers/" class="title">Building a Helper</a></div>
+          <div id="helpers" class="subitems"><a href="/guide/helpers/#add_language_chain" id="add_language_chain" class="item secondary group-helpers">Adding Language Chains</a><a href="/guide/helpers/#add_property" id="add_property" class="item secondary group-helpers">Adding Properties</a><a href="/guide/helpers/#add_method" id="add_method" class="item secondary group-helpers">Adding Methods</a><a href="/guide/helpers/#add_method_as_property" id="add_method_as_property" class="item secondary group-helpers">Methods as Properties</a><a href="/guide/helpers/#overwrite_language_chain" id="overwrite_language_chain" class="item secondary group-helpers">Overwriting Language Chains</a><a href="/guide/helpers/#overwrite_property" id="overwrite_property" class="item secondary group-helpers">Overwriting Properties</a><a href="/guide/helpers/#overwrite_method" id="overwrite_method" class="item secondary group-helpers">Overwriting Methods</a><a href="/guide/helpers/#overwrite_caveats" id="overwrite_caveats" class="item secondary group-helpers">Overwriting Caveats</a>
           </div>
           <div id="resources" class="item primary "><span class="expand">+</span><span class="collapse">-</span><a href="/guide/resources/" class="title">Resources</a></div>
           <div id="resources" class="subitems"><a href="/guide/resources/#help" id="help" class="item secondary group-resources">Getting Help</a><a href="/guide/resources/#contributor" id="contributor" class="item secondary group-resources">Contributing</a>
@@ -71,21 +74,27 @@
         <div class="documentation">
           <div class="wrap">
             <div class="rendered">
-              <div class="header"><p>Start with the basics. 
+              <div class="header"><h1>Welcome to Chai</h1>
+<p>We are glad that you have decided to give Chai.js a try! If this is your first visit, get aquainted with
+the basics, such as installation and our included assertion styles.
+
+</p>
+<h2>The Basics</h2>
+<ul>
+<li><a href="/guide/installation/">Install Chai</a> in node, the browser, and other environments.</li>
+<li><a href="/guide/styles/">Learn about styles</a> that you can use to define assertions.</li>
+</ul>
+<h2>Making Plugins</h2>
+<p>After you have a solid knowledge of what is included in Chai, the next step is learning how to extend
+Chai through plugins. Chai is infinitely more powerful than what is included, limited only by what
+you want to achieve. The Plugin API is also intended as a way to simplify testing by providing users 
+a way to encapsulate common assertions for repeat use. 
 
 </p>
 <ul>
-<li><a href="/guide/installation/">Install Chai</a> in your environment.</li>
-<li><a href="/guide/styles/">Learn about styles</a> that you can use to define tests.</li>
+<li><a href="/guide/plugins/">Core Plugin Concepts</a> covers the basics of using the Chai Plugin API.</li>
+<li><a href="/guide/helpers/">Building a Helper</a> is a walkthrough for writing your first plugin.</li>
 </ul>
-<p>And then move on to the more advanced topics.
-
-</p>
-<ul>
-<li>Build your own plugins (coming soon)</li>
-</ul>
-<p>And if you get stuck, you can always <a href="/guide/resources/">find help</a>.
-</p>
 </div>
             </div>
           </div>

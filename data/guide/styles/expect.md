@@ -28,13 +28,15 @@ scenarios, you chain together natural language assertions.
     expect(beverages).to.have.property('tea').with.length(3);
 
 Expect also allows you to include arbitrary messages to prepend to any failed
-assertions that might occur. This comes in handy when being used with non-descript
-topics such as booleans or numbers.
+assertions that might occur. 
 
-    var important = false;
+    var answer = 43;
 
-    // AssertionError: expected false to be true.
-    expect(important).to.be.true; 
+    // AssertionError: expected 43 to equal 42.
+    expect(answer).to.equal(42); 
 
-    // AssertionError: topic [important]: expected false to be true.
-    expect(important, 'topic [important]`).to.be.true;
+    // AssertionError: topic [answer]: expected 43 to equal 42.
+    expect(answer, 'topic [answer]').to.equal(42);
+
+This comes in handy when being used with non-descript topics such as 
+booleans or numbers.

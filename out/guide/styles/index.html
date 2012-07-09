@@ -127,17 +127,19 @@ expect(foo).to.equal(<span class="string">'bar'</span>);
 expect(foo).to.have.length(<span class="number">3</span>);
 expect(beverages).to.have.property(<span class="string">'tea'</span>).<span class="keyword">with</span>.length(<span class="number">3</span>);</code></pre>
 <p>Expect also allows you to include arbitrary messages to prepend to any failed
-assertions that might occur. This comes in handy when being used with non-descript
-topics such as booleans or numbers.
+assertions that might occur. 
 
 </p>
-<pre><code>var important = false;
+<pre><code><span class="keyword">var</span> answer = <span class="number">43</span>;
 
-// AssertionError: expected false to be true.
-expect(important).to.be.true; 
+<span class="comment">// AssertionError: expected 43 to equal 42.</span>
+expect(answer).to.equal(<span class="number">42</span>); 
 
-// AssertionError: topic [important]: expected false to be true.
-expect(important, 'topic [important]`).to.be.true;</code></pre>
+<span class="comment">// AssertionError: topic [answer]: expected 43 to equal 42.</span>
+expect(answer, <span class="string">'topic [answer]'</span>).to.equal(<span class="number">42</span>);</code></pre>
+<p>This comes in handy when being used with non-descript topics such as 
+booleans or numbers.
+</p>
 </article>
               <article id="should-section"><h3>Should</h3>
 <p>The <code>should</code> style allows for the same chainable assertions as the

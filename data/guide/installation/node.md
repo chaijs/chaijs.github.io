@@ -15,7 +15,7 @@ This will ensure that you always have the most recent version after running `npm
 which can be especially powerful when paired with a continuous integration tool.
 
 ```javascript
-devDependancies: {
+devDependencies: {
   "chai": "*",
   "mocha": "*" // our preference, but you can use any test runner you like
 }

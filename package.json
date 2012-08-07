@@ -11,13 +11,13 @@
   },
   "main": "./app",
   "dependencies": {
-    "express": "3.0.0alpha4",
-    "filtr": "0.2.x",
+    "express": "3.0.0rc2",
+    "filtr": "0.3.x",
     "codex": "0.2.x",
-    "superagent": "0.4.x",
-    "jade": "0.25.x",
+    "superagent": "0.7.x",
+    "jade": "0.27.x",
     "marked": "0.2.x",
-    "highlight.js": "1.2.x",
+    "highlight.js": "7.0.1",
     "mocha": "*"
   },
   "devDependencies": {},

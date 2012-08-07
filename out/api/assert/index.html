@@ -9,9 +9,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?1.1.1"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?1.1.1" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?1.1.1" type="text/css" media="all">
+    <script src="/public/js/main.js?1.2.0"></script>
+    <link rel="stylesheet" href="/public/css/antiscroll.css?1.2.0" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?1.2.0" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -55,7 +55,7 @@
           <div class="list box-wrap antiscroll-wrap">
             <div class="box">
               <div class="antiscroll-inner">
-                <div class="box-inner"><a href="#assert" class="scroll item">assert</a><a href="#fail" class="scroll item">fail</a><a href="#ok" class="scroll item">ok</a><a href="#equal" class="scroll item">equal</a><a href="#notEqual" class="scroll item">notEqual</a><a href="#strictEqual" class="scroll item">strictEqual</a><a href="#notStrictEqual" class="scroll item">notStrictEqual</a><a href="#deepEqual" class="scroll item">deepEqual</a><a href="#notDeepEqual" class="scroll item">notDeepEqual</a><a href="#isTrue" class="scroll item">isTrue</a><a href="#isFalse" class="scroll item">isFalse</a><a href="#isNull" class="scroll item">isNull</a><a href="#isNotNull" class="scroll item">isNotNull</a><a href="#isUndefined" class="scroll item">isUndefined</a><a href="#isUndefined" class="scroll item">isUndefined</a><a href="#isFunction" class="scroll item">isFunction</a><a href="#isNotFunction" class="scroll item">isNotFunction</a><a href="#isObject" class="scroll item">isObject</a><a href="#isNotObject" class="scroll item">isNotObject</a><a href="#isArray" class="scroll item">isArray</a><a href="#isNotArray" class="scroll item">isNotArray</a><a href="#isString" class="scroll item">isString</a><a href="#isNotString" class="scroll item">isNotString</a><a href="#isNumber" class="scroll item">isNumber</a><a href="#isNotNumber" class="scroll item">isNotNumber</a><a href="#isBoolean" class="scroll item">isBoolean</a><a href="#isNotBoolean" class="scroll item">isNotBoolean</a><a href="#typeOf" class="scroll item">typeOf</a><a href="#notTypeOf" class="scroll item">notTypeOf</a><a href="#instanceOf" class="scroll item">instanceOf</a><a href="#notInstanceOf" class="scroll item">notInstanceOf</a><a href="#include" class="scroll item">include</a><a href="#match" class="scroll item">match</a><a href="#notMatch" class="scroll item">notMatch</a><a href="#property" class="scroll item">property</a><a href="#notProperty" class="scroll item">notProperty</a><a href="#deepProperty" class="scroll item">deepProperty</a><a href="#notDeepProperty" class="scroll item">notDeepProperty</a><a href="#propertyVal" class="scroll item">propertyVal</a><a href="#propertyNotVal" class="scroll item">propertyNotVal</a><a href="#deepPropertyVal" class="scroll item">deepPropertyVal</a><a href="#deepPropertyNotVal" class="scroll item">deepPropertyNotVal</a><a href="#lengthOf" class="scroll item">lengthOf</a><a href="#throws" class="scroll item">throws / throw / Throw</a><a href="#doesNotThrow" class="scroll item">doesNotThrow</a><a href="#operator" class="scroll item">operator</a>
+                <div class="box-inner"><a href="#assert" class="scroll item">assert</a><a href="#fail" class="scroll item">fail</a><a href="#ok" class="scroll item">ok</a><a href="#equal" class="scroll item">equal</a><a href="#notEqual" class="scroll item">notEqual</a><a href="#strictEqual" class="scroll item">strictEqual</a><a href="#notStrictEqual" class="scroll item">notStrictEqual</a><a href="#deepEqual" class="scroll item">deepEqual</a><a href="#notDeepEqual" class="scroll item">notDeepEqual</a><a href="#isTrue" class="scroll item">isTrue</a><a href="#isFalse" class="scroll item">isFalse</a><a href="#isNull" class="scroll item">isNull</a><a href="#isNotNull" class="scroll item">isNotNull</a><a href="#isUndefined" class="scroll item">isUndefined</a><a href="#isUndefined" class="scroll item">isUndefined</a><a href="#isFunction" class="scroll item">isFunction</a><a href="#isNotFunction" class="scroll item">isNotFunction</a><a href="#isObject" class="scroll item">isObject</a><a href="#isNotObject" class="scroll item">isNotObject</a><a href="#isArray" class="scroll item">isArray</a><a href="#isNotArray" class="scroll item">isNotArray</a><a href="#isString" class="scroll item">isString</a><a href="#isNotString" class="scroll item">isNotString</a><a href="#isNumber" class="scroll item">isNumber</a><a href="#isNotNumber" class="scroll item">isNotNumber</a><a href="#isBoolean" class="scroll item">isBoolean</a><a href="#isNotBoolean" class="scroll item">isNotBoolean</a><a href="#typeOf" class="scroll item">typeOf</a><a href="#notTypeOf" class="scroll item">notTypeOf</a><a href="#instanceOf" class="scroll item">instanceOf</a><a href="#notInstanceOf" class="scroll item">notInstanceOf</a><a href="#include" class="scroll item">include</a><a href="#match" class="scroll item">match</a><a href="#notMatch" class="scroll item">notMatch</a><a href="#property" class="scroll item">property</a><a href="#notProperty" class="scroll item">notProperty</a><a href="#deepProperty" class="scroll item">deepProperty</a><a href="#notDeepProperty" class="scroll item">notDeepProperty</a><a href="#propertyVal" class="scroll item">propertyVal</a><a href="#propertyNotVal" class="scroll item">propertyNotVal</a><a href="#deepPropertyVal" class="scroll item">deepPropertyVal</a><a href="#deepPropertyNotVal" class="scroll item">deepPropertyNotVal</a><a href="#lengthOf" class="scroll item">lengthOf</a><a href="#throws" class="scroll item">throws / throw / Throw</a><a href="#doesNotThrow" class="scroll item">doesNotThrow</a><a href="#operator" class="scroll item">operator</a><a href="#closeTo" class="scroll item">closeTo</a>
                 </div>
               </div>
             </div>
@@ -760,6 +760,21 @@ matching <code>regexp</code>.
 </p>
 <pre><code>assert.operator(<span class="number">1</span>, <span class="string">'&lt;'</span>, <span class="number">2</span>, <span class="string">'everything is ok'</span>);
 assert.operator(<span class="number">1</span>, <span class="string">'>'</span>, <span class="number">2</span>, <span class="string">'this will fail'</span>);</code></pre>
+</div>
+              </div>
+              <div id="closeTo-section" class="segment">
+                <div class="summary"><h3>.closeTo(actual, expected, delta, [message])</h3>
+</div>
+                <ul class="tags">
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Number &#125;</span><span class="name">actual</span><span class="desc"></span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Number &#125;</span><span class="name">expected</span><span class="desc"></span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Number &#125;</span><span class="name">delta</span><span class="desc"></span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">message</span><span class="desc"></span></li>
+                </ul>
+                <div class="description"><p>Asserts that the target is equal <code>expected</code>, to within a +/- <code>delta</code> range.
+
+</p>
+<pre><code>assert.closeTo(<span class="number">1.5</span>, <span class="number">1</span>, <span class="number">0.5</span>, <span class="string">'numbers are close'</span>);</code></pre>
 </div>
               </div>
             </div>

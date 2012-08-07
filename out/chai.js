@@ -1,10 +1,14 @@
 !function (name, context, definition) {
-  if (typeof require === "function" && typeof exports === "object" && typeof module === "object")
-    module.exports = definition(name, context);
-  else if (typeof define === 'function' && typeof define.amd  === 'object') define(definition);
-  else context[name] = definition(name, context);
-}('chai', this, function (name, context) {
-
+  if (typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
+    module.exports = definition();
+  } else if (typeof define === 'function' && typeof define.amd  === 'object') {
+    define(function () {
+      return definition();
+    });
+  } else {
+    context[name] = definition();
+  }
+}('chai', this, function () {
 
   function require(p) {
     var path = require.resolve(p)
@@ -70,7 +74,7 @@
      * Chai version
      */
 
-    exports.version = '1.1.1';
+    exports.version = '1.2.0';
 
     /*!
      * Primary `Assertion` prototype
@@ -225,11 +229,11 @@
      */
 
     Assertion.prototype.assert = function (expr, msg, negateMsg, expected, _actual) {
-      var msg = util.getMessage(this, arguments)
-        , actual = util.getActual(this, arguments)
-        , ok = util.test(this, arguments);
+      var ok = util.test(this, arguments);
 
       if (!ok) {
+        var msg = util.getMessage(this, arguments)
+          , actual = util.getActual(this, arguments);
         throw new AssertionError({
             message: msg
           , actual: actual
@@ -257,6 +261,38 @@
     });
 
   }); // module: chai/assertion.js
+
+  require.register("chai/browser/error.js", function(module, exports, require){
+    /*!
+     * chai
+     * Copyright(c) 2011-2012 Jake Luer <jake@alogicalparadox.com>
+     * MIT Licensed
+     */
+
+    module.exports = AssertionError;
+
+    function AssertionError (options) {
+      options = options || {};
+      this.message = options.message;
+      this.actual = options.actual;
+      this.expected = options.expected;
+      this.operator = options.operator;
+
+      if (options.stackStartFunction && Error.captureStackTrace) {
+        var stackStartFunction = options.stackStartFunction;
+        Error.captureStackTrace(this, stackStartFunction);
+      }
+    }
+
+    AssertionError.prototype = Object.create(Error.prototype);
+    AssertionError.prototype.name = 'AssertionError';
+    AssertionError.prototype.constructor = AssertionError;
+
+    AssertionError.prototype.toString = function() {
+      return this.message;
+    };
+
+  }); // module: chai/browser/error.js
 
   require.register("chai/core/assertions.js", function(module, exports, require){
     /*!
@@ -882,10 +918,12 @@
        */
 
       Assertion.addMethod('property', function (name, val) {
-        var obj = flag(this, 'object')
-          , value = flag(this, 'deep') ? _.getPathValue(name, obj) : obj[name]
-          , descriptor = flag(this, 'deep') ? 'deep property ' : 'property '
-          , negate = flag(this, 'negate');
+        var descriptor = flag(this, 'deep') ? 'deep property ' : 'property '
+          , negate = flag(this, 'negate')
+          , obj = flag(this, 'object')
+          , value = flag(this, 'deep')
+            ? _.getPathValue(name, obj)
+            : obj[name];
 
         if (negate && undefined !== val) {
           if (undefined === value) {
@@ -1310,38 +1348,6 @@
     };
 
   }); // module: chai/core/assertions.js
-
-  require.register("chai/browser/error.js", function(module, exports, require){
-    /*!
-     * chai
-     * Copyright(c) 2011-2012 Jake Luer <jake@alogicalparadox.com>
-     * MIT Licensed
-     */
-
-    module.exports = AssertionError;
-
-    function AssertionError (options) {
-      options = options || {};
-      this.message = options.message;
-      this.actual = options.actual;
-      this.expected = options.expected;
-      this.operator = options.operator;
-
-      if (options.stackStartFunction && Error.captureStackTrace) {
-        var stackStartFunction = options.stackStartFunction;
-        Error.captureStackTrace(this, stackStartFunction);
-      }
-    }
-
-    AssertionError.prototype = Object.create(Error.prototype);
-    AssertionError.prototype.name = 'AssertionError';
-    AssertionError.prototype.constructor = AssertionError;
-
-    AssertionError.prototype.toString = function() {
-      return this.message;
-    };
-
-  }); // module: chai/browser/error.js
 
   require.register("chai/interface/assert.js", function(module, exports, require){
     /*!
@@ -2288,6 +2294,25 @@
           , 'expected ' + util.inspect(val) + ' to not be ' + operator + ' ' + util.inspect(val2) );
       };
 
+      /**
+       * ### .closeTo(actual, expected, delta, [message])
+       *
+       * Asserts that the target is equal `expected`, to within a +/- `delta` range.
+       *
+       *     assert.closeTo(1.5, 1, 0.5, 'numbers are close');
+       *
+       * @name closeTo
+       * @param {Number} actual
+       * @param {Number} expected
+       * @param {Number} delta
+       * @param {String} message
+       * @api public
+       */
+
+      assert.closeTo = function (act, exp, delta, msg) {
+        new Assertion(act, msg).to.be.closeTo(exp, delta);
+      };
+
       /*!
        * Undocumented / untested
        */
@@ -2474,7 +2499,7 @@
      */
 
     /**
-     * ### addMethod (ctx, name, method)
+     * ### .addMethod (ctx, name, method)
      *
      * Adds a method to the prototype of an object.
      *
@@ -2708,7 +2733,7 @@
 
     module.exports = function (obj, args) {
       var actual = args[4];
-      return 'undefined' !== actual ? actual : obj.obj;
+      return 'undefined' !== actual ? actual : obj._obj;
     };
 
   }); // module: chai/utils/getActual.js
@@ -2726,10 +2751,11 @@
 
     var flag = require('./flag')
       , getActual = require('./getActual')
-      , inspect = require('./inspect');
+      , inspect = require('./inspect')
+      , objDisplay = require('./objDisplay');
 
     /**
-     * # getMessage(object, message, negateMessage)
+     * ### .getMessage(object, message, negateMessage)
      *
      * Construct the error message based on flags
      * and template tags. Template tags will return
@@ -2742,6 +2768,8 @@
      *
      * @param {Object} object (constructed Assertion)
      * @param {Arguments} chai.Assertion.prototype.assert arguments
+     * @name getMessage
+     * @api public
      */
 
     module.exports = function (obj, args) {
@@ -2754,9 +2782,9 @@
 
       msg = msg || '';
       msg = msg
-        .replace(/#{this}/g, inspect(val))
-        .replace(/#{act}/g, inspect(actual))
-        .replace(/#{exp}/g, inspect(expected));
+        .replace(/#{this}/g, objDisplay(val))
+        .replace(/#{act}/g, objDisplay(actual))
+        .replace(/#{exp}/g, objDisplay(expected));
 
       return flagMsg ? flagMsg + ': ' + msg : msg;
     };
@@ -2931,6 +2959,12 @@
     exports.inspect = require('./inspect');
 
     /*!
+     * Object Display util
+     */
+
+    exports.objDisplay = require('./objDisplay');
+
+    /*!
      * Flag utility
      */
 
@@ -3021,6 +3055,36 @@
       return formatValue(ctx, obj, (typeof depth === 'undefined' ? 2 : depth));
     }
 
+    // https://gist.github.com/1044128/
+    var getOuterHTML = function(element) {
+      if ('outerHTML' in element) return element.outerHTML;
+      var ns = "http://www.w3.org/1999/xhtml";
+      var container = document.createElementNS(ns, '_');
+      var elemProto = (window.HTMLElement || window.Element).prototype;
+      var xmlSerializer = new XMLSerializer();
+      var html;
+      if (document.xmlVersion) {
+        return xmlSerializer.serializeToString(element);
+      } else {
+        container.appendChild(element.cloneNode(false));
+        html = container.innerHTML.replace('><', '>' + element.innerHTML + '<');
+        container.innerHTML = '';
+        return html;
+      }
+    };
+      
+    // Returns true if object is a DOM element.
+    var isDOMElement = function (object) {
+      if (typeof HTMLElement === 'object') {
+        return object instanceof HTMLElement;
+      } else {
+        return object &&
+          typeof object === 'object' &&
+          object.nodeType === 1 &&
+          typeof object.nodeName === 'string';
+      }
+    };
+
     function formatValue(ctx, value, recurseTimes) {
       // Provide a hook for user-specified inspect functions.
       // Check that value is an object with an inspect function on it
@@ -3036,6 +3100,11 @@
       var primitive = formatPrimitive(ctx, value);
       if (primitive) {
         return primitive;
+      }
+
+      // If it's DOM elem, get outer HTML.
+      if (isDOMElement(value)) {
+        return getOuterHTML(value);
       }
 
       // Look up the keys of the object.
@@ -3275,6 +3344,54 @@
     }
 
   }); // module: chai/utils/inspect.js
+
+  require.register("chai/utils/objDisplay.js", function(module, exports, require){
+    /*!
+     * Chai - flag utility
+     * Copyright(c) 2012 Jake Luer <jake@alogicalparadox.com>
+     * MIT Licensed
+     */
+
+    /*!
+     * Module dependancies
+     */
+
+    var inspect = require('./inspect');
+
+    /**
+     * ### .objDisplay (object)
+     *
+     * Determines if an object or an array matches
+     * criteria to be inspected in-line for error
+     * messages or should be truncated.
+     *
+     * @param {Mixed} javascript object to inspect
+     * @name objDisplay
+     * @api public
+     */
+
+    module.exports = function (obj) {
+      var str = inspect(obj)
+        , type = Object.prototype.toString.call(obj);
+
+      if (str.length >= 40) {
+        if (type === '[object Array]') {
+          return '[ Array(' + obj.length + ') ]';
+        } else if (type === '[object Object]') {
+          var keys = Object.keys(obj)
+            , kstr = keys.length > 2
+              ? keys.splice(0, 2).join(', ') + ', ...'
+              : keys.join(', ');
+          return '{ Object (' + kstr + ') }';
+        } else {
+          return str;
+        }
+      } else {
+        return str;
+      }
+    };
+
+  }); // module: chai/utils/objDisplay.js
 
   require.register("chai/utils/overwriteMethod.js", function(module, exports, require){
     /*!

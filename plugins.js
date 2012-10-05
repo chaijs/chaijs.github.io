@@ -101,4 +101,15 @@ module.exports = [
     , browser:
       { 'chai-factories.js': 'https://raw.github.com/chaijs/chai-null/master/chai-factories.js' }
     }
+
+  , { name: 'Chai Changes'
+    , desc: 'Change assertions'
+    , url: 'chai-changes'
+    , link: 'https://github.com/matthijsgroen/chai-changes'
+    , tags: [ 'changes', 'when' ]
+    , pkg: 'https://raw.github.com/matthijsgroen/chai-changes/master/package.json'
+    , markdown: 'https://raw.github.com/matthijsgroen/chai-changes/master/Readme.md'
+    , browser:
+      { 'chai-changes.js': 'https://raw.github.com/matthijsgroen/chai-changes/master/chai-changes.js' }
+    }
 ];

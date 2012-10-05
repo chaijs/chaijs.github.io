@@ -108,7 +108,8 @@ module.exports = [
     , link: 'https://github.com/matthijsgroen/chai-changes'
     , tags: [ 'changes', 'when' ]
     , pkg: 'https://raw.github.com/matthijsgroen/chai-changes/master/package.json'
-    , markdown: 'https://raw.github.com/matthijsgroen/chai-changes/master/Readme.md'
+    , markdown: 'https://raw.github.com/matthijsgroen/chai-changes/master/README.md'
+    , node: false
     , browser:
       { 'chai-changes.js': 'https://raw.github.com/matthijsgroen/chai-changes/master/chai-changes.js' }
     }

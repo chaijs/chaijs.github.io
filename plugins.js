@@ -65,12 +65,12 @@ module.exports = [
     }
 
   , { name: 'Chai Timers'
-    , desc: 'Function spies and assertions.'
+    , desc: 'Timers, stopwatches, and other time-based assertions for the Chai Assertion Library.'
     , url: 'chai-timers'
     , link: 'https://github.com/chaijs/chai-timers'
     , tags: [ 'math' ]
-    , pkg: 'https://raw.github.com/chaijs/chai-spies/master/package.json'
-    , markdown: 'https://raw.github.com/chaijs/chai-timer/master/README.md' }
+    , pkg: 'https://raw.github.com/chaijs/chai-timers/master/package.json'
+    , markdown: 'https://raw.github.com/chaijs/chai-timers/master/README.md' }
 
   , { name: 'Chai Stats'
     , desc: 'Function spies and assertions.'

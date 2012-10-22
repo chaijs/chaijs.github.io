@@ -6,6 +6,6 @@
 
     assert.typeOf(foo, 'string');
     assert.equal(foo, 'bar');
-    assert.length(foo, 3)
+    assert.lengthOf(foo, 3)
     assert.property(tea, 'favors');
-    assert.length(tea.flavors, 3);
+    assert.lengthOf(tea.flavors, 3);

@@ -96,8 +96,8 @@ tests and is browser compatible.
 
 assert.typeOf(foo, <span class="string">'string'</span>, <span class="string">'foo is a string'</span>);
 assert.equal(foo, <span class="string">'bar'</span>, <span class="string">'foo equal `bar`'</span>);
-assert.length(foo, <span class="number">3</span>, <span class="string">'foo`s value has a length of 3'</span>);
-assert.length(beverages.tea, <span class="number">3</span>, <span class="string">'beverages has 3 types of tea'</span>);</code></pre>
+assert.lengthOf(foo, <span class="number">3</span>, <span class="string">'foo`s value has a length of 3'</span>);
+assert.lengthOf(beverages.tea, <span class="number">3</span>, <span class="string">'beverages has 3 types of tea'</span>);</code></pre>
 <p>In all cases, the assert style allows you to include an optional message as the
 last parameter in the <code>assert</code> statement. These will be included in the 
 error messages should your assertion not pass.

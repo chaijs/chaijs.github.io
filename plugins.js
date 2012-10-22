@@ -109,8 +109,20 @@ module.exports = [
     , tags: [ 'changes', 'when' ]
     , pkg: 'https://raw.github.com/matthijsgroen/chai-changes/master/package.json'
     , markdown: 'https://raw.github.com/matthijsgroen/chai-changes/master/README.md'
-    , node: false
+    , node: true
     , browser:
       { 'chai-changes.js': 'https://raw.github.com/matthijsgroen/chai-changes/master/chai-changes.js' }
+    }
+
+  , { name: 'Chai Backbone'
+    , desc: 'Common Backbone assertions'
+    , url: 'chai-backbone'
+    , link: 'https://github.com/matthijsgroen/chai-backbone'
+    , tags: [ 'backbone' ]
+    , pkg: 'https://raw.github.com/matthijsgroen/chai-backbone/master/package.json'
+    , markdown: 'https://raw.github.com/matthijsgroen/chai-backbone/master/README.md'
+    , node: true
+    , browser:
+      { 'chai-backbone.js': 'https://raw.github.com/matthijsgroen/chai-backbone/master/chai-backbone.js' }
     }
 ];

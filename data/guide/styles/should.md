@@ -7,7 +7,7 @@
 ### Should
 
 The `should` style allows for the same chainable assertions as the
-the `expect` interface, however is extends each object with a `should`
+`expect` interface, however it extends each object with a `should`
 property to start your chain. This style has some issues when used Internet
 Explorer, so be aware of browser compatibility. 
 

@@ -64,7 +64,7 @@ guideline when constructing chainable methods.
 
 For use with our model example, we are going to construct an example that allows us to test Arthur's
 age exactly, or chain into Chai's numerical comparators, such as `above`, `below`, and `within`. You will
-need learn how to overwrite methods without destroying core functionality, but we get to that a bit later.
+need to learn how to overwrite methods without destroying core functionality, but we get to that a bit later.
 
 Our goal will allow for all of the following to pass.
 

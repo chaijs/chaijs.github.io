@@ -8,7 +8,7 @@
 
 In essense, defining a property can be done using `Object.defineProperty`,
 but we encourage you to use Chai's utility helpers to ensure a standard
-implmentation throughout. 
+implementation throughout. 
 
 For this example, we will want the following test case to pass...
 
@@ -32,14 +32,14 @@ utils.addProperty(Assertion, 'model', function () {
 <a href="/api/plugins/#addProperty-section" class="clean-button">View addProperty API</a>
 
 Simple and concise. Chai can take it from here. Though, before we get further
-it is worth mentioning that because we this extension pattern is used so often, 
+it is worth mentioning that because this extension pattern is used so often, 
 Chai makes it just a bit easier. The following can be used as the first line...
 
 ```javascript
 Assertion.addProperty('model', function () { // ...
 ```
 
-As will all of the chain extension utilities, they are provided as part of the `utils`
-object or directly on Assertion constructor. Should you find yourself composing
+As with all of the chain extension utilities, they are provided as part of the `utils`
+object or directly on the Assertion constructor. Should you find yourself composing
 your own interface, that might come in handy. For the rest of this document however
 we will be using the methods from directly off `Assertion`.

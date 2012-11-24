@@ -37,7 +37,7 @@ existed, and you should be sure to call that if your criteria doesn't match.
 Secondly, you will notice that we immediately return a new function that 
 will serve as the actual assertion. 
 
-With this in place, we can write a possitive assertions.
+With this in place, we can write positive assertions.
 
 ```javascript
 var arthur = new Model('person');
@@ -64,8 +64,8 @@ to be a number.
 
 ##### Transfering Flags
 
-For this we will expand on this assertion by transfering
-all of flags from the original assertion to our new assertion. The final 
+For this we will expand on this assertion by transfering all of the 
+flags from the original assertion to our new assertion. The final 
 property overwrite would look like this.
 
 ```javascript
@@ -91,9 +91,9 @@ assertion as it was as we always want it to fail if the id is not present.
 ##### Enhancing Error Messages
 
 Though, we have one more small modification to make. Should our assertion fail
-for the wrong time of id attribute, we would get an error message that stages 
+for the wrong type of id attribute, we would get an error message that states 
 `expected 'dont panic' to [not] be a number`. Not entirely useful when running a large
-test suite, so we will provide it with a big more information.
+test suite, so we will provide it with a bit more information.
 
 ```javascript
 var assertId = new Assertion(obj._attrs.id, 'model assert ok id type');

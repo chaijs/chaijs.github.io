@@ -8,7 +8,7 @@
 
 Given that `should` works by extending `Object.prototype`, there are
 some scenarios where `should` will not work. Mainly, if you are trying
-to check the existence of of an object. Take the following psuedocode:
+to check the existence of an object. Take the following psuedocode:
 
     db.get(1234, function (err, doc) {
       // we expect error to not exist

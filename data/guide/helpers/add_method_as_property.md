@@ -25,10 +25,10 @@ expect(obj).to.contain.key('a');
 ```
 
 For this to work, two seperate functions are needed. One that will be invoked when the 
-chain is used as a either a property or a method, and one that will be invoked when only used
+chain is used as either a property or a method, and one that will be invoked when only used
 as a method. 
 
-In these example, and with all of the other chainable methods in core, the only function of 
+In these examples, and with all of the other chainable methods in core, the only function
 of `contain` as a property is to set a `contains` flag to true. This indicates to `keys` to 
 behave differently. In this case, when `key` is used in conjunction with `contain`, it will check
 for the inclusion of a key, instead of checking the exact match to all keys.
@@ -63,8 +63,8 @@ guideline when constructing chainable methods.
 ##### An Appropriate Example
 
 For use with our model example, we are going to construct an example that allows us to test Arthur's
-age exactly, or chain into Chai's numerical compartors, such as `above`, `below`, and `within`. You will
-need learn how to overwrite methods without distroying core functionality, but we get to that a bit later.
+age exactly, or chain into Chai's numerical comparators, such as `above`, `below`, and `within`. You will
+need to learn how to overwrite methods without destroying core functionality, but we get to that a bit later.
 
 Our goal will allow for all of the following to pass.
 
@@ -74,8 +74,8 @@ expect(arthur).to.have.age.above(17);
 expect(arthur).to.not.have.age.below(18);
 ```
 
-Let's start first by composing the two function needed for a chainable method. First up is the function
-to use when using invoking the `age` method.
+Let's start first by composing the two functions needed for a chainable method. First up is the function
+to use when invoking the `age` method.
 
 ```javascript
 function assertModelAge (n) {
@@ -105,7 +105,7 @@ function chainModelAge () {
 }
 ```
 
-We will later teach our numerical comparitors to look for that flag and change its behavior. Since we don't want to
+We will later teach our numerical comparators to look for that flag and change its behavior. Since we don't want to
 break the core methods, we will need to safely override that method, but we'll get to that in a minute. Let's
 finish up here first...
 

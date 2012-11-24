@@ -10,7 +10,7 @@ In essense, defining a property can be done using `Object.defineProperty`,
 but we encourage you to use Chai's utility helpers to ensure a standard
 implmentation throughout. 
 
-For this example, we will want to following test case to pass...
+For this example, we will want the following test case to pass...
 
 ```javascript
 var arthur = new Model('person');

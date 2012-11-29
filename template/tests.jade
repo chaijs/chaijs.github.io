@@ -4,7 +4,16 @@ block scripts
   script(src=site.ghbaseurl + '/public/js/tests/mocha.js')
   script
     mocha.setup('tdd');
-  <script src="/chai.js"></script>
+  script(src='/chai.js')
+  script
+    err = function (fn, msg) {
+      try {
+        fn();
+        throw new chai.AssertionError({ message: 'Expected an error' });
+      } catch (err) {
+        chai.expect(err.message).to.equal(msg);
+      }
+    };
   script(src=site.ghbaseurl + '/public/js/tests/configuration.js')
   script(src=site.ghbaseurl + '/public/js/tests/expect.js')
   script(src=site.ghbaseurl + '/public/js/tests/should.js')
@@ -14,7 +23,7 @@ block scripts
   script
     onload = function () {
       mocha.run();
-    }
+    };
 
 block rendered
   article!= file.prepared

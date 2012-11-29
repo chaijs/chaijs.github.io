@@ -157,10 +157,10 @@ put that to use.
               <article id="add_property-section"><h3>Adding Properties</h3>
 <p>In essense, defining a property can be done using <code>Object.defineProperty</code>,
 but we encourage you to use Chai&#39;s utility helpers to ensure a standard
-implmentation throughout. 
+implementation throughout. 
 
 </p>
-<p>For this example, we will want to following test case to pass...
+<p>For this example, we will want the following test case to pass...
 
 </p>
 <pre><code class="lang-javascript"><span class="keyword">var</span> arthur = <span class="keyword">new</span> Model(<span class="string">'person'</span>);
@@ -179,13 +179,13 @@ expect(arthur).to.be.a.model;</code></pre>
 
 </p>
 <p>Simple and concise. Chai can take it from here. Though, before we get further
-it is worth mentioning that because we this extension pattern is used so often, 
+it is worth mentioning that because this extension pattern is used so often, 
 Chai makes it just a bit easier. The following can be used as the first line...
 
 </p>
 <pre><code class="lang-javascript">Assertion.addProperty(<span class="string">'model'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span> <span class="comment">// ...</span></code></pre>
-<p>As will all of the chain extension utilities, they are provided as part of the <code>utils</code>
-object or directly on Assertion constructor. Should you find yourself composing
+<p>As with all of the chain extension utilities, they are provided as part of the <code>utils</code>
+object or directly on the Assertion constructor. Should you find yourself composing
 your own interface, that might come in handy. For the rest of this document however
 we will be using the methods from directly off <code>Assertion</code>.
 </p>
@@ -241,11 +241,11 @@ core.
 expect(arr).to.contain(<span class="number">2</span>);
 expect(obj).to.contain.key(<span class="string">'a'</span>);</code></pre>
 <p>For this to work, two seperate functions are needed. One that will be invoked when the 
-chain is used as a either a property or a method, and one that will be invoked when only used
+chain is used as either a property or a method, and one that will be invoked when only used
 as a method. 
 
 </p>
-<p>In these example, and with all of the other chainable methods in core, the only function of 
+<p>In these examples, and with all of the other chainable methods in core, the only function
 of <code>contain</code> as a property is to set a <code>contains</code> flag to true. This indicates to <code>keys</code> to 
 behave differently. In this case, when <code>key</code> is used in conjunction with <code>contain</code>, it will check
 for the inclusion of a key, instead of checking the exact match to all keys.
@@ -280,8 +280,8 @@ for later modifying the behavior of an existing assertion.
 </blockquote>
 <h5>An Appropriate Example</h5>
 <p>For use with our model example, we are going to construct an example that allows us to test Arthur&#39;s
-age exactly, or chain into Chai&#39;s numerical compartors, such as <code>above</code>, <code>below</code>, and <code>within</code>. You will
-need learn how to overwrite methods without distroying core functionality, but we get to that a bit later.
+age exactly, or chain into Chai&#39;s numerical comparators, such as <code>above</code>, <code>below</code>, and <code>within</code>. You will
+need to learn how to overwrite methods without destroying core functionality, but we get to that a bit later.
 
 </p>
 <p>Our goal will allow for all of the following to pass.
@@ -290,8 +290,8 @@ need learn how to overwrite methods without distroying core functionality, but w
 <pre><code class="lang-javascript">expect(arthur).to.have.age(<span class="number">27</span>);
 expect(arthur).to.have.age.above(<span class="number">17</span>);
 expect(arthur).to.not.have.age.below(<span class="number">18</span>);</code></pre>
-<p>Let&#39;s start first by composing the two function needed for a chainable method. First up is the function
-to use when using invoking the <code>age</code> method.
+<p>Let&#39;s start first by composing the two functions needed for a chainable method. First up is the function
+to use when invoking the <code>age</code> method.
 
 </p>
 <pre><code class="lang-javascript"><span class="function"><span class="keyword">function</span> <span class="title">assertModelAge</span> <span class="params">(n)</span> {</span>
@@ -317,7 +317,7 @@ to use when using invoking the <code>age</code> method.
 <pre><code class="lang-javascript"><span class="function"><span class="keyword">function</span> <span class="title">chainModelAge</span> <span class="params">()</span> {</span>
   utils.flag(<span class="keyword">this</span>, <span class="string">'model.age'</span>, <span class="literal">true</span>);
 }</code></pre>
-<p>We will later teach our numerical comparitors to look for that flag and change its behavior. Since we don&#39;t want to
+<p>We will later teach our numerical comparators to look for that flag and change its behavior. Since we don&#39;t want to
 break the core methods, we will need to safely override that method, but we&#39;ll get to that in a minute. Let&#39;s
 finish up here first...
 
@@ -376,7 +376,7 @@ Secondly, you will notice that we immediately return a new function that
 will serve as the actual assertion. 
 
 </p>
-<p>With this in place, we can write a possitive assertions.
+<p>With this in place, we can write positive assertions.
 
 </p>
 <pre><code class="lang-javascript"><span class="keyword">var</span> arthur = <span class="keyword">new</span> Model(<span class="string">'person'</span>);
@@ -399,8 +399,8 @@ to be a number.
 
 </p>
 <h5>Transfering Flags</h5>
-<p>For this we will expand on this assertion by transfering
-all of flags from the original assertion to our new assertion. The final 
+<p>For this we will expand on this assertion by transfering all of the 
+flags from the original assertion to our new assertion. The final 
 property overwrite would look like this.
 
 </p>
@@ -424,9 +424,9 @@ assertion as it was as we always want it to fail if the id is not present.
 </p>
 <h5>Enhancing Error Messages</h5>
 <p>Though, we have one more small modification to make. Should our assertion fail
-for the wrong time of id attribute, we would get an error message that stages 
+for the wrong type of id attribute, we would get an error message that states 
 <code>expected &#39;dont panic&#39; to [not] be a number</code>. Not entirely useful when running a large
-test suite, so we will provide it with a big more information.
+test suite, so we will provide it with a bit more information.
 
 </p>
 <pre><code class="lang-javascript"><span class="keyword">var</span> assertId = <span class="keyword">new</span> Assertion(obj._attrs.id, <span class="string">'model assert ok id type'</span>);</code></pre>

@@ -1,25 +1,5 @@
-/*!
- * Module dependencies.
- *
- * Chai is automatically included in the browser.
- */
-
-if (!chai) {
-  var chai = require('..');
-}
-
-var expect = chai.expect;
-
-function err(fn, msg) {
-  try {
-    fn();
-    throw new chai.AssertionError({ message: 'Expected an error' });
-  } catch (err) {
-    expect(err.message).to.equal(msg);
-  }
-}
-
 suite('expect', function () {
+  var expect = chai.expect;
 
   test('chai.version', function() {
     expect(chai).to.have.property('version');
@@ -173,7 +153,7 @@ suite('expect', function () {
 
     err(function(){
       expect(10).to.not.be.above(6, 'blah');
-    }, "blah: expected 10 to be below 6");
+    }, "blah: expected 10 to be at most 6");
 
     err(function () {
       expect('foo').to.have.length.above(4, 'blah');
@@ -182,6 +162,30 @@ suite('expect', function () {
     err(function () {
       expect([ 1, 2, 3 ]).to.have.length.above(4, 'blah');
     }, "blah: expected [ 1, 2, 3 ] to have a length above 4 but got 3");
+  });
+
+  test('least(n)', function(){
+    expect(5).to.be.at.least(2);
+    expect(5).to.be.at.least(5);
+    expect(5).to.not.be.at.least(6);
+    expect('foo').to.have.length.of.at.least(2);
+    expect([ 1, 2, 3 ]).to.have.length.of.at.least(2);
+
+    err(function(){
+      expect(5).to.be.at.least(6, 'blah');
+    }, "blah: expected 5 to be at least 6", 'blah');
+
+    err(function(){
+      expect(10).to.not.be.at.least(6, 'blah');
+    }, "blah: expected 10 to be below 6");
+
+    err(function () {
+      expect('foo').to.have.length.of.at.least(4, 'blah');
+    }, "blah: expected \'foo\' to have a length at least 4 but got 3");
+
+    err(function () {
+      expect([ 1, 2, 3 ]).to.have.length.of.at.least(4, 'blah');
+    }, "blah: expected [ 1, 2, 3 ] to have a length at least 4 but got 3");
   });
 
   test('below(n)', function(){
@@ -198,7 +202,7 @@ suite('expect', function () {
 
     err(function(){
       expect(6).to.not.be.below(10, 'blah');
-    }, "blah: expected 6 to be above 10");
+    }, "blah: expected 6 to be at least 10");
 
     err(function () {
       expect('foo').to.have.length.below(2, 'blah');
@@ -207,6 +211,31 @@ suite('expect', function () {
     err(function () {
       expect([ 1, 2, 3 ]).to.have.length.below(2, 'blah');
     }, "blah: expected [ 1, 2, 3 ] to have a length below 2 but got 3");
+  });
+
+  test('most(n)', function(){
+    expect(2).to.be.at.most(5);
+    expect(2).to.be.at.most(2);
+    expect(2).to.not.be.at.most(1);
+    expect(2).to.not.be.at.most(1);
+    expect('foo').to.have.length.of.at.most(4);
+    expect([ 1, 2, 3 ]).to.have.length.of.at.most(4);
+
+    err(function(){
+      expect(6).to.be.at.most(5, 'blah');
+    }, "blah: expected 6 to be at most 5");
+
+    err(function(){
+      expect(6).to.not.be.at.most(10, 'blah');
+    }, "blah: expected 6 to be above 10");
+
+    err(function () {
+      expect('foo').to.have.length.of.at.most(2, 'blah');
+    }, "blah: expected \'foo\' to have a length at most 2 but got 3");
+
+    err(function () {
+      expect([ 1, 2, 3 ]).to.have.length.of.at.most(2, 'blah');
+    }, "blah: expected [ 1, 2, 3 ] to have a length at most 2 but got 3");
   });
 
   test('match(regexp)', function(){

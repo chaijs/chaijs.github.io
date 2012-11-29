@@ -1,25 +1,5 @@
-/*!
- * Module dependencies.
- *
- * Chai is automatically included in the browser.
- */
-
-if (!chai) {
-  var chai = require('..');
-}
-
-var assert = chai.assert;
-
-function err(fn, msg) {
-  try {
-    fn();
-    throw new chai.AssertionError({ message: 'Expected an error' });
-  } catch (err) {
-    assert.equal(msg, err.message);
-  }
-}
-
 suite('assert', function () {
+  var assert = chai.assert;
 
   test('assert', function () {
     var foo = 'bar';
@@ -189,12 +169,40 @@ suite('assert', function () {
     }, "expected { tea: \'chai\' } to deeply equal { tea: \'black\' }");
   });
 
+  test('deepEqual (circular)', function() {
+    var circularObject = {}
+      , secondCircularObject = {};
+    circularObject.field = circularObject;
+    secondCircularObject.field = secondCircularObject;
+
+    assert.deepEqual(circularObject, secondCircularObject);
+
+    err(function() {
+      secondCircularObject.field2 = secondCircularObject;
+      assert.deepEqual(circularObject, secondCircularObject);
+    }, "expected { field: [Circular] } to deeply equal { Object (field, field2) }");
+  });
+
   test('notDeepEqual', function() {
     assert.notDeepEqual({tea: 'jasmine'}, {tea: 'chai'});
 
     err(function () {
       assert.notDeepEqual({tea: 'chai'}, {tea: 'chai'});
     }, "expected { tea: \'chai\' } to not deeply equal { tea: \'chai\' }");
+  });
+
+  test('notDeepEqual (circular)', function() {
+    var circularObject = {}
+      , secondCircularObject = { tea: 'jasmine' };
+    circularObject.field = circularObject;
+    secondCircularObject.field = secondCircularObject;
+
+    assert.notDeepEqual(circularObject, secondCircularObject);
+
+    err(function() {
+      delete secondCircularObject.tea;
+      assert.notDeepEqual(circularObject, secondCircularObject);
+    }, "expected { field: [Circular] } to not deeply equal { field: [Circular] }");
   });
 
   test('isNull', function() {

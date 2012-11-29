@@ -55,7 +55,7 @@
           <div class="list box-wrap antiscroll-wrap">
             <div class="box">
               <div class="antiscroll-inner">
-                <div class="box-inner"><a href="#language chains" class="scroll item">language chains</a><a href="#not" class="scroll item">not</a><a href="#deep" class="scroll item">deep</a><a href="#a" class="scroll item">a / an</a><a href="#include" class="scroll item">include / contain</a><a href="#ok" class="scroll item">ok</a><a href="#true" class="scroll item">true</a><a href="#false" class="scroll item">false</a><a href="#null" class="scroll item">null</a><a href="#undefined" class="scroll item">undefined</a><a href="#exist" class="scroll item">exist</a><a href="#empty" class="scroll item">empty</a><a href="#arguments" class="scroll item">arguments / Arguments</a><a href="#equal" class="scroll item">equal / equals / eq / deep.equal</a><a href="#eql" class="scroll item">eql</a><a href="#above" class="scroll item">above / gt / greaterThan</a><a href="#below" class="scroll item">below / lt / lessThan</a><a href="#within" class="scroll item">within</a><a href="#instanceof" class="scroll item">instanceof / instanceOf</a><a href="#property" class="scroll item">property / deep.property</a><a href="#ownProperty" class="scroll item">ownProperty / haveOwnProperty</a><a href="#length" class="scroll item">length / lengthOf</a><a href="#match" class="scroll item">match</a><a href="#string" class="scroll item">string</a><a href="#keys" class="scroll item">keys / key</a><a href="#throw" class="scroll item">throw / throws / Throw</a><a href="#respondTo" class="scroll item">respondTo</a><a href="#itself" class="scroll item">itself</a><a href="#satisfy" class="scroll item">satisfy</a><a href="#closeTo" class="scroll item">closeTo</a>
+                <div class="box-inner"><a href="#language chains" class="scroll item">language chains</a><a href="#not" class="scroll item">not</a><a href="#deep" class="scroll item">deep</a><a href="#a" class="scroll item">a / an</a><a href="#include" class="scroll item">include / contain</a><a href="#ok" class="scroll item">ok</a><a href="#true" class="scroll item">true</a><a href="#false" class="scroll item">false</a><a href="#null" class="scroll item">null</a><a href="#undefined" class="scroll item">undefined</a><a href="#exist" class="scroll item">exist</a><a href="#empty" class="scroll item">empty</a><a href="#arguments" class="scroll item">arguments / Arguments</a><a href="#equal" class="scroll item">equal / equals / eq / deep.equal</a><a href="#eql" class="scroll item">eql</a><a href="#above" class="scroll item">above / gt / greaterThan</a><a href="#least" class="scroll item">least / gte</a><a href="#below" class="scroll item">below / lt / lessThan</a><a href="#most" class="scroll item">most / lte</a><a href="#within" class="scroll item">within</a><a href="#instanceof" class="scroll item">instanceof / instanceOf</a><a href="#property" class="scroll item">property / deep.property</a><a href="#ownProperty" class="scroll item">ownProperty / haveOwnProperty</a><a href="#length" class="scroll item">length / lengthOf</a><a href="#match" class="scroll item">match</a><a href="#string" class="scroll item">string</a><a href="#keys" class="scroll item">keys / key</a><a href="#throw" class="scroll item">throw / throws / Throw</a><a href="#respondTo" class="scroll item">respondTo</a><a href="#itself" class="scroll item">itself</a><a href="#satisfy" class="scroll item">satisfy</a><a href="#closeTo" class="scroll item">closeTo</a>
                 </div>
               </div>
             </div>
@@ -95,6 +95,8 @@ have been overwritten by a plugin.
 <li>and</li>
 <li>have</li>
 <li>with</li>
+<li>at</li>
+<li>of</li>
 </ul>
 </div>
               </div>
@@ -328,6 +330,27 @@ was supplied directly.
 expect([ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ]).to.have.length.above(<span class="number">2</span>);</code></pre>
 </div>
               </div>
+              <div id="least-section" class="segment">
+                <div class="summary"><h3>.least(value)</h3>
+</div>
+                <ul class="tags">
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Number &#125;</span><span class="name">value</span><span class="desc"></span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">message</span><span class="desc">_optional_</span></li>
+                </ul>
+                <div class="description"><p>Asserts that the target is greater than or equal to <code>value</code>.
+
+</p>
+<pre><code>expect(<span class="number">10</span>).to.be.at.least(<span class="number">10</span>);</code></pre>
+<p>Can also be used in conjunction with <code>length</code> to
+assert a minimum length. The benefit being a
+more informative error message than if the length
+was supplied directly.
+
+</p>
+<pre><code>expect(<span class="string">'foo'</span>).to.have.length.of.at.least(<span class="number">2</span>);
+expect([ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ]).to.have.length.of.at.least(<span class="number">3</span>);</code></pre>
+</div>
+              </div>
               <div id="below-section" class="segment">
                 <div class="summary"><h3>.below(value)</h3>
 </div>
@@ -347,6 +370,27 @@ was supplied directly.
 </p>
 <pre><code>expect(<span class="string">'foo'</span>).to.have.length.below(<span class="number">4</span>);
 expect([ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ]).to.have.length.below(<span class="number">4</span>);</code></pre>
+</div>
+              </div>
+              <div id="most-section" class="segment">
+                <div class="summary"><h3>.most(value)</h3>
+</div>
+                <ul class="tags">
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Number &#125;</span><span class="name">value</span><span class="desc"></span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">message</span><span class="desc">_optional_</span></li>
+                </ul>
+                <div class="description"><p>Asserts that the target is less than or equal to <code>value</code>.
+
+</p>
+<pre><code>expect(<span class="number">5</span>).to.be.at.most(<span class="number">5</span>);</code></pre>
+<p>Can also be used in conjunction with <code>length</code> to
+assert a maximum length. The benefit being a
+more informative error message than if the length
+was supplied directly.
+
+</p>
+<pre><code>expect(<span class="string">'foo'</span>).to.have.length.of.at.most(<span class="number">4</span>);
+expect([ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ]).to.have.length.of.at.most(<span class="number">3</span>);</code></pre>
 </div>
               </div>
               <div id="within-section" class="segment">

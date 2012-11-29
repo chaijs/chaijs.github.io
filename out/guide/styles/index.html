@@ -109,7 +109,7 @@ error messages should your assertion not pass.
 </p>
 <p>The BDD style comes in two flavors: <code>expect</code> and <code>should</code>. Both use the same
 chainable language to construct assertions, but they differ in the how an
-assertion is initially constructed. The the case of <code>should</code>, there are also
+assertion is initially constructed. In the case of <code>should</code>, there are also
 some caveats and additional tools to overcome the caveats. 
 
 </p>
@@ -143,7 +143,7 @@ booleans or numbers.
 </article>
               <article id="should-section"><h3>Should</h3>
 <p>The <code>should</code> style allows for the same chainable assertions as the
-the <code>expect</code> interface, however is extends each object with a <code>should</code>
+<code>expect</code> interface, however it extends each object with a <code>should</code>
 property to start your chain. This style has some issues when used Internet
 Explorer, so be aware of browser compatibility. 
 
@@ -178,7 +178,7 @@ all browsers except Internet Explorer.
               <article id="should-extras-section"><h3>Should Extras</h3>
 <p>Given that <code>should</code> works by extending <code>Object.prototype</code>, there are
 some scenarios where <code>should</code> will not work. Mainly, if you are trying
-to check the existence of of an object. Take the following psuedocode:
+to check the existence of an object. Take the following psuedocode:
 
 </p>
 <pre><code>db.get(<span class="number">1234</span>, <span class="function"><span class="keyword">function</span> <span class="params">(err, doc)</span> {</span>

@@ -9,9 +9,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?1.4.0"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?1.4.0" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?1.4.0" type="text/css" media="all">
+    <script src="/public/js/main.js?1.4.1"></script>
+    <link rel="stylesheet" href="/public/css/antiscroll.css?1.4.1" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?1.4.1" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -709,7 +709,7 @@ assert.lengthOf(<span class="string">'foobar'</span>, <span class="number">5</sp
 </div>
               </div>
               <div id="throws-section" class="segment">
-                <div class="summary"><h3>.throws(function, [constructor/regexp], [message])</h3>
+                <div class="summary"><h3>.throws(function, [constructor/string/regexp], [string/regexp], [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">function</span><span class="desc"></span></li>
@@ -724,7 +724,11 @@ assert.lengthOf(<span class="string">'foobar'</span>, <span class="number">5</sp
 matching <code>regexp</code>.
 
 </p>
-<pre><code>assert.<span class="keyword">throw</span>(fn, ReferenceError, <span class="string">'function throws a reference error'</span>);</code></pre>
+<pre><code>assert.<span class="keyword">throw</span>(fn, <span class="string">'function throws a reference error'</span>);
+assert.<span class="keyword">throw</span>(fn, <span class="regexp">/function throws a reference error/</span>);
+assert.<span class="keyword">throw</span>(fn, ReferenceError);
+assert.<span class="keyword">throw</span>(fn, ReferenceError, <span class="string">'function throws a reference error'</span>);
+assert.<span class="keyword">throw</span>(fn, ReferenceError, <span class="regexp">/function throws a reference error/</span>);</code></pre>
 </div>
               </div>
               <div id="doesNotThrow-section" class="segment">

@@ -4,6 +4,8 @@
   render-file: false
 ---
 
+    var assert = chai.assert;
+
     assert.typeOf(foo, 'string');
     assert.equal(foo, 'bar');
     assert.lengthOf(foo, 3)

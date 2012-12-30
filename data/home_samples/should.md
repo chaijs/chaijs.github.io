@@ -4,6 +4,8 @@
   render-file: false
 ---
 
+    chai.should();
+
     foo.should.be.a('string');
     foo.should.equal('bar');
     foo.should.have.length(3);

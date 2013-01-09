@@ -123,4 +123,15 @@ module.exports = [
     , browser:
       { 'chai-backbone.js': 'https://raw.github.com/matthijsgroen/chai-backbone/master/chai-backbone.js' }
     }
+
+  , { name: 'Chai Fuzzy'
+    , desc: 'Loose matchers inspired by jasmine, based on underscore'
+    , url: 'chai-fuzzy'
+    , link: 'https://github.com/elliotf/chai-fuzzy'
+    , tags: [ 'jasmine' ]
+    , pkg: 'https://raw.github.com/elliotf/chai-fuzzy/master/package.json'
+    , markdown: 'https://raw.github.com/elliotf/chai-fuzzy/master/README.md'
+    , browser:
+      { 'chai-fuzzy.js': 'https://raw.github.com/elliotf/chai-fuzzy/master/index.js' }
+    }
 ];

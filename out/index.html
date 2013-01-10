@@ -114,7 +114,9 @@
             <article class="grid_4 code contrast">
               <div class="wrap">
                 <h3 class="fancy">Should</h3>
-                <div class="code-sample"><pre><code>foo.should.be.a(<span class="string">'string'</span>);
+                <div class="code-sample"><pre><code>chai.should();
+
+foo.should.be.a(<span class="string">'string'</span>);
 foo.should.equal(<span class="string">'bar'</span>);
 foo.should.have.length(<span class="number">3</span>);
 tea.should.have.property(<span class="string">'flavors'</span>)
@@ -127,7 +129,9 @@ tea.should.have.property(<span class="string">'flavors'</span>)
             <article class="grid_4 code contrast">
               <div class="wrap">
                 <h3 class="fancy">Expect</h3>
-                <div class="code-sample"><pre><code>expect(foo).to.be.a(<span class="string">'string'</span>);
+                <div class="code-sample"><pre><code><span class="keyword">var</span> expect = chai.expect;
+
+expect(foo).to.be.a(<span class="string">'string'</span>);
 expect(foo).to.equal(<span class="string">'bar'</span>);
 expect(foo).to.have.length(<span class="number">3</span>);
 expect(tea).to.have.property(<span class="string">'flavors'</span>)
@@ -140,7 +144,9 @@ expect(tea).to.have.property(<span class="string">'flavors'</span>)
             <article class="grid_4 code contrast">
               <div class="wrap">
                 <h3 class="fancy">Assert</h3>
-                <div class="code-sample"><pre><code>assert.typeOf(foo, <span class="string">'string'</span>);
+                <div class="code-sample"><pre><code><span class="keyword">var</span> assert = chai.assert;
+
+assert.typeOf(foo, <span class="string">'string'</span>);
 assert.equal(foo, <span class="string">'bar'</span>);
 assert.lengthOf(foo, <span class="number">3</span>)
 assert.property(tea, <span class="string">'favors'</span>);

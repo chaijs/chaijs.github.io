@@ -106,7 +106,7 @@ module.exports = [
     , desc: 'Change assertions'
     , url: 'chai-changes'
     , link: 'https://github.com/matthijsgroen/chai-changes'
-    , tags: [ 'changes', 'when' ]
+    , tags: [ 'objects' ]
     , pkg: 'https://raw.github.com/matthijsgroen/chai-changes/master/package.json'
     , markdown: 'https://raw.github.com/matthijsgroen/chai-changes/master/README.md'
     , browser:
@@ -128,7 +128,7 @@ module.exports = [
     , desc: 'Loose matchers inspired by jasmine, based on underscore'
     , url: 'chai-fuzzy'
     , link: 'https://github.com/elliotf/chai-fuzzy'
-    , tags: [ 'jasmine' ]
+    , tags: [ 'array' ]
     , pkg: 'https://raw.github.com/elliotf/chai-fuzzy/master/package.json'
     , markdown: 'https://raw.github.com/elliotf/chai-fuzzy/master/README.md'
     , browser:
@@ -139,7 +139,7 @@ module.exports = [
     , desc: 'Chai support for assertions on array elements'
     , url: 'chai-things'
     , link: 'https://github.com/RubenVerborgh/Chai-Things'
-    , tags: [ 'array', 'element' ]
+    , tags: [ 'array' ]
     , pkg: 'https://raw.github.com/RubenVerborgh/Chai-Things/master/package.json'
     , markdown: 'https://raw.github.com/RubenVerborgh/Chai-Things/master/README.md'
     , browser:

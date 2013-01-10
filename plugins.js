@@ -134,4 +134,15 @@ module.exports = [
     , browser:
       { 'chai-fuzzy.js': 'https://raw.github.com/elliotf/chai-fuzzy/master/index.js' }
     }
+
+  , { name: 'Chai Things'
+    , desc: 'Chai support for assertions on array elements'
+    , url: 'chai-things'
+    , link: 'https://github.com/RubenVerborgh/Chai-Things'
+    , tags: [ 'array', 'element' ]
+    , pkg: 'https://raw.github.com/RubenVerborgh/Chai-Things/master/package.json'
+    , markdown: 'https://raw.github.com/RubenVerborgh/Chai-Things/master/README.md'
+    , browser:
+      { 'chai-things.js': 'https://raw.github.com/RubenVerborgh/Chai-Things/master/lib/chai-things.js' }
+    }
 ];

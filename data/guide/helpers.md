@@ -59,8 +59,8 @@ Practically speaking, this could be any data model object returned from a
 ORM database in node or constructed from your MVC framework of choice in 
 the browser. 
 
-Hopefully this is rather self explanitory, but as a for-instance, we can 
-easily construct a person from this.
+Hopefully our `Model` class is self explanatory, but as an example,
+here we construct a person object.
 
 ```javascript
 var arthur = new Model('person');

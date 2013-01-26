@@ -27,25 +27,22 @@ arthur.assert(
 );
 ```
 
-Chai will then check the truth test; if it is `true` then the assertion passed, but if it is `false`
-the assertion failed and the first error message will be throw as part of an `chai.AssertionError`.
+Chai will check the first argument; if it is `true` then the assertion passed, but if it is `false`
+the assertion failed and the first error message will be thrown as part of an `chai.AssertionError`.
 Conversely, if the language chain was negated, it will consider `false` a pass and `true` a failure. 
 The second error message will be included in the thrown error instead.
 
-At minimum, the `assert` method requires three arguments...
+In all, the `assert` method accepts five arguments:
 
-- a truth test
-- a string error message should it fail
-- a string error message should it be negated and fail
-
-You can also additionally include...
-
-- the expected value
-- the actual value, which will default to `_obj`
+1. a boolean (result of a truth test)
+2. a string error message to be used if the first argument is `false`
+3. a string error message to be used if the assertion is negated and the first argument is `true`
+4. (optional) the expected value
+5. (optional) the actual value, which will default to `_obj`
 
 ### Composing Error Messages
 
-As you can see from the above example, Chai can except a template tag to dynamically compose 
+As you can see from the above example, Chai can accept template tags to dynamically compose 
 the error message. When used, these template tags will be replaced with a stringified replacement
 of the object in question. There are three template tags available.
 

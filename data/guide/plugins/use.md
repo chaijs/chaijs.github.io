@@ -17,9 +17,9 @@ chai.use(function (_chai, utils) {
 });
 ```
 
-The function which will be used gets passes two parameters to it's scope. The first
+The function which will be used gets passes two parameters to its scope. The first
 is the `chai` export, the second is an object containing a number of utility 
-methods (will get to those in a minute).
+methods (we'll get to those in a minute).
 
 The `chai` export is included so that you can build helpers that can be used
 in multiple test files, or package your helpers as a plugin to share with the
@@ -51,5 +51,5 @@ For the rest of this document, we will assume this structure...
 - `chai.Assertion` assigned to the `Assertion` variable
 - all of our helpers will be inside exported function, located where indicated
 
-The `Assertion` variable is now a constructor for an assertion chain. Simply,
-when you do `expect(obj)`, it is no different than invoking `new Assertion(obj)`.
+The `Assertion` variable is now a constructor for an assertion chain;
+`new Assertion(obj)` is now equivalent to `expect(obj)`.

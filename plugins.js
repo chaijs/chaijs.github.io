@@ -145,4 +145,14 @@ module.exports = [
     , browser:
       { 'chai-things.js': 'https://raw.github.com/RubenVerborgh/Chai-Things/master/lib/chai-things.js' }
     }
+
+  , { name: 'Chai Interface'
+    , desc: 'Chai assertions about an object\'s interface',
+    , url: 'chai-interface'
+    , link: 'https://github.com/AgileDiagnosis/chai-interface'
+    , tags: ['interface', 'object']
+    , pkg: 'https://raw.github.com/AgileDiagnosis/chai-interface/master/package.json'
+    , markdown: 'https://raw.github.com/AgileDiagnosis/chai-interface/master/README.md'
+    , browser: false
+    }
 ];

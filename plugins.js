@@ -147,7 +147,7 @@ module.exports = [
     }
 
   , { name: 'Chai Interface'
-    , desc: 'Chai assertions about an object\'s interface',
+    , desc: 'Chai assertions about an object\'s interface'
     , url: 'chai-interface'
     , link: 'https://github.com/AgileDiagnosis/chai-interface'
     , tags: ['interface', 'object']

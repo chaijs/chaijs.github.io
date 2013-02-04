@@ -150,7 +150,7 @@ module.exports = [
     , desc: 'Chai assertions about an object\'s interface'
     , url: 'chai-interface'
     , link: 'https://github.com/AgileDiagnosis/chai-interface'
-    , tags: ['interface', 'object']
+    , tags: [ 'objects' ]
     , pkg: 'https://raw.github.com/AgileDiagnosis/chai-interface/master/package.json'
     , markdown: 'https://raw.github.com/AgileDiagnosis/chai-interface/master/README.md'
     , browser: false

@@ -90,6 +90,10 @@ suite('expect', function () {
       expect('test').to.not.be.a('string');
     }, "expected 'test' not to be a string");
 
+    (function () {
+      expect(arguments).to.be.an('arguments');
+    })(1, 2);
+
     expect(5).to.be.a('number');
     expect(new Number(1)).to.be.a('number');
     expect(Number(1)).to.be.a('number');
@@ -187,6 +191,10 @@ suite('expect', function () {
     err(function () {
       expect([ 1, 2, 3 ]).to.have.length.of.at.least(4, 'blah');
     }, "blah: expected [ 1, 2, 3 ] to have a length at least 4 but got 3");
+
+    err(function () {
+      expect([ 1, 2, 3, 4 ]).to.not.have.length.of.at.least(4, 'blah');
+    }, "blah: expected [ 1, 2, 3, 4 ] to have a length below 4");
   });
 
   test('below(n)', function(){
@@ -237,6 +245,10 @@ suite('expect', function () {
     err(function () {
       expect([ 1, 2, 3 ]).to.have.length.of.at.most(2, 'blah');
     }, "blah: expected [ 1, 2, 3 ] to have a length at most 2 but got 3");
+
+    err(function () {
+      expect([ 1, 2 ]).to.not.have.length.of.at.most(2, 'blah');
+    }, "blah: expected [ 1, 2 ] to have a length above 2");
   });
 
   test('match(regexp)', function(){
@@ -336,7 +348,7 @@ suite('expect', function () {
 
     err(function(){
       expect(new FakeArgs).not.to.be.empty;
-    }, "expected {} not to be empty");
+    }, "expected { length: 0 } not to be empty");
 
     err(function(){
       expect({arguments: 0}).to.be.empty;
@@ -606,7 +618,7 @@ suite('expect', function () {
 
     err(function(){
       expect(badFn).to.throw(ReferenceError);
-    }, "expected [Function] to throw ReferenceError but [Error: testing] was thrown");
+    }, "expected [Function] to throw 'ReferenceError' but [Error: testing] was thrown");
 
     err(function(){
       expect(badFn).to.throw(specificError);
@@ -614,23 +626,23 @@ suite('expect', function () {
 
     err(function(){
       expect(badFn).to.not.throw(Error);
-    }, "expected [Function] to not throw Error but [Error: testing] was thrown");
+    }, "expected [Function] to not throw 'Error' but [Error: testing] was thrown");
 
     err(function(){
       expect(refErrFn).to.not.throw(ReferenceError);
-    }, "expected [Function] to not throw ReferenceError but [ReferenceError: hello] was thrown");
+    }, "expected [Function] to not throw 'ReferenceError' but [ReferenceError: hello] was thrown");
 
     err(function(){
       expect(badFn).to.throw(PoorlyConstructedError);
-    }, "expected [Function] to throw PoorlyConstructedError but [Error: testing] was thrown");
+    }, "expected [Function] to throw 'PoorlyConstructedError' but [Error: testing] was thrown");
 
     err(function(){
       expect(ickyErrFn).to.not.throw(PoorlyConstructedError);
-    }, "expected [Function] to not throw PoorlyConstructedError but { name: 'PoorlyConstructedError' } was thrown");
+    }, /^(expected \[Function\] to not throw 'PoorlyConstructedError' but)(.*)(PoorlyConstructedError|\{ Object \()(.*)(was thrown)$/);
 
     err(function(){
       expect(ickyErrFn).to.throw(ReferenceError);
-    }, "expected [Function] to throw ReferenceError but { name: 'PoorlyConstructedError' } was thrown");
+    }, /^(expected \[Function\] to throw 'ReferenceError' but)(.*)(PoorlyConstructedError|\{ Object \()(.*)(was thrown)$/);
 
     err(function(){
       expect(specificErrFn).to.throw(new ReferenceError('eek'));
@@ -646,7 +658,7 @@ suite('expect', function () {
 
     err(function () {
       expect(badFn).to.throw(/hello/);
-    }, "expected [Function] to throw error matching /hello/ but got \'testing\'");
+    }, "expected [Function] to throw error matching /hello/ but got 'testing'");
 
     err(function () {
       expect(badFn).to.throw(Error, /hello/, 'blah');
@@ -673,16 +685,16 @@ suite('expect', function () {
     expect(bar).to.respondTo('foo');
 
     err(function(){
-      expect(Foo).to.respondTo('baz', 'blah');
-    }, "blah: expected { [Function: Foo] func: [Function] } to respond to \'baz\'");
+      expect(Foo).to.respondTo('baz', 'constructor');
+    }, /^(constructor: expected)(.*)(\[Function: Foo\])(.*)(to respond to \'baz\')$/);
 
     err(function(){
-      expect(bar).to.respondTo('baz', 'blah');
-    }, "blah: expected { foo: [Function] } to respond to \'baz\'");
+      expect(bar).to.respondTo('baz', 'object');
+    }, /^(object: expected)(.*)(\{ foo: \[Function\] \}|\{ Object \()(.*)(to respond to \'baz\')$/);
   });
 
   test('satisfy', function(){
-    var matcher = function(num){
+    function matcher (num){
       return num === 1;
     };
 
@@ -690,7 +702,7 @@ suite('expect', function () {
 
     err(function(){
       expect(2).to.satisfy(matcher, 'blah');
-    }, "blah: expected 2 to satisfy [Function]");
+    }, "blah: expected 2 to satisfy [Function: matcher]");
   });
 
   test('closeTo', function(){

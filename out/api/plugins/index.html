@@ -55,7 +55,7 @@
           <div class="list box-wrap antiscroll-wrap">
             <div class="box">
               <div class="antiscroll-inner">
-                <div class="box-inner"><a href="#addMethod" class="scroll item">addMethod</a><a href="#addProperty" class="scroll item">addProperty</a><a href="#overwriteMethod" class="scroll item">overwriteMethod</a><a href="#overwriteProperty" class="scroll item">overwriteProperty</a><a href="#addChainableMethod" class="scroll item">addChainableMethod</a><a href="#flag" class="scroll item">flag</a><a href="#getAllFlags" class="scroll item">getAllFlags</a><a href="#getPathValue" class="scroll item">getPathValue</a>
+                <div class="box-inner"><a href="#type" class="scroll item">type</a><a href="#addMethod" class="scroll item">addMethod</a><a href="#addProperty" class="scroll item">addProperty</a><a href="#overwriteMethod" class="scroll item">overwriteMethod</a><a href="#addChainableMethod" class="scroll item">addChainableMethod</a><a href="#flag" class="scroll item">flag</a><a href="#getAllFlags" class="scroll item">getAllFlags</a><a href="#getPathValue" class="scroll item">getPathValue</a><a href="#overwriteProperty" class="scroll item">overwriteProperty</a>
                 </div>
               </div>
             </div>
@@ -73,6 +73,23 @@ how to get started with your own assertions.
 </p>
 <h2>API Reference</h2>
 </article>
+              <div id="type-section" class="segment">
+                <div class="summary"><h3>type(object)</h3>
+</div>
+                <ul class="tags">
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">object</span><span class="desc">to detect type of</span></li>
+                </ul>
+                <div class="description"><p>Better implementation of <code>typeof</code> detection that can
+be used cross-browser. Handles the inconsistencies of
+Array, <code>null</code>, and <code>undefined</code> detection.
+
+</p>
+<pre><code>utils.type({}) <span class="comment">// 'object'</span>
+utils.type(<span class="literal">null</span>) <span class="comment">// `null'</span>
+utils.type(undefined) <span class="comment">// `undefined`</span>
+utils.type([]) <span class="comment">// `array`</span></code></pre>
+</div>
+              </div>
               <div id="addMethod-section" class="segment">
                 <div class="summary"><h3>.addMethod (ctx, name, method)</h3>
 </div>
@@ -154,38 +171,6 @@ to be used for name.
 
 </p>
 <pre><code>expect(myFoo).to.equal(<span class="string">'bar'</span>);</code></pre>
-</div>
-              </div>
-              <div id="overwriteProperty-section" class="segment">
-                <div class="summary"><h3>overwriteProperty (ctx, name, fn)</h3>
-</div>
-                <ul class="tags">
-                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">ctx</span><span class="desc">object whose property is to be overwritten</span></li>
-                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">name</span><span class="desc">of property to overwrite</span></li>
-                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">getter</span><span class="desc">function that returns a getter function to be used for name</span></li>
-                </ul>
-                <div class="description"><p>Overwites an already existing property getter and provides
-access to previous value. Must return function to use as getter.
-
-</p>
-<pre><code>utils.overwriteProperty(chai.Assertion.prototype, <span class="string">'ok'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(_super)</span> {</span>
-  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
-    <span class="keyword">var</span> obj = utils.flag(<span class="keyword">this</span>, <span class="string">'object'</span>);
-    <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> Foo) {
-      <span class="keyword">new</span> chai.Assertion(obj.name).to.equal(<span class="string">'bar'</span>);
-    } <span class="keyword">else</span> {
-      _super.call(<span class="keyword">this</span>);
-    }
-  }
-});</code></pre>
-<p>Can also be accessed directly from <code>chai.Assertion</code>.
-
-</p>
-<pre><code>chai.Assertion.overwriteProperty(<span class="string">'foo'</span>, fn);</code></pre>
-<p>Then can be used as any other assertion.
-
-</p>
-<pre><code>expect(myFoo).to.be.ok;</code></pre>
 </div>
               </div>
               <div id="addChainableMethod-section" class="segment">
@@ -283,6 +268,38 @@ object given a string path.
 <pre><code>getPathValue(<span class="string">'prop1.str'</span>, obj); <span class="comment">// Hello</span>
 getPathValue(<span class="string">'prop1.att[2]'</span>, obj); <span class="comment">// b</span>
 getPathValue(<span class="string">'prop2.arr[0].nested'</span>, obj); <span class="comment">// Universe</span></code></pre>
+</div>
+              </div>
+              <div id="overwriteProperty-section" class="segment">
+                <div class="summary"><h3>overwriteProperty (ctx, name, fn)</h3>
+</div>
+                <ul class="tags">
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">ctx</span><span class="desc">object whose property is to be overwritten</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">name</span><span class="desc">of property to overwrite</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">getter</span><span class="desc">function that returns a getter function to be used for name</span></li>
+                </ul>
+                <div class="description"><p>Overwites an already existing property getter and provides
+access to previous value. Must return function to use as getter.
+
+</p>
+<pre><code>utils.overwriteProperty(chai.Assertion.prototype, <span class="string">'ok'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(_super)</span> {</span>
+  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+    <span class="keyword">var</span> obj = utils.flag(<span class="keyword">this</span>, <span class="string">'object'</span>);
+    <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> Foo) {
+      <span class="keyword">new</span> chai.Assertion(obj.name).to.equal(<span class="string">'bar'</span>);
+    } <span class="keyword">else</span> {
+      _super.call(<span class="keyword">this</span>);
+    }
+  }
+});</code></pre>
+<p>Can also be accessed directly from <code>chai.Assertion</code>.
+
+</p>
+<pre><code>chai.Assertion.overwriteProperty(<span class="string">'foo'</span>, fn);</code></pre>
+<p>Then can be used as any other assertion.
+
+</p>
+<pre><code>expect(myFoo).to.be.ok;</code></pre>
 </div>
               </div>
             </div>

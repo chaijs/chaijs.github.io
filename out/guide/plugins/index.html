@@ -77,7 +77,7 @@
               <div class="header"><h1>Core Plugin Concepts</h1>
 <p>Plugins are for more than just writing vendor integrations. As a tester, one can write
 a plugin to validate input data, assert schema validation on an object, or ensure proper behavior
-on a dom element. The API is flexible enough that any syncronous tasks can easily be encapsulated
+on a dom element. The API is flexible enough that any synchronous tasks can easily be encapsulated
 within a single assertion and reused throughout your tests.
 
 </p>
@@ -97,9 +97,9 @@ an argument.
 <pre><code class="lang-javascript">chai.use(<span class="function"><span class="keyword">function</span> <span class="params">(_chai, utils)</span> {</span>
   <span class="comment">// ...</span>
 });</code></pre>
-<p>The function which will be used gets passes two parameters to it&#39;s scope. The first
+<p>The function which will be used gets passes two parameters to its scope. The first
 is the <code>chai</code> export, the second is an object containing a number of utility 
-methods (will get to those in a minute).
+methods (we&#39;ll get to those in a minute).
 
 </p>
 <p>The <code>chai</code> export is included so that you can build helpers that can be used
@@ -131,27 +131,27 @@ chai.use(chaiModel);</code></pre>
 <li><code>chai.Assertion</code> assigned to the <code>Assertion</code> variable</li>
 <li>all of our helpers will be inside exported function, located where indicated</li>
 </ul>
-<p>The <code>Assertion</code> variable is now a constructor for an assertion chain. Simply,
-when you do <code>expect(obj)</code>, it is no different than invoking <code>new Assertion(obj)</code>.
+<p>The <code>Assertion</code> variable is now a constructor for an assertion chain;
+<code>new Assertion(obj)</code> is now equivalent to <code>expect(obj)</code>.
 </p>
 </article>
               <article id="flags-section"><h2>Using Flags</h2>
 <p>The upper-most core concept of how assertions work internally is the concept of flags.
-Each assertion has a set of mostly arbitray flags, or a key:value pairs, associated with it.
+Each assertion has a set of mostly arbitrary flags - key:value pairs - associated with it.
 Chai uses a small number of these internally, but the store is also available for developers
 to expand on. 
 
 </p>
 <h3>flag usage</h3>
 <p>The flag utility is exposed as <code>utils.flag</code> from within our <code>use</code> function. It can function
-as both a getter or setter depending on the number of arguments passed to it.
+as either a getter or a setter, depending on the number of arguments passed to it.
 
 </p>
 <pre><code class="lang-javascript"><span class="keyword">var</span> myAssert = <span class="keyword">new</span> Assertion(obj);
 utils.flag(myAssert, <span class="string">'owner'</span>, <span class="string">'me'</span>); <span class="comment">// sets key `owner` to `me`</span>
 <span class="keyword">var</span> owner = utils.flag(myAssert, <span class="string">'owner'</span>); <span class="comment">// get key `owner', returns value</span></code></pre>
 <h3>object flag</h3>
-<p>The most important of Chai&#39;s reservered flags is the <code>object</code> flag. This is the subject
+<p>The most important of Chai&#39;s reserved flags is the <code>object</code> flag. This is the subject
 of an assertion.
 
 </p>
@@ -162,12 +162,12 @@ constructed assertion.
 
 </p>
 <pre><code class="lang-javascript"><span class="keyword">var</span> obj = myAssert._obj; <span class="comment">// obj === `Arthur Dent`</span></code></pre>
-<p>The following flags are used by Chai&#39;s core assertions. Side-effects may occur should you
-interfere.
+<p>The following flags are used by Chai&#39;s core assertions. Side effects may occur should you
+interfere with these.
 
 </p>
 <ul>
-<li><code>object</code></li>
+<li><code>object</code>: (see above)</li>
 <li><code>ssfi</code>: start stack function - used to prevent callback stacks from being shown in
 errors.</li>
 <li><code>message</code>: additional information to include with an error when using <code>assert</code> interface.</li>
@@ -175,7 +175,7 @@ errors.</li>
 <li><code>deep</code>: set when <code>.deep</code> is included in the chain. used by <code>equal</code> and <code>property</code></li>
 <li><code>contains</code>: set when <code>include</code> or <code>contain</code> is used as a property.
 changes the behavior of <code>keys</code>.</li>
-<li><code>lengthOf</code>: sent when <code>length</code> is used as a property. changes the behavior of 
+<li><code>lengthOf</code>: set when <code>length</code> is used as a property. changes the behavior of 
 <code>above</code>, <code>below</code>, and <code>within</code>.</li>
 </ul>
 </article>
@@ -200,29 +200,24 @@ arthur.assert(
   , <span class="string">"expected #{this} to be 'Arthur Dent'"</span>
   , <span class="string">"expected #{this} to not be 'Arthur Dent'"</span>
 );</code></pre>
-<p>Chai will then check the truth test; if it is <code>true</code> then the assertion passed, but if it is <code>false</code>
-the assertion failed and the first error message will be throw as part of an <code>chai.AssertionError</code>.
+<p>Chai will check the first argument; if it is <code>true</code> then the assertion passed, but if it is <code>false</code>
+the assertion failed and the first error message will be thrown as part of an <code>chai.AssertionError</code>.
 Conversely, if the language chain was negated, it will consider <code>false</code> a pass and <code>true</code> a failure. 
 The second error message will be included in the thrown error instead.
 
 </p>
-<p>At minimum, the <code>assert</code> method requires three arguments...
+<p>In all, the <code>assert</code> method accepts five arguments:
 
 </p>
-<ul>
-<li>a truth test</li>
-<li>a string error message should it fail</li>
-<li>a string error message should it be negated and fail</li>
-</ul>
-<p>You can also additionally include...
-
-</p>
-<ul>
-<li>the expected value</li>
-<li>the actual value, which will default to <code>_obj</code></li>
-</ul>
+<ol>
+<li>a boolean (result of a truth test)</li>
+<li>a string error message to be used if the first argument is <code>false</code></li>
+<li>a string error message to be used if the assertion is negated and the first argument is <code>true</code></li>
+<li>(optional) the expected value</li>
+<li>(optional) the actual value, which will default to <code>_obj</code></li>
+</ol>
 <h3>Composing Error Messages</h3>
-<p>As you can see from the above example, Chai can except a template tag to dynamically compose 
+<p>As you can see from the above example, Chai can accept template tags to dynamically compose 
 the error message. When used, these template tags will be replaced with a stringified replacement
 of the object in question. There are three template tags available.
 

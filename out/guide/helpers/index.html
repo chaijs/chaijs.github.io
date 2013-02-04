@@ -131,8 +131,8 @@ ORM database in node or constructed from your MVC framework of choice in
 the browser. 
 
 </p>
-<p>Hopefully this is rather self explanitory, but as a for-instance, we can 
-easily construct a person from this.
+<p>Hopefully our <code>Model</code> class is self explanatory, but as an example,
+here we construct a person object.
 
 </p>
 <pre><code class="lang-javascript"><span class="keyword">var</span> arthur = <span class="keyword">new</span> Model(<span class="string">'person'</span>);
@@ -144,23 +144,16 @@ console.log(arthur.get(<span class="string">'name'</span>)); <span class="commen
 </div>
               <article id="add_language_chain-section"><h2>Adding Language Chains</h2>
 <p>Now we are getting to the fun part! Adding properties and methods
-are what the plugin API is really for. Now that we have covered 
-how to do tests, we can make practical use.
-
-</p>
-<p>Remember the Model constructor defined at the begining? We can now
-put that to use.
-
-
+are what Chai&#39;s plugin API is really for.
 </p>
 </article>
               <article id="add_property-section"><h3>Adding Properties</h3>
-<p>In essense, defining a property can be done using <code>Object.defineProperty</code>,
+<p>In essence, defining a property can be done using <code>Object.defineProperty</code>,
 but we encourage you to use Chai&#39;s utility helpers to ensure a standard
 implementation throughout. 
 
 </p>
-<p>For this example, we will want the following test case to pass...
+<p>For this example, we want the following test case to pass:
 
 </p>
 <pre><code class="lang-javascript"><span class="keyword">var</span> arthur = <span class="keyword">new</span> Model(<span class="string">'person'</span>);
@@ -178,16 +171,15 @@ expect(arthur).to.be.a.model;</code></pre>
 <p><a href="/api/plugins/#addProperty-section" class="clean-button">View addProperty API</a>
 
 </p>
-<p>Simple and concise. Chai can take it from here. Though, before we get further
-it is worth mentioning that because this extension pattern is used so often, 
-Chai makes it just a bit easier. The following can be used as the first line...
+<p>Simple and concise. Chai can take it from here. It is also worth mentioning that
+because this extension pattern is used so often, Chai makes it just a bit easier.
+The following can be used in place of the first line above:
 
 </p>
 <pre><code class="lang-javascript">Assertion.addProperty(<span class="string">'model'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span> <span class="comment">// ...</span></code></pre>
-<p>As with all of the chain extension utilities, they are provided as part of the <code>utils</code>
-object or directly on the Assertion constructor. Should you find yourself composing
-your own interface, that might come in handy. For the rest of this document however
-we will be using the methods from directly off <code>Assertion</code>.
+<p>All chain extension utilities are provided both as part of the <code>utils</code> object
+and directly on the Assertion constructor. For the rest of this document, however,
+we will be calling the methods directly from <code>Assertion</code>.
 </p>
 </article>
               <article id="add_method-section"><h3>Adding Methods</h3>

@@ -164,8 +164,15 @@ suite('assert', function () {
   test('deepEqual', function() {
     assert.deepEqual({tea: 'chai'}, {tea: 'chai'});
 
+
     err(function () {
       assert.deepEqual({tea: 'chai'}, {tea: 'black'});
+    }, "expected { tea: \'chai\' } to deeply equal { tea: \'black\' }");
+
+    var obj1 = Object.create({tea: 'chai'});
+    var obj2 = Object.create({tea: 'black'});
+    err(function () {
+      assert.deepEqual(obj1, obj2);
     }, "expected { tea: \'chai\' } to deeply equal { tea: \'black\' }");
   });
 
@@ -420,7 +427,7 @@ suite('assert', function () {
 
     err(function () {
       assert.throws(function() { throw new Error('foo') }, TypeError);
-     }, "expected [Function] to throw TypeError but [Error: foo] was thrown")
+     }, "expected [Function] to throw 'TypeError' but [Error: foo] was thrown")
 
     err(function () {
       assert.throws(function() { throw new Error('foo') }, 'bar');
@@ -432,11 +439,19 @@ suite('assert', function () {
 
     err(function () {
       assert.throws(function() { throw new Error('foo') }, TypeError, 'bar');
-     }, "expected [Function] to throw TypeError but [Error: foo] was thrown")
+     }, "expected [Function] to throw 'TypeError' but [Error: foo] was thrown")
 
     err(function () {
       assert.throws(function() {});
      }, "expected [Function] to throw an error");
+
+    err(function () {
+        assert.throws(function() { throw new Error('') }, 'bar');
+    }, "expected [Function] to throw error including 'bar' but got ''");
+
+    err(function () {
+        assert.throws(function() { throw new Error('') }, /bar/);
+    }, "expected [Function] to throw error matching /bar/ but got ''");
   });
 
   test('doesNotThrow', function() {

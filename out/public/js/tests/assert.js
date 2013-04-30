@@ -164,16 +164,27 @@ suite('assert', function () {
   test('deepEqual', function() {
     assert.deepEqual({tea: 'chai'}, {tea: 'chai'});
 
-
     err(function () {
       assert.deepEqual({tea: 'chai'}, {tea: 'black'});
     }, "expected { tea: \'chai\' } to deeply equal { tea: \'black\' }");
 
-    var obj1 = Object.create({tea: 'chai'});
-    var obj2 = Object.create({tea: 'black'});
+    var obja = Object.create({ tea: 'chai' })
+      , objb = Object.create({ tea: 'chai' });
+
+    assert.deepEqual(obja, objb);
+
+    var obj1 = Object.create({tea: 'chai'})
+      , obj2 = Object.create({tea: 'black'});
+
     err(function () {
       assert.deepEqual(obj1, obj2);
     }, "expected { tea: \'chai\' } to deeply equal { tea: \'black\' }");
+  });
+
+  test('deepEqual (ordering)', function () {
+    var a = { a: 'b', c: 'd' }
+      , b = { c: 'd', a: 'b' };
+    assert.deepEqual(a, b);
   });
 
   test('deepEqual (circular)', function() {
@@ -345,7 +356,24 @@ suite('assert', function () {
 
     err(function () {
       assert.include('foobar', 'baz');
-     }, "expected \'foobar\' to contain \'baz\'");
+    }, "expected \'foobar\' to contain \'baz\'");
+
+    err(function () {
+      assert.include(undefined, 'bar');
+    }, "expected an array or string");
+  });
+
+  test('notInclude', function () {
+    assert.notInclude('foobar', 'baz');
+    assert.notInclude([ 1, 2, 3 ], 4);
+
+    err(function () {
+      assert.notInclude('foobar', 'bar');
+    }, "expected \'foobar\' to not contain \'bar\'");
+
+    err(function () {
+      assert.notInclude(undefined, 'bar');
+    }, "expected an array or string");
   });
 
   test('lengthOf', function() {
@@ -528,4 +556,33 @@ suite('assert', function () {
       assert.closeTo(-10, 20, 29);
     }, "expected -10 to be close to 20 +/- 29");
   });
+
+  test('members', function() {
+    assert.includeMembers([1, 2, 3], [2, 3]);
+    assert.includeMembers([1, 2, 3], []);
+    assert.includeMembers([1, 2, 3], [3]);
+
+    err(function() {
+      assert.includeMembers([5, 6], [7, 8]);
+    }, 'expected [ 5, 6 ] to be a superset of [ 7, 8 ]');
+
+    err(function() {
+      assert.includeMembers([5, 6], [5, 6, 0]);
+    }, 'expected [ 5, 6 ] to be a superset of [ 5, 6, 0 ]');
+  });
+
+  test('memberEquals', function() {
+    assert.sameMembers([], []);
+    assert.sameMembers([1, 2, 3], [3, 2, 1]);
+    assert.sameMembers([4, 2], [4, 2]);
+
+    err(function() {
+      assert.sameMembers([], [1, 2]);
+    }, 'expected [] to have the same members as [ 1, 2 ]');
+
+    err(function() {
+      assert.sameMembers([1, 54], [6, 1, 54]);
+    }, 'expected [ 1, 54 ] to have the same members as [ 6, 1, 54 ]');
+  });
+
 });

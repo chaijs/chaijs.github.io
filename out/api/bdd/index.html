@@ -9,9 +9,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?1.5.0"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?1.5.0" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?1.5.0" type="text/css" media="all">
+    <script src="/public/js/main.js?1.6.0"></script>
+    <link rel="stylesheet" href="/public/css/antiscroll.css?1.6.0" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?1.6.0" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -55,7 +55,7 @@
           <div class="list box-wrap antiscroll-wrap">
             <div class="box">
               <div class="antiscroll-inner">
-                <div class="box-inner"><a href="#language chains" class="scroll item">language chains</a><a href="#not" class="scroll item">not</a><a href="#deep" class="scroll item">deep</a><a href="#a" class="scroll item">a / an</a><a href="#include" class="scroll item">include / contain</a><a href="#ok" class="scroll item">ok</a><a href="#true" class="scroll item">true</a><a href="#false" class="scroll item">false</a><a href="#null" class="scroll item">null</a><a href="#undefined" class="scroll item">undefined</a><a href="#exist" class="scroll item">exist</a><a href="#empty" class="scroll item">empty</a><a href="#arguments" class="scroll item">arguments / Arguments</a><a href="#equal" class="scroll item">equal / equals / eq / deep.equal</a><a href="#eql" class="scroll item">eql / eqls</a><a href="#above" class="scroll item">above / gt / greaterThan</a><a href="#least" class="scroll item">least / gte</a><a href="#below" class="scroll item">below / lt / lessThan</a><a href="#most" class="scroll item">most / lte</a><a href="#within" class="scroll item">within</a><a href="#instanceof" class="scroll item">instanceof / instanceOf</a><a href="#property" class="scroll item">property / deep.property</a><a href="#ownProperty" class="scroll item">ownProperty / haveOwnProperty</a><a href="#length" class="scroll item">length / lengthOf</a><a href="#match" class="scroll item">match</a><a href="#string" class="scroll item">string</a><a href="#keys" class="scroll item">keys / key</a><a href="#throw" class="scroll item">throw / throws / Throw</a><a href="#respondTo" class="scroll item">respondTo</a><a href="#itself" class="scroll item">itself</a><a href="#satisfy" class="scroll item">satisfy</a><a href="#closeTo" class="scroll item">closeTo</a>
+                <div class="box-inner"><a href="#language chains" class="scroll item">language chains</a><a href="#not" class="scroll item">not</a><a href="#deep" class="scroll item">deep</a><a href="#a" class="scroll item">a / an</a><a href="#include" class="scroll item">include / contain</a><a href="#ok" class="scroll item">ok</a><a href="#true" class="scroll item">true</a><a href="#false" class="scroll item">false</a><a href="#null" class="scroll item">null</a><a href="#undefined" class="scroll item">undefined</a><a href="#exist" class="scroll item">exist</a><a href="#empty" class="scroll item">empty</a><a href="#arguments" class="scroll item">arguments / Arguments</a><a href="#equal" class="scroll item">equal / equals / eq / deep.equal</a><a href="#eql" class="scroll item">eql / eqls</a><a href="#above" class="scroll item">above / gt / greaterThan</a><a href="#least" class="scroll item">least / gte</a><a href="#below" class="scroll item">below / lt / lessThan</a><a href="#most" class="scroll item">most / lte</a><a href="#within" class="scroll item">within</a><a href="#instanceof" class="scroll item">instanceof / instanceOf</a><a href="#property" class="scroll item">property / deep.property</a><a href="#ownProperty" class="scroll item">ownProperty / haveOwnProperty</a><a href="#length" class="scroll item">length / lengthOf</a><a href="#match" class="scroll item">match</a><a href="#string" class="scroll item">string</a><a href="#keys" class="scroll item">keys / key</a><a href="#throw" class="scroll item">throw / throws / Throw</a><a href="#respondTo" class="scroll item">respondTo</a><a href="#itself" class="scroll item">itself</a><a href="#satisfy" class="scroll item">satisfy</a><a href="#closeTo" class="scroll item">closeTo</a><a href="#members" class="scroll item">members</a>
                 </div>
               </div>
             </div>
@@ -97,6 +97,7 @@ have been overwritten by a plugin.
 <li>with</li>
 <li>at</li>
 <li>of</li>
+<li>same</li>
 </ul>
 </div>
               </div>
@@ -667,6 +668,26 @@ set the <code>itself</code> flag.
 
 </p>
 <pre><code>expect(<span class="number">1.5</span>).to.be.closeTo(<span class="number">1</span>, <span class="number">0.5</span>);</code></pre>
+</div>
+              </div>
+              <div id="members-section" class="segment">
+                <div class="summary"><h3>.members</h3>
+</div>
+                <ul class="tags">
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Array &#125;</span><span class="name">set</span><span class="desc"></span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">message</span><span class="desc">_optional_</span></li>
+                </ul>
+                <div class="description"><p>Asserts that the target is a superset of <code>set</code>,
+or that the target and <code>set</code> have the same members.
+
+</p>
+<p>   expect([1, 2, 3]).to.include.members([3, 2]);
+   expect([1, 2, 3]).to.not.include.members([3, 2, 8]);
+
+</p>
+<p>   expect([4, 2]).to.have.members([2, 4]);
+   expect([5, 2]).to.not.have.members([5, 2, 1]);
+</p>
 </div>
               </div>
             </div>

@@ -68,9 +68,7 @@
 <p>The plugin utilities are for those who want to extand Chai with their own set of 
 assertions. The <a href="/guide/plugins">Code Plugin Concepts</a> and 
 <a href="/guide/helpers">Building a Helper</a> guide tutorials are a great reference on
-how to get started with your own assertions.
-
-</p>
+how to get started with your own assertions.</p>
 <h2>API Reference</h2>
 </article>
               <div id="type-section" class="segment">
@@ -81,9 +79,7 @@ how to get started with your own assertions.
                 </ul>
                 <div class="description"><p>Better implementation of <code>typeof</code> detection that can
 be used cross-browser. Handles the inconsistencies of
-Array, <code>null</code>, and <code>undefined</code> detection.
-
-</p>
+Array, <code>null</code>, and <code>undefined</code> detection.</p>
 <pre><code>utils.type({}) <span class="comment">// 'object'</span>
 utils.type(<span class="literal">null</span>) <span class="comment">// `null'</span>
 utils.type(undefined) <span class="comment">// `undefined`</span>
@@ -98,20 +94,14 @@ utils.type([]) <span class="comment">// `array`</span></code></pre>
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">name</span><span class="desc">of method to add</span></li>
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">method</span><span class="desc">function to be used for name</span></li>
                 </ul>
-                <div class="description"><p>Adds a method to the prototype of an object.
-
-</p>
+                <div class="description"><p>Adds a method to the prototype of an object.</p>
 <pre><code>utils.addMethod(chai.Assertion.prototype, <span class="string">'foo'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(str)</span> {</span>
   <span class="keyword">var</span> obj = utils.flag(<span class="keyword">this</span>, <span class="string">'object'</span>);
   <span class="keyword">new</span> chai.Assertion(obj).to.be.equal(str);
 });</code></pre>
-<p>Can also be accessed directly from <code>chai.Assertion</code>.
-
-</p>
+<p>Can also be accessed directly from <code>chai.Assertion</code>.</p>
 <pre><code>chai.Assertion.addMethod(<span class="string">'foo'</span>, fn);</code></pre>
-<p>Then can be used as any other assertion.
-
-</p>
+<p>Then can be used as any other assertion.</p>
 <pre><code>expect(fooStr).to.be.foo(<span class="string">'bar'</span>);</code></pre>
 </div>
               </div>
@@ -123,20 +113,14 @@ utils.type([]) <span class="comment">// `array`</span></code></pre>
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">name</span><span class="desc">of property to add</span></li>
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">getter</span><span class="desc">function to be used for name</span></li>
                 </ul>
-                <div class="description"><p>Adds a property to the prototype of an object.
-
-</p>
+                <div class="description"><p>Adds a property to the prototype of an object.</p>
 <pre><code>utils.addProperty(chai.Assertion.prototype, <span class="string">'foo'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
   <span class="keyword">var</span> obj = utils.flag(<span class="keyword">this</span>, <span class="string">'object'</span>);
   <span class="keyword">new</span> chai.Assertion(obj).to.be.<span class="keyword">instanceof</span>(Foo);
 });</code></pre>
-<p>Can also be accessed directly from <code>chai.Assertion</code>.
-
-</p>
+<p>Can also be accessed directly from <code>chai.Assertion</code>.</p>
 <pre><code>chai.Assertion.addProperty(<span class="string">'foo'</span>, fn);</code></pre>
-<p>Then can be used as any other assertion.
-
-</p>
+<p>Then can be used as any other assertion.</p>
 <pre><code>expect(myFoo).to.be.foo;</code></pre>
 </div>
               </div>
@@ -150,9 +134,7 @@ utils.type([]) <span class="comment">// `array`</span></code></pre>
                 </ul>
                 <div class="description"><p>Overwites an already existing method and provides
 access to previous function. Must return function
-to be used for name.
-
-</p>
+to be used for name.</p>
 <pre><code>utils.overwriteMethod(chai.Assertion.prototype, <span class="string">'equal'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(_super)</span> {</span>
   <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">(str)</span> {</span>
     <span class="keyword">var</span> obj = utils.flag(<span class="keyword">this</span>, <span class="string">'object'</span>);
@@ -163,13 +145,9 @@ to be used for name.
     }
   }
 });</code></pre>
-<p>Can also be accessed directly from <code>chai.Assertion</code>.
-
-</p>
+<p>Can also be accessed directly from <code>chai.Assertion</code>.</p>
 <pre><code>chai.Assertion.overwriteMethod(<span class="string">'foo'</span>, fn);</code></pre>
-<p>Then can be used as any other assertion.
-
-</p>
+<p>Then can be used as any other assertion.</p>
 <pre><code>expect(myFoo).to.equal(<span class="string">'bar'</span>);</code></pre>
 </div>
               </div>
@@ -182,21 +160,15 @@ to be used for name.
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">method</span><span class="desc">function to be used for `name`, when called</span></li>
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">chainingBehavior</span><span class="desc">function to be called every time the property is accessed</span></li>
                 </ul>
-                <div class="description"><p>Adds a method to an object, such that the method can also be chained.
-
-</p>
+                <div class="description"><p>Adds a method to an object, such that the method can also be chained.</p>
 <pre><code>utils.addChainableMethod(chai.Assertion.prototype, <span class="string">'foo'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(str)</span> {</span>
   <span class="keyword">var</span> obj = utils.flag(<span class="keyword">this</span>, <span class="string">'object'</span>);
   <span class="keyword">new</span> chai.Assertion(obj).to.be.equal(str);
 });</code></pre>
-<p>Can also be accessed directly from <code>chai.Assertion</code>.
-
-</p>
+<p>Can also be accessed directly from <code>chai.Assertion</code>.</p>
 <pre><code>chai.Assertion.addChainableMethod(<span class="string">'foo'</span>, fn, chainingBehavior);</code></pre>
 <p>The result can then be used as both a method assertion, executing both <code>method</code> and
-<code>chainingBehavior</code>, or as a language chain, which only executes <code>chainingBehavior</code>.
-
-</p>
+<code>chainingBehavior</code>, or as a language chain, which only executes <code>chainingBehavior</code>.</p>
 <pre><code>expect(fooStr).to.be.foo(<span class="string">'bar'</span>);
 expect(fooStr).to.be.foo.equal(<span class="string">'foo'</span>);</code></pre>
 </div>
@@ -212,9 +184,7 @@ expect(fooStr).to.be.foo.equal(<span class="string">'foo'</span>);</code></pre>
                 <div class="description"><p>Get or set a flag value on an object. If a
 value is provided it will be set, else it will
 return the currently set value or <code>undefined</code> if
-the value is not set.
-
-</p>
+the value is not set.</p>
 <pre><code>utils.flag(<span class="keyword">this</span>, <span class="string">'foo'</span>, <span class="string">'bar'</span>); <span class="comment">// setter</span>
 utils.flag(<span class="keyword">this</span>, <span class="string">'foo'</span>); <span class="comment">// getter, returns `bar`</span></code></pre>
 </div>
@@ -230,10 +200,7 @@ utils.flag(<span class="keyword">this</span>, <span class="string">'foo'</span>)
                 <div class="description"><p>Transfer all the flags for <code>assertion</code> to <code>object</code>. If
 <code>includeAll</code> is set to <code>false</code>, then the base Chai
 assertion flags (namely <code>object</code>, <code>ssfi</code>, and <code>message</code>)
-will not be transferred.
-
-
-</p>
+will not be transferred.</p>
 <pre><code><span class="keyword">var</span> newAssertion = <span class="keyword">new</span> Assertion();
 utils.transferFlags(assertion, newAssertion);
 
@@ -249,9 +216,7 @@ utils.transferFlags(assertion, anotherAssertion, <span class="literal">false</sp
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">object</span><span class="desc"></span></li>
                 </ul>
                 <div class="description"><p>This allows the retrieval of values in an
-object given a string path.
-
-</p>
+object given a string path.</p>
 <pre><code><span class="keyword">var</span> obj = {
     prop1: {
         arr: [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]
@@ -262,9 +227,7 @@ object given a string path.
       , str: <span class="string">'Hello again!'</span>
     }
 }</code></pre>
-<p>The following would be the results.
-
-</p>
+<p>The following would be the results.</p>
 <pre><code>getPathValue(<span class="string">'prop1.str'</span>, obj); <span class="comment">// Hello</span>
 getPathValue(<span class="string">'prop1.att[2]'</span>, obj); <span class="comment">// b</span>
 getPathValue(<span class="string">'prop2.arr[0].nested'</span>, obj); <span class="comment">// Universe</span></code></pre>
@@ -279,9 +242,7 @@ getPathValue(<span class="string">'prop2.arr[0].nested'</span>, obj); <span clas
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">getter</span><span class="desc">function that returns a getter function to be used for name</span></li>
                 </ul>
                 <div class="description"><p>Overwites an already existing property getter and provides
-access to previous value. Must return function to use as getter.
-
-</p>
+access to previous value. Must return function to use as getter.</p>
 <pre><code>utils.overwriteProperty(chai.Assertion.prototype, <span class="string">'ok'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(_super)</span> {</span>
   <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
     <span class="keyword">var</span> obj = utils.flag(<span class="keyword">this</span>, <span class="string">'object'</span>);
@@ -292,13 +253,9 @@ access to previous value. Must return function to use as getter.
     }
   }
 });</code></pre>
-<p>Can also be accessed directly from <code>chai.Assertion</code>.
-
-</p>
+<p>Can also be accessed directly from <code>chai.Assertion</code>.</p>
 <pre><code>chai.Assertion.overwriteProperty(<span class="string">'foo'</span>, fn);</code></pre>
-<p>Then can be used as any other assertion.
-
-</p>
+<p>Then can be used as any other assertion.</p>
 <pre><code>expect(myFoo).to.be.ok;</code></pre>
 </div>
               </div>

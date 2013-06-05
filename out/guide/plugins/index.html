@@ -78,94 +78,68 @@
 <p>Plugins are for more than just writing vendor integrations. As a tester, one can write
 a plugin to validate input data, assert schema validation on an object, or ensure proper behavior
 on a dom element. The API is flexible enough that any synchronous tasks can easily be encapsulated
-within a single assertion and reused throughout your tests.
-
-</p>
+within a single assertion and reused throughout your tests.</p>
 <p>This tutorial will show you how to access Chai&#39;s plugin API, use flags to transfer data through
 the language chain, and write your first assertion (and thorough error messages). Once you have 
 finished here, <a href="/guide/helpers">Building a Helper</a> will show you how to compose properties and
-methods for use on the Chai language chain.
-</p>
+methods for use on the Chai language chain.</p>
 </div>
               <article id="use-section"><h2>Accessing Utilties</h2>
 <p>Chai comes with a number of utilities to assist in the construction of assertions,
 but it does not provide these directly on the <code>chai</code> export. These can be accessed 
 by using the <code>use</code> method of the chai export, which accepts a single function as
-an argument.
-
-</p>
+an argument.</p>
 <pre><code class="lang-javascript">chai.use(<span class="function"><span class="keyword">function</span> <span class="params">(_chai, utils)</span> {</span>
   <span class="comment">// ...</span>
 });</code></pre>
 <p>The function which will be used gets passes two parameters to its scope. The first
 is the <code>chai</code> export, the second is an object containing a number of utility 
-methods (we&#39;ll get to those in a minute).
-
-</p>
+methods (we&#39;ll get to those in a minute).</p>
 <p>The <code>chai</code> export is included so that you can build helpers that can be used
 in multiple test files, or package your helpers as a plugin to share with the
-community. A more appropriate pattern for creating helpers is as follows...
-
-</p>
-<p>For our helper file: <code>test/helpers/model.js</code>
-
-</p>
+community. A more appropriate pattern for creating helpers is as follows...</p>
+<p>For our helper file: <code>test/helpers/model.js</code></p>
 <pre><code class="lang-javascript">module.exports = <span class="function"><span class="keyword">function</span> <span class="params">(chai, utils)</span> {</span>
   <span class="keyword">var</span> Assertion = chai.Assertion;
 
   <span class="comment">// your helpers here</span>
 };</code></pre>
-<p>And, for our actual test: <code>test/person.js</code>
-
-</p>
+<p>And, for our actual test: <code>test/person.js</code></p>
 <pre><code class="lang-javascript"><span class="keyword">var</span> chai = require(<span class="string">'chai'</span>)
   , chaiModel = require(<span class="string">'./helpers/model'</span>)
   , expect = chai.expect;
 
 chai.use(chaiModel);</code></pre>
-<p>For the rest of this document, we will assume this structure...
-
-</p>
+<p>For the rest of this document, we will assume this structure...</p>
 <ul>
 <li>helper in external file</li>
 <li><code>chai.Assertion</code> assigned to the <code>Assertion</code> variable</li>
 <li>all of our helpers will be inside exported function, located where indicated</li>
 </ul>
 <p>The <code>Assertion</code> variable is now a constructor for an assertion chain;
-<code>new Assertion(obj)</code> is now equivalent to <code>expect(obj)</code>.
-</p>
+<code>new Assertion(obj)</code> is now equivalent to <code>expect(obj)</code>.</p>
 </article>
               <article id="flags-section"><h2>Using Flags</h2>
 <p>The upper-most core concept of how assertions work internally is the concept of flags.
 Each assertion has a set of mostly arbitrary flags - key:value pairs - associated with it.
 Chai uses a small number of these internally, but the store is also available for developers
-to expand on. 
-
-</p>
+to expand on. </p>
 <h3>flag usage</h3>
 <p>The flag utility is exposed as <code>utils.flag</code> from within our <code>use</code> function. It can function
-as either a getter or a setter, depending on the number of arguments passed to it.
-
-</p>
+as either a getter or a setter, depending on the number of arguments passed to it.</p>
 <pre><code class="lang-javascript"><span class="keyword">var</span> myAssert = <span class="keyword">new</span> Assertion(obj);
 utils.flag(myAssert, <span class="string">'owner'</span>, <span class="string">'me'</span>); <span class="comment">// sets key `owner` to `me`</span>
 <span class="keyword">var</span> owner = utils.flag(myAssert, <span class="string">'owner'</span>); <span class="comment">// get key `owner', returns value</span></code></pre>
 <h3>object flag</h3>
 <p>The most important of Chai&#39;s reserved flags is the <code>object</code> flag. This is the subject
-of an assertion.
-
-</p>
+of an assertion.</p>
 <pre><code class="lang-javascript"><span class="keyword">var</span> myAssert = <span class="keyword">new</span> Assertion(<span class="string">'Arthur Dent'</span>);
 <span class="keyword">var</span> obj = flag(myAssert, <span class="string">'object'</span>); <span class="comment">// obj === 'Arthur Dent';</span></code></pre>
 <p>This flag is so often used that a shortcut was provided as the <code>_obj</code> property of a 
-constructed assertion.
-
-</p>
+constructed assertion.</p>
 <pre><code class="lang-javascript"><span class="keyword">var</span> obj = myAssert._obj; <span class="comment">// obj === `Arthur Dent`</span></code></pre>
 <p>The following flags are used by Chai&#39;s core assertions. Side effects may occur should you
-interfere with these.
-
-</p>
+interfere with these.</p>
 <ul>
 <li><code>object</code>: (see above)</li>
 <li><code>ssfi</code>: start stack function - used to prevent callback stacks from being shown in
@@ -181,18 +155,12 @@ changes the behavior of <code>keys</code>.</li>
 </article>
               <article id="assert-section"><h2>Composing an Assertion</h2>
 <p>Before we beging adding methods and properties to the language chain, we should
-first examine how invoke an assertion, and the expected behavior should it fail.
-
-</p>
+first examine how invoke an assertion, and the expected behavior should it fail.</p>
 <p>For this, each constructed <code>Assertion</code> has a method called simply <code>assert</code>. It accepts
 many parameters and its behavior can change depending on whether an assertion was 
-negated or not.
-
-</p>
+negated or not.</p>
 <h3>Basic Assertion</h3>
-<p>To begin, we will construct Arthur again, then we can assert that he is who he says he is.
-
-</p>
+<p>To begin, we will construct Arthur again, then we can assert that he is who he says he is.</p>
 <pre><code class="lang-javascript"><span class="keyword">var</span> arthur = <span class="keyword">new</span> Assertion(<span class="string">'Arthur Dent'</span>);
 
 arthur.assert(
@@ -203,12 +171,8 @@ arthur.assert(
 <p>Chai will check the first argument; if it is <code>true</code> then the assertion passed, but if it is <code>false</code>
 the assertion failed and the first error message will be thrown as part of an <code>chai.AssertionError</code>.
 Conversely, if the language chain was negated, it will consider <code>false</code> a pass and <code>true</code> a failure. 
-The second error message will be included in the thrown error instead.
-
-</p>
-<p>In all, the <code>assert</code> method accepts five arguments:
-
-</p>
+The second error message will be included in the thrown error instead.</p>
+<p>In all, the <code>assert</code> method accepts five arguments:</p>
 <ol>
 <li>a boolean (result of a truth test)</li>
 <li>a string error message to be used if the first argument is <code>false</code></li>
@@ -219,9 +183,7 @@ The second error message will be included in the thrown error instead.
 <h3>Composing Error Messages</h3>
 <p>As you can see from the above example, Chai can accept template tags to dynamically compose 
 the error message. When used, these template tags will be replaced with a stringified replacement
-of the object in question. There are three template tags available.
-
-</p>
+of the object in question. There are three template tags available.</p>
 <ul>
 <li><code>#{this}</code>: the <code>_obj</code> of the assertion</li>
 <li><code>#{exp}</code>: the expected value, if it was provided in <code>assert</code></li>

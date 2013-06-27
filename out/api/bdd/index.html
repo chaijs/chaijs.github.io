@@ -9,9 +9,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?1.7.1"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?1.7.1" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?1.7.1" type="text/css" media="all">
+    <script src="/public/js/main.js?1.7.2"></script>
+    <link rel="stylesheet" href="/public/css/antiscroll.css?1.7.2" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?1.7.2" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -579,7 +579,7 @@ set the <code>itself</code> flag.</p>
 </div>
               </div>
               <div id="members-section" class="segment">
-                <div class="summary"><h3>.members</h3>
+                <div class="summary"><h3>.members(set)</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Array &#125;</span><span class="name">set</span><span class="desc"></span></li>
@@ -587,10 +587,11 @@ set the <code>itself</code> flag.</p>
                 </ul>
                 <div class="description"><p>Asserts that the target is a superset of <code>set</code>,
 or that the target and <code>set</code> have the same members.</p>
-<p>   expect([1, 2, 3]).to.include.members([3, 2]);
-   expect([1, 2, 3]).to.not.include.members([3, 2, 8]);</p>
-<p>   expect([4, 2]).to.have.members([2, 4]);
-   expect([5, 2]).to.not.have.members([5, 2, 1]);</p>
+<pre><code>expect([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]).to.include.members([<span class="number">3</span>, <span class="number">2</span>]);
+expect([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]).to.not.include.members([<span class="number">3</span>, <span class="number">2</span>, <span class="number">8</span>]);
+
+expect([<span class="number">4</span>, <span class="number">2</span>]).to.have.members([<span class="number">2</span>, <span class="number">4</span>]);
+expect([<span class="number">5</span>, <span class="number">2</span>]).to.not.have.members([<span class="number">5</span>, <span class="number">2</span>, <span class="number">1</span>]);</code></pre>
 </div>
               </div>
             </div>

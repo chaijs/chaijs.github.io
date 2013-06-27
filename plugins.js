@@ -73,7 +73,7 @@ module.exports = [
     , markdown: 'https://raw.github.com/chaijs/chai-timers/master/README.md' }
 
   , { name: 'Chai Stats'
-    , desc: 'Function spies and assertions.'
+    , desc: 'Statistical and additional numerical assertions.'
     , url: 'chai-stats'
     , link: 'https://github.com/chaijs/chai-stats'
     , tags: [ 'math' ]

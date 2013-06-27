@@ -36,7 +36,7 @@ block content
             | browser not supported
         .people
           - if (plugin.pkg.author)
-            - var author = plugin.pkg.author.split(' <')[0]
+            - var author = 'string' === typeof plugin.pkg.author ? plugin.pkg.author.split(' <')[0] : plugin.pkg.author.name
             .author Project maintained by #{author}
     .readme.grid_8
       .wrap!= plugin.html

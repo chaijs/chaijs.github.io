@@ -155,4 +155,15 @@ module.exports = [
     , markdown: 'https://raw.github.com/AgileDiagnosis/chai-interface/master/README.md'
     , browser: false
     }
+
+  , { name: 'Chai Json-Schema'
+    , desc: 'Validate values against IETF standardised json-schema v04'
+    , url: 'chai-json-schema'
+    , link: 'https://github.com/Bartvds/chai-json-schema'
+    , tags: [ 'objects', 'array' ]
+    , pkg: 'https://raw.github.com/Bartvds/chai-json-schema/master/package.json'
+    , markdown: 'https://raw.github.com/Bartvds/chai-json-schema/master/README.md'
+    , browser:
+      { 'chai-json-schema.js': 'https://raw.github.com/Bartvds/chai-json-schema/master/index.js' }
+    }
 ];

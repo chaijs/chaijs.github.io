@@ -163,6 +163,7 @@ module.exports = [
     , tags: [ 'objects', 'array' ]
     , pkg: 'https://raw.github.com/Bartvds/chai-json-schema/master/package.json'
     , markdown: 'https://raw.github.com/Bartvds/chai-json-schema/master/README.md'
-    , browser: true
-  }
+    , browser:
+      { 'chai-json-schema.js': 'https://raw.github.com/Bartvds/chai-json-schema/master/index.js' }
+    }
 ];

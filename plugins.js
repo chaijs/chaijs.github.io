@@ -68,7 +68,7 @@ module.exports = [
     , desc: 'Timers, stopwatches, and other time-based assertions for the Chai Assertion Library.'
     , url: 'chai-timers'
     , link: 'https://github.com/chaijs/chai-timers'
-    , tags: [ 'math' ]
+    , tags: [ 'math', 'time' ]
     , pkg: 'https://raw.github.com/chaijs/chai-timers/master/package.json'
     , markdown: 'https://raw.github.com/chaijs/chai-timers/master/README.md' }
 
@@ -166,7 +166,7 @@ module.exports = [
     , browser:
       { 'chai-json-schema.js': 'https://raw.github.com/Bartvds/chai-json-schema/master/index.js' }
     }
-    
+
   , { name: 'Chai Date Time'
     , desc: 'Extend chai with common date equality assertions against JavaScript Date objects.'
     , url: 'chai-datetime'

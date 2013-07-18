@@ -166,4 +166,16 @@ module.exports = [
     , browser:
       { 'chai-json-schema.js': 'https://raw.github.com/Bartvds/chai-json-schema/master/index.js' }
     }
+    
+  , { name: 'Chai Date Time'
+    , desc: 'Extend chai with common date equality assertions against JavaScript Date objects.'
+    , url: 'chai-datetime'
+    , link: 'https://github.com/gaslight/chai-datetime'
+    , tags: [ 'objects', 'date', 'time' ]
+    , pkg: 'https://raw.github.com/gaslight/chai-datetime/master/package.json'
+    , markdown: 'https://raw.github.com/gaslight/chai-datetime/master/README.md'
+    , browser:
+      { 'chai-datetime.js': 'https://raw.github.com/gaslight/chai-datetime/master/chai-datetime.js' }
+    }
+
 ];

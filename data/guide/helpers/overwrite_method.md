@@ -8,7 +8,7 @@
 
 Overwriting methods follow the name structure of overwriting properties.
 For this example we will be returning to our example of asserting Arthurs
-age to be above a minimum thresh-hold.
+age to be above a minimum threshold.
 
 ```javascript
 var arthur = new Model('person');

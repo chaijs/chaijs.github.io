@@ -31,8 +31,8 @@ chai.overwriteProperty('ok', function (_super) {
 
 ##### Overwrite Structure
 
-As you can see, the main difference in overwritting is that the first function
-passes just one argument of `_super`. This is the function that orginally 
+As you can see, the main difference in overwriting is that the first function
+passes just one argument of `_super`. This is the function that originally 
 existed, and you should be sure to call that if your criteria doesn't match.
 Secondly, you will notice that we immediately return a new function that 
 will serve as the actual assertion. 
@@ -46,7 +46,7 @@ expect(arthur).to.be.ok;
 expect(true).to.be.ok;
 ```
 
-The above expecations will pass. When working with a model it will 
+The above expectations will pass. When working with a model it will 
 run our custom assertion, and when working with non-models it will 
 revert to the original behavior. We will, however, run into a bit of 
 trouble if we try to negate an `ok` assertion on a model.

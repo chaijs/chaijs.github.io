@@ -17,7 +17,7 @@ chai.use(function (_chai, utils) {
 });
 ```
 
-The function which will be used gets passes two parameters to its scope. The first
+The function which will be used gets passed two parameters to its scope. The first
 is the `chai` export, the second is an object containing a number of utility 
 methods (we'll get to those in a minute).
 

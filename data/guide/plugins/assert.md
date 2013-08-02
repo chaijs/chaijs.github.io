@@ -6,8 +6,8 @@
 
 ## Composing an Assertion
 
-Before we beging adding methods and properties to the language chain, we should
-first examine how invoke an assertion, and the expected behavior should it fail.
+Before we begin adding methods and properties to the language chain, we should
+first examine how to invoke an assertion, and the expected behavior should it fail.
 
 For this, each constructed `Assertion` has a method called simply `assert`. It accepts
 many parameters and its behavior can change depending on whether an assertion was 

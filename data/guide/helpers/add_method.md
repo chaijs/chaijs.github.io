@@ -34,6 +34,6 @@ Assertion.addMethod('model', function (type) {
 
 <a href="/api/plugins/#addMethod-section" class="clean-button">View addMethod API</a>
 
-All calls to `assert` are syncronous, so if the first one fails the `AssertionError`
-is thrown and second one will not be reached. It is up to the test runner to interpret
+All calls to `assert` are synchronous, so if the first one fails the `AssertionError`
+is thrown and the second one will not be reached. It is up to the test runner to interpret
 the message and handle display of any failed assertions.

@@ -9,7 +9,7 @@
 <a href="/api/bdd" class="clean-button">View full BDD API</a>
 
 The BDD style comes in two flavors: `expect` and `should`. Both use the same
-chainable language to construct assertions, but they differ in the how an
+chainable language to construct assertions, but they differ in the way an
 assertion is initially constructed. In the case of `should`, there are also
 some caveats and additional tools to overcome the caveats. 
 

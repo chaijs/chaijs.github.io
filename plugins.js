@@ -157,7 +157,7 @@ module.exports = [
     }
 
   , { name: 'Chai Json-Schema'
-    , desc: 'Validate values against IETF standardised json-schema v04'
+    , desc: 'Validate any value against JSON-Schema v4.'
     , url: 'chai-json-schema'
     , link: 'https://github.com/Bartvds/chai-json-schema'
     , tags: [ 'objects', 'array' ]
@@ -178,4 +178,13 @@ module.exports = [
       { 'chai-datetime.js': 'https://raw.github.com/gaslight/chai-datetime/master/chai-datetime.js' }
     }
 
+  , { name: 'Chai FS'
+    , desc: 'Chai assertions for Node.js filesystem.'
+    , url: 'chai-fs'
+    , link: 'https://github.com/Bartvds/chai-fs'
+    , tags: [ 'vendor', 'fs' ]
+    , pkg: 'https://raw.github.com/Bartvds/chai-fs/master/package.json'
+    , markdown: 'https://raw.github.com/Bartvds/chai-fs/master/README.md'
+    , browser: false
+    }
 ];

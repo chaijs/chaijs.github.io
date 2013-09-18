@@ -9,10 +9,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?1.7.2"></script>
+    <script src="/public/js/main.js?1.8.0"></script>
     <script src="/public/js/guide.js"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?1.7.2" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?1.7.2" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/antiscroll.css?1.8.0" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?1.8.0" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -185,8 +185,8 @@ Assertion.addMethod(<span class="string">'model'</span>, <span class="function">
   );
 });</code></pre>
 <p><a href="/api/plugins/#addMethod-section" class="clean-button">View addMethod API</a></p>
-<p>All calls to <code>assert</code> are syncronous, so if the first one fails the <code>AssertionError</code>
-is thrown and second one will not be reached. It is up to the test runner to interpret
+<p>All calls to <code>assert</code> are synchronous, so if the first one fails the <code>AssertionError</code>
+is thrown and the second one will not be reached. It is up to the test runner to interpret
 the message and handle display of any failed assertions.</p>
 </article>
               <article id="add_method_as_property-section"><h3>Methods as Properties</h3>
@@ -268,7 +268,7 @@ finish up here first...</p>
 <p>Now that we can successfully add assertions to the language chain,
 we should work on being able to safely overwrite existing assertions,
 such as those from Chai&#39;s core or other plugins. </p>
-<p>Chai provides a number of utilties that allow your to overwrite
+<p>Chai provides a number of utilties that allow you to overwrite
 existing behavior of an already existing assertion, but revert to
 the already defined assertion behavior if the subject of the assertion
 does not meet your criteria.</p>
@@ -293,8 +293,8 @@ In our example, we will consider a model <code>ok</code> if it has an <code>id</
 });</code></pre>
 <p><a href="/api/plugins/#overwriteProperty-section" class="clean-button">View overwriteProperty API</a></p>
 <h5>Overwrite Structure</h5>
-<p>As you can see, the main difference in overwritting is that the first function
-passes just one argument of <code>_super</code>. This is the function that orginally 
+<p>As you can see, the main difference in overwriting is that the first function
+passes just one argument of <code>_super</code>. This is the function that originally 
 existed, and you should be sure to call that if your criteria doesn&#39;t match.
 Secondly, you will notice that we immediately return a new function that 
 will serve as the actual assertion. </p>
@@ -303,7 +303,7 @@ will serve as the actual assertion. </p>
 arthur.set(<span class="string">'id'</span>, <span class="number">42</span>);
 expect(arthur).to.be.ok;
 expect(<span class="literal">true</span>).to.be.ok;</code></pre>
-<p>The above expecations will pass. When working with a model it will 
+<p>The above expectations will pass. When working with a model it will 
 run our custom assertion, and when working with non-models it will 
 revert to the original behavior. We will, however, run into a bit of 
 trouble if we try to negate an <code>ok</code> assertion on a model.</p>
@@ -346,7 +346,7 @@ expected &#39;dont panic&#39; to [not] be a number</code>. Much more informative
               <article id="overwrite_method-section"><h3>Overwriting Methods</h3>
 <p>Overwriting methods follow the name structure of overwriting properties.
 For this example we will be returning to our example of asserting Arthurs
-age to be above a minimum thresh-hold.</p>
+age to be above a minimum threshold.</p>
 <pre><code class="lang-javascript"><span class="keyword">var</span> arthur = <span class="keyword">new</span> Model(<span class="string">'person'</span>);
 arthur.set(<span class="string">'age'</span>, <span class="number">27</span>);
 expect(arthur).to.have.age.above(<span class="number">17</span>);</code></pre>

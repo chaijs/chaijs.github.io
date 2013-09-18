@@ -9,9 +9,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?1.7.2"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?1.7.2" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?1.7.2" type="text/css" media="all">
+    <script src="/public/js/main.js?1.8.0"></script>
+    <link rel="stylesheet" href="/public/css/antiscroll.css?1.8.0" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?1.8.0" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -66,7 +66,7 @@
             <div class="rendered">
               <article><h1>BDD</h1>
 <p>The BDD styles are <code>expect</code> and <code>should</code>. Both use the same chainable language to 
-construct assertions, but they differ in the how an assertion is initially constructed.
+construct assertions, but they differ in the way an assertion is initially constructed.
 Check out the <a href="/guide/styles">Style Guide</a> for a comparison.</p>
 <h2>API Reference</h2>
 </article>
@@ -204,8 +204,8 @@ expect(undefined).not.to.be.<span class="literal">null</span>;</code></pre>
                 <ul class="tags">
                 </ul>
                 <div class="description"><p>Asserts that the target is <code>undefined</code>.</p>
-<pre><code> expect(undefined).to.be.undefined;
- expect(<span class="literal">null</span>).to.not.be.undefined;</code></pre>
+<pre><code>expect(undefined).to.be.undefined;
+expect(<span class="literal">null</span>).to.not.be.undefined;</code></pre>
 </div>
               </div>
               <div id="exist-section" class="segment">
@@ -538,8 +538,8 @@ expect(Klass).to.respondTo(<span class="string">'bar'</span>);
 expect(obj).to.respondTo(<span class="string">'bar'</span>);</code></pre>
 <p>To check if a constructor will respond to a static function,
 set the <code>itself</code> flag.</p>
-<p>   Klass.baz = function(){};
-   expect(Klass).itself.to.respondTo(&#39;baz&#39;);</p>
+<pre><code>Klass.baz = <span class="keyword">function</span>(){};
+expect(Klass).itself.to.respondTo(<span class="string">'baz'</span>);</code></pre>
 </div>
               </div>
               <div id="itself-section" class="segment">
@@ -548,11 +548,12 @@ set the <code>itself</code> flag.</p>
                 <ul class="tags">
                 </ul>
                 <div class="description"><p>Sets the <code>itself</code> flag, later used by the <code>respondTo</code> assertion.</p>
-<p>   function Foo() {}
-   Foo.bar = function() {}
-   Foo.prototype.baz = function() {}</p>
-<p>   expect(Foo).itself.to.respondTo(&#39;bar&#39;);
-   expect(Foo).itself.not.to.respondTo(&#39;baz&#39;);</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">Foo</span><span class="params">()</span> {</span>}
+Foo.bar = <span class="keyword">function</span>() {}
+Foo.prototype.baz = <span class="keyword">function</span>() {}
+
+expect(Foo).itself.to.respondTo(<span class="string">'bar'</span>);
+expect(Foo).itself.not.to.respondTo(<span class="string">'baz'</span>);</code></pre>
 </div>
               </div>
               <div id="satisfy-section" class="segment">

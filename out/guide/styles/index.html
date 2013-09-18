@@ -9,10 +9,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?1.7.2"></script>
+    <script src="/public/js/main.js?1.8.0"></script>
     <script src="/public/js/guide.js"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?1.7.2" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?1.7.2" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/antiscroll.css?1.8.0" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?1.8.0" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -100,7 +100,7 @@ error messages should your assertion not pass.</p>
               <article id="expect-section"><h2>BDD</h2>
 <p><a href="/api/bdd" class="clean-button">View full BDD API</a></p>
 <p>The BDD style comes in two flavors: <code>expect</code> and <code>should</code>. Both use the same
-chainable language to construct assertions, but they differ in the how an
+chainable language to construct assertions, but they differ in the way an
 assertion is initially constructed. In the case of <code>should</code>, there are also
 some caveats and additional tools to overcome the caveats. </p>
 <h3>Expect</h3>
@@ -156,7 +156,7 @@ all browsers except Internet Explorer.</p>
               <article id="should-extras-section"><h3>Should Extras</h3>
 <p>Given that <code>should</code> works by extending <code>Object.prototype</code>, there are
 some scenarios where <code>should</code> will not work. Mainly, if you are trying
-to check the existence of an object. Take the following psuedocode:</p>
+to check the existence of an object. Take the following pseudocode:</p>
 <pre><code>db.get(<span class="number">1234</span>, <span class="function"><span class="keyword">function</span> <span class="params">(err, doc)</span> {</span>
   <span class="comment">// we expect error to not exist</span>
   <span class="comment">// we expect doc to exist and be an object</span>

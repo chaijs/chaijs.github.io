@@ -9,10 +9,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?1.7.2"></script>
+    <script src="/public/js/main.js?1.8.0"></script>
     <script src="/public/js/guide.js"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?1.7.2" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?1.7.2" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/antiscroll.css?1.8.0" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?1.8.0" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -92,7 +92,7 @@ an argument.</p>
 <pre><code class="lang-javascript">chai.use(<span class="function"><span class="keyword">function</span> <span class="params">(_chai, utils)</span> {</span>
   <span class="comment">// ...</span>
 });</code></pre>
-<p>The function which will be used gets passes two parameters to its scope. The first
+<p>The function which will be used gets passed two parameters to its scope. The first
 is the <code>chai</code> export, the second is an object containing a number of utility 
 methods (we&#39;ll get to those in a minute).</p>
 <p>The <code>chai</code> export is included so that you can build helpers that can be used
@@ -154,8 +154,8 @@ changes the behavior of <code>keys</code>.</li>
 </ul>
 </article>
               <article id="assert-section"><h2>Composing an Assertion</h2>
-<p>Before we beging adding methods and properties to the language chain, we should
-first examine how invoke an assertion, and the expected behavior should it fail.</p>
+<p>Before we begin adding methods and properties to the language chain, we should
+first examine how to invoke an assertion, and the expected behavior should it fail.</p>
 <p>For this, each constructed <code>Assertion</code> has a method called simply <code>assert</code>. It accepts
 many parameters and its behavior can change depending on whether an assertion was 
 negated or not.</p>

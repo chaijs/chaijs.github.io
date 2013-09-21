@@ -9,5 +9,5 @@
     assert.typeOf(foo, 'string');
     assert.equal(foo, 'bar');
     assert.lengthOf(foo, 3)
-    assert.property(tea, 'favors');
+    assert.property(tea, 'flavors');
     assert.lengthOf(tea.flavors, 3);

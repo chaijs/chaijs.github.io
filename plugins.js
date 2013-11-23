@@ -64,6 +64,18 @@ module.exports = [
       { 'chai-jquery.js': 'https://raw.github.com/chaijs/chai-jquery/master/chai-jquery.js' }
     }
 
+ , { name: 'Chai jQ'
+    , desc: 'Alternate DOM / jQuery assertion library for Chai.'
+    , url: 'chai-jq'
+    , link: 'https://github.com/FormidableLabs/chai-jq'
+    , tags: [ 'vendor', 'dom' ]
+    , pkg: 'https://raw.github.com/FormidableLabs/chai-jq/master/package.json'
+    , markdown: 'https://raw.github.com/FormidableLabs/chai-jq/master/README.md'
+    , node: false
+    , browser:
+      { 'chai-jq.js': 'https://raw.github.com/FormidableLabs/chai-jq/master/chai-jq.js' }
+    }
+
   , { name: 'Chai Timers'
     , desc: 'Timers, stopwatches, and other time-based assertions for the Chai Assertion Library.'
     , url: 'chai-timers'

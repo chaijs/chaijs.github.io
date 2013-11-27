@@ -71,7 +71,7 @@ module.exports = [
     , tags: [ 'vendor', 'dom' ]
     , pkg: 'https://raw.github.com/FormidableLabs/chai-jq/master/package.json'
     , markdown: 'https://raw.github.com/FormidableLabs/chai-jq/master/README.md'
-    , node: false
+    , node: true
     , browser:
       { 'chai-jq.js': 'https://raw.github.com/FormidableLabs/chai-jq/master/chai-jq.js' }
     }

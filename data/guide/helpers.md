@@ -43,7 +43,7 @@ Model.prototype.set = function (key, value) {
 };
 
 /**
- * .set (key, value)
+ * .get (key)
  *
  * Get an attribute that is stored in this model.
  *

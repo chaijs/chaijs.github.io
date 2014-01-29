@@ -20,7 +20,7 @@ expect(arthur).to.be.a.model;
 For this, we will use be using the `addProperty` utility.
 
 ```javascript
-utils.addProperty(Assertion, 'model', function () {
+utils.addProperty(Assertion.prototype, 'model', function () {
   this.assert(
       this._obj instanceof Model
     , 'expected #{this} to be a Model'

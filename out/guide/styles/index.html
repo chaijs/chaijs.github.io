@@ -9,10 +9,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?1.8.1"></script>
+    <script src="/public/js/main.js?1.9.0"></script>
     <script src="/public/js/guide.js"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?1.8.1" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?1.8.1" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/antiscroll.css?1.9.0" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?1.9.0" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -74,12 +74,12 @@
         <div class="documentation">
           <div class="wrap">
             <div class="rendered">
-              <div class="header"><h1>Assertion Styles</h1>
+              <div class="header"><h1 id="assertion-styles">Assertion Styles</h1>
 <p>This section of the guide introduces you to the three different assertion styles that you may use
 in your testing environment. Once you have made your selection, it is recommended that you look
 at the API Documentation for your selected style.</p>
 </div>
-              <article id="assert-section"><h2>Assert</h2>
+              <article id="assert-section"><h2 id="assert">Assert</h2>
 <p><a href="/api/assert" class="clean-button">View full Assert API</a></p>
 <p>The assert style is exposed through <code>assert</code> interface. This provides
 the classic assert-dot notation, similiar to that packaged with
@@ -97,13 +97,13 @@ assert.lengthOf(beverages.tea, <span class="number">3</span>, <span class="strin
 last parameter in the <code>assert</code> statement. These will be included in the 
 error messages should your assertion not pass.</p>
 </article>
-              <article id="expect-section"><h2>BDD</h2>
+              <article id="expect-section"><h2 id="bdd">BDD</h2>
 <p><a href="/api/bdd" class="clean-button">View full BDD API</a></p>
 <p>The BDD style comes in two flavors: <code>expect</code> and <code>should</code>. Both use the same
 chainable language to construct assertions, but they differ in the way an
 assertion is initially constructed. In the case of <code>should</code>, there are also
 some caveats and additional tools to overcome the caveats. </p>
-<h3>Expect</h3>
+<h3 id="expect">Expect</h3>
 <p>The BDD style is exposed through <code>expect</code> or <code>should</code> interfaces. In both
 scenarios, you chain together natural language assertions.</p>
 <pre><code><span class="keyword">var</span> expect = require(<span class="string">'chai'</span>).expect
@@ -126,7 +126,7 @@ expect(answer, <span class="string">'topic [answer]'</span>).to.equal(<span clas
 <p>This comes in handy when being used with non-descript topics such as 
 booleans or numbers.</p>
 </article>
-              <article id="should-section"><h3>Should</h3>
+              <article id="should-section"><h3 id="should">Should</h3>
 <p>The <code>should</code> style allows for the same chainable assertions as the
 <code>expect</code> interface, however it extends each object with a <code>should</code>
 property to start your chain. This style has some issues when used Internet
@@ -140,7 +140,7 @@ foo.should.equal(<span class="string">'bar'</span>);
 foo.should.have.length(<span class="number">3</span>);
 beverages.should.have.property(<span class="string">'tea'</span>).<span class="keyword">with</span>.length(<span class="number">3</span>);</code></pre>
 </article>
-              <article id="differences-section"><h3>Differences</h3>
+              <article id="differences-section"><h3 id="differences">Differences</h3>
 <p>First of all, notice that the <code>expect</code> require is just a reference to the 
 <code>expect</code> function, whereas with the <code>should</code> require, the function is 
 being executed.</p>
@@ -153,7 +153,7 @@ your language assertions. It works on node.js and in all browsers.</p>
 the starting point for your language assertions. It works on node.js and in
 all browsers except Internet Explorer.</p>
 </article>
-              <article id="should-extras-section"><h3>Should Extras</h3>
+              <article id="should-extras-section"><h3 id="should-extras">Should Extras</h3>
 <p>Given that <code>should</code> works by extending <code>Object.prototype</code>, there are
 some scenarios where <code>should</code> will not work. Mainly, if you are trying
 to check the existence of an object. Take the following pseudocode:</p>
@@ -182,7 +182,7 @@ quick helpers to keep you out of trouble when using <code>should</code>.</p>
 <li><code>should.not.Throw</code></li>
 </ul>
 </article>
-              <article id="configure-section"><h2>Configuration</h2>
+              <article id="configure-section"><h2 id="configuration">Configuration</h2>
 <p>By default, Chai does not show stack traces upon an AssertionError. This can
 be changed by modifying the <code>includeStack</code> parameter for chai.Assertion. For example:</p>
 <pre><code><span class="keyword">var</span> chai = require(<span class="string">'chai'</span>);

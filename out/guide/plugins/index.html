@@ -9,10 +9,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?1.8.1"></script>
+    <script src="/public/js/main.js?1.9.0"></script>
     <script src="/public/js/guide.js"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?1.8.1" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?1.8.1" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/antiscroll.css?1.9.0" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?1.9.0" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -74,7 +74,7 @@
         <div class="documentation">
           <div class="wrap">
             <div class="rendered">
-              <div class="header"><h1>Core Plugin Concepts</h1>
+              <div class="header"><h1 id="core-plugin-concepts">Core Plugin Concepts</h1>
 <p>Plugins are for more than just writing vendor integrations. As a tester, one can write
 a plugin to validate input data, assert schema validation on an object, or ensure proper behavior
 on a dom element. The API is flexible enough that any synchronous tasks can easily be encapsulated
@@ -84,7 +84,7 @@ the language chain, and write your first assertion (and thorough error messages)
 finished here, <a href="/guide/helpers">Building a Helper</a> will show you how to compose properties and
 methods for use on the Chai language chain.</p>
 </div>
-              <article id="use-section"><h2>Accessing Utilties</h2>
+              <article id="use-section"><h2 id="accessing-utilties">Accessing Utilties</h2>
 <p>Chai comes with a number of utilities to assist in the construction of assertions,
 but it does not provide these directly on the <code>chai</code> export. These can be accessed 
 by using the <code>use</code> method of the chai export, which accepts a single function as
@@ -119,18 +119,18 @@ chai.use(chaiModel);</code></pre>
 <p>The <code>Assertion</code> variable is now a constructor for an assertion chain;
 <code>new Assertion(obj)</code> is now equivalent to <code>expect(obj)</code>.</p>
 </article>
-              <article id="flags-section"><h2>Using Flags</h2>
+              <article id="flags-section"><h2 id="using-flags">Using Flags</h2>
 <p>The upper-most core concept of how assertions work internally is the concept of flags.
 Each assertion has a set of mostly arbitrary flags - key:value pairs - associated with it.
 Chai uses a small number of these internally, but the store is also available for developers
 to expand on. </p>
-<h3>flag usage</h3>
+<h3 id="flag-usage">flag usage</h3>
 <p>The flag utility is exposed as <code>utils.flag</code> from within our <code>use</code> function. It can function
 as either a getter or a setter, depending on the number of arguments passed to it.</p>
 <pre><code class="lang-javascript"><span class="keyword">var</span> myAssert = <span class="keyword">new</span> Assertion(obj);
 utils.flag(myAssert, <span class="string">'owner'</span>, <span class="string">'me'</span>); <span class="comment">// sets key `owner` to `me`</span>
 <span class="keyword">var</span> owner = utils.flag(myAssert, <span class="string">'owner'</span>); <span class="comment">// get key `owner', returns value</span></code></pre>
-<h3>object flag</h3>
+<h3 id="object-flag">object flag</h3>
 <p>The most important of Chai&#39;s reserved flags is the <code>object</code> flag. This is the subject
 of an assertion.</p>
 <pre><code class="lang-javascript"><span class="keyword">var</span> myAssert = <span class="keyword">new</span> Assertion(<span class="string">'Arthur Dent'</span>);
@@ -153,13 +153,13 @@ changes the behavior of <code>keys</code>.</li>
 <code>above</code>, <code>below</code>, and <code>within</code>.</li>
 </ul>
 </article>
-              <article id="assert-section"><h2>Composing an Assertion</h2>
+              <article id="assert-section"><h2 id="composing-an-assertion">Composing an Assertion</h2>
 <p>Before we begin adding methods and properties to the language chain, we should
 first examine how to invoke an assertion, and the expected behavior should it fail.</p>
 <p>For this, each constructed <code>Assertion</code> has a method called simply <code>assert</code>. It accepts
 many parameters and its behavior can change depending on whether an assertion was 
 negated or not.</p>
-<h3>Basic Assertion</h3>
+<h3 id="basic-assertion">Basic Assertion</h3>
 <p>To begin, we will construct Arthur again, then we can assert that he is who he says he is.</p>
 <pre><code class="lang-javascript"><span class="keyword">var</span> arthur = <span class="keyword">new</span> Assertion(<span class="string">'Arthur Dent'</span>);
 
@@ -180,7 +180,7 @@ The second error message will be included in the thrown error instead.</p>
 <li>(optional) the expected value</li>
 <li>(optional) the actual value, which will default to <code>_obj</code></li>
 </ol>
-<h3>Composing Error Messages</h3>
+<h3 id="composing-error-messages">Composing Error Messages</h3>
 <p>As you can see from the above example, Chai can accept template tags to dynamically compose 
 the error message. When used, these template tags will be replaced with a stringified replacement
 of the object in question. There are three template tags available.</p>

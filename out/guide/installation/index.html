@@ -9,10 +9,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?1.8.1"></script>
+    <script src="/public/js/main.js?1.9.0"></script>
     <script src="/public/js/guide.js"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?1.8.1" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?1.8.1" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/antiscroll.css?1.9.0" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?1.9.0" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -74,12 +74,12 @@
         <div class="documentation">
           <div class="wrap">
             <div class="rendered">
-              <div class="header"><h1>Installation</h1>
+              <div class="header"><h1 id="installation">Installation</h1>
 <p>Chai is available for both node.js and the browser using any
 test framework you like. There are also a number of other tools
 that include Chai.</p>
 </div>
-              <article id="node-section"><h3>Node.js</h3>
+              <article id="node-section"><h3 id="node-js">Node.js</h3>
 <p>Package is available through <a href="http://npmjs.org">npm</a>:</p>
 <pre><code>npm install chai</code></pre>
 <p>Recommend adding it to <code>package.json</code> devDependancies using a <code>*</code> as the version tag.
@@ -90,7 +90,7 @@ which can be especially powerful when paired with a continuous integration tool.
   <span class="string">"mocha"</span>: <span class="string">"*"</span> <span class="comment">// our preference, but you can use any test runner you like</span>
 }</code></pre>
 </article>
-              <article id="browser-section"><h3>Browser</h3>
+              <article id="browser-section"><h3 id="browser">Browser</h3>
 <p>Include the chai browser build in your testing suite.</p>
 <pre><code>&lt;script src="chai.js" type="text/javascript">&lt;/script></code></pre>
 <p>This will provide <code>chai</code> as a global object, or <code>define</code> it if you are using AMD.</p>
@@ -102,9 +102,9 @@ We recommend that you always use a version tag as your starting point, so the
 that the <code>should</code> style is currently not compatible with IE9. </p>
 <p>If you want to know if your browser is compatible, run the <a href="/api/test/">online test suite</a>.</p>
 </article>
-              <article id="other-section"><h3>Other Platforms</h3>
-<h4>Ruby</h4>
-<h5><a href="https://github.com/jfirebaugh/konacha">Konacha</a></h5>
+              <article id="other-section"><h3 id="other-platforms">Other Platforms</h3>
+<h4 id="ruby">Ruby</h4>
+<h5 id="-konacha-https-github-com-jfirebaugh-konacha-"><a href="https://github.com/jfirebaugh/konacha">Konacha</a></h5>
 <p>For testing your Ruby on Rails application using Chai assertions 
 and the Mocha test framework, check out Konacha -- a modern
 test harness that takes full advantage of Rails 3 features such as the

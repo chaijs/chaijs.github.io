@@ -1,6 +1,13 @@
 describe('utilities', function () {
   var expect = chai.expect;
 
+  after(function() {
+    // Some clean-up so we can run tests in a --watch
+    delete chai.Assertion.prototype.eqqqual;
+    delete chai.Assertion.prototype.result;
+    delete chai.Assertion.prototype.doesnotexist;
+  });
+
   it('_obj', function () {
     var foo = 'bar'
       , test = expect(foo);
@@ -256,5 +263,47 @@ describe('utilities', function () {
       expect(obj).x.to.be.ok;
       expect(obj).to.have.property('__x', 'X!');
     })
-  })
+  });
+
+  it('overwriteChainableMethod', function () {
+    chai.use(function (_chai, _) {
+      _chai.Assertion.overwriteChainableMethod('x',
+        function(_super) {
+          return function() {
+            if (_.flag(this, 'marked')) {
+              new chai.Assertion(this._obj).to.be.equal('spot');
+            } else {
+              _super.apply(this, arguments);
+            }
+          };
+        }
+      , function(_super) {
+          return function() {
+            _.flag(this, 'message', 'x marks the spot');
+            _super.apply(this, arguments);
+          };
+        }
+      );
+
+      // Make sure the original behavior of 'x' remains the same
+      expect('foo').x.to.equal("foo");
+      expect("x").x();
+      expect(function () {
+        expect("foo").x();
+      }).to.throw(_chai.AssertionError);
+      var obj = {};
+      expect(obj).x.to.be.ok;
+      expect(obj).to.have.property('__x', 'X!');
+
+      // Test the new behavior of 'x'
+      var assertion = expect('foo').x.to.be.ok;
+      expect(_.flag(assertion, 'message')).to.equal('x marks the spot');
+      expect(function () {
+        var assertion = expect('x');
+        _.flag(assertion, 'marked', true);
+        assertion.x()
+      }).to.throw(_chai.AssertionError);
+    });
+  });
+
 });

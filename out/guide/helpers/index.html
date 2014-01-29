@@ -9,10 +9,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?1.8.1"></script>
+    <script src="/public/js/main.js?1.9.0"></script>
     <script src="/public/js/guide.js"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?1.8.1" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?1.8.1" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/antiscroll.css?1.9.0" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?1.9.0" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -74,7 +74,7 @@
         <div class="documentation">
           <div class="wrap">
             <div class="rendered">
-              <div class="header"><h1>Building a Helper</h1>
+              <div class="header"><h1 id="building-a-helper">Building a Helper</h1>
 <blockquote>
 <p>This tutorial assumes that you are familiar with the plugin <a href="/guide/plugins/">core concepts</a>.
 If you have not yet read that article, it is recommended that you do so before continuing.</p>
@@ -112,7 +112,7 @@ Model.prototype.set = <span class="function"><span class="keyword">function</spa
 };
 
 <span class="comment">/**
- * .set (key, value)
+ * .get (key)
  *
  * Get an attribute that is stored in this model.
  *
@@ -133,11 +133,11 @@ arthur.set(<span class="string">'occupation'</span>, <span class="string">'trave
 console.log(arthur.get(<span class="string">'name'</span>)); <span class="comment">// Arthur Dent</span></code></pre>
 <p>Now that we have our subject, we can move on to the basics of plugins.</p>
 </div>
-              <article id="add_language_chain-section"><h2>Adding Language Chains</h2>
+              <article id="add_language_chain-section"><h2 id="adding-language-chains">Adding Language Chains</h2>
 <p>Now we are getting to the fun part! Adding properties and methods
 are what Chai&#39;s plugin API is really for.</p>
 </article>
-              <article id="add_property-section"><h3>Adding Properties</h3>
+              <article id="add_property-section"><h3 id="adding-properties">Adding Properties</h3>
 <p>In essence, defining a property can be done using <code>Object.defineProperty</code>,
 but we encourage you to use Chai&#39;s utility helpers to ensure a standard
 implementation throughout. </p>
@@ -145,7 +145,7 @@ implementation throughout. </p>
 <pre><code class="lang-javascript"><span class="keyword">var</span> arthur = <span class="keyword">new</span> Model(<span class="string">'person'</span>);
 expect(arthur).to.be.a.model;</code></pre>
 <p>For this, we will use be using the <code>addProperty</code> utility.</p>
-<pre><code class="lang-javascript">utils.addProperty(Assertion, <span class="string">'model'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+<pre><code class="lang-javascript">utils.addProperty(Assertion.prototype, <span class="string">'model'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
   <span class="keyword">this</span>.assert(
       <span class="keyword">this</span>._obj <span class="keyword">instanceof</span> Model
     , <span class="string">'expected #{this} to be a Model'</span>
@@ -161,7 +161,7 @@ The following can be used in place of the first line above:</p>
 and directly on the Assertion constructor. For the rest of this document, however,
 we will be calling the methods directly from <code>Assertion</code>.</p>
 </article>
-              <article id="add_method-section"><h3>Adding Methods</h3>
+              <article id="add_method-section"><h3 id="adding-methods">Adding Methods</h3>
 <p>Though a property is an elegant solution, it is likely not specific enough for 
 the helper we are constructing. As our models have types, it would be beneficial
 to assert our model is of specific type. For this, we need a method.</p>
@@ -189,12 +189,12 @@ Assertion.addMethod(<span class="string">'model'</span>, <span class="function">
 is thrown and the second one will not be reached. It is up to the test runner to interpret
 the message and handle display of any failed assertions.</p>
 </article>
-              <article id="add_method_as_property-section"><h3>Methods as Properties</h3>
+              <article id="add_method_as_property-section"><h3 id="methods-as-properties">Methods as Properties</h3>
 <p>Chai includes a unique utility that allows you to construct a language chain that can function 
 as either a property or a method. We call these &quot;chainable methods&quot;. Despite the fact that we 
 demonstrated the &quot;is model of model&quot; as both a property and a method, these assertions are NOT 
 a good use case for chainable methods.</p>
-<h5>When to Use</h5>
+<h5 id="when-to-use">When to Use</h5>
 <p>To understand when to best use chainable methods we will examine a chainable method from Chai&#39;s
 core. </p>
 <pre><code class="lang-javascript"><span class="keyword">var</span> arr = [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ]
@@ -209,7 +209,7 @@ as a method. </p>
 of <code>contain</code> as a property is to set a <code>contains</code> flag to true. This indicates to <code>keys</code> to 
 behave differently. In this case, when <code>key</code> is used in conjunction with <code>contain</code>, it will check
 for the inclusion of a key, instead of checking the exact match to all keys.</p>
-<h5>When NOT to Use</h5>
+<h5 id="when-not-to-use">When NOT to Use</h5>
 <p>Let&#39;s say we set up a chainable method for <code>model</code> to behave as we indicated above: do an <code>instanceof</code>
 check if used as a property, and a <code>_type</code> check if used as a method. The following conflict would occur...</p>
 <p>The following would work...</p>
@@ -226,7 +226,7 @@ guideline when constructing chainable methods.</p>
 <p>When constructing chainable methods, the property function should only serve to set a flag
 for later modifying the behavior of an existing assertion.</p>
 </blockquote>
-<h5>An Appropriate Example</h5>
+<h5 id="an-appropriate-example">An Appropriate Example</h5>
 <p>For use with our model example, we are going to construct an example that allows us to test Arthur&#39;s
 age exactly, or chain into Chai&#39;s numerical comparators, such as <code>above</code>, <code>below</code>, and <code>within</code>. You will
 need to learn how to overwrite methods without destroying core functionality, but we get to that a bit later.</p>
@@ -264,7 +264,7 @@ finish up here first...</p>
 <p><a href="/api/plugins/#addChainableMethod-section" class="clean-button">View addChainableMethod API</a></p>
 <p>Done. Now we can assert Arthur&#39;s exact age. We will pick up again with this example when learning how to overwrite methods.</p>
 </article>
-              <article id="overwrite_language_chain-section"><h2>Overwriting Language Chains</h2>
+              <article id="overwrite_language_chain-section"><h2 id="overwriting-language-chains">Overwriting Language Chains</h2>
 <p>Now that we can successfully add assertions to the language chain,
 we should work on being able to safely overwrite existing assertions,
 such as those from Chai&#39;s core or other plugins. </p>
@@ -274,7 +274,7 @@ the already defined assertion behavior if the subject of the assertion
 does not meet your criteria.</p>
 <p>Let&#39;s start with a simple example of overwriting a property.</p>
 </article>
-              <article id="overwrite_property-section"><h3>Overwriting Properties</h3>
+              <article id="overwrite_property-section"><h3 id="overwriting-properties">Overwriting Properties</h3>
 <p>For this example, we are going to overwrite the <code>ok</code> property provided
 by Chai&#39;s core. The default behavior is that <code>ok</code> will pass if an object
 is truthy. We want to change that behavior so then when <code>ok</code> is used
@@ -292,7 +292,7 @@ In our example, we will consider a model <code>ok</code> if it has an <code>id</
   };
 });</code></pre>
 <p><a href="/api/plugins/#overwriteProperty-section" class="clean-button">View overwriteProperty API</a></p>
-<h5>Overwrite Structure</h5>
+<h5 id="overwrite-structure">Overwrite Structure</h5>
 <p>As you can see, the main difference in overwriting is that the first function
 passes just one argument of <code>_super</code>. This is the function that originally 
 existed, and you should be sure to call that if your criteria doesn&#39;t match.
@@ -314,7 +314,7 @@ expect(arthur).to.not.be.ok;</code></pre>
 negated and the id is not a number. Unfortunately, the negation flag
 was not passed to our number assertion, so it still expects the value
 to be a number. </p>
-<h5>Transfering Flags</h5>
+<h5 id="transfering-flags">Transfering Flags</h5>
 <p>For this we will expand on this assertion by transfering all of the 
 flags from the original assertion to our new assertion. The final 
 property overwrite would look like this.</p>
@@ -334,7 +334,7 @@ property overwrite would look like this.</p>
 <p>Now, the negation flag is included in your new assertion and we can successfully
 handle both positive and negative assertions on the type of id. We left the property
 assertion as it was as we always want it to fail if the id is not present.</p>
-<h5>Enhancing Error Messages</h5>
+<h5 id="enhancing-error-messages">Enhancing Error Messages</h5>
 <p>Though, we have one more small modification to make. Should our assertion fail
 for the wrong type of id attribute, we would get an error message that states 
 <code>expected &#39;dont panic&#39; to [not] be a number</code>. Not entirely useful when running a large
@@ -343,7 +343,7 @@ test suite, so we will provide it with a bit more information.</p>
 <p>This will change our error message to be a more informative <code>model assert ok id type: 
 expected &#39;dont panic&#39; to [not] be a number</code>. Much more informative! </p>
 </article>
-              <article id="overwrite_method-section"><h3>Overwriting Methods</h3>
+              <article id="overwrite_method-section"><h3 id="overwriting-methods">Overwriting Methods</h3>
 <p>Overwriting methods follow the name structure of overwriting properties.
 For this example we will be returning to our example of asserting Arthurs
 age to be above a minimum threshold.</p>
@@ -382,7 +382,7 @@ so all we have to do is check if that exists.</p>
 case as <code>this.assert</code> handles that automatically. The same pattern can also be used
 for <code>below</code> and <code>within</code>. </p>
 </article>
-              <article id="overwrite_caveats-section"><h3>Overwriting Caveats</h3>
+              <article id="overwrite_caveats-section"><h3 id="overwriting-caveats">Overwriting Caveats</h3>
 <p>Given all that can be done, the major caveat to be aware of is that
 methods as properties defined with <code>addChainableMethod</code> cannot be fully 
 overwritten. There is no <code>overwriteChainableMethod</code>, as the current implementation

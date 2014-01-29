@@ -9,9 +9,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?1.8.1"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?1.8.1" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?1.8.1" type="text/css" media="all">
+    <script src="/public/js/main.js?1.9.0"></script>
+    <link rel="stylesheet" href="/public/css/antiscroll.css?1.9.0" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?1.9.0" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -64,15 +64,15 @@
         <div class="documentation">
           <div class="wrap">
             <div class="rendered">
-              <article><h1>Plugin Utilities</h1>
+              <article><h1 id="plugin-utilities">Plugin Utilities</h1>
 <p>The plugin utilities are for those who want to extend Chai with their own set of 
 assertions. The <a href="/guide/plugins">Code Plugin Concepts</a> and 
 <a href="/guide/helpers">Building a Helper</a> guide tutorials are a great reference on
 how to get started with your own assertions.</p>
-<h2>API Reference</h2>
+<h2 id="api-reference">API Reference</h2>
 </article>
               <div id="type-section" class="segment">
-                <div class="summary"><h3>type(object)</h3>
+                <div class="summary"><h3 id="type-object-">type(object)</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">object</span><span class="desc">to detect type of</span></li>
@@ -87,7 +87,7 @@ utils.type([]) <span class="comment">// `array`</span></code></pre>
 </div>
               </div>
               <div id="addMethod-section" class="segment">
-                <div class="summary"><h3>.addMethod (ctx, name, method)</h3>
+                <div class="summary"><h3 id="-addmethod-ctx-name-method-">.addMethod (ctx, name, method)</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">ctx</span><span class="desc">object to which the method is added</span></li>
@@ -106,7 +106,7 @@ utils.type([]) <span class="comment">// `array`</span></code></pre>
 </div>
               </div>
               <div id="addProperty-section" class="segment">
-                <div class="summary"><h3>addProperty (ctx, name, getter)</h3>
+                <div class="summary"><h3 id="addproperty-ctx-name-getter-">addProperty (ctx, name, getter)</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">ctx</span><span class="desc">object to which the property is added</span></li>
@@ -125,7 +125,7 @@ utils.type([]) <span class="comment">// `array`</span></code></pre>
 </div>
               </div>
               <div id="overwriteMethod-section" class="segment">
-                <div class="summary"><h3>overwriteMethod (ctx, name, fn)</h3>
+                <div class="summary"><h3 id="overwritemethod-ctx-name-fn-">overwriteMethod (ctx, name, fn)</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">ctx</span><span class="desc">object whose method is to be overwritten</span></li>
@@ -152,7 +152,7 @@ to be used for name.</p>
 </div>
               </div>
               <div id="addChainableMethod-section" class="segment">
-                <div class="summary"><h3>addChainableMethod (ctx, name, method, chainingBehavior)</h3>
+                <div class="summary"><h3 id="addchainablemethod-ctx-name-method-chainingbehavior-">addChainableMethod (ctx, name, method, chainingBehavior)</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">ctx</span><span class="desc">object to which the method is added</span></li>
@@ -174,7 +174,7 @@ expect(fooStr).to.be.foo.equal(<span class="string">'foo'</span>);</code></pre>
 </div>
               </div>
               <div id="flag-section" class="segment">
-                <div class="summary"><h3>flag(object ,key, [value])</h3>
+                <div class="summary"><h3 id="flag-object-key-value-">flag(object ,key, [value])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">object</span><span class="desc">(constructed Assertion</span></li>
@@ -190,7 +190,7 @@ utils.flag(<span class="keyword">this</span>, <span class="string">'foo'</span>)
 </div>
               </div>
               <div id="getAllFlags-section" class="segment">
-                <div class="summary"><h3>transferFlags(assertion, object, includeAll = true)</h3>
+                <div class="summary"><h3 id="transferflags-assertion-object-includeall-true-">transferFlags(assertion, object, includeAll = true)</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Assertion &#125;</span><span class="name">assertion</span><span class="desc">the assertion to transfer the flags from</span></li>
@@ -209,7 +209,7 @@ utils.transferFlags(assertion, anotherAssertion, <span class="literal">false</sp
 </div>
               </div>
               <div id="getPathValue-section" class="segment">
-                <div class="summary"><h3>.getPathValue(path, object)</h3>
+                <div class="summary"><h3 id="-getpathvalue-path-object-">.getPathValue(path, object)</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">path</span><span class="desc"></span></li>
@@ -234,7 +234,7 @@ getPathValue(<span class="string">'prop2.arr[0].nested'</span>, obj); <span clas
 </div>
               </div>
               <div id="overwriteProperty-section" class="segment">
-                <div class="summary"><h3>overwriteProperty (ctx, name, fn)</h3>
+                <div class="summary"><h3 id="overwriteproperty-ctx-name-fn-">overwriteProperty (ctx, name, fn)</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">ctx</span><span class="desc">object whose property is to be overwritten</span></li>

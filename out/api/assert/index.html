@@ -9,9 +9,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?1.8.1"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?1.8.1" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?1.8.1" type="text/css" media="all">
+    <script src="/public/js/main.js?1.9.0"></script>
+    <link rel="stylesheet" href="/public/css/antiscroll.css?1.9.0" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?1.9.0" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -64,14 +64,14 @@
         <div class="documentation">
           <div class="wrap">
             <div class="rendered">
-              <article><h1>Assert</h1>
+              <article><h1 id="assert">Assert</h1>
 <p>The <code>assert</code> style is very similar to node.js&#39; included assert module, which a bit of extra
 sugar. Of the three style options, <code>assert</code> is the only one that is not chainable. Check out 
 the <a href="/guide/comparison">Style Guide</a> for a comparison.</p>
-<h2>API Reference</h2>
+<h2 id="api-reference">API Reference</h2>
 </article>
               <div id="assert-section" class="segment">
-                <div class="summary"><h3>assert(expression, message)</h3>
+                <div class="summary"><h3 id="assert-expression-message-">assert(expression, message)</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">expression</span><span class="desc">to test for truthiness</span></li>
@@ -83,7 +83,7 @@ assert(Array.isArray([]), <span class="string">'empty arrays are arrays'</span>)
 </div>
               </div>
               <div id="fail-section" class="segment">
-                <div class="summary"><h3>.fail(actual, expected, [message], [operator])</h3>
+                <div class="summary"><h3 id="-fail-actual-expected-message-operator-">.fail(actual, expected, [message], [operator])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">actual</span><span class="desc"></span></li>
@@ -95,7 +95,7 @@ assert(Array.isArray([]), <span class="string">'empty arrays are arrays'</span>)
 </div>
               </div>
               <div id="ok-section" class="segment">
-                <div class="summary"><h3>.ok(object, [message])</h3>
+                <div class="summary"><h3 id="-ok-object-message-">.ok(object, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">object</span><span class="desc">to test</span></li>
@@ -107,7 +107,7 @@ assert.ok(<span class="literal">false</span>, <span class="string">'this will fa
 </div>
               </div>
               <div id="notOk-section" class="segment">
-                <div class="summary"><h3>.notOk(object, [message])</h3>
+                <div class="summary"><h3 id="-notok-object-message-">.notOk(object, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">object</span><span class="desc">to test</span></li>
@@ -119,7 +119,7 @@ assert.notOk(<span class="literal">false</span>, <span class="string">'this will
 </div>
               </div>
               <div id="equal-section" class="segment">
-                <div class="summary"><h3>.equal(actual, expected, [message])</h3>
+                <div class="summary"><h3 id="-equal-actual-expected-message-">.equal(actual, expected, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">actual</span><span class="desc"></span></li>
@@ -131,7 +131,7 @@ assert.notOk(<span class="literal">false</span>, <span class="string">'this will
 </div>
               </div>
               <div id="notEqual-section" class="segment">
-                <div class="summary"><h3>.notEqual(actual, expected, [message])</h3>
+                <div class="summary"><h3 id="-notequal-actual-expected-message-">.notEqual(actual, expected, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">actual</span><span class="desc"></span></li>
@@ -143,7 +143,7 @@ assert.notOk(<span class="literal">false</span>, <span class="string">'this will
 </div>
               </div>
               <div id="strictEqual-section" class="segment">
-                <div class="summary"><h3>.strictEqual(actual, expected, [message])</h3>
+                <div class="summary"><h3 id="-strictequal-actual-expected-message-">.strictEqual(actual, expected, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">actual</span><span class="desc"></span></li>
@@ -155,7 +155,7 @@ assert.notOk(<span class="literal">false</span>, <span class="string">'this will
 </div>
               </div>
               <div id="notStrictEqual-section" class="segment">
-                <div class="summary"><h3>.notStrictEqual(actual, expected, [message])</h3>
+                <div class="summary"><h3 id="-notstrictequal-actual-expected-message-">.notStrictEqual(actual, expected, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">actual</span><span class="desc"></span></li>
@@ -167,7 +167,7 @@ assert.notOk(<span class="literal">false</span>, <span class="string">'this will
 </div>
               </div>
               <div id="deepEqual-section" class="segment">
-                <div class="summary"><h3>.deepEqual(actual, expected, [message])</h3>
+                <div class="summary"><h3 id="-deepequal-actual-expected-message-">.deepEqual(actual, expected, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">actual</span><span class="desc"></span></li>
@@ -179,7 +179,7 @@ assert.notOk(<span class="literal">false</span>, <span class="string">'this will
 </div>
               </div>
               <div id="notDeepEqual-section" class="segment">
-                <div class="summary"><h3>.notDeepEqual(actual, expected, [message])</h3>
+                <div class="summary"><h3 id="-notdeepequal-actual-expected-message-">.notDeepEqual(actual, expected, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">actual</span><span class="desc"></span></li>
@@ -191,7 +191,7 @@ assert.notOk(<span class="literal">false</span>, <span class="string">'this will
 </div>
               </div>
               <div id="isTrue-section" class="segment">
-                <div class="summary"><h3>.isTrue(value, [message])</h3>
+                <div class="summary"><h3 id="-istrue-value-message-">.isTrue(value, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc"></span></li>
@@ -203,7 +203,7 @@ assert.isTrue(teaServed, <span class="string">'the tea has been served'</span>);
 </div>
               </div>
               <div id="isFalse-section" class="segment">
-                <div class="summary"><h3>.isFalse(value, [message])</h3>
+                <div class="summary"><h3 id="-isfalse-value-message-">.isFalse(value, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc"></span></li>
@@ -215,7 +215,7 @@ assert.isFalse(teaServed, <span class="string">'no tea yet? hmm...'</span>);</co
 </div>
               </div>
               <div id="isNull-section" class="segment">
-                <div class="summary"><h3>.isNull(value, [message])</h3>
+                <div class="summary"><h3 id="-isnull-value-message-">.isNull(value, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc"></span></li>
@@ -226,7 +226,7 @@ assert.isFalse(teaServed, <span class="string">'no tea yet? hmm...'</span>);</co
 </div>
               </div>
               <div id="isNotNull-section" class="segment">
-                <div class="summary"><h3>.isNotNull(value, [message])</h3>
+                <div class="summary"><h3 id="-isnotnull-value-message-">.isNotNull(value, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc"></span></li>
@@ -238,7 +238,7 @@ assert.isNotNull(tea, <span class="string">'great, time for tea!'</span>);</code
 </div>
               </div>
               <div id="isUndefined-section" class="segment">
-                <div class="summary"><h3>.isUndefined(value, [message])</h3>
+                <div class="summary"><h3 id="-isundefined-value-message-">.isUndefined(value, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc"></span></li>
@@ -250,7 +250,7 @@ assert.isUndefined(tea, <span class="string">'no tea defined'</span>);</code></p
 </div>
               </div>
               <div id="isDefined-section" class="segment">
-                <div class="summary"><h3>.isDefined(value, [message])</h3>
+                <div class="summary"><h3 id="-isdefined-value-message-">.isDefined(value, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc"></span></li>
@@ -262,7 +262,7 @@ assert.isDefined(tea, <span class="string">'tea has been defined'</span>);</code
 </div>
               </div>
               <div id="isFunction-section" class="segment">
-                <div class="summary"><h3>.isFunction(value, [message])</h3>
+                <div class="summary"><h3 id="-isfunction-value-message-">.isFunction(value, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc"></span></li>
@@ -274,7 +274,7 @@ assert.isFunction(serveTea, <span class="string">'great, we can have tea now'</s
 </div>
               </div>
               <div id="isNotFunction-section" class="segment">
-                <div class="summary"><h3>.isNotFunction(value, [message])</h3>
+                <div class="summary"><h3 id="-isnotfunction-value-message-">.isNotFunction(value, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc"></span></li>
@@ -286,7 +286,7 @@ assert.isNotFunction(serveTea, <span class="string">'great, we have listed the s
 </div>
               </div>
               <div id="isObject-section" class="segment">
-                <div class="summary"><h3>.isObject(value, [message])</h3>
+                <div class="summary"><h3 id="-isobject-value-message-">.isObject(value, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc"></span></li>
@@ -299,7 +299,7 @@ assert.isObject(selection, <span class="string">'tea selection is an object'</sp
 </div>
               </div>
               <div id="isNotObject-section" class="segment">
-                <div class="summary"><h3>.isNotObject(value, [message])</h3>
+                <div class="summary"><h3 id="-isnotobject-value-message-">.isNotObject(value, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc"></span></li>
@@ -312,7 +312,7 @@ assert.isObject(<span class="literal">null</span>, <span class="string">'null is
 </div>
               </div>
               <div id="isArray-section" class="segment">
-                <div class="summary"><h3>.isArray(value, [message])</h3>
+                <div class="summary"><h3 id="-isarray-value-message-">.isArray(value, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc"></span></li>
@@ -324,7 +324,7 @@ assert.isArray(menu, <span class="string">'what kind of tea do we want?'</span>)
 </div>
               </div>
               <div id="isNotArray-section" class="segment">
-                <div class="summary"><h3>.isNotArray(value, [message])</h3>
+                <div class="summary"><h3 id="-isnotarray-value-message-">.isNotArray(value, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc"></span></li>
@@ -336,7 +336,7 @@ assert.isNotArray(menu, <span class="string">'what kind of tea do we want?'</spa
 </div>
               </div>
               <div id="isString-section" class="segment">
-                <div class="summary"><h3>.isString(value, [message])</h3>
+                <div class="summary"><h3 id="-isstring-value-message-">.isString(value, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc"></span></li>
@@ -348,7 +348,7 @@ assert.isString(teaOrder, <span class="string">'order placed'</span>);</code></p
 </div>
               </div>
               <div id="isNotString-section" class="segment">
-                <div class="summary"><h3>.isNotString(value, [message])</h3>
+                <div class="summary"><h3 id="-isnotstring-value-message-">.isNotString(value, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc"></span></li>
@@ -360,7 +360,7 @@ assert.isNotString(teaOrder, <span class="string">'order placed'</span>);</code>
 </div>
               </div>
               <div id="isNumber-section" class="segment">
-                <div class="summary"><h3>.isNumber(value, [message])</h3>
+                <div class="summary"><h3 id="-isnumber-value-message-">.isNumber(value, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Number &#125;</span><span class="name">value</span><span class="desc"></span></li>
@@ -372,7 +372,7 @@ assert.isNumber(cups, <span class="string">'how many cups'</span>);</code></pre>
 </div>
               </div>
               <div id="isNotNumber-section" class="segment">
-                <div class="summary"><h3>.isNotNumber(value, [message])</h3>
+                <div class="summary"><h3 id="-isnotnumber-value-message-">.isNotNumber(value, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc"></span></li>
@@ -384,7 +384,7 @@ assert.isNotNumber(cups, <span class="string">'how many cups'</span>);</code></p
 </div>
               </div>
               <div id="isBoolean-section" class="segment">
-                <div class="summary"><h3>.isBoolean(value, [message])</h3>
+                <div class="summary"><h3 id="-isboolean-value-message-">.isBoolean(value, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc"></span></li>
@@ -399,7 +399,7 @@ assert.isBoolean(teaServed, <span class="string">'has tea been served'</span>);<
 </div>
               </div>
               <div id="isNotBoolean-section" class="segment">
-                <div class="summary"><h3>.isNotBoolean(value, [message])</h3>
+                <div class="summary"><h3 id="-isnotboolean-value-message-">.isNotBoolean(value, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc"></span></li>
@@ -414,7 +414,7 @@ assert.isNotBoolean(teaServed, <span class="string">'has tea been served'</span>
 </div>
               </div>
               <div id="typeOf-section" class="segment">
-                <div class="summary"><h3>.typeOf(value, name, [message])</h3>
+                <div class="summary"><h3 id="-typeof-value-name-message-">.typeOf(value, name, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc"></span></li>
@@ -432,7 +432,7 @@ assert.typeOf(undefined, <span class="string">'undefined'</span>, <span class="s
 </div>
               </div>
               <div id="notTypeOf-section" class="segment">
-                <div class="summary"><h3>.notTypeOf(value, name, [message])</h3>
+                <div class="summary"><h3 id="-nottypeof-value-name-message-">.notTypeOf(value, name, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc"></span></li>
@@ -445,7 +445,7 @@ assert.typeOf(undefined, <span class="string">'undefined'</span>, <span class="s
 </div>
               </div>
               <div id="instanceOf-section" class="segment">
-                <div class="summary"><h3>.instanceOf(object, constructor, [message])</h3>
+                <div class="summary"><h3 id="-instanceof-object-constructor-message-">.instanceOf(object, constructor, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">object</span><span class="desc"></span></li>
@@ -460,7 +460,7 @@ assert.instanceOf(chai, Tea, <span class="string">'chai is an instance of tea'</
 </div>
               </div>
               <div id="notInstanceOf-section" class="segment">
-                <div class="summary"><h3>.notInstanceOf(object, constructor, [message])</h3>
+                <div class="summary"><h3 id="-notinstanceof-object-constructor-message-">.notInstanceOf(object, constructor, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">object</span><span class="desc"></span></li>
@@ -475,7 +475,7 @@ assert.notInstanceOf(chai, Tea, <span class="string">'chai is not an instance of
 </div>
               </div>
               <div id="include-section" class="segment">
-                <div class="summary"><h3>.include(haystack, needle, [message])</h3>
+                <div class="summary"><h3 id="-include-haystack-needle-message-">.include(haystack, needle, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Array | String &#125;</span><span class="name">haystack</span><span class="desc"></span></li>
@@ -489,7 +489,7 @@ assert.include([ <span class="number">1</span>, <span class="number">2</span>, <
 </div>
               </div>
               <div id="notInclude-section" class="segment">
-                <div class="summary"><h3>.notInclude(haystack, needle, [message])</h3>
+                <div class="summary"><h3 id="-notinclude-haystack-needle-message-">.notInclude(haystack, needle, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Array | String &#125;</span><span class="name">haystack</span><span class="desc"></span></li>
@@ -504,7 +504,7 @@ i
 </div>
               </div>
               <div id="match-section" class="segment">
-                <div class="summary"><h3>.match(value, regexp, [message])</h3>
+                <div class="summary"><h3 id="-match-value-regexp-message-">.match(value, regexp, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc"></span></li>
@@ -516,7 +516,7 @@ i
 </div>
               </div>
               <div id="notMatch-section" class="segment">
-                <div class="summary"><h3>.notMatch(value, regexp, [message])</h3>
+                <div class="summary"><h3 id="-notmatch-value-regexp-message-">.notMatch(value, regexp, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc"></span></li>
@@ -528,7 +528,7 @@ i
 </div>
               </div>
               <div id="property-section" class="segment">
-                <div class="summary"><h3>.property(object, property, [message])</h3>
+                <div class="summary"><h3 id="-property-object-property-message-">.property(object, property, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">object</span><span class="desc"></span></li>
@@ -540,7 +540,7 @@ i
 </div>
               </div>
               <div id="notProperty-section" class="segment">
-                <div class="summary"><h3>.notProperty(object, property, [message])</h3>
+                <div class="summary"><h3 id="-notproperty-object-property-message-">.notProperty(object, property, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">object</span><span class="desc"></span></li>
@@ -552,7 +552,7 @@ i
 </div>
               </div>
               <div id="deepProperty-section" class="segment">
-                <div class="summary"><h3>.deepProperty(object, property, [message])</h3>
+                <div class="summary"><h3 id="-deepproperty-object-property-message-">.deepProperty(object, property, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">object</span><span class="desc"></span></li>
@@ -565,7 +565,7 @@ string using dot- and bracket-notation for deep reference.</p>
 </div>
               </div>
               <div id="notDeepProperty-section" class="segment">
-                <div class="summary"><h3>.notDeepProperty(object, property, [message])</h3>
+                <div class="summary"><h3 id="-notdeepproperty-object-property-message-">.notDeepProperty(object, property, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">object</span><span class="desc"></span></li>
@@ -578,7 +578,7 @@ can be a string using dot- and bracket-notation for deep reference.</p>
 </div>
               </div>
               <div id="propertyVal-section" class="segment">
-                <div class="summary"><h3>.propertyVal(object, property, value, [message])</h3>
+                <div class="summary"><h3 id="-propertyval-object-property-value-message-">.propertyVal(object, property, value, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">object</span><span class="desc"></span></li>
@@ -592,7 +592,7 @@ by <code>value</code>.</p>
 </div>
               </div>
               <div id="propertyNotVal-section" class="segment">
-                <div class="summary"><h3>.propertyNotVal(object, property, value, [message])</h3>
+                <div class="summary"><h3 id="-propertynotval-object-property-value-message-">.propertyNotVal(object, property, value, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">object</span><span class="desc"></span></li>
@@ -606,7 +606,7 @@ different from that given by <code>value</code>.</p>
 </div>
               </div>
               <div id="deepPropertyVal-section" class="segment">
-                <div class="summary"><h3>.deepPropertyVal(object, property, value, [message])</h3>
+                <div class="summary"><h3 id="-deeppropertyval-object-property-value-message-">.deepPropertyVal(object, property, value, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">object</span><span class="desc"></span></li>
@@ -621,7 +621,7 @@ reference.</p>
 </div>
               </div>
               <div id="deepPropertyNotVal-section" class="segment">
-                <div class="summary"><h3>.deepPropertyNotVal(object, property, value, [message])</h3>
+                <div class="summary"><h3 id="-deeppropertynotval-object-property-value-message-">.deepPropertyNotVal(object, property, value, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">object</span><span class="desc"></span></li>
@@ -636,7 +636,7 @@ bracket-notation for deep reference.</p>
 </div>
               </div>
               <div id="lengthOf-section" class="segment">
-                <div class="summary"><h3>.lengthOf(object, length, [message])</h3>
+                <div class="summary"><h3 id="-lengthof-object-length-message-">.lengthOf(object, length, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">object</span><span class="desc"></span></li>
@@ -649,14 +649,14 @@ assert.lengthOf(<span class="string">'foobar'</span>, <span class="number">5</sp
 </div>
               </div>
               <div id="throws-section" class="segment">
-                <div class="summary"><h3>.throws(function, [constructor/string/regexp], [string/regexp], [message])</h3>
+                <div class="summary"><h3 id="-throws-function-constructor-string-regexp-string-regexp-message-">.throws(function, [constructor/string/regexp], [string/regexp], [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">function</span><span class="desc"></span></li>
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; ErrorConstructor &#125;</span><span class="name">constructor</span><span class="desc"></span></li>
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; RegExp &#125;</span><span class="name">regexp</span><span class="desc"></span></li>
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">message</span><span class="desc"></span></li>
-                  <li class="tag"><span class="type">&#64;see</span><span class="type"><a href="" target="_blank">https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error#Error_types</a></span>
+                  <li class="tag"><span class="type">&#64;see</span><span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error#Error_types" target="_blank">https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error#Error_types</a></span>
                   </li>
                 </ul>
                 <div class="description"><p>Asserts that <code>function</code> will throw an error that is an instance of
@@ -670,14 +670,14 @@ assert.<span class="keyword">throw</span>(fn, ReferenceError, <span class="regex
 </div>
               </div>
               <div id="doesNotThrow-section" class="segment">
-                <div class="summary"><h3>.doesNotThrow(function, [constructor/regexp], [message])</h3>
+                <div class="summary"><h3 id="-doesnotthrow-function-constructor-regexp-message-">.doesNotThrow(function, [constructor/regexp], [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">function</span><span class="desc"></span></li>
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; ErrorConstructor &#125;</span><span class="name">constructor</span><span class="desc"></span></li>
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; RegExp &#125;</span><span class="name">regexp</span><span class="desc"></span></li>
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">message</span><span class="desc"></span></li>
-                  <li class="tag"><span class="type">&#64;see</span><span class="type"><a href="" target="_blank">https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error#Error_types</a></span>
+                  <li class="tag"><span class="type">&#64;see</span><span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error#Error_types" target="_blank">https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error#Error_types</a></span>
                   </li>
                 </ul>
                 <div class="description"><p>Asserts that <code>function</code> will <em>not</em> throw an error that is an instance of
@@ -687,7 +687,7 @@ matching <code>regexp</code>.</p>
 </div>
               </div>
               <div id="operator-section" class="segment">
-                <div class="summary"><h3>.operator(val1, operator, val2, [message])</h3>
+                <div class="summary"><h3 id="-operator-val1-operator-val2-message-">.operator(val1, operator, val2, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">val1</span><span class="desc"></span></li>
@@ -701,7 +701,7 @@ assert.operator(<span class="number">1</span>, <span class="string">'>'</span>, 
 </div>
               </div>
               <div id="closeTo-section" class="segment">
-                <div class="summary"><h3>.closeTo(actual, expected, delta, [message])</h3>
+                <div class="summary"><h3 id="-closeto-actual-expected-delta-message-">.closeTo(actual, expected, delta, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Number &#125;</span><span class="name">actual</span><span class="desc"></span></li>
@@ -714,7 +714,7 @@ assert.operator(<span class="number">1</span>, <span class="string">'>'</span>, 
 </div>
               </div>
               <div id="sameMembers-section" class="segment">
-                <div class="summary"><h3>.sameMembers(set1, set2, [message])</h3>
+                <div class="summary"><h3 id="-samemembers-set1-set2-message-">.sameMembers(set1, set2, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Array &#125;</span><span class="name">superset</span><span class="desc"></span></li>
@@ -727,7 +727,7 @@ Order is not taken into account.</p>
 </div>
               </div>
               <div id="includeMembers-section" class="segment">
-                <div class="summary"><h3>.includeMembers(superset, subset, [message])</h3>
+                <div class="summary"><h3 id="-includemembers-superset-subset-message-">.includeMembers(superset, subset, [message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Array &#125;</span><span class="name">superset</span><span class="desc"></span></li>

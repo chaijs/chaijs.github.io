@@ -9,10 +9,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?1.8.1"></script>
+    <script src="/public/js/main.js?1.9.0"></script>
     <script src="/public/js/guide.js"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?1.8.1" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?1.8.1" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/antiscroll.css?1.9.0" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?1.9.0" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -74,32 +74,32 @@
         <div class="documentation">
           <div class="wrap">
             <div class="rendered">
-              <div class="header"><h1>Resources</h1>
+              <div class="header"><h1 id="resources">Resources</h1>
 </div>
               <article id="help-section"><p>If you have questions or issues, please use this projects
 <a href="https://github.com/chaijs/chai/issues">GitHub Issues</a>. You can also keep up to date
 on the <a href="http://groups.google.com/group/chaijs">Google Group</a> or ping <a href="http://twitter.com/jakeluer">@jakeluer</a>
 directly on Twitter. Chai developers can also be found on Freenode IRC in #letstest.js. </p>
 </article>
-              <article id="contributor-section"><h3>Developing</h3>
+              <article id="contributor-section"><h3 id="developing">Developing</h3>
 <p>Please avoid making changes to the browser versions of chai if you are developing in the browser. All
 changes to the library are to be made to <code>lib/*</code> and then packaged for the browser using the <code>make</code>
 command.</p>
-<h3>Testing</h3>
+<h3 id="testing">Testing</h3>
 <p>Tests are written in <code>exports</code> style on <a href="http://visionmedia.github.com/mocha/">mocha test framework</a>.
 There is a test file for each of the interfaces. The tests for <code>expect</code> and <code>assert</code> must pass in node.js
 and in the browser, whereas the should tests only need to pass on node.js.</p>
 <p>Browsers tests are currently known to pass in Chrome 16 and Firefox 8. Please let me know if you can test
 in other browsers or other version.</p>
-<h4>Server Side Testing</h4>
+<h4 id="server-side-testing">Server Side Testing</h4>
 <p>It&#39;s quite simple...</p>
 <pre><code>  make test</code></pre>
-<h4>Browser Side Testing</h4>
+<h4 id="browser-side-testing">Browser Side Testing</h4>
 <p>It&#39;s also quite simple. Open up <code>test/browser/index.html</code> in your nearest browser.</p>
-<h3>Building</h3>
+<h3 id="building">Building</h3>
 <p>If you have made changes to any of the components, you must rebuild the browser package.</p>
 <pre><code>  $ make</code></pre>
-<h3>Contributors</h3>
+<h3 id="contributors">Contributors</h3>
 <pre><code> repo age : <span class="number">1</span> year, <span class="number">5</span> months
  active   : <span class="number">123</span> days
  commits  : <span class="number">638</span>

@@ -203,7 +203,7 @@ module.exports = [
   , { name: 'chai-webdriver'
     , desc: 'Selenium-webdriver assertions for expressive integration tests.'
     , url: 'chai-webdriver'
-    , link: 'https://github.com/goodeggs-chai-webdriver'
+    , link: 'https://github.com/goodeggs/chai-webdriver'
     , tags: [ 'webdriver', 'integration', 'dom' ]
     , pkg: 'https://raw.github.com/goodeggs/chai-webdriver/master/package.json'
     , markdown: 'https://raw.github.com/goodeggs/chai-webdriver/master/README.md'

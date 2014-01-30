@@ -164,17 +164,16 @@ assert.lengthOf(tea.flavors, <span class="number">3</span>);</code></pre>
             </article>
             <article id="plugin-featured" class="grid_6 plugin-box contrast">
               <div class="plugin-title">
-                <h2 class="plain accent-wrap"><span class="accented">Sinon—Chai<span class="faccentl"></span><span class="faccentr"></span></span></h2>
-                <div class="action-button"><a href="/plugins/sinon-chai">Learn More &amp; Install<span class="arrow">&rarr;</span></a></div>
+                <h2 class="plain accent-wrap"><span class="accented">chai-webdriver<span class="faccentl"></span><span class="faccentr"></span></span></h2>
+                <div class="action-button"><a href="/plugins/chai-webdriver">Learn More &amp; Install<span class="arrow">&rarr;</span></a></div>
               </div>
               <div class="wrap">
                 <h3 class="fancy">Featured Plugin</h3>
-                <div class="plugin-desc"><p>Extend Chai with assertions for the Sinon.JS mocking framework.</p>
-<pre><code><span class="keyword">var</span> listener = sinon.spy();
-eventEmitter.on(<span class="string">'event'</span>, listener);
-eventEmitter.emit(<span class="string">'event'</span>, <span class="string">'chai'</span>, <span class="string">'tea'</span>);
-listener.should.have.been.calledWith(<span class="string">'chai'</span>, <span class="string">'tea'</span>);
-listener.should.have.been.calledOnce;</code></pre>
+                <div class="plugin-desc"><p>Create expressive integration tests with chai and <a href="https://npmjs.org/package/selenium-webdriver">selenium-webdriver</a>.</p>
+<pre><code>chai.use(chaiWebdriver(driver));
+driver.get(<span class="string">'http://chaijs.com/'</span>);
+expect(<span class="string">'nav h1'</span>).dom.to.contain.text(<span class="string">'Chai'</span>);
+expect(<span class="string">'#node .button'</span>).dom.to.have.style(<span class="string">'float'</span>, <span class="string">'left'</span>);</code></pre>
 </div>
               </div>
             </article>

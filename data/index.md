@@ -3,10 +3,9 @@
   weight: 0
 ---
 
-Extend Chai with assertions for the Sinon.JS mocking framework.
+Create expressive integration tests with chai and [selenium-webdriver](https://npmjs.org/package/selenium-webdriver).
 
-    var listener = sinon.spy();
-    eventEmitter.on('event', listener);
-    eventEmitter.emit('event', 'chai', 'tea');
-    listener.should.have.been.calledWith('chai', 'tea');
-    listener.should.have.been.calledOnce;
+    chai.use(chaiWebdriver(driver));
+    driver.get('http://chaijs.com/');
+    expect('nav h1').dom.to.contain.text('Chai');
+    expect('#node .button').dom.to.have.style('float', 'left');

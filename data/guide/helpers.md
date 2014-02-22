@@ -55,7 +55,7 @@ Model.prototype.get = function (key) {
 };
 ```
 
-Practically speaking, this could be any data model object returned from a 
+Practically speaking, this could be any data model object returned from an
 ORM database in node or constructed from your MVC framework of choice in 
 the browser. 
 

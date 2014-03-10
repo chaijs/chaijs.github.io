@@ -114,6 +114,17 @@ module.exports = [
       { 'chai-factories.js': 'https://raw.github.com/chaijs/chai-null/master/chai-factories.js' }
     }
 
+  , { name: 'Chai Js Factories'
+    , desc: 'A more advanced factories plugin for Chai, based on js-factories.'
+    , url: 'chai-js-factories'
+    , link: 'https://github.com/solatis/chai-js-factories'
+    , tags: [ 'object-constructors' ]
+    , pkg: 'https://raw.github.com/solatis/chai-js-factories/master/package.json'
+    , markdown: 'https://raw.github.com/solatis/chai-js-factories/master/README.md'
+    , browser:
+      { 'chai-js-factories.js': 'https://raw.github.com/solatis/chai-js-factories/master/chai-factories.js' }
+    }
+
   , { name: 'Chai Changes'
     , desc: 'Change assertions'
     , url: 'chai-changes'

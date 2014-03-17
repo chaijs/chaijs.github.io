@@ -220,4 +220,13 @@ module.exports = [
     , markdown: 'https://raw.github.com/goodeggs/chai-webdriver/master/README.md'
     , browser: false
     }
+
+  , { name: 'Chai Bookshelf'
+    , desc: 'Make assertions on your Bookshelf.js models'
+    , url: 'chai-bookshelf'
+    , link: 'https://github.com/elliotf/chai-bookshelf'
+    , tags: [ 'array' ]
+    , pkg: 'https://raw.github.com/elliotf/chai-bookshelf/master/package.json'
+    , markdown: 'https://raw.github.com/elliotf/chai-bookshelf/master/README.md'
+    , browser: false
 ];

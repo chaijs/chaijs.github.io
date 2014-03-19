@@ -8,7 +8,7 @@
 
 Though a property is an elegant solution, it is likely not specific enough for 
 the helper we are constructing. As our models have types, it would be beneficial
-to assert our model is of specific type. For this, we need a method.
+to assert that our model is of a specific type. For this, we need a method.
 
 ```javascript
 // goal

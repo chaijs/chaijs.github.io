@@ -28,7 +28,7 @@ arthur.assert(
 ```
 
 Chai will check the first argument; if it is `true` then the assertion passed, but if it is `false`
-the assertion failed and the first error message will be thrown as part of an `chai.AssertionError`.
+the assertion failed and the first error message will be thrown as part of a `chai.AssertionError`.
 Conversely, if the language chain was negated, it will consider `false` a pass and `true` a failure. 
 The second error message will be included in the thrown error instead.
 

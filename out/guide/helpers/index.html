@@ -122,7 +122,7 @@ Model.prototype.set = <span class="function"><span class="keyword">function</spa
 Model.prototype.get = <span class="function"><span class="keyword">function</span> <span class="params">(key)</span> {</span>
   <span class="keyword">return</span> <span class="keyword">this</span>._attrs[key];
 };</code></pre>
-<p>Practically speaking, this could be any data model object returned from a 
+<p>Practically speaking, this could be any data model object returned from an
 ORM database in node or constructed from your MVC framework of choice in 
 the browser. </p>
 <p>Hopefully our <code>Model</code> class is self explanatory, but as an example,
@@ -164,7 +164,7 @@ we will be calling the methods directly from <code>Assertion</code>.</p>
               <article id="add_method-section"><h3 id="adding-methods">Adding Methods</h3>
 <p>Though a property is an elegant solution, it is likely not specific enough for 
 the helper we are constructing. As our models have types, it would be beneficial
-to assert our model is of specific type. For this, we need a method.</p>
+to assert our model is of a specific type. For this, we need a method.</p>
 <pre><code class="lang-javascript"><span class="comment">// goal</span>
 expect(arthur).to.be.a.model(<span class="string">'person'</span>);
 
@@ -268,7 +268,7 @@ finish up here first...</p>
 <p>Now that we can successfully add assertions to the language chain,
 we should work on being able to safely overwrite existing assertions,
 such as those from Chai&#39;s core or other plugins. </p>
-<p>Chai provides a number of utilties that allow you to overwrite
+<p>Chai provides a number of utilities that allow you to overwrite
 existing behavior of an already existing assertion, but revert to
 the already defined assertion behavior if the subject of the assertion
 does not meet your criteria.</p>
@@ -344,8 +344,8 @@ test suite, so we will provide it with a bit more information.</p>
 expected &#39;dont panic&#39; to [not] be a number</code>. Much more informative! </p>
 </article>
               <article id="overwrite_method-section"><h3 id="overwriting-methods">Overwriting Methods</h3>
-<p>Overwriting methods follow the name structure of overwriting properties.
-For this example we will be returning to our example of asserting Arthurs
+<p>Overwriting methods follow the same structure of overwriting properties.
+For this example we will be returning to our example of asserting Arthur&#39;s
 age to be above a minimum threshold.</p>
 <pre><code class="lang-javascript"><span class="keyword">var</span> arthur = <span class="keyword">new</span> Model(<span class="string">'person'</span>);
 arthur.set(<span class="string">'age'</span>, <span class="number">27</span>);
@@ -378,7 +378,7 @@ so all we have to do is check if that exists.</p>
   };
 });</code></pre>
 <p><a href="/api/plugins/#overwriteMethod-section" class="clean-button">View overwriteMethod API</a></p>
-<p>This covers both positive an negative scenarios. No need to transfer flags in this
+<p>This covers both positive and negative scenarios. No need to transfer flags in this
 case as <code>this.assert</code> handles that automatically. The same pattern can also be used
 for <code>below</code> and <code>within</code>. </p>
 </article>

@@ -6,8 +6,8 @@
 
 ### Overwriting Methods
 
-Overwriting methods follow the name structure of overwriting properties.
-For this example we will be returning to our example of asserting Arthurs
+Overwriting methods follow the same structure of overwriting properties.
+For this example we will be returning to our example of asserting Arthur's
 age to be above a minimum threshold.
 
 ```javascript
@@ -49,6 +49,6 @@ Assertion.overwriteMethod('above', function (_super) {
 
 <a href="/api/plugins/#overwriteMethod-section" class="clean-button">View overwriteMethod API</a>
 
-This covers both positive an negative scenarios. No need to transfer flags in this
+This covers both positive and negative scenarios. No need to transfer flags in this
 case as `this.assert` handles that automatically. The same pattern can also be used
 for `below` and `within`. 

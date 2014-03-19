@@ -9,10 +9,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?1.9.0"></script>
+    <script src="/public/js/main.js?1.9.1"></script>
     <script src="/public/js/guide.js"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?1.9.0" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?1.9.0" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/antiscroll.css?1.9.1" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?1.9.1" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -183,10 +183,33 @@ quick helpers to keep you out of trouble when using <code>should</code>.</p>
 </ul>
 </article>
               <article id="configure-section"><h2 id="configuration">Configuration</h2>
-<p>By default, Chai does not show stack traces upon an AssertionError. This can
-be changed by modifying the <code>includeStack</code> parameter for chai.Assertion. For example:</p>
-<pre><code><span class="keyword">var</span> chai = require(<span class="string">'chai'</span>);
-chai.Assertion.includeStack = <span class="literal">true</span>; <span class="comment">// defaults to false</span></code></pre>
+<h3 id="config-includestack">config.includeStack</h3>
+<ul>
+<li><strong>@param</strong> <em>{Boolean}</em></li>
+<li><strong>@default</strong> <code>false</code></li>
+</ul>
+<p>User configurable property, influences whether stack trace is included in 
+Assertion error message. Default of <code>false</code> suppresses stack trace in the error 
+message.</p>
+<pre><code class="lang-javascript">chai.config.includeStack = <span class="literal">true</span>; <span class="comment">// turn on stack trace</span></code></pre>
+<h3 id="config-showdiff">config.showDiff</h3>
+<ul>
+<li><strong>@param</strong> <em>{Boolean}</em></li>
+<li><strong>@default</strong> <code>true</code></li>
+</ul>
+<p>User configurable property, influences whether or not the <code>showDiff</code> flag 
+should be included in the thrown AssertionErrors. <code>false</code> will always be <code>false</code>; 
+<code>true</code> will be true when the assertion has requested a diff be shown.</p>
+<pre><code class="lang-javascript">chai.config.showDiff = <span class="literal">false</span>; <span class="comment">// turn off reporter diff display</span></code></pre>
+<h3 id="config-truncatethreshold">config.truncateThreshold</h3>
+<ul>
+<li><strong>@param</strong> <em>{Number}</em></li>
+<li><strong>@default</strong> <code>40</code></li>
+</ul>
+<p>User configurable property, sets length threshold for actual and expected values 
+in assertion errors. If this threshold is exceeded, the value is truncated.</p>
+<p>Set it to zero if you want to disable truncating altogether.</p>
+<pre><code class="lang-javascript">chai.config.truncateThreshold = <span class="number">0</span>; <span class="comment">// disable truncating</span></code></pre>
 </article>
             </div>
           </div>

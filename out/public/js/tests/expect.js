@@ -52,6 +52,7 @@ describe('expect', function () {
     err(function(){
       expect('').to.be.null;
     }, "expected '' to be null")
+
   });
 
   it('undefined', function(){
@@ -81,6 +82,10 @@ describe('expect', function () {
   it('.equal()', function(){
     var foo;
     expect(undefined).to.equal(foo);
+
+    err(function(){
+      expect(undefined).to.equal(null);
+    }, "expected undefined to equal null")
   });
 
   it('typeof', function(){
@@ -492,6 +497,10 @@ describe('expect', function () {
     expect({a:1,b:2}).to.include({a:1,b:2});
     expect({a:1,b:2}).to.not.include({a:1,c:2});
 
+    expect([{a:1},{b:2}]).to.include({a:1});
+    expect([{a:1}]).to.include({a:1});
+    expect([{a:1}]).to.not.include({b:1});
+
     err(function(){
       expect(['foo']).to.include('bar', 'blah');
     }, "blah: expected [ 'foo' ] to include 'bar'");
@@ -507,6 +516,10 @@ describe('expect', function () {
     err(function(){
       expect({a:1,b:2}).to.not.include({b:2});
     }, "expected { a: 1, b: 2 } to not include { b: 2 }");
+
+    err(function(){
+      expect([{a:1},{b:2}]).to.not.include({b:2});
+    }, "expected [ { a: 1 }, { b: 2 } ] to not include { b: 2 }");
   });
 
   it('keys(array)', function(){
@@ -787,6 +800,15 @@ describe('expect', function () {
     expect([5, 4]).not.members([]);
     expect([5, 4]).not.members([6, 3]);
     expect([5, 4]).not.members([5, 4, 2]);
-  })
+    expect([{ id: 1 }]).not.members([{ id: 1 }]);
+  });
+
+  it('deep.members', function() {
+    expect([{ id: 1 }]).deep.members([{ id: 1 }]);
+    expect([{ id: 2 }]).not.deep.members([{ id: 1 }]);
+    err(function(){
+      expect([{ id: 1 }]).deep.members([{ id: 2 }])
+    }, "expected [ { id: 1 } ] to have the same members as [ { id: 2 } ]");
+  });
 
 });

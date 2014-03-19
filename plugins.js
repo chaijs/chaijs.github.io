@@ -229,4 +229,5 @@ module.exports = [
     , pkg: 'https://raw.github.com/elliotf/chai-bookshelf/master/package.json'
     , markdown: 'https://raw.github.com/elliotf/chai-bookshelf/master/README.md'
     , browser: false
+    }
 ];

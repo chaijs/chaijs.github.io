@@ -230,4 +230,12 @@ module.exports = [
     , markdown: 'https://raw.github.com/elliotf/chai-bookshelf/master/README.md'
     , browser: false
     }
+    
+  , { name: 'Chai Change'
+    , desc: 'Assert that an action caused the expected change.'
+    , url: 'chai-change'
+    , link: 'https://github.com/timruffles/chai-change'
+    , tags: [ 'assertion', 'change' ]
+    , pkg: 'https://raw.githubusercontent.com/timruffles/chai-change/master/package.json'
+    , markdown: 'https://raw.githubusercontent.com/timruffles/chai-change/master/README.md' }
 ];

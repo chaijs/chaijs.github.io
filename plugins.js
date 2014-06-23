@@ -238,4 +238,12 @@ module.exports = [
     , tags: [ 'assertion', 'change' ]
     , pkg: 'https://raw.githubusercontent.com/timruffles/chai-change/master/package.json'
     , markdown: 'https://raw.githubusercontent.com/timruffles/chai-change/master/README.md' }
+    
+  , { name: 'Chai Shallow Deep Equal'
+    , desc: 'Assert that an object, or objects graph, is contained within another one.'
+    , url: 'chai-shallow-deep-equal'
+    , link: 'https://github.com/michelsalib/chai-shallow-deep-equal'
+    , tags: [ 'assertion', 'objects' ]
+    , pkg: 'https://github.com/michelsalib/chai-shallow-deep-equal/blob/master/package.json'
+    , markdown: 'https://github.com/michelsalib/chai-shallow-deep-equal/blob/master/README.md' }
 ];

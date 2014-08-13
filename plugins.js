@@ -244,6 +244,14 @@ module.exports = [
     , url: 'chai-shallow-deep-equal'
     , link: 'https://github.com/michelsalib/chai-shallow-deep-equal'
     , tags: [ 'assertion', 'objects' ]
-    , pkg: 'https://github.com/michelsalib/chai-shallow-deep-equal/blob/master/package.json'
-    , markdown: 'https://github.com/michelsalib/chai-shallow-deep-equal/blob/master/README.md' }
+    , pkg: 'https://raw.githubusercontent.com/michelsalib/chai-shallow-deep-equal/master/package.json'
+    , markdown: 'https://raw.githubusercontent.com/michelsalib/chai-shallow-deep-equal/master/README.md' }
+    
+  , { name: 'Chai Param'
+    , desc: 'Allows you to use chai for parameter checking.'
+    , url: 'chai-param'
+    , link: 'https://github.com/theblacksmith/chai-param'
+    , tags: [ 'assertion', 'guard', 'parameter' ]
+    , pkg: 'https://raw.githubusercontent.com/theblacksmith/chai-param/master/package.json'
+    , markdown: 'https://raw.githubusercontent.com/theblacksmith/chai-param/master/README.md' }
 ];

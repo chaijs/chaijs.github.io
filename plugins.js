@@ -246,4 +246,12 @@ module.exports = [
     , tags: [ 'assertion', 'objects' ]
     , pkg: 'https://github.com/michelsalib/chai-shallow-deep-equal/blob/master/package.json'
     , markdown: 'https://github.com/michelsalib/chai-shallow-deep-equal/blob/master/README.md' }
+  
+  , { name: 'Chai Subset'
+    , desc: 'Assert that an object is subset of other object'
+    , url: 'chai-subset'
+    , link: 'https://github.com/e-conomic/chai-subset'
+    , tags: [ 'assertion', 'objects' ]
+    , pkg: 'https://github.com/e-conomic/chai-subset/blob/master/package.json'
+    , markdown: 'https://github.com/e-conomic/chai-subset/blob/master/README.md' }
 ];

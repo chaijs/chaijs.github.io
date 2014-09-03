@@ -254,4 +254,13 @@ module.exports = [
     , tags: [ 'assertion', 'objects' ]
     , pkg: 'https://github.com/e-conomic/chai-subset/blob/master/package.json'
     , markdown: 'https://github.com/e-conomic/chai-subset/blob/master/README.md' }
+    
+  , { name: 'Chai String'
+    , desc: 'Strings comparison matchers for chai'
+    , url: 'chai-string'
+    , link: 'https://github.com/onechiporenko/chai-string'
+    , tags: [ 'assertion', 'string' ]
+    , pkg: 'https://github.com/onechiporenko/chai-string/blob/master/package.json'
+    , markdown: 'https://github.com/onechiporenko/chai-string/blob/master/README.md' }
+    
 ];

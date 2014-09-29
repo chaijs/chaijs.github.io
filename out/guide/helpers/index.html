@@ -65,7 +65,7 @@
           <div id="plugins" class="subitems"><a href="/guide/plugins/#use" id="use" class="item secondary group-plugins">Accessing Utilities</a><a href="/guide/plugins/#flags" id="flags" class="item secondary group-plugins">Using Flags</a><a href="/guide/plugins/#assert" id="assert" class="item secondary group-plugins">Composing an Assertion</a>
           </div>
           <div id="helpers" class="item primary active expanded"><span class="expand">+</span><span class="collapse">-</span><a href="/guide/helpers/" class="title">Building a Helper</a></div>
-          <div id="helpers" class="subitems"><a href="#add_language_chain" id="add_language_chain" class="item secondary expanded scroll group-helpers">Adding Language Chains</a><a href="#add_property" id="add_property" class="item secondary expanded scroll group-helpers">Adding Properties</a><a href="#add_method" id="add_method" class="item secondary expanded scroll group-helpers">Adding Methods</a><a href="#add_method_as_property" id="add_method_as_property" class="item secondary expanded scroll group-helpers">Methods as Properties</a><a href="#overwrite_language_chain" id="overwrite_language_chain" class="item secondary expanded scroll group-helpers">Overwriting Language Chains</a><a href="#overwrite_property" id="overwrite_property" class="item secondary expanded scroll group-helpers">Overwriting Properties</a><a href="#overwrite_method" id="overwrite_method" class="item secondary expanded scroll group-helpers">Overwriting Methods</a><a href="#overwrite_caveats" id="overwrite_caveats" class="item secondary expanded scroll group-helpers">Overwriting Caveats</a>
+          <div id="helpers" class="subitems"><a href="#add_language_chain" id="add_language_chain" class="item secondary expanded scroll group-helpers">Adding Language Chains</a><a href="#add_property" id="add_property" class="item secondary expanded scroll group-helpers">Adding Properties</a><a href="#add_method" id="add_method" class="item secondary expanded scroll group-helpers">Adding Methods</a><a href="#add_method_as_property" id="add_method_as_property" class="item secondary expanded scroll group-helpers">Methods as Properties</a><a href="#overwrite_language_chain" id="overwrite_language_chain" class="item secondary expanded scroll group-helpers">Overwriting Language Chains</a><a href="#overwrite_property" id="overwrite_property" class="item secondary expanded scroll group-helpers">Overwriting Properties</a><a href="#overwrite_method" id="overwrite_method" class="item secondary expanded scroll group-helpers">Overwriting Methods</a>
           </div>
           <div id="resources" class="item primary "><span class="expand">+</span><span class="collapse">-</span><a href="/guide/resources/" class="title">Resources</a></div>
           <div id="resources" class="subitems"><a href="/guide/resources/#help" id="help" class="item secondary group-resources">Getting Help</a><a href="/guide/resources/#contributor" id="contributor" class="item secondary group-resources">Contributing</a>
@@ -381,17 +381,6 @@ so all we have to do is check if that exists.</p>
 <p>This covers both positive and negative scenarios. No need to transfer flags in this
 case as <code>this.assert</code> handles that automatically. The same pattern can also be used
 for <code>below</code> and <code>within</code>. </p>
-</article>
-              <article id="overwrite_caveats-section"><h3 id="overwriting-caveats">Overwriting Caveats</h3>
-<p>Given all that can be done, the major caveat to be aware of is that
-methods as properties defined with <code>addChainableMethod</code> cannot be fully 
-overwritten. There is no <code>overwriteChainableMethod</code>, as the current implementation
-does not permit us to &quot;look ahead&quot; and get the <code>_super</code> of the method 
-aspect of an assertion&#39;s implementation. As such, it is best to stay
-away from overwriting any chainable method. In core, these currently are
-<code>a</code>, <code>an</code>, <code>contain</code>, <code>include</code>, and <code>length</code>. </p>
-<p>Some plugins also use this functionality, so be sure to fully inspect the
-implementation of an assertion before attempting to overwrite it.</p>
 </article>
             </div>
           </div>

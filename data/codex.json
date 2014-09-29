@@ -33,13 +33,13 @@
           , "description": ""
           , "render-file": false }
         , { "name": "plugins"
-          , "title": "utility : addProperty"
-          , "file": "../chai/lib/chai/utils/addProperty.js"
+          , "title": "utility : overwriteMethod"
+          , "file": "../chai/lib/chai/utils/overwriteMethod.js"
           , "description": ""
           , "render-file": false }
         , { "name": "plugins"
-          , "title": "utility : overwriteMethod"
-          , "file": "../chai/lib/chai/utils/overwriteMethod.js"
+          , "title": "utility : addProperty"
+          , "file": "../chai/lib/chai/utils/addProperty.js"
           , "description": ""
           , "render-file": false }
         , { "name": "plugins"
@@ -50,6 +50,11 @@
         , { "name": "plugins"
           , "title": "utility : addChainableMethod"
           , "file": "../chai/lib/chai/utils/addChainableMethod.js"
+          , "description": ""
+          , "render-file": false }
+        , { "name": "plugins"
+          , "title": "utility : overwriteChainableMethod"
+          , "file": "../chai/lib/chai/utils/overwriteChainableMethod.js"
           , "description": ""
           , "render-file": false }
         , { "name": "plugins"

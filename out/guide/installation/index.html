@@ -9,10 +9,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?1.9.1"></script>
+    <script src="/public/js/main.js?1.9.2"></script>
     <script src="/public/js/guide.js"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?1.9.1" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?1.9.1" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/antiscroll.css?1.9.2" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?1.9.2" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -85,10 +85,10 @@ that include Chai.</p>
 <p>Recommend adding it to <code>package.json</code> devDependancies using a <code>*</code> as the version tag.
 This will ensure that you always have the most recent version after running <code>npm install</code>,
 which can be especially powerful when paired with a continuous integration tool.</p>
-<pre><code class="lang-javascript">devDependencies: {
+<pre><code class="lang-javascript"><span class="string">"devDependencies"</span>: {
   <span class="string">"chai"</span>: <span class="string">"*"</span>,
-  <span class="string">"mocha"</span>: <span class="string">"*"</span> <span class="comment">// our preference, but you can use any test runner you like</span>
-}</code></pre>
+  <span class="string">"mocha"</span>: <span class="string">"*"</span>
+}, <span class="string">"//"</span>: <span class="string">"mocha is our preference, but you can use any test runner you like"</span></code></pre>
 </article>
               <article id="browser-section"><h3 id="browser">Browser</h3>
 <p>Include the chai browser build in your testing suite.</p>

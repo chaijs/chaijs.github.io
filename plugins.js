@@ -230,7 +230,7 @@ module.exports = [
     , markdown: 'https://raw.github.com/elliotf/chai-bookshelf/master/README.md'
     , browser: false
     }
-    
+
   , { name: 'Chai Change'
     , desc: 'Assert that an action caused the expected change.'
     , url: 'chai-change'
@@ -238,7 +238,7 @@ module.exports = [
     , tags: [ 'assertion', 'change' ]
     , pkg: 'https://raw.githubusercontent.com/timruffles/chai-change/master/package.json'
     , markdown: 'https://raw.githubusercontent.com/timruffles/chai-change/master/README.md' }
-    
+
   , { name: 'Chai Shallow Deep Equal'
     , desc: 'Assert that an object, or objects graph, is contained within another one.'
     , url: 'chai-shallow-deep-equal'
@@ -246,7 +246,7 @@ module.exports = [
     , tags: [ 'assertion', 'objects' ]
     , pkg: 'https://github.com/michelsalib/chai-shallow-deep-equal/blob/master/package.json'
     , markdown: 'https://github.com/michelsalib/chai-shallow-deep-equal/blob/master/README.md' }
-  
+
   , { name: 'Chai Subset'
     , desc: 'Assert that an object is subset of other object'
     , url: 'chai-subset'
@@ -254,7 +254,7 @@ module.exports = [
     , tags: [ 'assertion', 'objects' ]
     , pkg: 'https://github.com/e-conomic/chai-subset/blob/master/package.json'
     , markdown: 'https://github.com/e-conomic/chai-subset/blob/master/README.md' }
-    
+
   , { name: 'Chai String'
     , desc: 'Strings comparison matchers for chai'
     , url: 'chai-string'
@@ -262,5 +262,13 @@ module.exports = [
     , tags: [ 'assertion', 'string' ]
     , pkg: 'https://github.com/onechiporenko/chai-string/blob/master/package.json'
     , markdown: 'https://github.com/onechiporenko/chai-string/blob/master/README.md' }
-    
+
+  , { name: 'Chai Param'
+    , desc: 'Allows you to use chai for parameter checking.'
+    , url: 'chai-param'
+    , link: 'https://github.com/theblacksmith/chai-param'
+    , tags: [ 'assertion', 'guard', 'parameter' ]
+    , pkg: 'https://raw.githubusercontent.com/theblacksmith/chai-param/master/package.json'
+    , markdown: 'https://raw.githubusercontent.com/theblacksmith/chai-param/master/README.md' }
+
 ];

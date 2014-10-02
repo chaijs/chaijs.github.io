@@ -245,7 +245,7 @@ module.exports = [
     , link: 'https://github.com/michelsalib/chai-shallow-deep-equal'
     , tags: [ 'assertion', 'objects' ]
     , pkg: 'https://github.com/michelsalib/chai-shallow-deep-equal/blob/master/package.json'
-    , markdown: 'https://github.com/michelsalib/chai-shallow-deep-equal/blob/master/README.md' }
+    , markdown: 'https://raw.githubusercontent.com/michelsalib/chai-shallow-deep-equal/master/README.md' }
 
   , { name: 'Chai Subset'
     , desc: 'Assert that an object is subset of other object'
@@ -253,7 +253,7 @@ module.exports = [
     , link: 'https://github.com/e-conomic/chai-subset'
     , tags: [ 'assertion', 'objects' ]
     , pkg: 'https://github.com/e-conomic/chai-subset/blob/master/package.json'
-    , markdown: 'https://github.com/e-conomic/chai-subset/blob/master/README.md' }
+    , markdown: 'https://raw.githubusercontent.com/e-conomic/chai-subset/master/README.md' }
 
   , { name: 'Chai String'
     , desc: 'Strings comparison matchers for chai'
@@ -261,7 +261,7 @@ module.exports = [
     , link: 'https://github.com/onechiporenko/chai-string'
     , tags: [ 'assertion', 'string' ]
     , pkg: 'https://github.com/onechiporenko/chai-string/blob/master/package.json'
-    , markdown: 'https://github.com/onechiporenko/chai-string/blob/master/README.md' }
+    , markdown: 'https://raw.githubusercontent.com/onechiporenko/chai-string/master/README.md' }
 
   , { name: 'Chai Param'
     , desc: 'Allows you to use chai for parameter checking.'

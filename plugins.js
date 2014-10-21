@@ -271,4 +271,12 @@ module.exports = [
     , pkg: 'https://raw.githubusercontent.com/theblacksmith/chai-param/master/package.json'
     , markdown: 'https://raw.githubusercontent.com/theblacksmith/chai-param/master/README.md' }
 
+  , { name: 'Chai Colors'
+    , desc: 'Assert color equality across representations and colorspaces'
+    , url: 'chai-colors'
+    , link: 'https://github.com/hurrymaplelad/chai-colors'
+    , tags: [ 'assertion', 'colors' ]
+    , pkg: 'https://raw.githubusercontent.com/hurrymaplelad/chai-colors/master/package.json'
+    , markdown: 'https://raw.githubusercontent.com/hurrymaplelad/chai-colors/master/README.md' }
+
 ];

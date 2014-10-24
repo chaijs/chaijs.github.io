@@ -279,4 +279,11 @@ module.exports = [
     , pkg: 'https://raw.githubusercontent.com/hurrymaplelad/chai-colors/master/package.json'
     , markdown: 'https://raw.githubusercontent.com/hurrymaplelad/chai-colors/master/README.md' }
 
+  , { name: 'Chai XML'
+    , desc: 'Assert XML'
+    , url: 'chai-xml'
+    , link: 'https://github.com/krampstudio/chai-xml'
+    , tags: [ 'assertion', 'xml' ]
+    , pkg: 'https://raw.githubusercontent.com/krampstudio/chai-xml/master/package.json'
+    , markdown: 'https://raw.githubusercontent.com/krampstudio/chai-xml/master/README.md' }
 ];

@@ -1459,6 +1459,7 @@ body.guide nav#guide .item.primary {
 body.guide nav#guide .item.primary a.title {
   margin-left: 34px;
   color: #000;
+  display: block;
 }
 body.guide nav#guide .item.primary span.expand,
 body.guide nav#guide .item.primary span.collapse,

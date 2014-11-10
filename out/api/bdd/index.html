@@ -9,9 +9,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?1.9.2"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?1.9.2" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?1.9.2" type="text/css" media="all">
+    <script src="/public/js/main.js?1.10.0"></script>
+    <link rel="stylesheet" href="/public/css/antiscroll.css?1.10.0" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?1.10.0" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -167,6 +167,8 @@ expect(<span class="number">1</span>).to.be.ok;
 expect(<span class="literal">false</span>).to.not.be.ok;
 expect(undefined).to.not.be.ok;
 expect(<span class="literal">null</span>).to.not.be.ok;</code></pre>
+<p>Can also be used as a function, which prevents some linter errors.</p>
+<pre><code>expect(<span class="string">'everthing'</span>).to.be.ok();</code></pre>
 </div>
               </div>
               <div id="true-section" class="segment">
@@ -177,6 +179,8 @@ expect(<span class="literal">null</span>).to.not.be.ok;</code></pre>
                 <div class="description"><p>Asserts that the target is <code>true</code>.</p>
 <pre><code>expect(<span class="literal">true</span>).to.be.<span class="literal">true</span>;
 expect(<span class="number">1</span>).to.not.be.<span class="literal">true</span>;</code></pre>
+<p>Can also be used as a function, which prevents some linter errors.</p>
+<pre><code>expect(<span class="literal">true</span>).to.be.<span class="literal">true</span>();</code></pre>
 </div>
               </div>
               <div id="false-section" class="segment">
@@ -187,6 +191,8 @@ expect(<span class="number">1</span>).to.not.be.<span class="literal">true</span
                 <div class="description"><p>Asserts that the target is <code>false</code>.</p>
 <pre><code>expect(<span class="literal">false</span>).to.be.<span class="literal">false</span>;
 expect(<span class="number">0</span>).to.not.be.<span class="literal">false</span>;</code></pre>
+<p>Can also be used as a function, which prevents some linter errors.</p>
+<pre><code>expect(<span class="literal">false</span>).to.be.<span class="literal">false</span>();</code></pre>
 </div>
               </div>
               <div id="null-section" class="segment">
@@ -197,6 +203,8 @@ expect(<span class="number">0</span>).to.not.be.<span class="literal">false</spa
                 <div class="description"><p>Asserts that the target is <code>null</code>.</p>
 <pre><code>expect(<span class="literal">null</span>).to.be.<span class="literal">null</span>;
 expect(undefined).not.to.be.<span class="literal">null</span>;</code></pre>
+<p>Can also be used as a function, which prevents some linter errors.</p>
+<pre><code>expect(<span class="literal">null</span>).to.be.<span class="literal">null</span>();</code></pre>
 </div>
               </div>
               <div id="undefined-section" class="segment">
@@ -207,6 +215,8 @@ expect(undefined).not.to.be.<span class="literal">null</span>;</code></pre>
                 <div class="description"><p>Asserts that the target is <code>undefined</code>.</p>
 <pre><code>expect(undefined).to.be.undefined;
 expect(<span class="literal">null</span>).to.not.be.undefined;</code></pre>
+<p>Can also be used as a function, which prevents some linter errors.</p>
+<pre><code>expect(undefined).to.be.undefined();</code></pre>
 </div>
               </div>
               <div id="exist-section" class="segment">
@@ -222,6 +232,8 @@ expect(<span class="literal">null</span>).to.not.be.undefined;</code></pre>
 expect(foo).to.exist;
 expect(bar).to.not.exist;
 expect(baz).to.not.exist;</code></pre>
+<p>Can also be used as a function, which prevents some linter errors.</p>
+<pre><code>expect(foo).to.exist();</code></pre>
 </div>
               </div>
               <div id="empty-section" class="segment">
@@ -235,6 +247,8 @@ enumerable keys.</p>
 <pre><code>expect([]).to.be.empty;
 expect(<span class="string">''</span>).to.be.empty;
 expect({}).to.be.empty;</code></pre>
+<p>Can also be used as a function, which prevents some linter errors.</p>
+<pre><code>expect([]).to.be.empty();</code></pre>
 </div>
               </div>
               <div id="arguments-section" class="segment">
@@ -245,6 +259,10 @@ expect({}).to.be.empty;</code></pre>
                 <div class="description"><p>Asserts that the target is an arguments object.</p>
 <pre><code><span class="function"><span class="keyword">function</span> <span class="title">test</span> <span class="params">()</span> {</span>
   expect(arguments).to.be.arguments;
+}</code></pre>
+<p>Can also be used as a function, which prevents some linter errors.</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">test</span> <span class="params">()</span> {</span>
+  expect(arguments).to.be.arguments();
 }</code></pre>
 </div>
               </div>

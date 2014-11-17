@@ -11,7 +11,7 @@ The Chai API is broken down by style or task.
 ##### Assertion Styles
 
 - The [Expect / Should](/api/bdd/) API covers the BDD assertion styles.
-- The [Assert](/api/assert/) API covers the the TDD assertion style.
+- The [Assert](/api/assert/) API covers the TDD assertion style.
 
 ##### Plugins
 

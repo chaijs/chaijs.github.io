@@ -11,7 +11,7 @@ The `should` style allows for the same chainable assertions as the
 property to start your chain. This style has some issues when used Internet
 Explorer, so be aware of browser compatibility. 
 
-    var should = require('chai').should() //actually call the the function
+    var should = require('chai').should() //actually call the function
       , foo = 'bar'
       , beverages = { tea: [ 'chai', 'matcha', 'oolong' ] };
 

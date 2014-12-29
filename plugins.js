@@ -286,4 +286,12 @@ module.exports = [
     , tags: [ 'assertion', 'xml' ]
     , pkg: 'https://raw.githubusercontent.com/krampstudio/chai-xml/master/package.json'
     , markdown: 'https://raw.githubusercontent.com/krampstudio/chai-xml/master/README.md' }
+
+  , { name: 'ChaID'
+    , desc: 'Assert id equality'
+    , url: 'chaid'
+    , link: 'https://github.com/hurrymaplelad/chaid'
+    , tags: [ 'assertion', 'id', 'objectid', 'equality' ]
+    , pkg: 'https://raw.githubusercontent.com/hurrymaplelad/chaid/master/package.json'
+    , markdown: 'https://raw.githubusercontent.com/hurrymaplelad/chaid/master/README.md' }
 ];

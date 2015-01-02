@@ -3,6 +3,7 @@ html(lang='en')
   head
     block title
       title #{file.title} - #{site.title}
+    link(rel='icon', type='image/x-icon', href=site.ghbaseurl + '/public/img/favicon.ico')
     script(type='text/javascript')
       var ghuser = '#{site.ghuser}'
         , ghproject = '#{site.ghproject}';

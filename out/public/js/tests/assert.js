@@ -651,4 +651,66 @@ describe('assert', function () {
     }, 'expected [ 1, 54 ] to have the same members as [ 6, 1, 54 ]');
   });
 
+  it('above', function() {
+    assert.isAbove(5, 2, '5 should be above 2');
+
+    err(function() {
+      assert.isAbove(1, 3);
+    }, 'expected 1 to be above 3');
+
+    err(function() {
+      assert.isAbove(1, 1);
+    }, 'expected 1 to be above 1');
+  });
+
+  it('below', function() {
+    assert.isBelow(2, 5, '2 should be below 5');
+
+    err(function() {
+      assert.isBelow(3, 1);
+    }, 'expected 3 to be below 1');
+
+    err(function() {
+      assert.isBelow(1, 1);
+    }, 'expected 1 to be below 1');
+  
+  });
+    
+  it('memberDeepEquals', function() {
+    assert.sameDeepMembers([ {b: 3}, {a: 2}, {c: 5} ], [ {c: 5}, {b: 3}, {a: 2} ], 'same deep members');
+    assert.sameDeepMembers([ {b: 3}, {a: 2}, 5, "hello" ], [ "hello", 5, {b: 3}, {a: 2} ], 'same deep members');
+    
+    err(function() {
+      assert.sameDeepMembers([ {b: 3} ], [ {c: 3} ])
+    }, 'expected [ { b: 3 } ] to have the same members as [ { c: 3 } ]');
+
+    err(function() {
+      assert.sameDeepMembers([ {b: 3} ], [ {b: 5} ])
+    }, 'expected [ { b: 3 } ] to have the same members as [ { b: 5 } ]');
+  });
+
+  it('change', function() {
+    var obj = { value: 10, str: 'foo' },
+        fn     = function() { obj.value += 5 },
+        bangFn = function() { obj.str += '!' },
+        smFn   = function() { 'foo' + 'bar' };
+
+    assert.changes(fn, obj, 'value');
+    assert.doesNotChange(smFn, obj, 'value');
+    assert.changes(bangFn, obj, 'str');
+  });
+
+  it('increase, decrease', function() {
+    var obj = { value: 10 },
+        incFn = function() { obj.value += 2 },
+        decFn = function() { obj.value -= 3 },
+        smFn  = function() { obj.value += 0 };
+
+    assert.decreases(decFn, obj, 'value');
+    assert.doesNotDecrease(smFn, obj, 'value');
+
+    assert.increases(incFn, obj, 'value');
+    assert.doesNotIncrease(smFn, obj, 'value');
+  });
+
 });

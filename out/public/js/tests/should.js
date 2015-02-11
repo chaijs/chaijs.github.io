@@ -7,6 +7,12 @@ describe('should', function() {
     should.not.equal('foo', 'bar');
   });
 
+  it('fail', function () {
+    err(function() {
+      should.fail(0, 1, 'this has failed');
+    }, 'this has failed');
+  });
+
   it('root exist', function () {
     var foo = 'foo'
       , bar = undefined;
@@ -431,10 +437,14 @@ describe('should', function() {
     }, "expected { a: 1 } to have a property 'b'")
   });
 
-  it('keys(array)', function(){
+  it('keys(array|Object|arguments)', function(){
     ({ foo: 1 }).should.have.keys(['foo']);
+    ({ foo: 1 }).should.have.keys({ 'foo': 6 });
+
     ({ foo: 1, bar: 2 }).should.have.keys(['foo', 'bar']);
     ({ foo: 1, bar: 2 }).should.have.keys('foo', 'bar');
+    ({ foo: 1, bar: 2 }).should.have.keys({ 'foo': 6, 'bar': 7 });
+
     ({ foo: 1, bar: 2, baz: 3 }).should.include.keys('foo', 'bar');
     ({ foo: 1, bar: 2, baz: 3 }).should.contain.keys('bar', 'foo');
     ({ foo: 1, bar: 2, baz: 3 }).should.contain.keys('baz');
@@ -444,12 +454,33 @@ describe('should', function() {
     ({ foo: 1, bar: 2 }).should.contain.keys(['foo']);
     ({ foo: 1, bar: 2 }).should.contain.keys(['bar']);
     ({ foo: 1, bar: 2 }).should.contain.keys(['bar', 'foo']);
+    ({ foo: 1, bar: 2 }).should.contain.keys({ 'foo': 6 });
+    ({ foo: 1, bar: 2 }).should.contain.keys({ 'bar': 7 });
+    ({ foo: 1, bar: 2 }).should.contain.keys({ 'foo': 6 });
 
     ({ foo: 1, bar: 2 }).should.not.have.keys('baz');
     ({ foo: 1, bar: 2 }).should.not.have.keys('foo', 'baz');
     ({ foo: 1, bar: 2 }).should.not.contain.keys('baz');
     ({ foo: 1, bar: 2 }).should.not.contain.keys('foo', 'baz');
     ({ foo: 1, bar: 2 }).should.not.contain.keys('baz', 'foo');
+
+    ({ foo: 1, bar: 2 }).should.have.any.keys('foo', 'baz');
+    ({ foo: 1, bar: 2 }).should.have.any.keys('foo');
+    ({ foo: 1, bar: 2 }).should.contain.any.keys('bar', 'baz');
+    ({ foo: 1, bar: 2 }).should.contain.any.keys(['foo']);
+    ({ foo: 1, bar: 2 }).should.have.all.keys(['bar', 'foo']);
+    ({ foo: 1, bar: 2 }).should.contain.all.keys(['bar', 'foo']);
+    ({ foo: 1, bar: 2 }).should.contain.any.keys({ 'foo': 6 });
+    ({ foo: 1, bar: 2 }).should.have.all.keys({ 'foo': 6, 'bar': 7 });
+    ({ foo: 1, bar: 2 }).should.contain.all.keys({ 'bar': 7, 'foo': 6 });
+
+    ({ foo: 1, bar: 2 }).should.not.have.any.keys('baz', 'abc', 'def');
+    ({ foo: 1, bar: 2 }).should.not.have.any.keys('baz');
+    ({ foo: 1, bar: 2 }).should.not.contain.any.keys('baz');
+    ({ foo: 1, bar: 2 }).should.not.have.all.keys(['baz', 'foo']);
+    ({ foo: 1, bar: 2 }).should.not.contain.all.keys(['baz', 'foo']);
+    ({ foo: 1, bar: 2 }).should.not.have.all.keys({ 'baz': 8, 'foo': 7 });
+    ({ foo: 1, bar: 2 }).should.not.contain.all.keys({ 'baz': 8, 'foo': 7 });
 
     err(function(){
       ({ foo: 1 }).should.have.keys();
@@ -466,6 +497,16 @@ describe('should', function() {
     err(function(){
       ({ foo: 1 }).should.contain.keys([]);
     }, "keys required");
+
+    var mixedArgsMsg = 'keys must be given single argument of Array|Object|String, or multiple String arguments'
+
+    err(function(){
+      ({}).should.contain.keys(['a'], "b");
+    }, mixedArgsMsg);
+
+    err(function(){
+      ({}).should.contain.keys({ 'a': 1 }, "b");
+    }, mixedArgsMsg);
 
     err(function(){
       ({ foo: 1 }).should.have.keys(['bar']);
@@ -498,6 +539,73 @@ describe('should', function() {
     err(function(){
       ({ foo: 1 }).should.contain.keys('foo', 'bar');
     }, "expected { foo: 1 } to contain keys 'foo', and 'bar'");
+
+    err(function() {
+      ({ foo: 1 }).should.have.any.keys('baz');
+    }, "expected { foo: 1 } to have key 'baz'");
+
+    err(function(){
+      ({ foo: 1, bar: 2 }).should.not.have.all.keys(['foo', 'bar']);
+    }, "expected { foo: 1, bar: 2 } to not have keys 'foo', and 'bar'");
+
+    err(function(){
+      ({ foo: 1, bar: 2 }).should.not.have.any.keys(['foo', 'baz']);
+    }, "expected { foo: 1, bar: 2 } to not have keys 'foo', or 'baz'");
+
+    // repeat previous tests with Object as arg.
+    err(function(){
+      ({ foo: 1 }).should.have.keys({ 'bar': 1 });
+    }, "expected { foo: 1 } to have key 'bar'");
+
+    err(function(){
+      ({ foo: 1 }).should.have.keys({ 'bar': 1, 'baz': 1});
+    }, "expected { foo: 1 } to have keys 'bar', and 'baz'");
+
+    err(function(){
+      ({ foo: 1 }).should.have.keys({ 'foo': 1, 'bar': 1, 'baz': 1});
+    }, "expected { foo: 1 } to have keys 'foo', 'bar', and 'baz'");
+
+    err(function(){
+      ({ foo: 1 }).should.not.have.keys({ 'foo': 1 });
+    }, "expected { foo: 1 } to not have key 'foo'");
+
+    err(function(){
+      ({ foo: 1 }).should.not.have.keys({ 'foo': 1 });
+    }, "expected { foo: 1 } to not have key 'foo'");
+
+    err(function(){
+      ({ foo: 1, bar: 2 }).should.not.have.keys({ 'foo': 1, 'bar': 1});
+    }, "expected { foo: 1, bar: 2 } to not have keys 'foo', and 'bar'");
+
+    err(function(){
+      ({ foo: 1 }).should.not.contain.keys({ 'foo': 1 });
+    }, "expected { foo: 1 } to not contain key 'foo'");
+
+    err(function(){
+      ({ foo: 1 }).should.contain.keys('foo', 'bar');
+    }, "expected { foo: 1 } to contain keys 'foo', and 'bar'");
+
+    err(function() {
+      ({ foo: 1 }).should.have.any.keys('baz');
+    }, "expected { foo: 1 } to have key 'baz'");
+
+    err(function(){
+      ({ foo: 1, bar: 2 }).should.not.have.all.keys({ 'foo': 1, 'bar': 1});
+    }, "expected { foo: 1, bar: 2 } to not have keys 'foo', and 'bar'");
+
+    err(function(){
+      ({ foo: 1, bar: 2 }).should.not.have.any.keys({ 'foo': 1, 'baz': 1});
+    }, "expected { foo: 1, bar: 2 } to not have keys 'foo', or 'baz'");
+
+  });
+
+  it('keys(array) will not mutate array (#359)', function () {
+      var expected = [ 'b', 'a' ];
+      var original_order = [ 'b', 'a' ];
+      var obj = { "b": 1, "a": 1 };
+      expected.should.deep.equal(original_order);
+      obj.should.keys(original_order);
+      expected.should.deep.equal(original_order);
   });
 
   it('throw', function () {
@@ -752,5 +860,33 @@ describe('should', function() {
     err(function() {
       [1, 2, 3].should.have.same.members(4);
     }, 'expected 4 to be an array');
+  });
+
+  it('change', function() {
+    var obj = { value: 10, str: 'foo' },
+        fn     = function() { obj.value += 5 },
+        sameFn = function() { obj.value += 0 },
+        decFn  = function() { obj.value -= 3 },
+        bangFn = function() { obj.str += '!' }; 
+
+    fn.should.change(obj, 'value');
+    sameFn.should.not.change(obj, 'value');
+    sameFn.should.not.change(obj, 'str');
+    bangFn.should.change(obj, 'str');
+  });
+
+  it('increase, decrease', function() {
+    var obj = { value: 10 },
+        incFn = function() { obj.value += 2 },
+        decFn = function() { obj.value -= 3 },
+        smFn  = function() { obj.value += 0 };
+
+    smFn.should.not.increase(obj, 'value');
+    decFn.should.not.increase(obj, 'value');
+    incFn.should.increase(obj, 'value');
+
+    smFn.should.not.decrease(obj, 'value');
+    incFn.should.not.decrease(obj, 'value');
+    decFn.should.decrease(obj, 'value');
   });
 });

@@ -56,7 +56,7 @@
           <div class="list box-wrap antiscroll-wrap">
             <div class="box">
               <div class="antiscroll-inner">
-                <div class="box-inner"><a href="#language chains" class="scroll item">language chains</a><a href="#not" class="scroll item">not</a><a href="#deep" class="scroll item">deep</a><a href="#a" class="scroll item">a / an</a><a href="#include" class="scroll item">include / contain</a><a href="#ok" class="scroll item">ok</a><a href="#true" class="scroll item">true</a><a href="#false" class="scroll item">false</a><a href="#null" class="scroll item">null</a><a href="#undefined" class="scroll item">undefined</a><a href="#exist" class="scroll item">exist</a><a href="#empty" class="scroll item">empty</a><a href="#arguments" class="scroll item">arguments / Arguments</a><a href="#equal" class="scroll item">equal / equals / eq / deep.equal</a><a href="#eql" class="scroll item">eql / eqls</a><a href="#above" class="scroll item">above / gt / greaterThan</a><a href="#least" class="scroll item">least / gte</a><a href="#below" class="scroll item">below / lt / lessThan</a><a href="#most" class="scroll item">most / lte</a><a href="#within" class="scroll item">within</a><a href="#instanceof" class="scroll item">instanceof / instanceOf</a><a href="#property" class="scroll item">property / deep.property</a><a href="#ownProperty" class="scroll item">ownProperty / haveOwnProperty</a><a href="#length" class="scroll item">length / lengthOf</a><a href="#match" class="scroll item">match</a><a href="#string" class="scroll item">string</a><a href="#keys" class="scroll item">keys / key</a><a href="#throw" class="scroll item">throw / throws / Throw</a><a href="#respondTo" class="scroll item">respondTo</a><a href="#itself" class="scroll item">itself</a><a href="#satisfy" class="scroll item">satisfy</a><a href="#closeTo" class="scroll item">closeTo</a><a href="#members" class="scroll item">members</a>
+                <div class="box-inner"><a href="#language chains" class="scroll item">language chains</a><a href="#not" class="scroll item">not</a><a href="#deep" class="scroll item">deep</a><a href="#any" class="scroll item">any</a><a href="#all" class="scroll item">all</a><a href="#a" class="scroll item">a / an</a><a href="#include" class="scroll item">include / contain / includes / contains</a><a href="#ok" class="scroll item">ok</a><a href="#true" class="scroll item">true</a><a href="#false" class="scroll item">false</a><a href="#null" class="scroll item">null</a><a href="#undefined" class="scroll item">undefined</a><a href="#exist" class="scroll item">exist</a><a href="#empty" class="scroll item">empty</a><a href="#arguments" class="scroll item">arguments / Arguments</a><a href="#equal" class="scroll item">equal / equals / eq / deep.equal</a><a href="#eql" class="scroll item">eql / eqls</a><a href="#above" class="scroll item">above / gt / greaterThan</a><a href="#least" class="scroll item">least / gte</a><a href="#below" class="scroll item">below / lt / lessThan</a><a href="#most" class="scroll item">most / lte</a><a href="#within" class="scroll item">within</a><a href="#instanceof" class="scroll item">instanceof / instanceOf</a><a href="#property" class="scroll item">property / deep.property</a><a href="#ownProperty" class="scroll item">ownProperty / haveOwnProperty</a><a href="#length" class="scroll item">length / lengthOf</a><a href="#match" class="scroll item">match</a><a href="#string" class="scroll item">string</a><a href="#keys" class="scroll item">keys / key</a><a href="#throw" class="scroll item">throw / throws / Throw</a><a href="#respondTo" class="scroll item">respondTo</a><a href="#itself" class="scroll item">itself</a><a href="#satisfy" class="scroll item">satisfy</a><a href="#closeTo" class="scroll item">closeTo</a><a href="#members" class="scroll item">members</a><a href="#change" class="scroll item">change / changes / Change</a><a href="#increase" class="scroll item">increase / increases / Increase</a><a href="#decrease" class="scroll item">decrease / decreases / Decrease</a>
                 </div>
               </div>
             </div>
@@ -87,6 +87,7 @@ have been overwritten by a plugin.</p>
 <li>been</li>
 <li>is</li>
 <li>that</li>
+<li>which</li>
 <li>and</li>
 <li>has</li>
 <li>have</li>
@@ -121,6 +122,26 @@ expect({ foo: { bar: { baz: <span class="string">'quux'</span> } } })
   .to.have.deep.property(<span class="string">'foo.bar.baz'</span>, <span class="string">'quux'</span>);</code></pre>
 </div>
               </div>
+              <div id="any-section" class="segment">
+                <div class="summary"><h3 id="-any">.any</h3>
+</div>
+                <ul class="tags">
+                </ul>
+                <div class="description"><p>Sets the <code>any</code> flag, (opposite of the <code>all</code> flag)
+later used in the <code>keys</code> assertion. </p>
+<pre><code>expect(foo).to.have.any.keys(<span class="string">'bar'</span>, <span class="string">'baz'</span>);</code></pre>
+</div>
+              </div>
+              <div id="all-section" class="segment">
+                <div class="summary"><h3 id="-all">.all</h3>
+</div>
+                <ul class="tags">
+                </ul>
+                <div class="description"><p>Sets the <code>all</code> flag (opposite of the <code>any</code> flag) 
+later used by the <code>keys</code> assertion.</p>
+<pre><code>expect(foo).to.have.all.keys(<span class="string">'bar'</span>, <span class="string">'baz'</span>);</code></pre>
+</div>
+              </div>
               <div id="a-section" class="segment">
                 <div class="summary"><h3 id="-a-type-">.a(type)</h3>
 </div>
@@ -151,7 +172,7 @@ expect(foo).to.be.an.<span class="keyword">instanceof</span>(Foo);</code></pre>
                 <div class="description"><p>The <code>include</code> and <code>contain</code> assertions can be used as either property
 based language chains or as methods to assert the inclusion of an object
 in an array or a substring in a string. When used as language chains,
-they toggle the <code>contain</code> flag for the <code>keys</code> assertion.</p>
+they toggle the <code>contains</code> flag for the <code>keys</code> assertion.</p>
 <pre><code>expect([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]).to.include(<span class="number">2</span>);
 expect(<span class="string">'foobar'</span>).to.contain(<span class="string">'foo'</span>);
 expect({ foo: <span class="string">'bar'</span>, hello: <span class="string">'universe'</span> }).to.include.keys(<span class="string">'foo'</span>);</code></pre>
@@ -168,8 +189,6 @@ expect(<span class="number">1</span>).to.be.ok;
 expect(<span class="literal">false</span>).to.not.be.ok;
 expect(undefined).to.not.be.ok;
 expect(<span class="literal">null</span>).to.not.be.ok;</code></pre>
-<p>Can also be used as a function, which prevents some linter errors.</p>
-<pre><code>expect(<span class="string">'everthing'</span>).to.be.ok();</code></pre>
 </div>
               </div>
               <div id="true-section" class="segment">
@@ -180,8 +199,6 @@ expect(<span class="literal">null</span>).to.not.be.ok;</code></pre>
                 <div class="description"><p>Asserts that the target is <code>true</code>.</p>
 <pre><code>expect(<span class="literal">true</span>).to.be.<span class="literal">true</span>;
 expect(<span class="number">1</span>).to.not.be.<span class="literal">true</span>;</code></pre>
-<p>Can also be used as a function, which prevents some linter errors.</p>
-<pre><code>expect(<span class="literal">true</span>).to.be.<span class="literal">true</span>();</code></pre>
 </div>
               </div>
               <div id="false-section" class="segment">
@@ -192,8 +209,6 @@ expect(<span class="number">1</span>).to.not.be.<span class="literal">true</span
                 <div class="description"><p>Asserts that the target is <code>false</code>.</p>
 <pre><code>expect(<span class="literal">false</span>).to.be.<span class="literal">false</span>;
 expect(<span class="number">0</span>).to.not.be.<span class="literal">false</span>;</code></pre>
-<p>Can also be used as a function, which prevents some linter errors.</p>
-<pre><code>expect(<span class="literal">false</span>).to.be.<span class="literal">false</span>();</code></pre>
 </div>
               </div>
               <div id="null-section" class="segment">
@@ -204,8 +219,6 @@ expect(<span class="number">0</span>).to.not.be.<span class="literal">false</spa
                 <div class="description"><p>Asserts that the target is <code>null</code>.</p>
 <pre><code>expect(<span class="literal">null</span>).to.be.<span class="literal">null</span>;
 expect(undefined).not.to.be.<span class="literal">null</span>;</code></pre>
-<p>Can also be used as a function, which prevents some linter errors.</p>
-<pre><code>expect(<span class="literal">null</span>).to.be.<span class="literal">null</span>();</code></pre>
 </div>
               </div>
               <div id="undefined-section" class="segment">
@@ -216,8 +229,6 @@ expect(undefined).not.to.be.<span class="literal">null</span>;</code></pre>
                 <div class="description"><p>Asserts that the target is <code>undefined</code>.</p>
 <pre><code>expect(undefined).to.be.undefined;
 expect(<span class="literal">null</span>).to.not.be.undefined;</code></pre>
-<p>Can also be used as a function, which prevents some linter errors.</p>
-<pre><code>expect(undefined).to.be.undefined();</code></pre>
 </div>
               </div>
               <div id="exist-section" class="segment">
@@ -233,8 +244,6 @@ expect(<span class="literal">null</span>).to.not.be.undefined;</code></pre>
 expect(foo).to.exist;
 expect(bar).to.not.exist;
 expect(baz).to.not.exist;</code></pre>
-<p>Can also be used as a function, which prevents some linter errors.</p>
-<pre><code>expect(foo).to.exist();</code></pre>
 </div>
               </div>
               <div id="empty-section" class="segment">
@@ -248,8 +257,6 @@ enumerable keys.</p>
 <pre><code>expect([]).to.be.empty;
 expect(<span class="string">''</span>).to.be.empty;
 expect({}).to.be.empty;</code></pre>
-<p>Can also be used as a function, which prevents some linter errors.</p>
-<pre><code>expect([]).to.be.empty();</code></pre>
 </div>
               </div>
               <div id="arguments-section" class="segment">
@@ -260,10 +267,6 @@ expect({}).to.be.empty;</code></pre>
                 <div class="description"><p>Asserts that the target is an arguments object.</p>
 <pre><code><span class="function"><span class="keyword">function</span> <span class="title">test</span> <span class="params">()</span> {</span>
   expect(arguments).to.be.arguments;
-}</code></pre>
-<p>Can also be used as a function, which prevents some linter errors.</p>
-<pre><code><span class="function"><span class="keyword">function</span> <span class="title">test</span> <span class="params">()</span> {</span>
-  expect(arguments).to.be.arguments();
 }</code></pre>
 </div>
               </div>
@@ -506,13 +509,31 @@ expect([ <span class="number">1</span>, <span class="number">2</span>, <span cla
                 <div class="summary"><h3 id="-keys-key1-key2-">.keys(key1, [key2], [...])</h3>
 </div>
                 <ul class="tags">
-                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String... | Array &#125;</span><span class="name">keys</span><span class="desc"></span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String... | Array | Object &#125;</span><span class="name">keys</span><span class="desc"></span></li>
                 </ul>
-                <div class="description"><p>Asserts that the target has exactly the given keys, or
-asserts the inclusion of some keys when using the
-<code>include</code> or <code>contain</code> modifiers.</p>
-<pre><code>expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span> }).to.have.keys([<span class="string">'foo'</span>, <span class="string">'bar'</span>]);
-expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span>, baz: <span class="number">3</span> }).to.contain.keys(<span class="string">'foo'</span>, <span class="string">'bar'</span>);</code></pre>
+                <div class="description"><p>Asserts that the target contains any or all of the passed-in keys.
+Use in combination with <code>any</code>, <code>all</code>, <code>contains</code>, or <code>have</code> will affect 
+what will pass.</p>
+<p>When used in conjunction with <code>any</code>, at least one key that is passed 
+in must exist in the target object. This is regardless whether or not 
+the <code>have</code> or <code>contain</code> qualifiers are used. Note, either <code>any</code> or <code>all</code>
+should be used in the assertion. If neither are used, the assertion is
+defaulted to <code>all</code>.</p>
+<p>When both <code>all</code> and <code>contain</code> are used, the target object must have at 
+least all of the passed-in keys but may have more keys not listed.</p>
+<p>When both <code>all</code> and <code>have</code> are used, the target object must both contain
+all of the passed-in keys AND the number of keys in the target object must
+match the number of keys passed in (in other words, a target object must 
+have all and only all of the passed-in keys).</p>
+<pre><code>expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span> }).to.have.any.keys(<span class="string">'foo'</span>, <span class="string">'baz'</span>);
+expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span> }).to.have.any.keys(<span class="string">'foo'</span>);
+expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span> }).to.contain.any.keys(<span class="string">'bar'</span>, <span class="string">'baz'</span>);
+expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span> }).to.contain.any.keys([<span class="string">'foo'</span>]);
+expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span> }).to.contain.any.keys({<span class="string">'foo'</span>: <span class="number">6</span>});
+expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span> }).to.have.all.keys([<span class="string">'bar'</span>, <span class="string">'foo'</span>]);
+expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span> }).to.have.all.keys({<span class="string">'bar'</span>: <span class="number">6</span>, <span class="string">'foo'</span>, <span class="number">7</span>});
+expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span>, baz: <span class="number">3</span> }).to.contain.all.keys([<span class="string">'bar'</span>, <span class="string">'foo'</span>]);
+expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span>, baz: <span class="number">3</span> }).to.contain.all.keys([{<span class="string">'bar'</span>: <span class="number">6</span>}}]);</code></pre>
 </div>
               </div>
               <div id="throw-section" class="segment">
@@ -617,6 +638,50 @@ expect([<span class="number">4</span>, <span class="number">2</span>]).to.have.m
 expect([<span class="number">5</span>, <span class="number">2</span>]).to.not.have.members([<span class="number">5</span>, <span class="number">2</span>, <span class="number">1</span>]);
 
 expect([{ id: <span class="number">1</span> }]).to.deep.include.members([{ id: <span class="number">1</span> }]);</code></pre>
+</div>
+              </div>
+              <div id="change-section" class="segment">
+                <div class="summary"><h3 id="-change-function-">.change(function)</h3>
+</div>
+                <ul class="tags">
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">object</span><span class="desc"></span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">property</span><span class="desc">name</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">message</span><span class="desc">_optional_</span></li>
+                </ul>
+                <div class="description"><p>Asserts that a function changes an object property</p>
+<pre><code><span class="keyword">var</span> obj = { val: <span class="number">10</span> };
+<span class="keyword">var</span> fn = <span class="keyword">function</span>() { obj.val += <span class="number">3</span> };
+<span class="keyword">var</span> noChangeFn = <span class="keyword">function</span>() { <span class="keyword">return</span> <span class="string">'foo'</span> + <span class="string">'bar'</span>; }
+expect(fn).to.change(obj, <span class="string">'val'</span>);
+expect(noChangFn).to.not.change(obj, <span class="string">'val'</span>)</code></pre>
+</div>
+              </div>
+              <div id="increase-section" class="segment">
+                <div class="summary"><h3 id="-increase-function-">.increase(function)</h3>
+</div>
+                <ul class="tags">
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">object</span><span class="desc"></span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">property</span><span class="desc">name</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">message</span><span class="desc">_optional_</span></li>
+                </ul>
+                <div class="description"><p>Asserts that a function increases an object property</p>
+<pre><code><span class="keyword">var</span> obj = { val: <span class="number">10</span> };
+<span class="keyword">var</span> fn = <span class="keyword">function</span>() { obj.val = <span class="number">15</span> };
+expect(fn).to.increase(obj, <span class="string">'val'</span>);</code></pre>
+</div>
+              </div>
+              <div id="decrease-section" class="segment">
+                <div class="summary"><h3 id="-decrease-function-">.decrease(function)</h3>
+</div>
+                <ul class="tags">
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">object</span><span class="desc"></span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">property</span><span class="desc">name</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">message</span><span class="desc">_optional_</span></li>
+                </ul>
+                <div class="description"><p>Asserts that a function decreases an object property</p>
+<pre><code><span class="keyword">var</span> obj = { val: <span class="number">10</span> };
+<span class="keyword">var</span> fn = <span class="keyword">function</span>() { obj.val = <span class="number">5</span> };
+expect(fn).to.decrease(obj, <span class="string">'val'</span>);</code></pre>
 </div>
               </div>
             </div>

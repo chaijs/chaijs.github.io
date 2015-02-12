@@ -10,10 +10,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?1.10.0"></script>
+    <script src="/public/js/main.js?2.0.0"></script>
     <script src="/public/js/guide.js"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?1.10.0" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?1.10.0" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/antiscroll.css?2.0.0" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?2.0.0" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -90,13 +90,13 @@ tests and is browser compatible.</p>
   , foo = <span class="string">'bar'</span>
   , beverages = { tea: [ <span class="string">'chai'</span>, <span class="string">'matcha'</span>, <span class="string">'oolong'</span> ] };
 
-assert.typeOf(foo, <span class="string">'string'</span>); // with optional message
-assert.typeOf(foo, <span class="string">'string'</span>, <span class="string">'foo is a string'</span>); // without optional message
+assert.typeOf(foo, <span class="string">'string'</span>); <span class="comment">// without optional message</span>
+assert.typeOf(foo, <span class="string">'string'</span>, <span class="string">'foo is a string'</span>); <span class="comment">// with optional message</span>
 assert.equal(foo, <span class="string">'bar'</span>, <span class="string">'foo equal `bar`'</span>);
 assert.lengthOf(foo, <span class="number">3</span>, <span class="string">'foo`s value has a length of 3'</span>);
 assert.lengthOf(beverages.tea, <span class="number">3</span>, <span class="string">'beverages has 3 types of tea'</span>);</code></pre>
 <p>In all cases, the assert style allows you to include an optional message as the
-last parameter in the <code>assert</code> statement. These will be included in the 
+last parameter in the <code>assert</code> statement. These will be included in the
 error messages should your assertion not pass.</p>
 </article>
               <article id="expect-section"><h2 id="bdd">BDD</h2>
@@ -121,18 +121,18 @@ assertions that might occur. </p>
 <pre><code><span class="keyword">var</span> answer = <span class="number">43</span>;
 
 <span class="comment">// AssertionError: expected 43 to equal 42.</span>
-expect(answer).to.equal(<span class="number">42</span>);
+expect(answer).to.equal(<span class="number">42</span>); 
 
 <span class="comment">// AssertionError: topic [answer]: expected 43 to equal 42.</span>
 expect(answer, <span class="string">'topic [answer]'</span>).to.equal(<span class="number">42</span>);</code></pre>
-<p>This comes in handy when being used with non-descript topics such as
+<p>This comes in handy when being used with non-descript topics such as 
 booleans or numbers.</p>
 </article>
               <article id="should-section"><h3 id="should">Should</h3>
 <p>The <code>should</code> style allows for the same chainable assertions as the
 <code>expect</code> interface, however it extends each object with a <code>should</code>
-property to start your chain. This style has some issues when used with Internet
-Explorer, so be aware of browser incompatibilities.</p>
+property to start your chain. This style has some issues when used Internet
+Explorer, so be aware of browser compatibility. </p>
 <pre><code><span class="keyword">var</span> should = require(<span class="string">'chai'</span>).should() <span class="comment">//actually call the function</span>
   , foo = <span class="string">'bar'</span>
   , beverages = { tea: [ <span class="string">'chai'</span>, <span class="string">'matcha'</span>, <span class="string">'oolong'</span> ] };
@@ -143,8 +143,8 @@ foo.should.have.length(<span class="number">3</span>);
 beverages.should.have.property(<span class="string">'tea'</span>).<span class="keyword">with</span>.length(<span class="number">3</span>);</code></pre>
 </article>
               <article id="differences-section"><h3 id="differences">Differences</h3>
-<p>First of all, notice that the <code>expect</code> require is just a reference to the 
-<code>expect</code> function, whereas with the <code>should</code> require, the function is 
+<p>First of all, notice that the <code>expect</code> require is just a reference to the
+<code>expect</code> function, whereas with the <code>should</code> require, the function is
 being executed.</p>
 <pre><code><span class="keyword">var</span> chai = require(<span class="string">'chai'</span>)
   , expect = chai.expect
@@ -153,7 +153,7 @@ being executed.</p>
 your language assertions. It works on node.js and in all browsers.</p>
 <p>The <code>should</code> interface extends <code>Object.prototype</code> to provide a single getter as
 the starting point for your language assertions. It works on node.js and in
-all browsers except Internet Explorer.</p>
+all modern browsers except Internet Explorer.</p>
 </article>
               <article id="should-extras-section"><h3 id="should-extras">Should Extras</h3>
 <p>Given that <code>should</code> works by extending <code>Object.prototype</code>, there are
@@ -208,7 +208,7 @@ should be included in the thrown AssertionErrors. <code>false</code> will always
 <li><strong>@param</strong> <em>{Number}</em></li>
 <li><strong>@default</strong> <code>40</code></li>
 </ul>
-<p>User configurable property, sets length threshold for actual and expected values
+<p>User configurable property, sets length threshold for actual and expected values 
 in assertion errors. If this threshold is exceeded, the value is truncated.</p>
 <p>Set it to zero if you want to disable truncating altogether.</p>
 <pre><code class="lang-javascript">chai.config.truncateThreshold = <span class="number">0</span>; <span class="comment">// disable truncating</span></code></pre>
@@ -220,7 +220,7 @@ in assertion errors. If this threshold is exceeded, the value is truncated.</p>
     </div>
     <footer>
       <section id="footer">
-        <div class="branding">
+        <div class="branding"> 
           <h3 class="fancy"><a href="#">Chai Assertion Library</a></h3>
         </div>
         <div class="list">

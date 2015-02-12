@@ -10,14 +10,16 @@ describe('expect', function () {
     expect('foo').to.equal('foo');
   });
 
+  it('fail', function () {
+    err(function() {
+      expect.fail(0, 1, 'this has failed');
+    }, /this has failed/);
+  });
+
   it('true', function(){
     expect(true).to.be.true;
     expect(false).to.not.be.true;
     expect(1).to.not.be.true;
-
-    expect(true).to.be.true();
-    expect(true).to.be.true().and.not.false;
-    expect(true).to.be.true.and.not.false();
 
     err(function(){
       expect('test').to.be.true;
@@ -29,10 +31,6 @@ describe('expect', function () {
     expect(false).to.not.be.ok;
     expect(1).to.be.ok;
     expect(0).to.not.be.ok;
-
-    expect(true).to.be.ok();
-    expect(true).to.be.ok().and.not.false;
-    expect(true).to.be.ok.and.not.false();
 
     err(function(){
       expect('').to.be.ok;
@@ -48,10 +46,6 @@ describe('expect', function () {
     expect(true).to.not.be.false;
     expect(0).to.not.be.false;
 
-    expect(false).to.be.false();
-    expect(false).to.be.false().and.not.true;
-    expect(false).to.be.false.and.not.true();
-    
     err(function(){
       expect('').to.be.false;
     }, "expected '' to be false")
@@ -60,10 +54,6 @@ describe('expect', function () {
   it('null', function(){
     expect(null).to.be.null;
     expect(false).to.not.be.null;
-
-    expect(null).to.be.null();
-    expect(null).to.be.null().and.not.ok();
-    expect(null).to.be.null.and.not.ok();
 
     err(function(){
       expect('').to.be.null;
@@ -75,10 +65,6 @@ describe('expect', function () {
     expect(undefined).to.be.undefined;
     expect(null).to.not.be.undefined;
 
-    expect(undefined).to.be.undefined();
-    expect(undefined).to.be.undefined().and.not.ok();
-    expect(undefined).to.be.undefined.and.not.ok();
-
     err(function(){
       expect('').to.be.undefined;
     }, "expected '' to be undefined")
@@ -89,10 +75,6 @@ describe('expect', function () {
       , bar;
     expect(foo).to.exist;
     expect(bar).to.not.exist;
-
-    expect(foo).to.exist();
-    expect(foo).to.exist().and.contain('bar');
-    expect(foo).to.exist.and.contain('bar');
   });
 
   it('arguments', function(){
@@ -101,10 +83,6 @@ describe('expect', function () {
     expect([]).to.not.be.arguments;
     expect(args).to.be.an('arguments').and.be.arguments;
     expect([]).to.be.an('array').and.not.be.Arguments;
-
-    expect(args).to.be.Arguments();
-    expect(args).to.be.arguments().and.be.ok;
-    expect(args).to.be.arguments.and.be.ok();
   });
 
   it('.equal()', function(){
@@ -383,10 +361,6 @@ describe('expect', function () {
     expect({}).to.be.empty;
     expect({foo: 'bar'}).not.to.be.empty;
 
-    expect('').to.be.empty();
-    expect('').to.be.empty().and.exist;
-    expect('').to.be.empty.and.exist;
-
     err(function(){
       expect('').not.to.be.empty;
     }, "expected \'\' not to be empty");
@@ -429,6 +403,14 @@ describe('expect', function () {
     expect({ foo: { bar: 'baz' } })
       .to.not.have.property('foo.bar');
 
+    // Properties with the value 'undefined' are still properties
+    var obj = { foo: undefined };
+    Object.defineProperty(obj, 'bar', {
+      get: function() { }
+    });
+    expect(obj).to.have.property('foo');
+    expect(obj).to.have.property('bar');
+
     err(function(){
       expect('asd').to.have.property('foo');
     }, "expected 'asd' to have a property 'foo'");
@@ -444,6 +426,9 @@ describe('expect', function () {
     expect({ foo: { bar: 'baz' } })
       .to.have.deep.property('foo.bar');
 
+    expect({ 'foo': [1, 2, 3] })
+      .to.have.deep.property('foo[1]');
+
     err(function(){
       expect({ 'foo.bar': 'baz' })
         .to.have.deep.property('foo.bar');
@@ -453,6 +438,41 @@ describe('expect', function () {
   it('property(name, val)', function(){
     expect('test').to.have.property('length', 4);
     expect('asd').to.have.property('constructor', String);
+
+    var deepObj = {
+        green: { tea: 'matcha' }
+      , teas: [ 'chai', 'matcha', { tea: 'konacha' } ]
+    };
+    expect(deepObj).to.have.deep.property('green.tea', 'matcha');
+    expect(deepObj).to.have.deep.property('teas[1]', 'matcha');
+    expect(deepObj).to.have.deep.property('teas[2].tea', 'konacha');
+    err(function(){
+      expect(deepObj).to.have.deep.property('teas[3]');
+    }, "expected { Object (green, teas) } to have a deep property 'teas[3]'");
+    err(function(){
+      expect(deepObj).to.have.deep.property('teas[3]', 'bar');
+    }, "expected { Object (green, teas) } to have a deep property 'teas[3]'");
+    err(function(){
+      expect(deepObj).to.have.deep.property('teas[3].tea', 'bar');
+    }, "expected { Object (green, teas) } to have a deep property 'teas[3].tea'");
+    
+    var arr = [
+        [ 'chai', 'matcha', 'konacha' ]
+      , [ { tea: 'chai' }
+        , { tea: 'matcha' }
+        , { tea: 'konacha' } ]
+    ];
+    expect(arr).to.have.deep.property('[0][1]', 'matcha');
+    expect(arr).to.have.deep.property('[1][2].tea', 'konacha');
+    err(function(){
+      expect(arr).to.have.deep.property('[2][1]');
+    }, "expected [ Array(2) ] to have a deep property '[2][1]'");
+    err(function(){
+      expect(arr).to.have.deep.property('[2][1]', 'none');
+    }, "expected [ Array(2) ] to have a deep property '[2][1]'");
+    err(function(){
+      expect(arr).to.have.deep.property('[0][3]', 'none');
+    }, "expected [ Array(2) ] to have a deep property '[0][3]'");
 
     err(function(){
       expect('asd').to.have.property('length', 4, 'blah');
@@ -554,25 +574,49 @@ describe('expect', function () {
     }, "expected [ { a: 1 }, { b: 2 } ] to not include { b: 2 }");
   });
 
-  it('keys(array)', function(){
+  it('keys(array|Object|arguments)', function(){
     expect({ foo: 1 }).to.have.keys(['foo']);
+    expect({ foo: 1 }).have.keys({ 'foo': 6 });
     expect({ foo: 1, bar: 2 }).to.have.keys(['foo', 'bar']);
     expect({ foo: 1, bar: 2 }).to.have.keys('foo', 'bar');
+    expect({ foo: 1, bar: 2 }).have.keys({ 'foo': 6, 'bar': 7 });
     expect({ foo: 1, bar: 2, baz: 3 }).to.contain.keys('foo', 'bar');
     expect({ foo: 1, bar: 2, baz: 3 }).to.contain.keys('bar', 'foo');
     expect({ foo: 1, bar: 2, baz: 3 }).to.contain.keys('baz');
+    expect({ foo: 1, bar: 2 }).contain.keys({ 'foo': 6 });
+    expect({ foo: 1, bar: 2 }).contain.keys({ 'bar': 7 });
+    expect({ foo: 1, bar: 2 }).contain.keys({ 'foo': 6 });
 
     expect({ foo: 1, bar: 2 }).to.contain.keys('foo');
     expect({ foo: 1, bar: 2 }).to.contain.keys('bar', 'foo');
     expect({ foo: 1, bar: 2 }).to.contain.keys(['foo']);
     expect({ foo: 1, bar: 2 }).to.contain.keys(['bar']);
     expect({ foo: 1, bar: 2 }).to.contain.keys(['bar', 'foo']);
+    expect({ foo: 1, bar: 2, baz: 3 }).to.contain.all.keys(['bar', 'foo']);
 
     expect({ foo: 1, bar: 2 }).to.not.have.keys('baz');
     expect({ foo: 1, bar: 2 }).to.not.have.keys('foo', 'baz');
     expect({ foo: 1, bar: 2 }).to.not.contain.keys('baz');
     expect({ foo: 1, bar: 2 }).to.not.contain.keys('foo', 'baz');
     expect({ foo: 1, bar: 2 }).to.not.contain.keys('baz', 'foo');
+
+    expect({ foo: 1, bar: 2 }).to.have.any.keys('foo', 'baz');
+    expect({ foo: 1, bar: 2 }).to.have.any.keys('foo');
+    expect({ foo: 1, bar: 2 }).to.contain.any.keys('bar', 'baz');
+    expect({ foo: 1, bar: 2 }).to.contain.any.keys(['foo']);
+    expect({ foo: 1, bar: 2 }).to.have.all.keys(['bar', 'foo']);
+    expect({ foo: 1, bar: 2 }).to.contain.all.keys(['bar', 'foo']);
+    expect({ foo: 1, bar: 2 }).contain.any.keys({ 'foo': 6 });
+    expect({ foo: 1, bar: 2 }).have.all.keys({ 'foo': 6, 'bar': 7 });
+    expect({ foo: 1, bar: 2 }).contain.all.keys({ 'bar': 7, 'foo': 6 });
+
+    expect({ foo: 1, bar: 2 }).to.not.have.any.keys('baz', 'abc', 'def');
+    expect({ foo: 1, bar: 2 }).to.not.have.any.keys('baz');
+    expect({ foo: 1, bar: 2 }).to.not.contain.any.keys('baz');
+    expect({ foo: 1, bar: 2 }).to.not.have.all.keys(['baz', 'foo']);
+    expect({ foo: 1, bar: 2 }).to.not.contain.all.keys(['baz', 'foo']);
+    expect({ foo: 1, bar: 2 }).not.have.all.keys({ 'baz': 8, 'foo': 7 });
+    expect({ foo: 1, bar: 2 }).not.contain.all.keys({ 'baz': 8, 'foo': 7 });
 
     err(function(){
       expect({ foo: 1 }).to.have.keys();
@@ -589,6 +633,16 @@ describe('expect', function () {
     err(function(){
       expect({ foo: 1 }).to.contain.keys([]);
     }, "keys required");
+
+    var mixedArgsMsg = 'keys must be given single argument of Array|Object|String, or multiple String arguments'
+
+    err(function(){
+      expect({}).contain.keys(['a'], "b");
+    }, mixedArgsMsg);
+
+    err(function(){
+      expect({}).contain.keys({ 'a': 1 }, "b");
+    }, mixedArgsMsg);
 
     err(function(){
       expect({ foo: 1 }).to.have.keys(['bar']);
@@ -615,17 +669,90 @@ describe('expect', function () {
     }, "expected { foo: 1, bar: 2 } to not have keys 'foo', and 'bar'");
 
     err(function(){
+      expect({ foo: 1, bar: 2 }).to.have.all.keys('foo');
+    }, "expected { foo: 1, bar: 2 } to have key 'foo'");
+
+    err(function(){
       expect({ foo: 1 }).to.not.contain.keys(['foo']);
     }, "expected { foo: 1 } to not contain key 'foo'");
 
     err(function(){
       expect({ foo: 1 }).to.contain.keys('foo', 'bar');
     }, "expected { foo: 1 } to contain keys 'foo', and 'bar'");
+
+    err(function() {
+      expect({ foo: 1 }).to.have.any.keys('baz');
+    }, "expected { foo: 1 } to have key 'baz'");
+
+    err(function(){
+      expect({ foo: 1, bar: 2 }).to.not.have.all.keys(['foo', 'bar']);
+    }, "expected { foo: 1, bar: 2 } to not have keys 'foo', and 'bar'");
+
+    err(function(){
+      expect({ foo: 1, bar: 2 }).to.not.have.any.keys(['foo', 'baz']);
+    }, "expected { foo: 1, bar: 2 } to not have keys 'foo', or 'baz'");
+
+    // repeat previous tests with Object as arg.
+    err(function(){
+      expect({ foo: 1 }).have.keys({ 'bar': 1 });
+    }, "expected { foo: 1 } to have key 'bar'");
+
+    err(function(){
+      expect({ foo: 1 }).have.keys({ 'bar': 1, 'baz': 1});
+    }, "expected { foo: 1 } to have keys 'bar', and 'baz'");
+
+    err(function(){
+      expect({ foo: 1 }).have.keys({ 'foo': 1, 'bar': 1, 'baz': 1});
+    }, "expected { foo: 1 } to have keys 'foo', 'bar', and 'baz'");
+
+    err(function(){
+      expect({ foo: 1 }).not.have.keys({ 'foo': 1 });
+    }, "expected { foo: 1 } to not have key 'foo'");
+
+    err(function(){
+      expect({ foo: 1 }).not.have.keys({ 'foo': 1 });
+    }, "expected { foo: 1 } to not have key 'foo'");
+
+    err(function(){
+      expect({ foo: 1, bar: 2 }).not.have.keys({ 'foo': 1, 'bar': 1});
+    }, "expected { foo: 1, bar: 2 } to not have keys 'foo', and 'bar'");
+
+    err(function(){
+      expect({ foo: 1 }).not.contain.keys({ 'foo': 1 });
+    }, "expected { foo: 1 } to not contain key 'foo'");
+
+    err(function(){
+      expect({ foo: 1 }).contain.keys('foo', 'bar');
+    }, "expected { foo: 1 } to contain keys 'foo', and 'bar'");
+
+    err(function() {
+      expect({ foo: 1 }).have.any.keys('baz');
+    }, "expected { foo: 1 } to have key 'baz'");
+
+    err(function(){
+      expect({ foo: 1, bar: 2 }).not.have.all.keys({ 'foo': 1, 'bar': 1});
+    }, "expected { foo: 1, bar: 2 } to not have keys 'foo', and 'bar'");
+
+    err(function(){
+      expect({ foo: 1, bar: 2 }).not.have.any.keys({ 'foo': 1, 'baz': 1});
+    }, "expected { foo: 1, bar: 2 } to not have keys 'foo', or 'baz'");
+
+  });
+
+  it('keys(array) will not mutate array (#359)', function () {
+      var expected = [ 'b', 'a' ];
+      var original_order = [ 'b', 'a' ];
+      var obj = { "b": 1, "a": 1 };
+      expect(expected).deep.equal(original_order);
+      expect(obj).keys(original_order);
+      expect(expected).deep.equal(original_order);
   });
 
   it('chaining', function(){
     var tea = { name: 'chai', extras: ['milk', 'sugar', 'smile'] };
     expect(tea).to.have.property('extras').with.lengthOf(3);
+
+    expect(tea).to.have.property('extras').which.contains('smile');
 
     err(function(){
       expect(tea).to.have.property('extras').with.lengthOf(4);
@@ -854,5 +981,33 @@ describe('expect', function () {
       expect([{ id: 1 }]).deep.members([{ id: 2 }])
     }, "expected [ { id: 1 } ] to have the same members as [ { id: 2 } ]");
   });
+
+  it('change', function() {
+    var obj = { value: 10, str: 'foo' },
+        fn     = function() { obj.value += 5 },
+        sameFn = function() { 'foo' + 'bar' },
+        bangFn = function() { obj.str += '!' };
+
+    expect(fn).to.change(obj, 'value');
+    expect(sameFn).to.not.change(obj, 'value');
+    expect(sameFn).to.not.change(obj, 'str');
+    expect(bangFn).to.change(obj, 'str');
+  });
+
+  it('increase, decrease', function() {
+    var obj = { value: 10 },
+        incFn = function() { obj.value += 2 },
+        decFn = function() { obj.value -= 3 },
+        smFn  = function() { obj.value += 0 };
+
+    expect(smFn).to.not.increase(obj, 'value');
+    expect(decFn).to.not.increase(obj, 'value');
+    expect(incFn).to.increase(obj, 'value');
+
+    expect(smFn).to.not.decrease(obj, 'value');
+    expect(incFn).to.not.decrease(obj, 'value');
+    expect(decFn).to.decrease(obj, 'value');
+  });
+
 
 });

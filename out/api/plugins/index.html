@@ -56,7 +56,7 @@
           <div class="list box-wrap antiscroll-wrap">
             <div class="box">
               <div class="antiscroll-inner">
-                <div class="box-inner"><a href="#type" class="scroll item">type</a><a href="#addMethod" class="scroll item">addMethod</a><a href="#overwriteMethod" class="scroll item">overwriteMethod</a><a href="#addProperty" class="scroll item">addProperty</a><a href="#overwriteProperty" class="scroll item">overwriteProperty</a><a href="#overwriteChainableMethod" class="scroll item">overwriteChainableMethod</a><a href="#flag" class="scroll item">flag</a><a href="#getAllFlags" class="scroll item">getAllFlags</a><a href="#getPathValue" class="scroll item">getPathValue</a><a href="#addChainableMethod" class="scroll item">addChainableMethod</a>
+                <div class="box-inner"><a href="#type" class="scroll item">type</a><a href="#addMethod" class="scroll item">addMethod</a><a href="#overwriteMethod" class="scroll item">overwriteMethod</a><a href="#addProperty" class="scroll item">addProperty</a><a href="#overwriteProperty" class="scroll item">overwriteProperty</a><a href="#overwriteChainableMethod" class="scroll item">overwriteChainableMethod</a><a href="#flag" class="scroll item">flag</a><a href="#transferFlags" class="scroll item">transferFlags</a><a href="#getPathValue" class="scroll item">getPathValue</a><a href="#addChainableMethod" class="scroll item">addChainableMethod</a>
                 </div>
               </div>
             </div>
@@ -179,7 +179,7 @@ access to previous value. Must return function to use as getter.</p>
 </div>
               </div>
               <div id="overwriteChainableMethod-section" class="segment">
-                <div class="summary"><h3 id="overwritechainablemethod-ctx-name-fn-">overwriteChainableMethod (ctx, name, fn)</h3>
+                <div class="summary"><h3 id="overwritechainablemethod-ctx-name-method-chainingbehavior-">overwriteChainableMethod (ctx, name, method, chainingBehavior)</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">ctx</span><span class="desc">object whose method / property is to be overwritten</span></li>
@@ -205,10 +205,10 @@ expect(myFoo).to.have.length.above(<span class="number">3</span>);</code></pre>
 </div>
               </div>
               <div id="flag-section" class="segment">
-                <div class="summary"><h3 id="flag-object-key-value-">flag(object ,key, [value])</h3>
+                <div class="summary"><h3 id="flag-object-key-value-">flag(object, key, [value])</h3>
 </div>
                 <ul class="tags">
-                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">object</span><span class="desc">(constructed Assertion</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">object</span><span class="desc">constructed Assertion</span></li>
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">key</span><span class="desc"></span></li>
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">value</span><span class="desc">(optional)</span></li>
                 </ul>
@@ -220,12 +220,12 @@ the value is not set.</p>
 utils.flag(<span class="keyword">this</span>, <span class="string">'foo'</span>); <span class="comment">// getter, returns `bar`</span></code></pre>
 </div>
               </div>
-              <div id="getAllFlags-section" class="segment">
+              <div id="transferFlags-section" class="segment">
                 <div class="summary"><h3 id="transferflags-assertion-object-includeall-true-">transferFlags(assertion, object, includeAll = true)</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Assertion &#125;</span><span class="name">assertion</span><span class="desc">the assertion to transfer the flags from</span></li>
-                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">object</span><span class="desc">the object to transfer the flags too; usually a new assertion</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">object</span><span class="desc">the object to transfer the flags to; usually a new assertion</span></li>
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Boolean &#125;</span><span class="name">includeAll</span><span class="desc"></span></li>
                 </ul>
                 <div class="description"><p>Transfer all the flags for <code>assertion</code> to <code>object</code>. If

@@ -9,7 +9,7 @@
     "tweeturl": "http://chaijs.com",
     "tweetvia": "jakeluer",
     "tweetrelated": "jakeluer",
-    "version": "1.10.0",
+    "version": "2.0.0",
     "hasdownloads": false,
     "description": "Chai is a BDD / TDD assertion library for [node](http://nodejs.org) and the browser that can be delightfully paired with any javascript testing framework."
   },

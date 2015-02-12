@@ -10,9 +10,20 @@ $(function () {
     });
   });
 
-  setTimeout(function () {
+  var OFFSET = 470;
+  var MIN_HEIGHT = 256;
+
+  var updateScrollableList = function () {
+    var height = Math.max($(window).height() - OFFSET, MIN_HEIGHT);
     $('.box-wrap')
+      .find('.antiscroll-inner')
+        .height(height)
+      .end()
+      .height(height)
       .antiscroll({ autoHide: false })
       .data('antiscroll');
-  }, 500);
+  };
+
+  setTimeout(updateScrollableList, 0);
+  $(window).resize(updateScrollableList);
 });

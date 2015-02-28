@@ -173,13 +173,14 @@ arthur.assert(
 the assertion failed and the first error message will be thrown as part of a <code>chai.AssertionError</code>.
 Conversely, if the language chain was negated, it will consider <code>false</code> a pass and <code>true</code> a failure. 
 The second error message will be included in the thrown error instead.</p>
-<p>In all, the <code>assert</code> method accepts five arguments:</p>
+<p>In all, the <code>assert</code> method accepts six arguments:</p>
 <ol>
 <li>a boolean (result of a truth test)</li>
 <li>a string error message to be used if the first argument is <code>false</code></li>
 <li>a string error message to be used if the assertion is negated and the first argument is <code>true</code></li>
 <li>(optional) the expected value</li>
 <li>(optional) the actual value, which will default to <code>_obj</code></li>
+<li>(optional) a boolean which indicates whether to display a diff in addition to the message if the first argument is <code>false</code></li>
 </ol>
 <h3 id="composing-error-messages">Composing Error Messages</h3>
 <p>As you can see from the above example, Chai can accept template tags to dynamically compose 

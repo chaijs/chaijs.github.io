@@ -1,5 +1,5 @@
 ---
-  title: Plugin Utilites
+  title: Plugin Utilities
   weight: 20
 ---
 

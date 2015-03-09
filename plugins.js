@@ -294,4 +294,14 @@ module.exports = [
     , tags: [ 'assertion', 'id', 'objectid', 'equality' ]
     , pkg: 'https://raw.githubusercontent.com/hurrymaplelad/chaid/master/package.json'
     , markdown: 'https://raw.githubusercontent.com/hurrymaplelad/chaid/master/README.md' }
+
+  , { name: 'Chai Immutable'
+    , desc: 'Assertions for Facebook\'s Immutable library for JavaScript collections'
+    , url: 'chai-immutable'
+    , link: 'https://github.com/astorije/chai-immutable'
+    , tags: [ 'assertion', 'immutable', 'equality' ]
+    , pkg: 'https://raw.githubusercontent.com/astorije/chai-immutable/master/package.json'
+    , markdown: 'https://raw.githubusercontent.com/astorije/chai-immutable/master/README.md'
+    , browser: false
+    }
 ];

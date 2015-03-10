@@ -28,6 +28,11 @@
           , "render-file": false }
 
         , { "name": "plugins"
+          , "title": "utility : assert"
+          , "file": "../chai/lib/chai/assertion.js"
+          , "description": ""
+          , "render-file": false }
+        , { "name": "plugins"
           , "title": "utility : addMethod"
           , "file": "../chai/lib/chai/utils/addMethod.js"
           , "description": ""

@@ -2,7 +2,7 @@
 # Generate the docs and start the doc server
 #
 
-all: docs docs-server
+all: plugins docs docs-server
 
 #
 # Generate the docs
@@ -14,6 +14,14 @@ docs: clean-docs
 	mkdir -p out/public/js/tests
 	cp node_modules/mocha/mocha.js out/public/js/tests
 	cp -R chai/test/*.js out/public/js/tests
+
+#
+# Generate plugins
+#
+
+plugins: docs
+	@mkdir -p out/plugins
+	@./node_modules/.bin/npm-plugin-fetcher -o out/plugins chai-plugin
 
 #
 # Clean the docs
@@ -33,4 +41,4 @@ docs-server:
 # Instructions
 #
 
-.PHONY: docs clean-docs docs-server
+.PHONY: plugins docs clean-docs docs-server

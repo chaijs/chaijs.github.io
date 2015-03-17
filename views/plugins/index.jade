@@ -8,11 +8,13 @@ block scripts
 
 block content
   mixin plugin(plug)
-    article.grid_3.contrast.plugin-box_s(id=plug.url)
-      a(href=site.ghbaseurl + '/plugins/' + plug.url, class='ablock') 
+    article.grid_3.contrast.plugin-box_s(id=plug.name)
+      a(href=site.ghbaseurl + '/plugins/' + plug.name, class='ablock')
         .wrap
-          h3.fancy= plug.name 
-          p= plug.desc
+          h3.fancy= plug.name
+          if plug.latest && plug.latest.version
+            p.plugin-version v#{plug.latest.version}
+          p= plug.description
 
   #ptags.grid_3.sticky
     .tag.active
@@ -33,4 +35,4 @@ block content
     for tag, name in plugin_tags
       .plug_list.rowInside(class=name)
         for plugin in tag
-          mixin plugin(plugin)
+          mixin plugin(plugins.filter(function (p) { return p.name === plugin })[0])

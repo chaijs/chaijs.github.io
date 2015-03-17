@@ -18,6 +18,7 @@
     "jade": "0.27.x",
     "marked": "0.2.x",
     "highlight.js": "7.0.1",
+    "npm-plugin-fetcher": "1.0.0",
     "mocha": "1.8.x"
   },
   "engines": {

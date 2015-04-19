@@ -10,9 +10,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?2.1.0"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?2.1.0" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?2.1.0" type="text/css" media="all">
+    <script src="/public/js/main.js?2.2.0"></script>
+    <link rel="stylesheet" href="/public/css/antiscroll.css?2.2.0" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?2.2.0" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -120,6 +120,10 @@ expect({ foo: <span class="string">'baz'</span> }).to.have.property(<span class=
 <pre><code>expect(foo).to.deep.equal({ bar: <span class="string">'baz'</span> });
 expect({ foo: { bar: { baz: <span class="string">'quux'</span> } } })
   .to.have.deep.property(<span class="string">'foo.bar.baz'</span>, <span class="string">'quux'</span>);</code></pre>
+<p><code>.deep.property</code> special characters can be escaped
+by adding two slashes before the <code>.</code> or <code>[]</code>.</p>
+<pre><code><span class="keyword">var</span> deepCss = { <span class="string">'.link'</span>: { <span class="string">'[target]'</span>: <span class="number">42</span> }};
+expect(deepCss).to.have.deep.property(<span class="string">'\\.link.\\[target\\]'</span>, <span class="number">42</span>);</code></pre>
 </div>
               </div>
               <div id="any-section" class="segment">
@@ -218,7 +222,7 @@ expect(<span class="number">0</span>).to.not.be.<span class="literal">false</spa
                 </ul>
                 <div class="description"><p>Asserts that the target is <code>null</code>.</p>
 <pre><code>expect(<span class="literal">null</span>).to.be.<span class="literal">null</span>;
-expect(undefined).not.to.be.<span class="literal">null</span>;</code></pre>
+expect(undefined).to.not.be.<span class="literal">null</span>;</code></pre>
 </div>
               </div>
               <div id="undefined-section" class="segment">
@@ -251,7 +255,7 @@ expect(baz).to.not.exist;</code></pre>
 </div>
                 <ul class="tags">
                 </ul>
-                <div class="description"><p>Asserts that the target&#39;s length is <code>0</code>. For arrays, it checks
+                <div class="description"><p>Asserts that the target&#39;s length is <code>0</code>. For arrays and strings, it checks
 the <code>length</code> property. For objects, it gets the count of
 enumerable keys.</p>
 <pre><code>expect([]).to.be.empty;
@@ -449,6 +453,16 @@ expect(deepObj).to.have.property(<span class="string">'teas'</span>)
   .that.is.an(<span class="string">'array'</span>)
   .<span class="keyword">with</span>.deep.property(<span class="string">'[2]'</span>)
     .that.deep.equals({ tea: <span class="string">'konacha'</span> });</code></pre>
+<p>Note that dots and bracket in <code>name</code> must be backslash-escaped when
+the <code>deep</code> flag is set, while they must NOT be escaped when the <code>deep</code>
+flag is not set.</p>
+<pre><code><span class="comment">// simple referencing</span>
+<span class="keyword">var</span> css = { <span class="string">'.link[target]'</span>: <span class="number">42</span> };
+expect(css).to.have.property(<span class="string">'.link[target]'</span>, <span class="number">42</span>);
+
+<span class="comment">// deep referencing</span>
+<span class="keyword">var</span> deepCss = { <span class="string">'.link'</span>: { <span class="string">'[target]'</span>: <span class="number">42</span> }};
+expect(deepCss).to.have.deep.property(<span class="string">'\\.link.\\[target\\]'</span>, <span class="number">42</span>);</code></pre>
 </div>
               </div>
               <div id="ownProperty-section" class="segment">

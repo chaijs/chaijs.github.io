@@ -1,42 +1,38 @@
 extends ../layout
 
 block content
-  #plugin.row(class=plugin.url)
-    .banner.grid_4 
+  #plugin.row(class=plugin.name)
+    .banner.grid_4
       .wrap
-        .title: h2.plain= plugin.spec.name
-        .desc= plugin.spec.desc
-        - if (plugin.spec.link.indexOf('github.com'))
-          - var repo = plugin.spec.link.replace(/^https?\:\/\/(www\.)?github\.com\//, '')
-          h3.link: a(href=plugin.spec.link) View the Project on GitHub
+        .title: h2.plain= plugin.name
+        .desc= plugin.description
+        - if (plugin.repository.url.indexOf('github.com'))
+          - var link = plugin.repository.url.replace(/^git/, 'http');
+          - var repo = link.replace(/^https?\:\/\/(www\.)?github\.com\//, '')
+          h3.link: a(href=link) View the Project on GitHub
             span= repo
-        - else
-          h3.link: a(href=plugin.spec.link) View the Homepage
-            span 
-        - if (plugin.spec.node !== false)
+        - else if (plugin.latest && plugin.latest.homepage)
+          h3.link: a(href=plugin.latest.homepage) View the homepage
+            span
+        - if (plugin.keywords.indexOf('chai-plugin-browser-only') === -1)
           .platform.supported
             .icon &#10003;
             | node.js supported
-            pre: code npm install #{plugin.pkg.name}
+            pre: code npm install #{plugin.name}
         - else
-          .platform.not-support 
+          .platform.not-support
             .icon &times;
             | node.js not supported
-        - if (plugin.spec.browser !== false)
+        - if (plugin.keywords.indexOf('chai-plugin-browser') === -1)
           .platform.supported
             .icon &#10003;
             | browser supported
-            - if ('object' == typeof plugin.spec.browser)
-              ul
-                for url, filename in plugin.spec.browser
-                  li: a(href=url)= filename
         - else
-          .platform.not-support 
+          .platform.not-support
             .icon &times;
             | browser not supported
         .people
-          - if (plugin.pkg.author)
-            - var author = 'string' === typeof plugin.pkg.author ? plugin.pkg.author.split(' <')[0] : plugin.pkg.author.name
-            .author Project maintained by #{author}
+          - if (plugin.author)
+            .author Project maintained by #{plugin.author.name}
     .readme.grid_8
-      .wrap!= plugin.html
+      .wrap!= plugin.htmlReadme

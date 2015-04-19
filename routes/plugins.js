@@ -3,15 +3,40 @@ var filtr = require('filtr')
   , join = require('path').join
   , highlight = require('highlight.js')
   , marked = require('marked')
-  , plugins = require('../plugins')
   , request = require('superagent');
 
 var site_tags = []
+  , blacklistedTags = [
+        'chai'
+      , 'chai-plugin'
+      , 'chai-plugin-browser'
+      , 'chai-plugin-browser-only'
+      , 'plugin'
+      , 'assertions'
+      , 'assert'
+      , 'testing'
+    ]
   , plugin_tags = {};
 
+var plugins = fs.readdirSync(process.cwd() + '/out/plugins').map(function (name) {
+    var json = JSON.parse(fs.readFileSync('./out/plugins/' + name));
+    try {
+      json.htmlReadme = parseMarkdown(json.readme || 'No information provided');
+    } catch(ex) {
+      console.log(ex);
+      json.htmlReadme = '<p>Error parsing markdown.</p>';
+    }
+    json.latest = {};
+    if ((json['dist-tags'] || {}).latest) {
+        json.latest = json.versions[json['dist-tags'].latest];
+    }
+    return json;
+});
+
 plugins.forEach(function (plug) {
-  if (!plug.tags || !Array.isArray(plug.tags)) return;
-  plug.tags.forEach(function (tag) {
+  if (!plug.keywords || !Array.isArray(plug.keywords)) return;
+  plug.keywords.forEach(function (tag) {
+    if (blacklistedTags.indexOf(tag) !== -1) return;
     if (!~site_tags.indexOf(tag)) site_tags.push(tag);
   });
 });
@@ -29,8 +54,8 @@ function sortAlpha (a, b) {
 site_tags.sort(sortAlpha);
 
 site_tags.forEach(function (tag) {
-  var query = filtr({ 'tags': { $all: [ tag ] } })
-    , res = query.test(plugins).sort(sortAlpha);
+  var query = filtr({ 'keywords': { $all: [ tag ] } })
+    , res = query.test(plugins).map(function (pkg) { return pkg.name; }).sort(sortAlpha);
   plugin_tags[tag] = res;
 });
 
@@ -55,88 +80,27 @@ app.get('/plugins/tags.json', function (req, res) {
   for (var name in plugin_tags) {
     json[name] = [];
     plugin_tags[name].forEach(function (plugin) {
-      json[name].push(plugin.url);
+      json[name].push(plugin);
     });
   }
   res.json(json);
 });
 
 app.get('/plugins/:id', function (req, res, next) {
-  var query = filtr({ 'url': req.params.id })
+  var query = filtr({ 'name': req.params.id })
     , plugin = query.test(plugins)[0];
 
   if (!plugin) return next();
 
-  var pkg = null
-    , html = null;
-
-  function render () {
-    if (!pkg || !html) return;
-    res.render('plugins/plugin', {
-        site: site_locals
-      , plugin: {
-            spec: plugin
-          , pkg: pkg
-          , html: html
-        }
-      , file: {
-          template: 'plugin'
-        , href: '/plugins/' + req.params.id
-        , title: plugin.name
-      }
-    });
-  }
-
-  if (!plugin.cache)
-    plugin.cache = {};
-
-  if (plugin.cache.date) {
-    var now = new Date().getTime();
-    if (now - plugin.cache.date > 3600000)
-      plugin.cache = {};
-  }
-
-  if (!plugin.cache.html) {
-    request
-      .get(plugin.markdown)
-      .end(function (readme) {
-        try {
-          html = (readme.status == 200)
-            ? parseMarkdown(readme.text)
-            : '<p>No information provided.</p>'
-        } catch (ex) {
-          html = '<p>Error parsing markdown.</p>';
-        }
-        plugin.cache.html = html;
-        plugin.cache.date = new Date().getTime();
-        render();
-      });
-  } else {
-    html = plugin.cache.html;
-    render();
-  }
-
-  if (!plugin.cache.pkg) {
-    request
-      .get(plugin.pkg)
-      .end(function (pack) {
-        if (pack.status == 200) {
-          try {
-            pkg = JSON.parse(pack.text);
-          } catch (ex) {
-            pkg = { error: 2 }
-          }
-        } else {
-          pkg = { error: 1 };
-        }
-        plugin.cache.pkg = pkg;
-        plugin.cache.date = new Date();
-        render();
-      });
-  } else {
-    pkg = plugin.cache.pkg;
-    render();
-  }
+  res.render('plugins/plugin', {
+      site: site_locals
+    , plugin: plugin
+    , file: {
+        template: 'plugin'
+      , href: '/plugins/' + req.params.id
+      , title: plugin.name
+    }
+  });
 });
 
 

@@ -304,4 +304,12 @@ module.exports = [
     , markdown: 'https://raw.githubusercontent.com/astorije/chai-immutable/master/README.md'
     , browser: false
     }
+
+  , { name: 'Chai Generator'
+    , desc: 'Extend Chai with assertions for Javascript generators'
+    , url: 'chai-generator'
+    , link: 'https://github.com/fengb/chai-generator'
+    , tags: [ 'assertion', 'generator' ]
+    , pkg: 'https://raw.githubusercontent.com/fengb/chai-generator/master/package.json'
+    , markdown: 'https://raw.githubusercontent.com/fengb/chai-generator/master/README.md' }
 ];

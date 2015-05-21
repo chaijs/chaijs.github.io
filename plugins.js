@@ -304,4 +304,15 @@ module.exports = [
     , markdown: 'https://raw.githubusercontent.com/astorije/chai-immutable/master/README.md'
     , browser: false
     }
+    
+  , { name: 'Chai Signals'
+    , desc: 'Assertions for signaling using the js-signals library.'
+    , url: 'chai-signals'
+    , link: 'https://github.com/StephenDavidson/chai-signals'
+    , tags: [ 'js-signals, signals' ]
+    , pkg: 'https://raw.githubusercontent.com/StephenDavidson/chai-signals/master/package.json'
+    , markdown: 'https://raw.githubusercontent.com/StephenDavidson/chai-signals/master/README.md'
+    , browser:
+    { 'chai-signals.js': 'https://raw.githubusercontent.com/StephenDavidson/chai-signals/master/chai-signals.js' }
+    }
 ];

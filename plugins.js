@@ -315,4 +315,12 @@ module.exports = [
     , browser:
     { 'chai-signals.js': 'https://raw.githubusercontent.com/StephenDavidson/chai-signals/master/chai-signals.js' }
     }
+
+  , { name: 'Chai Match'
+    , desc: 'Advanced RegExp assertions for Chai.js'
+    , url: 'chai-match'
+    , link: 'https://github.com/johngeorgewright/chai-match'
+    , tags: [ 'assertion', 'string' ]
+    , pkg: 'https://github.com/johngeorgewright/chai-match/blob/master/package.json'
+    , markdown: 'https://raw.githubusercontent.com/johngeorgewright/chai-match/master/README.md' }
 ];

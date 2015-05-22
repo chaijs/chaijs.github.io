@@ -317,7 +317,7 @@ module.exports = [
     }
 
   , { name: 'Chai Match'
-    , desc: 'Advanced RegExp assertions for Chai.js',
+    , desc: 'Advanced RegExp assertions for Chai.js'
     , url: 'chai-match'
     , link: 'https://github.com/johngeorgewright/chai-match'
     , tags: [ 'assertion', 'string' ]

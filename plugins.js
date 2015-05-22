@@ -322,5 +322,8 @@ module.exports = [
     , link: 'https://github.com/johngeorgewright/chai-match'
     , tags: [ 'assertion', 'string' ]
     , pkg: 'https://github.com/johngeorgewright/chai-match/blob/master/package.json'
-    , markdown: 'https://raw.githubusercontent.com/johngeorgewright/chai-match/master/README.md' }
+    , markdown: 'https://raw.githubusercontent.com/johngeorgewright/chai-match/master/README.md'
+    , browser:
+      { 'chai-match.js': 'https://raw.github.com/johngeorgewright/chai-match/master/chai-match.js' }
+    }
 ];

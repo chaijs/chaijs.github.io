@@ -190,6 +190,17 @@ module.exports = [
       { 'chai-json-schema.js': 'https://raw.github.com/Bartvds/chai-json-schema/master/index.js' }
     }
 
+  , { name: 'Chai Json Equal'
+    , desc: 'Assert on equality of json representations'
+    , url: 'chai-json-equal'
+    , link  'https://github.com/hurrymaplelad/chai-json-equal'
+    , tags: ['objects', 'array', 'assertion', 'equality']
+    , pkg: 'https://raw.githubusercontent.com/hurrymaplelad/chai-json-equal/master/package.json'
+    , markdown: 'https://raw.githubusercontent.com/hurrymaplelad/chai-json-equal/master/README.md'
+    , browser:
+      {'chai-json-equal.js': 'https://raw.githubusercontent.com/hurrymaplelad/chai-json-equal/master/chai_json_equal.js'}
+    }
+
   , { name: 'Chai Date Time'
     , desc: 'Extend chai with common date equality assertions against JavaScript Date objects.'
     , url: 'chai-datetime'

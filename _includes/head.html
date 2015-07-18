@@ -1,0 +1,41 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | markdownify | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+
+    <link rel='icon' type='image/x-icon' href="{{site.baseurl}}/public/img/favicon.ico">
+    <link rel="stylesheet" href="{{site.baseurl}}/css/main.css">
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="{{site.baseurl}}/public/js/jquery-mousewheel.js"></script>
+    <script src="{{site.baseurl}}/public/js/antiscroll.js"></script>
+    <script src="{{site.baseurl}}/public/js/main.js"></script>
+
+    <link rel='stylesheet', href="{{site.baseurl}}/public/css/antiscroll.css" type="text/css" media="all">
+    <link rel='stylesheet', href="{{site.baseurl}}/public/css/main.css" type="text/css" media="all">
+    <script type='text/javascript'>
+        var mpq = [];
+        mpq.push(["init", "{{site.mixpanel}}"]);
+        (function(){var b,a,e,d,c;b=document.createElement("script");b.type="text/javascript";
+        b.async=true;b.src=(document.location.protocol==="https:"?"https:":"http:")+
+        "//api.mixpanel.com/site_media/js/api/mixpanel.js";a=document.getElementsByTagName("script")[0];
+        a.parentNode.insertBefore(b,a);e=function(f){return function(){mpq.push(
+        [f].concat(Array.prototype.slice.call(arguments,0)))}};d=["init","track","track_links",
+        "track_forms","register","register_once","identify","name_tag","set_config"];for(c=0;c<
+        d.length;c++){mpq[d[c]]=e(d[c])}})();
+    </script>
+    <script type='text/javascript'>
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', '{{site.googleanalytics}}']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</head>

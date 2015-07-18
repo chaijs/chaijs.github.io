@@ -1,0 +1,116 @@
+<header>
+    <div class="header-wrap">
+        <div class="installation">
+            <div class="site-description">
+                {{ site.description | markdownify }}
+            </div>
+            <div class="card-wrap">
+                <div class="card">
+                    <div class="card-inner">
+                        <h1>
+                            Download Chai
+                            <span class="version"></span>
+                        </h1>
+                        <div id="node" class="install">
+                            <h2>
+                                for Node
+                                <small>Another platform?
+                                    <a href="#browser" class="toggle">Browser</a>
+                                    <a href="#rails" class="toggle">Rails</a>
+                                </small>
+                            </h2>
+                            <div class="download-banner">
+                                <div class="description">
+                                    The <code>chai</code> package is available
+                                    on npm.
+                                </div>
+                                <div class="command dsp-left">
+                                    $ npm install chai
+                                </div>
+                                <a href="{{site.baseurl}}/guide/installation/#node" class="button dsp-right">
+                                    View Node Guide
+                                </a>
+                            </div>
+                        </div>
+                        <div id="browser" class="install">
+                            <h2>
+                                for Browser
+                                <small>Another platform?
+                                    <a href="#node" class="toggle">Node</a>
+                                    <a href="#rails" class="toggle">Rails</a>
+                                </small>
+                            </h2>
+                            <div class="download-banner">
+                                <div class="description">
+                                    The <code>chai.js</code> script is available
+                                    for download or a hotlink.
+                                </div>
+                                <a href="http://chaijs.com/chai.js" class="button-alt dsp-left">
+                                    Download chai.js
+                                </a>
+                                <a href="{{site.baseurl}}/guide/installation/#browser" class="button dsp-right">
+                                    View Browser Guide
+                                </a>
+                            </div>
+                        </div>
+                        <div id="rails" class="install">
+                            <h2>
+                                for Rails
+                                <small>Another platform?
+                                    <a href="#node" class="toggle">Node</a>
+                                    <a href="#browser" class="toggle">Browser</a>
+                                </small>
+                            </h2>
+                            <div class="download-banner">
+                                <div class="description">
+                                    Chai is available through Konacha, a modern
+                                    test harness that takes full advantage of
+                                    Rails 3 features such as the asset pipeline
+                                    and engines.
+                                </div>
+                                <a href="https://github.com/jfirebaugh/konacha" target="_blank" class="button-alt dsp-full">
+                                    Konacha GitHub Project
+                                </a>
+                            </div>
+                        </div>
+                        <div class="tech-links">
+                            <a href="https://github.com/chaijs/chai/issues" target="_blank">
+                                Issues
+                            </a>
+                            &nbsp;|&nbsp;
+                            <a href="https://github.com/chaijs/chai" target="_blank">
+                                Fork on GitHub
+                            </a>
+                            &nbsp;|&nbsp;
+                            <a href="https://github.com/chaijs/chai/blob/master/History.md" target="_blank">
+                                Changelog
+                            </a>
+                            &nbsp;|&nbsp;
+                            <a href="http://groups.google.com/group/chaijs" target="_blank">
+                                Google Group
+                            </a>
+                            &nbsp;|&nbsp;
+                            <a href="http://travis-ci.org/#!/chaijs/chai" target="_blank">
+                                Build Status
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="callouts">
+            <div id="guide" class="call"><a href="{{site.baseurl}}/guide"><span class="icon"></span>
+                <big>Getting Started</big><small>Learn how install and use Chai through a series of guided walkthroughs.</small></a>
+                <div class="bg"></div>
+            </div>
+            <div id="api" class="call"><a href="{{site.baseurl}}/api"><span class="icon"></span>
+                <big>API Documentation</big><small>Explore the BDD &amp; TDD language specifications for all available assertions.</small></a>
+                <div class="bg"></div>
+            </div>
+            <div id="plugins" class="call"><a href="{{site.baseurl}}/plugins"><span class="icon"></span>
+                <big>Plugin Directory</big><small>Extend Chai's with additional assertions and vendor integration.</small></a>
+                <div class="bg"></div>
+            </div>
+        </div>
+    </div>
+</header>

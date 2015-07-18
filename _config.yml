@@ -1,0 +1,41 @@
+title: Chai
+description: |
+  Chai is a BDD / TDD assertion library for [node](http://nodejs.org) and the
+  browser that can be delightfully paired with any javascript testing framework.
+baseurl: ""
+
+safe: true
+markdown: kramdown
+exclude:
+  - node_modules
+
+googleanalytics: "UA-26183904-6"
+mixpanel: "d5e84615dbd02dbc359b0f76d0ed7cf5"
+tweeturl: "http://chaijs.com"
+tweetvia: "jakeluer"
+tweetrelated: "jakeluer"
+
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: "default"
+  -
+    scope:
+      path: "guide"
+    values:
+      layout: "guide"
+      weight: 0
+
+featuredplugin:
+  name: chai-webdriver
+  url: /plugins/chai-webdriver
+  blurb: |
+    Create expressive integration tests with chai and
+    [selenium-webdriver](https://npmjs.org/package/selenium-webdriver).
+  example: |
+    chai.use(chaiWebdriver(driver));
+    driver.get('http://chaijs.com/');
+    expect('nav h1').dom.to.contain.text('Chai');
+    expect('#node .button').dom.to.have.style('float', 'left');

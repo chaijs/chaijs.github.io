@@ -313,7 +313,8 @@ module.exports = [
     , tags: [ 'assertion', 'immutable', 'equality' ]
     , pkg: 'https://raw.githubusercontent.com/astorije/chai-immutable/master/package.json'
     , markdown: 'https://raw.githubusercontent.com/astorije/chai-immutable/master/README.md'
-    , browser: false
+    , browser:
+      { 'chai-immutable.js': 'https://raw.githubusercontent.com/astorije/chai-immutable/master/chai-immutable.js' }
     }
     
   , { name: 'Chai Signals'

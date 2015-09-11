@@ -193,7 +193,7 @@ module.exports = [
   , { name: 'Chai Json Equal'
     , desc: 'Assert on equality of json representations'
     , url: 'chai-json-equal'
-    , link  'https://github.com/hurrymaplelad/chai-json-equal'
+    , link:  'https://github.com/hurrymaplelad/chai-json-equal'
     , tags: ['objects', 'array', 'assertion', 'equality']
     , pkg: 'https://raw.githubusercontent.com/hurrymaplelad/chai-json-equal/master/package.json'
     , markdown: 'https://raw.githubusercontent.com/hurrymaplelad/chai-json-equal/master/README.md'
@@ -316,7 +316,7 @@ module.exports = [
     , browser:
       { 'chai-immutable.js': 'https://raw.githubusercontent.com/astorije/chai-immutable/master/chai-immutable.js' }
     }
-    
+
   , { name: 'Chai Signals'
     , desc: 'Assertions for signaling using the js-signals library.'
     , url: 'chai-signals'

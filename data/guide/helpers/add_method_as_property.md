@@ -24,7 +24,7 @@ expect(arr).to.contain(2);
 expect(obj).to.contain.key('a');
 ```
 
-For this to work, two seperate functions are needed. One that will be invoked when the 
+For this to work, two separate functions are needed. One that will be invoked when the 
 chain is used as either a property or a method, and one that will be invoked when only used
 as a method. 
 
@@ -97,7 +97,7 @@ function assertModelAge (n) {
 }
 ```
 
-By now, that should be self-explanitory. Now for our property function.
+By now, that should be self-explanatory. Now for our property function.
 
 ```javascript
 function chainModelAge () {

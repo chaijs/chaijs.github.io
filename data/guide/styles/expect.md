@@ -38,5 +38,5 @@ assertions that might occur.
     // AssertionError: topic [answer]: expected 43 to equal 42.
     expect(answer, 'topic [answer]').to.equal(42);
 
-This comes in handy when being used with non-descript topics such as 
+This comes in handy when being used with nondescript topics such as 
 booleans or numbers.

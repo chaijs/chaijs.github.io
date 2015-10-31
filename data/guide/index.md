@@ -4,7 +4,7 @@
 
 # Welcome to Chai
 
-We are glad that you have decided to give Chai.js a try! If this is your first visit, get aquainted with
+We are glad that you have decided to give Chai.js a try! If this is your first visit, get acquainted with
 the basics, such as installation and our included assertion styles.
 
 ## The Basics
@@ -20,4 +20,4 @@ you want to achieve. The Plugin API is also intended as a way to simplify testin
 a way to encapsulate common assertions for repeat use. 
 
 - [Core Plugin Concepts](/guide/plugins/) covers the basics of using the Chai Plugin API.
-- [Building a Helper](/guide/helpers/) is a walkthrough for writing your first plugin.
+- [Building a Helper](/guide/helpers/) is a walk-through for writing your first plugin.

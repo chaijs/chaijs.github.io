@@ -4,7 +4,7 @@
   render-file: false
 ---
 
-## Accessing Utilties
+## Accessing Utilities
 
 Chai comes with a number of utilities to assist in the construction of assertions,
 but it does not provide these directly on the `chai` export. These can be accessed 

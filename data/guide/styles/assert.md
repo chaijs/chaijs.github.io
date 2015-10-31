@@ -9,7 +9,7 @@
 <a href="/api/assert" class="clean-button">View full Assert API</a>
 
 The assert style is exposed through `assert` interface. This provides
-the classic assert-dot notation, similiar to that packaged with
+the classic assert-dot notation, similar to that packaged with
 node.js. This assert module, however, provides several additional
 tests and is browser compatible.
 

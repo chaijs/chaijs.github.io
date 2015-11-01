@@ -350,4 +350,12 @@ module.exports = [
     , browser:
       { 'chai-match.js': 'https://raw.github.com/johngeorgewright/chai-match/master/chai-match.js' }
     }
+
+  , { name: 'Chai BigNumber'
+    , desc: 'Assertions for comparing arbitrary-precision decimals using the bignumber.js library.'
+    , url: 'chai-bignumber'
+    , link: 'https://github.com/asmarques/chai-bignumber'
+    , tags: [ 'assertion', 'math' ]
+    , pkg: 'https://raw.githubusercontent.com/asmarques/chai-bignumber/master/package.json'
+    , markdown: 'https://raw.githubusercontent.com/asmarques/chai-bignumber/master/README.md' }
 ];

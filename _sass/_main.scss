@@ -344,7 +344,7 @@ span.accented {
 span.accented span.faccentl {
   display: block;
   float: left;
-  background: transparent url("/public/img/font-accents.png") no-repeat 0px 0px;
+  background: transparent url("#{$baseurl}/img/font-accents.png") no-repeat 0px 0px;
   width: 50px;
   height: 50px;
   overflow: hidden;
@@ -352,7 +352,7 @@ span.accented span.faccentl {
 span.accented span.faccentr {
   display: block;
   float: right;
-  background: transparent url("/public/img/font-accents.png") no-repeat -50px 0px;
+  background: transparent url("#{$baseurl}/img/font-accents.png") no-repeat -50px 0px;
   width: 50px;
   height: 50px;
   overflow: hidden;
@@ -382,7 +382,7 @@ nav#primary {
   top: 0;
 }
 body.index header {
-  background: #faf4e8 url("/public/img/home-header-bg.png?2345");
+  background: #faf4e8 url("#{$baseurl}/img/home-header-bg.png?2345");
   padding-top: 30px;
   padding-bottom: 0px;
 }
@@ -676,13 +676,13 @@ body.index header .header-wrap .callouts .call .bg {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
 }
 body.index header .header-wrap .callouts #guide a span.icon {
-  background: transparent url("/public/img/chai-icons.png") no-repeat 0px 0px;
+  background: transparent url("#{$baseurl}/img/chai-icons.png") no-repeat 0px 0px;
 }
 body.index header .header-wrap .callouts #api a span.icon {
-  background: transparent url("/public/img/chai-icons.png") no-repeat 0px -100px;
+  background: transparent url("#{$baseurl}/img/chai-icons.png") no-repeat 0px -100px;
 }
 body.index header .header-wrap .callouts #plugins a span.icon {
-  background: transparent url("/public/img/chai-icons.png") no-repeat 0px -200px;
+  background: transparent url("#{$baseurl}/img/chai-icons.png") no-repeat 0px -200px;
 }
 section#content {
   zoom: 1;
@@ -946,7 +946,7 @@ section#content p code {
 }
 .panels #plugin-dir span.img {
   zoom: 1;
-  background: #e9ce99 url("/public/img/plugin-dir-banner.png") no-repeat;
+  background: #e9ce99 url("#{$baseurl}/img/plugin-dir-banner.png") no-repeat;
 }
 .panels #plugin-dir span.img:before,
 .panels #plugin-dir span.img:after {
@@ -961,11 +961,11 @@ section#content p code {
   margin: 15px auto;
   width: 100px;
   height: 100px;
-  background: transparent url("/public/img/chai-icons.png") no-repeat 0px -200px;
+  background: transparent url("#{$baseurl}/img/chai-icons.png") no-repeat 0px -200px;
 }
 .panels #plugin-guide span.img {
   zoom: 1;
-  background: #e9ce99 url("/public/img/plugin-guide-banner.png") no-repeat;
+  background: #e9ce99 url("#{$baseurl}/img/plugin-guide-banner.png") no-repeat;
 }
 .panels #plugin-guide span.img:before,
 .panels #plugin-guide span.img:after {
@@ -980,7 +980,7 @@ section#content p code {
   margin: 15px auto;
   width: 100px;
   height: 100px;
-  background: transparent url("/public/img/chai-icons.png") no-repeat 0px 0px;
+  background: transparent url("#{$baseurl}/img/chai-icons.png") no-repeat 0px 0px;
 }
 .panels article.code .code-sample pre {
   overflow-x: visible;
@@ -1006,7 +1006,7 @@ section#content p code {
   height: 120px;
 }
 .panels article.github span.img {
-  background: transparent url("/public/img/octocat.png");
+  background: transparent url("#{$baseurl}/img/octocat.png");
 }
 section#home .site-description {
   color: #666;
@@ -1023,7 +1023,7 @@ nav#primary .logo h1 {
   line-height: 70px;
 }
 nav#primary .logo h1 a {
-  background: transparent url("/public/img/chai-logo-small.png") no-repeat 0px 10px;
+  background: transparent url("#{$baseurl}/img/chai-logo-small.png") no-repeat 0px 10px;
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #a40802;
   font-size: 18px;

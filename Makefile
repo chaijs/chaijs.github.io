@@ -2,43 +2,50 @@
 # Generate the docs and start the doc server
 #
 
-all: plugins docs docs-server
+all: plugins docs-server
 
 #
 # Generate the docs
 #
 
 docs: clean-docs
-	@./node_modules/.bin/codex build
-	cp chai/chai.js out/chai.js
-	mkdir -p out/public/js/tests
-	cp node_modules/mocha/mocha.js out/public/js/tests
-	cp -R chai/test/*.js out/public/js/tests
+	@mkdir -p _data
+	@./node_modules/.bin/dox < ./node_modules/chai/chai.js > _data/chai.json
 
 #
 # Generate plugins
 #
 
-plugins: docs
-	@mkdir -p out/plugins
-	@./node_modules/.bin/npm-plugin-fetcher -o out/plugins chai-plugin
+plugins:
+	@mkdir -p _data/plugins
+	@./node_modules/.bin/npm-plugin-fetcher -o _data/plugins chai-plugin
+	@xargs -n1 -I! sh -c 'echo ! && curl -s "https://registry.npmjs.com/!" > _data/plugins/!.json' < _legacy_plugins
+	@node _scripts/build-plugin-tags.js
+
+#
+# Install all dependencies
+#
+
+install:
+	@npm install
+	@bundle install
 
 #
 # Clean the docs
 #
 
 clean-docs:
-	@rm -rf out
+	@rm -rf _site _data
 
 #
 # Start the doc server locally
 #
 
 docs-server:
-	@node app.js
+	@bundle exec jekyll serve
 
 #
 # Instructions
 #
 
-.PHONY: plugins docs clean-docs docs-server
+.PHONY: install plugins docs docs-server

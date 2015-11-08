@@ -5,23 +5,11 @@
   "description": "Chaijs.com documentation site.",
   "version": "1.0.0",
   "homepage": "http://chaijs.com",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/chaijs/chai-docs.git"
-  },
-  "main": "./app",
+  "repository": "git://github.com/chaijs/chai-docs.git",
   "dependencies": {
-    "express": "3.0.0rc2",
-    "filtr": "0.3.x",
+    "chai": "*",
     "codex": "0.2.x",
-    "superagent": "0.7.x",
-    "jade": "0.27.x",
-    "marked": "0.2.x",
-    "highlight.js": "7.0.1",
     "npm-plugin-fetcher": "1.0.0",
-    "mocha": "1.8.x"
-  },
-  "engines": {
-    "node": "*"
+    "dox": "^0.8.0"
   }
 }

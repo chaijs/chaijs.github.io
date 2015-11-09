@@ -27,6 +27,5 @@ chai-param
 chai-colors
 chai-xml
 chaid
-chai-immutable
 chai-signals
 chai-match

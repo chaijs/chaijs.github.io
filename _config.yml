@@ -5,7 +5,14 @@ description: |
 baseurl: "/chai-docs"
 
 safe: true
-markdown: kramdown
+markdown: redcarpet
+redcarpet:
+    extensions:
+      - no_intra_emphasis
+      - tables
+      - autolink
+      - strikethrough
+      - with_toc_data
 exclude:
   - node_modules
   - package.json
@@ -21,13 +28,21 @@ defaults:
     scope:
       path: ""
     values:
-      layout: "default"
+      layout: default
   -
     scope:
-      path: "guide"
+      path: guide
+      type: guides
     values:
-      layout: "guide"
+      layout: guide
+      bodyClass: guide
       weight: 0
+
+collections:
+  guides:
+      output: true
+      permalink: /guide/:path/
+      bodyClass: guide
 
 featuredplugin:
   name: chai-webdriver

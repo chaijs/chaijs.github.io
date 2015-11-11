@@ -1,8 +1,17 @@
 ---
-  title: Contributing
-  weight: 10
-  render-file: false
+  title: Resources
+  order: 50
+  headings:
+    - Getting Help
+    - Contributing
 ---
+
+# Resources
+
+If you have questions or issues, please use this projects
+[GitHub Issues](https://github.com/chaijs/chai/issues). You can also keep up to date
+on the [Google Group](http://groups.google.com/group/chaijs) or ping [@jakeluer](http://twitter.com/jakeluer)
+directly on Twitter. Chai developers can also be found on Freenode IRC in #letstest.js.
 
 ### Developing
 
@@ -37,7 +46,7 @@ If you have made changes to any of the components, you must rebuild the browser 
 
       $ make
 
-### Contributors 
+### Contributors
 
      repo age : 1 year, 5 months
      active   : 123 days

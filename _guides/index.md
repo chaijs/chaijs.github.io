@@ -1,5 +1,7 @@
 ---
 title: Getting Started Guide
+permalink: /guide/
+order: 1
 ---
 
 # Welcome to Chai

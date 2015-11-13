@@ -328,7 +328,7 @@ module.exports = [
     , browser:
       { 'chai-immutable.js': 'https://raw.githubusercontent.com/astorije/chai-immutable/master/chai-immutable.js' }
     }
-    
+
   , { name: 'Chai Signals'
     , desc: 'Assertions for signaling using the js-signals library.'
     , url: 'chai-signals'

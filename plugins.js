@@ -79,7 +79,7 @@ module.exports = [
  , { name: 'Chai DOM'
     , desc: 'DOM assertions for the Chai assertion library using vanilla JavaScript'
     , url: 'chai-dom'
-    , link: 'https://github.com/FormidableLabs/chai-dom'
+    , link: 'https://github.com/nathanboktae/chai-dom'
     , tags: [ 'vendor', 'dom' ]
     , pkg: 'https://raw.github.com/nathanboktae/chai-dom/master/package.json'
     , markdown: 'https://raw.github.com/nathanboktae/chai-dom/master/README.md'

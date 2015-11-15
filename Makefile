@@ -2,21 +2,31 @@
 # Generate the docs and start the doc server
 #
 
-all: plugins docs-server
+all: plugins api-docs docs-server
 
 #
-# Generate the docs
+# Generate the api docs
 #
 
-docs: clean-docs
+api-docs: clean-api-docs
 	@mkdir -p _data
+	@npm install chai@latest
 	@./node_modules/.bin/dox < ./node_modules/chai/chai.js > _data/chai.json
+
+
+#
+# Generate the releases
+#
+
+releases:
+	@mkdir -p _data
+	@curl -s "https://api.github.com/repos/chaijs/chai/releases" > _data/releases.json
 
 #
 # Generate plugins
 #
 
-plugins:
+plugins: clean-plugins
 	@mkdir -p _data/plugins
 	@./node_modules/.bin/npm-plugin-fetcher -o _data/plugins chai-plugin
 	@xargs -n1 -I! sh -c 'echo ! && curl -s "https://registry.npmjs.com/!" > _data/plugins/!.json' < _legacy_plugins
@@ -31,11 +41,18 @@ install:
 	@bundle install
 
 #
-# Clean the docs
+# Clean the plugins
 #
 
-clean-docs:
-	@rm -rf _site _data
+clean-plugins:
+	@rm -rf _data/plugins*
+
+#
+# Clean the api- docs
+#
+
+clean-api-docs:
+	@rm -rf _data/chai.json
 
 #
 # Start the doc server locally
@@ -48,4 +65,4 @@ docs-server:
 # Instructions
 #
 
-.PHONY: install plugins docs docs-server
+.PHONY: install plugins api-docs docs-server

@@ -12,17 +12,67 @@ includeBanner: true
                 provide an expressive language &amp; readable style, while
                 the TDD assert style provides a more classical feel.
             </h2>
-      <!--if (files.home_samples)
-        for section in files.home_samples
-          article.grid_4.code.contrast
-            .wrap
-              h3.fancy= section.title
-              .code-sample!= section.prepared
-              .more-wrap
-                - hrf = section.title.toLowerCase()
-                a(href=site.ghbaseurl + '/guide/styles/#' + hrf, class='more') Visit #{section.title} Guide
-                  span.arrow &rarr;
-    -->
+          </article>
+          <article class="grid_4 code contrast">
+            <div class="wrap">
+              <h3 class="fancy">Should</h2>
+              <div class="code-sample">
+                {% highlight js %}
+chai.should();
+
+foo.should.be.a('string');
+foo.should.equal('bar');
+foo.should.have.length(3);
+tea.should.have.property('flavors')
+  .with.length(3);
+                {% endhighlight %}
+              </div>
+              <div class="more-wrap">
+                <a href="{{site.baseurl}}/guide/styles/#should" class="more">
+                  Visit Should Guide <span class="arrow">&rarr;</span>
+                </a>
+              </div>
+          </article>
+          <article class="grid_4 code contrast">
+            <div class="wrap">
+              <h3 class="fancy">Expect</h2>
+              <div class="code-sample">
+                {% highlight js %}
+var expect = chai.expect;
+
+expect(foo).to.be.a('string');
+expect(foo).to.equal('bar');
+expect(foo).to.have.length(3);
+expect(tea).to.have.property('flavors')
+  .with.length(3);
+                {% endhighlight %}
+              </div>
+              <div class="more-wrap">
+                <a href="{{site.baseurl}}/guide/styles/#expect" class="more">
+                  Visit Expect Guide <span class="arrow">&rarr;</span>
+                </a>
+              </div>
+          </article>
+          <article class="grid_4 code contrast">
+            <div class="wrap">
+              <h3 class="fancy">Assert</h2>
+              <div class="code-sample">
+                {% highlight js %}
+var assert = chai.assert;
+
+assert.typeOf(foo, 'string');
+assert.equal(foo, 'bar');
+assert.lengthOf(foo, 3)
+assert.property(tea, 'flavors');
+assert.lengthOf(tea.flavors, 3);
+                {% endhighlight %}
+              </div>
+              <div class="more-wrap">
+                <a href="{{site.baseurl}}/guide/styles/#assert" class="more">
+                  Visit Assert Guide <span class="arrow">&rarr;</span>
+                </a>
+              </div>
+          </article>
     </div>
     <div class="rowInside">
       <article class="grid_12 hrline"></article>

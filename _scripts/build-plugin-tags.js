@@ -1,5 +1,25 @@
 var fs = require('fs');
 var files = fs.readdirSync('_data/plugins');
+var hiddenKeywords = [
+  'chai',
+  'chai-plugin',
+  'browser',
+  'browser-only',
+  'browser-only',
+  'test',
+  'tests',
+  'testing',
+  'plugin',
+  'assert',
+  'assertion',
+  'assertions',
+  'unit',
+  'acceptance',
+  'mocha',
+  'jasmine',
+  'integration-tests',
+  'id',
+];
 var keywords = files.filter(function (file) {
   return file.slice(-5) === '.json';
 }).map(function (file) {
@@ -13,11 +33,9 @@ var keywords = files.filter(function (file) {
 }).reduce(function (total, current) {
   return total.concat(current);
 }, []).filter(function(value, index, total) {
-  return value !== 'chai' &&
-    value !== 'chai-plugin' &&
-    total.indexOf(value) === index;
+  return hiddenKeywords.indexOf(value) === -1 && total.indexOf(value) === index;
 });
 
 console.log(keywords);
 
-fs.writeFileSync('_data/plugin_keywords.json', JSON.stringify(keywords), 'utf8');
+fs.writeFileSync('_data/plugin_keywords.json', JSON.stringify(keywords, null, 2), 'utf8');

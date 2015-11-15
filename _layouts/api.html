@@ -1,0 +1,75 @@
+---
+layout: default
+bodyClass: api
+---
+<nav id="api" class="sidebar sticky">
+    <a href="{{ site.baseurl }}/api/" class="item{% if page.url == '/api/index.html' %} active{% endif %}">
+        Introduction
+    </a>
+    <a href="{{ site.baseurl }}/api/bdd/" class="item{% if page.url == '/api/bdd/' %} active{% endif %}">
+        Expect / Should
+    </a>
+    <a href="{{ site.baseurl }}/api/assert/" class="item{% if page.url == '/api/assert/' %} active{% endif %}">
+        Assert
+    </a>
+    <a href="{{ site.baseurl }}/api/plugins/" class="item{% if page.url == '/api/plugins/' %} active{% endif %}">
+        Plugin Utilities
+    </a>
+    <a href="{{ site.baseurl }}/api/test/" class="item{% if page.url == '/api/test/' %} active{% endif %}">
+        Online Test Suite
+    </a>
+    {% if page.api_namespace %}
+    <div class="list box-wrap antiscroll-wrap" style="height: 338px;">
+        <div class="box">
+            <div class="antiscroll-inner" style="height: 338px; width: 225px;">
+                <div class="box-inner">
+                  {% for method in site.data.chai %}
+                    {% assign render = false %}
+                    {% assign name = false %}
+                    {% for tag in method.tags %}
+                      {% if tag.type == "namespace" and tag.string == page.api_namespace %}
+                        {% assign render = true %}
+                      {% endif %}
+                      {% if tag.type == "name" %}
+                        {% capture name %}{{ tag.string }}{% endcapture %}
+                      {% endif %}
+                    {% endfor %}
+                    {% if render %}
+                      <a href="#method={{ name | slugify }}" class="scroll item">{{ name }}</a>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="antiscroll-scrollbar antiscroll-scrollbar-vertical antiscroll-scrollbar-shown" style="height: 76.1754px; top: 0px;">
+        </div>
+    </div>
+    {% endif %}
+</nav>
+<div class="documentation">
+    <div class="wrap">
+        <div class="rendered">
+            {{ content }}
+
+            {% if page.api_namespace %}
+              <h2>API Reference</h2>
+              {% for method in site.data.chai %}
+                {% assign render = false %}
+                {% for tag in method.tags %}
+                  {% if tag.type == "namespace" and tag.string == page.api_namespace %}
+                    {% assign render = true %}
+                  {% endif %}
+                  {% if tag.type == "name" %}
+                    {% capture name %}{{ tag.string }}{% endcapture %}
+                  {% endif %}
+                {% endfor %}
+                {% if render %}
+                  <div id="method={{ name | slugify }}" class="api_method_wrapper">
+                    {{ method.description.full }}
+                  </div>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>

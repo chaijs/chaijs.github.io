@@ -2,6 +2,7 @@
   title: Online Test Suite
   template: tests
   weight: 35
+  permalink: /api/test/
 ---
 
 # Online Test Suite

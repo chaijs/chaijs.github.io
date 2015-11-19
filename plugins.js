@@ -358,4 +358,12 @@ module.exports = [
     , tags: [ 'assertion', 'math' ]
     , pkg: 'https://raw.githubusercontent.com/asmarques/chai-bignumber/master/package.json'
     , markdown: 'https://raw.githubusercontent.com/asmarques/chai-bignumber/master/README.md' }
+
+  , { name: 'Chai Like'
+    , desc: 'Loose deep equals for comparing only some keys of an object.'
+    , url: 'chai-like'
+    , link: 'https://github.com/zation/chai-like'
+    , tags: [ 'array', 'assertion', 'equality', 'objects' ]
+    , pkg: 'https://raw.githubusercontent.com/zation/chai-like/master/package.json'
+    , markdown: 'https://raw.githubusercontent.com/zation/chai-like/master/README.md' }
 ];

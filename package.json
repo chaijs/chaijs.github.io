@@ -14,11 +14,11 @@
     "express": "3.0.0rc2",
     "filtr": "0.3.x",
     "codex": "0.2.x",
-    "superagent": "0.7.x",
-    "jade": "0.27.x",
-    "marked": "0.2.x",
-    "highlight.js": "7.0.1",
-    "mocha": "1.8.x"
+    "superagent": "1.5.0",
+    "jade": "1.11.0",
+    "marked": "0.3.5",
+    "highlight.js": "9.0.0",
+    "mocha": "2.3.4"
   },
   "engines": {
     "node": "*"

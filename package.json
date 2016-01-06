@@ -17,7 +17,7 @@
     "superagent": "0.7.x",
     "jade": "0.27.x",
     "marked": "0.2.x",
-    "highlight.js": "7.0.1",
+    "highlight.js": "9.1.0",
     "mocha": "1.8.x"
   },
   "engines": {

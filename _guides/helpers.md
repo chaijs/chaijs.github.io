@@ -124,6 +124,42 @@ All chain extension utilities are provided both as part of the `utils` object
 and directly on the Assertion constructor. For the rest of this document, however,
 we will be calling the methods directly from `Assertion`.
 
+### Adding Methods
+
+> Note: Multiple plugins defining the same method name using `addMethod` will conflict, with the last-registered plugin winning. The plugin API is pending a major overhaul in future versions of Chai that will, among other things, deal with this conflict. In the mean time, please prefer using `overwriteMethod`.
+
+Though a property is an elegant solution, it is likely not specific enough for 
+the helper we are constructing. As our models have types, it would be beneficial
+to assert that our model is of a specific type. For this, we need a method.
+
+```javascript
+// goal
+expect(arthur).to.be.a.model('person');
+
+// language chain method
+Assertion.addMethod('model', function (type) {
+  var obj = this._obj;
+
+  // first, our instanceof check, shortcut
+  new Assertion(this._obj).to.be.instanceof(Model);
+
+  // second, our type check
+  this.assert(
+      obj._type === type
+    , "expected #{this} to be of type #{exp} but got #{act}"
+    , "expected #{this} to not be of type #{act}"
+    , type        // expected
+    , obj._type   // actual
+  );
+});
+```
+
+<a href="/api/plugins/#addMethod-section" class="clean-button">View addMethod API</a>
+
+All calls to `assert` are synchronous, so if the first one fails the `AssertionError`
+is thrown and the second one will not be reached. It is up to the test runner to interpret
+the message and handle display of any failed assertions.
+
 ### Methods as Properties
 
 Chai includes a unique utility that allows you to construct a language chain that can function

@@ -10,9 +10,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?2.1.0"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?2.1.0" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?2.1.0" type="text/css" media="all">
+    <script src="/public/js/main.js?3.4.2"></script>
+    <link rel="stylesheet" href="/public/css/antiscroll.css?3.4.2" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?3.4.2" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -56,7 +56,7 @@
           <div class="list box-wrap antiscroll-wrap">
             <div class="box">
               <div class="antiscroll-inner">
-                <div class="box-inner"><a href="#type" class="scroll item">type</a><a href="#addMethod" class="scroll item">addMethod</a><a href="#overwriteMethod" class="scroll item">overwriteMethod</a><a href="#addProperty" class="scroll item">addProperty</a><a href="#overwriteProperty" class="scroll item">overwriteProperty</a><a href="#overwriteChainableMethod" class="scroll item">overwriteChainableMethod</a><a href="#flag" class="scroll item">flag</a><a href="#transferFlags" class="scroll item">transferFlags</a><a href="#getPathValue" class="scroll item">getPathValue</a><a href="#addChainableMethod" class="scroll item">addChainableMethod</a>
+                <div class="box-inner"><a href="#getPathValue" class="scroll item">getPathValue</a><a href="#assert" class="scroll item">assert</a><a href="#addMethod" class="scroll item">addMethod</a><a href="#overwriteMethod" class="scroll item">overwriteMethod</a><a href="#addProperty" class="scroll item">addProperty</a><a href="#addChainableMethod" class="scroll item">addChainableMethod</a><a href="#overwriteChainableMethod" class="scroll item">overwriteChainableMethod</a><a href="#flag" class="scroll item">flag</a><a href="#transferFlags" class="scroll item">transferFlags</a><a href="#overwriteProperty" class="scroll item">overwriteProperty</a>
                 </div>
               </div>
             </div>
@@ -72,19 +72,43 @@ assertions. The <a href="/guide/plugins">Code Plugin Concepts</a> and
 how to get started with your own assertions.</p>
 <h2 id="api-reference">API Reference</h2>
 </article>
-              <div id="type-section" class="segment">
-                <div class="summary"><h3 id="type-object-">type(object)</h3>
+              <div id="getPathValue-section" class="segment">
+                <div class="summary"><h3 id="-getpathvalue-path-object-">.getPathValue(path, object)</h3>
 </div>
                 <ul class="tags">
-                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">object</span><span class="desc">to detect type of</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">path</span><span class="desc"></span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">object</span><span class="desc"></span></li>
                 </ul>
-                <div class="description"><p>Better implementation of <code>typeof</code> detection that can
-be used cross-browser. Handles the inconsistencies of
-Array, <code>null</code>, and <code>undefined</code> detection.</p>
-<pre><code>utils.type({}) <span class="comment">// 'object'</span>
-utils.type(<span class="literal">null</span>) <span class="comment">// `null'</span>
-utils.type(undefined) <span class="comment">// `undefined`</span>
-utils.type([]) <span class="comment">// `array`</span></code></pre>
+                <div class="description"><p>This allows the retrieval of values in an
+object given a string path.</p>
+<pre><code><span class="keyword">var</span> obj = {
+    prop1: {
+        arr: [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]
+      , str: <span class="string">'Hello'</span>
+    }
+  , prop2: {
+        arr: [ { nested: <span class="string">'Universe'</span> } ]
+      , str: <span class="string">'Hello again!'</span>
+    }
+}</code></pre>
+<p>The following would be the results.</p>
+<pre><code>getPathValue(<span class="string">'prop1.str'</span>, obj); <span class="comment">// Hello</span>
+getPathValue(<span class="string">'prop1.att[2]'</span>, obj); <span class="comment">// b</span>
+getPathValue(<span class="string">'prop2.arr[0].nested'</span>, obj); <span class="comment">// Universe</span></code></pre>
+</div>
+              </div>
+              <div id="assert-section" class="segment">
+                <div class="summary"><h3 id="-assert-expression-message-negatemessage-expected-actual-showdiff-">.assert(expression, message, negateMessage, expected, actual, showDiff)</h3>
+</div>
+                <ul class="tags">
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Philosophical &#125;</span><span class="name">expression</span><span class="desc">to be tested</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String | Function &#125;</span><span class="name">message</span><span class="desc">or function that returns message to display if expression fails</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String | Function &#125;</span><span class="name">negatedMessage</span><span class="desc">or function that returns negatedMessage to display if negated expression fails</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">expected</span><span class="desc">value (remember to check for negation)</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Mixed &#125;</span><span class="name">actual</span><span class="desc">(optional) will default to `this.obj`</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Boolean &#125;</span><span class="name">showDiff</span><span class="desc">(optional) when set to `true`, assert will display a diff in addition to the message if expression fails</span></li>
+                </ul>
+                <div class="description"><p>Executes an expression and check expectations. Throws AssertionError for reporting if test doesn&#39;t pass.</p>
 </div>
               </div>
               <div id="addMethod-section" class="segment">
@@ -152,30 +176,26 @@ to be used for name.</p>
 <pre><code>expect(myFoo).to.be.foo;</code></pre>
 </div>
               </div>
-              <div id="overwriteProperty-section" class="segment">
-                <div class="summary"><h3 id="overwriteproperty-ctx-name-fn-">overwriteProperty (ctx, name, fn)</h3>
+              <div id="addChainableMethod-section" class="segment">
+                <div class="summary"><h3 id="addchainablemethod-ctx-name-method-chainingbehavior-">addChainableMethod (ctx, name, method, chainingBehavior)</h3>
 </div>
                 <ul class="tags">
-                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">ctx</span><span class="desc">object whose property is to be overwritten</span></li>
-                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">name</span><span class="desc">of property to overwrite</span></li>
-                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">getter</span><span class="desc">function that returns a getter function to be used for name</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">ctx</span><span class="desc">object to which the method is added</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">name</span><span class="desc">of method to add</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">method</span><span class="desc">function to be used for `name`, when called</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">chainingBehavior</span><span class="desc">function to be called every time the property is accessed</span></li>
                 </ul>
-                <div class="description"><p>Overwites an already existing property getter and provides
-access to previous value. Must return function to use as getter.</p>
-<pre><code>utils.overwriteProperty(chai.Assertion.prototype, <span class="string">'ok'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(_super)</span> {</span>
-  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
-    <span class="keyword">var</span> obj = utils.flag(<span class="keyword">this</span>, <span class="string">'object'</span>);
-    <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> Foo) {
-      <span class="keyword">new</span> chai.Assertion(obj.name).to.equal(<span class="string">'bar'</span>);
-    } <span class="keyword">else</span> {
-      _super.call(<span class="keyword">this</span>);
-    }
-  }
+                <div class="description"><p>Adds a method to an object, such that the method can also be chained.</p>
+<pre><code>utils.addChainableMethod(chai.Assertion.prototype, <span class="string">'foo'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(str)</span> {</span>
+  <span class="keyword">var</span> obj = utils.flag(<span class="keyword">this</span>, <span class="string">'object'</span>);
+  <span class="keyword">new</span> chai.Assertion(obj).to.be.equal(str);
 });</code></pre>
 <p>Can also be accessed directly from <code>chai.Assertion</code>.</p>
-<pre><code>chai.Assertion.overwriteProperty(<span class="string">'foo'</span>, fn);</code></pre>
-<p>Then can be used as any other assertion.</p>
-<pre><code>expect(myFoo).to.be.ok;</code></pre>
+<pre><code>chai.Assertion.addChainableMethod(<span class="string">'foo'</span>, fn, chainingBehavior);</code></pre>
+<p>The result can then be used as both a method assertion, executing both <code>method</code> and
+<code>chainingBehavior</code>, or as a language chain, which only executes <code>chainingBehavior</code>.</p>
+<pre><code>expect(fooStr).to.be.foo(<span class="string">'bar'</span>);
+expect(fooStr).to.be.foo.equal(<span class="string">'foo'</span>);</code></pre>
 </div>
               </div>
               <div id="overwriteChainableMethod-section" class="segment">
@@ -239,51 +259,30 @@ utils.transferFlags(assertion, newAssertion);
 utils.transferFlags(assertion, anotherAssertion, <span class="literal">false</span>);</code></pre>
 </div>
               </div>
-              <div id="getPathValue-section" class="segment">
-                <div class="summary"><h3 id="-getpathvalue-path-object-">.getPathValue(path, object)</h3>
+              <div id="overwriteProperty-section" class="segment">
+                <div class="summary"><h3 id="overwriteproperty-ctx-name-fn-">overwriteProperty (ctx, name, fn)</h3>
 </div>
                 <ul class="tags">
-                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">path</span><span class="desc"></span></li>
-                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">object</span><span class="desc"></span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">ctx</span><span class="desc">object whose property is to be overwritten</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">name</span><span class="desc">of property to overwrite</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">getter</span><span class="desc">function that returns a getter function to be used for name</span></li>
                 </ul>
-                <div class="description"><p>This allows the retrieval of values in an
-object given a string path.</p>
-<pre><code><span class="keyword">var</span> obj = {
-    prop1: {
-        arr: [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]
-      , str: <span class="string">'Hello'</span>
+                <div class="description"><p>Overwites an already existing property getter and provides
+access to previous value. Must return function to use as getter.</p>
+<pre><code>utils.overwriteProperty(chai.Assertion.prototype, <span class="string">'ok'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(_super)</span> {</span>
+  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+    <span class="keyword">var</span> obj = utils.flag(<span class="keyword">this</span>, <span class="string">'object'</span>);
+    <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> Foo) {
+      <span class="keyword">new</span> chai.Assertion(obj.name).to.equal(<span class="string">'bar'</span>);
+    } <span class="keyword">else</span> {
+      _super.call(<span class="keyword">this</span>);
     }
-  , prop2: {
-        arr: [ { nested: <span class="string">'Universe'</span> } ]
-      , str: <span class="string">'Hello again!'</span>
-    }
-}</code></pre>
-<p>The following would be the results.</p>
-<pre><code>getPathValue(<span class="string">'prop1.str'</span>, obj); <span class="comment">// Hello</span>
-getPathValue(<span class="string">'prop1.att[2]'</span>, obj); <span class="comment">// b</span>
-getPathValue(<span class="string">'prop2.arr[0].nested'</span>, obj); <span class="comment">// Universe</span></code></pre>
-</div>
-              </div>
-              <div id="addChainableMethod-section" class="segment">
-                <div class="summary"><h3 id="addchainablemethod-ctx-name-method-chainingbehavior-">addChainableMethod (ctx, name, method, chainingBehavior)</h3>
-</div>
-                <ul class="tags">
-                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">ctx</span><span class="desc">object to which the method is added</span></li>
-                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">name</span><span class="desc">of method to add</span></li>
-                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">method</span><span class="desc">function to be used for `name`, when called</span></li>
-                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Function &#125;</span><span class="name">chainingBehavior</span><span class="desc">function to be called every time the property is accessed</span></li>
-                </ul>
-                <div class="description"><p>Adds a method to an object, such that the method can also be chained.</p>
-<pre><code>utils.addChainableMethod(chai.Assertion.prototype, <span class="string">'foo'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(str)</span> {</span>
-  <span class="keyword">var</span> obj = utils.flag(<span class="keyword">this</span>, <span class="string">'object'</span>);
-  <span class="keyword">new</span> chai.Assertion(obj).to.be.equal(str);
+  }
 });</code></pre>
 <p>Can also be accessed directly from <code>chai.Assertion</code>.</p>
-<pre><code>chai.Assertion.addChainableMethod(<span class="string">'foo'</span>, fn, chainingBehavior);</code></pre>
-<p>The result can then be used as both a method assertion, executing both <code>method</code> and
-<code>chainingBehavior</code>, or as a language chain, which only executes <code>chainingBehavior</code>.</p>
-<pre><code>expect(fooStr).to.be.foo(<span class="string">'bar'</span>);
-expect(fooStr).to.be.foo.equal(<span class="string">'foo'</span>);</code></pre>
+<pre><code>chai.Assertion.overwriteProperty(<span class="string">'foo'</span>, fn);</code></pre>
+<p>Then can be used as any other assertion.</p>
+<pre><code>expect(myFoo).to.be.ok;</code></pre>
 </div>
               </div>
             </div>

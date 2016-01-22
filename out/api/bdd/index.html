@@ -10,9 +10,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?2.1.0"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?2.1.0" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?2.1.0" type="text/css" media="all">
+    <script src="/public/js/main.js?3.4.2"></script>
+    <link rel="stylesheet" href="/public/css/antiscroll.css?3.4.2" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?3.4.2" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -56,7 +56,7 @@
           <div class="list box-wrap antiscroll-wrap">
             <div class="box">
               <div class="antiscroll-inner">
-                <div class="box-inner"><a href="#language-chains" class="scroll item">language chains</a><a href="#not" class="scroll item">not</a><a href="#deep" class="scroll item">deep</a><a href="#any" class="scroll item">any</a><a href="#all" class="scroll item">all</a><a href="#a" class="scroll item">a / an</a><a href="#include" class="scroll item">include / contain / includes / contains</a><a href="#ok" class="scroll item">ok</a><a href="#true" class="scroll item">true</a><a href="#false" class="scroll item">false</a><a href="#null" class="scroll item">null</a><a href="#undefined" class="scroll item">undefined</a><a href="#exist" class="scroll item">exist</a><a href="#empty" class="scroll item">empty</a><a href="#arguments" class="scroll item">arguments / Arguments</a><a href="#equal" class="scroll item">equal / equals / eq / deep.equal</a><a href="#eql" class="scroll item">eql / eqls</a><a href="#above" class="scroll item">above / gt / greaterThan</a><a href="#least" class="scroll item">least / gte</a><a href="#below" class="scroll item">below / lt / lessThan</a><a href="#most" class="scroll item">most / lte</a><a href="#within" class="scroll item">within</a><a href="#instanceof" class="scroll item">instanceof / instanceOf</a><a href="#property" class="scroll item">property / deep.property</a><a href="#ownProperty" class="scroll item">ownProperty / haveOwnProperty</a><a href="#length" class="scroll item">length / lengthOf</a><a href="#match" class="scroll item">match</a><a href="#string" class="scroll item">string</a><a href="#keys" class="scroll item">keys / key</a><a href="#throw" class="scroll item">throw / throws / Throw</a><a href="#respondTo" class="scroll item">respondTo</a><a href="#itself" class="scroll item">itself</a><a href="#satisfy" class="scroll item">satisfy</a><a href="#closeTo" class="scroll item">closeTo</a><a href="#members" class="scroll item">members</a><a href="#change" class="scroll item">change / changes / Change</a><a href="#increase" class="scroll item">increase / increases / Increase</a><a href="#decrease" class="scroll item">decrease / decreases / Decrease</a>
+                <div class="box-inner"><a href="#language-chains" class="scroll item">language chains</a><a href="#not" class="scroll item">not</a><a href="#deep" class="scroll item">deep</a><a href="#any" class="scroll item">any</a><a href="#all" class="scroll item">all</a><a href="#a" class="scroll item">a / an</a><a href="#include" class="scroll item">include / contain / includes / contains</a><a href="#ok" class="scroll item">ok</a><a href="#true" class="scroll item">true</a><a href="#false" class="scroll item">false</a><a href="#null" class="scroll item">null</a><a href="#undefined" class="scroll item">undefined</a><a href="#NaN" class="scroll item">NaN</a><a href="#exist" class="scroll item">exist</a><a href="#empty" class="scroll item">empty</a><a href="#arguments" class="scroll item">arguments / Arguments</a><a href="#equal" class="scroll item">equal / equals / eq / deep.equal</a><a href="#eql" class="scroll item">eql / eqls</a><a href="#above" class="scroll item">above / gt / greaterThan</a><a href="#least" class="scroll item">least / gte</a><a href="#below" class="scroll item">below / lt / lessThan</a><a href="#most" class="scroll item">most / lte</a><a href="#within" class="scroll item">within</a><a href="#instanceof" class="scroll item">instanceof / instanceOf</a><a href="#property" class="scroll item">property / deep.property</a><a href="#ownProperty" class="scroll item">ownProperty / haveOwnProperty</a><a href="#ownPropertyDescriptor" class="scroll item">ownPropertyDescriptor / haveOwnPropertyDescriptor</a><a href="#length" class="scroll item">length</a><a href="#lengthOf" class="scroll item">lengthOf</a><a href="#match" class="scroll item">match / matches</a><a href="#string" class="scroll item">string</a><a href="#keys" class="scroll item">keys / key</a><a href="#throw" class="scroll item">throw / throws / Throw</a><a href="#respondTo" class="scroll item">respondTo / respondsTo</a><a href="#itself" class="scroll item">itself</a><a href="#satisfy" class="scroll item">satisfy / satisfies</a><a href="#closeTo" class="scroll item">closeTo / approximately</a><a href="#members" class="scroll item">members</a><a href="#oneOf" class="scroll item">oneOf</a><a href="#change" class="scroll item">change / changes / Change</a><a href="#increase" class="scroll item">increase / increases / Increase</a><a href="#decrease" class="scroll item">decrease / decreases / Decrease</a><a href="#extensible" class="scroll item">extensible</a><a href="#sealed" class="scroll item">sealed</a><a href="#frozen" class="scroll item">frozen</a>
                 </div>
               </div>
             </div>
@@ -120,6 +120,10 @@ expect({ foo: <span class="string">'baz'</span> }).to.have.property(<span class=
 <pre><code>expect(foo).to.deep.equal({ bar: <span class="string">'baz'</span> });
 expect({ foo: { bar: { baz: <span class="string">'quux'</span> } } })
   .to.have.deep.property(<span class="string">'foo.bar.baz'</span>, <span class="string">'quux'</span>);</code></pre>
+<p><code>.deep.property</code> special characters can be escaped
+by adding two slashes before the <code>.</code> or <code>[]</code>.</p>
+<pre><code><span class="keyword">var</span> deepCss = { <span class="string">'.link'</span>: { <span class="string">'[target]'</span>: <span class="number">42</span> }};
+expect(deepCss).to.have.deep.property(<span class="string">'\\.link.\\[target\\]'</span>, <span class="number">42</span>);</code></pre>
 </div>
               </div>
               <div id="any-section" class="segment">
@@ -128,7 +132,7 @@ expect({ foo: { bar: { baz: <span class="string">'quux'</span> } } })
                 <ul class="tags">
                 </ul>
                 <div class="description"><p>Sets the <code>any</code> flag, (opposite of the <code>all</code> flag)
-later used in the <code>keys</code> assertion. </p>
+later used in the <code>keys</code> assertion.</p>
 <pre><code>expect(foo).to.have.any.keys(<span class="string">'bar'</span>, <span class="string">'baz'</span>);</code></pre>
 </div>
               </div>
@@ -137,7 +141,7 @@ later used in the <code>keys</code> assertion. </p>
 </div>
                 <ul class="tags">
                 </ul>
-                <div class="description"><p>Sets the <code>all</code> flag (opposite of the <code>any</code> flag) 
+                <div class="description"><p>Sets the <code>all</code> flag (opposite of the <code>any</code> flag)
 later used by the <code>keys</code> assertion.</p>
 <pre><code>expect(foo).to.have.all.keys(<span class="string">'bar'</span>, <span class="string">'baz'</span>);</code></pre>
 </div>
@@ -157,6 +161,13 @@ expect(<span class="string">'test'</span>).to.be.a(<span class="string">'string'
 expect({ foo: <span class="string">'bar'</span> }).to.be.an(<span class="string">'object'</span>);
 expect(<span class="literal">null</span>).to.be.a(<span class="string">'null'</span>);
 expect(undefined).to.be.an(<span class="string">'undefined'</span>);
+expect(<span class="keyword">new</span> Error).to.be.an(<span class="string">'error'</span>);
+expect(<span class="keyword">new</span> Promise).to.be.a(<span class="string">'promise'</span>);
+expect(<span class="keyword">new</span> Float32Array()).to.be.a(<span class="string">'float32array'</span>);
+expect(Symbol()).to.be.a(<span class="string">'symbol'</span>);
+
+<span class="comment">// es6 overrides</span>
+expect({[Symbol.toStringTag]:()=><span class="string">'foo'</span>}).to.be.a(<span class="string">'foo'</span>);
 
 <span class="comment">// language chain</span>
 expect(foo).to.be.an.<span class="keyword">instanceof</span>(Foo);</code></pre>
@@ -184,7 +195,7 @@ expect({ foo: <span class="string">'bar'</span>, hello: <span class="string">'un
                 <ul class="tags">
                 </ul>
                 <div class="description"><p>Asserts that the target is truthy.</p>
-<pre><code>expect(<span class="string">'everthing'</span>).to.be.ok;
+<pre><code>expect(<span class="string">'everything'</span>).to.be.ok;
 expect(<span class="number">1</span>).to.be.ok;
 expect(<span class="literal">false</span>).to.not.be.ok;
 expect(undefined).to.not.be.ok;
@@ -218,7 +229,7 @@ expect(<span class="number">0</span>).to.not.be.<span class="literal">false</spa
                 </ul>
                 <div class="description"><p>Asserts that the target is <code>null</code>.</p>
 <pre><code>expect(<span class="literal">null</span>).to.be.<span class="literal">null</span>;
-expect(undefined).not.to.be.<span class="literal">null</span>;</code></pre>
+expect(undefined).to.not.be.<span class="literal">null</span>;</code></pre>
 </div>
               </div>
               <div id="undefined-section" class="segment">
@@ -229,6 +240,16 @@ expect(undefined).not.to.be.<span class="literal">null</span>;</code></pre>
                 <div class="description"><p>Asserts that the target is <code>undefined</code>.</p>
 <pre><code>expect(undefined).to.be.undefined;
 expect(<span class="literal">null</span>).to.not.be.undefined;</code></pre>
+</div>
+              </div>
+              <div id="NaN-section" class="segment">
+                <div class="summary"><h3 id="-nan">.NaN</h3>
+<p>Asserts that the target is <code>NaN</code>.</p>
+</div>
+                <ul class="tags">
+                </ul>
+                <div class="description"><pre><code>expect(<span class="string">'foo'</span>).to.be.NaN;
+expect(<span class="number">4</span>).not.to.be.NaN;</code></pre>
 </div>
               </div>
               <div id="exist-section" class="segment">
@@ -251,7 +272,7 @@ expect(baz).to.not.exist;</code></pre>
 </div>
                 <ul class="tags">
                 </ul>
-                <div class="description"><p>Asserts that the target&#39;s length is <code>0</code>. For arrays, it checks
+                <div class="description"><p>Asserts that the target&#39;s length is <code>0</code>. For arrays and strings, it checks
 the <code>length</code> property. For objects, it gets the count of
 enumerable keys.</p>
 <pre><code>expect([]).to.be.empty;
@@ -449,6 +470,16 @@ expect(deepObj).to.have.property(<span class="string">'teas'</span>)
   .that.is.an(<span class="string">'array'</span>)
   .<span class="keyword">with</span>.deep.property(<span class="string">'[2]'</span>)
     .that.deep.equals({ tea: <span class="string">'konacha'</span> });</code></pre>
+<p>Note that dots and bracket in <code>name</code> must be backslash-escaped when
+the <code>deep</code> flag is set, while they must NOT be escaped when the <code>deep</code>
+flag is not set.</p>
+<pre><code><span class="comment">// simple referencing</span>
+<span class="keyword">var</span> css = { <span class="string">'.link[target]'</span>: <span class="number">42</span> };
+expect(css).to.have.property(<span class="string">'.link[target]'</span>, <span class="number">42</span>);
+
+<span class="comment">// deep referencing</span>
+<span class="keyword">var</span> deepCss = { <span class="string">'.link'</span>: { <span class="string">'[target]'</span>: <span class="number">42</span> }};
+expect(deepCss).to.have.deep.property(<span class="string">'\\.link.\\[target\\]'</span>, <span class="number">42</span>);</code></pre>
 </div>
               </div>
               <div id="ownProperty-section" class="segment">
@@ -462,8 +493,43 @@ expect(deepObj).to.have.property(<span class="string">'teas'</span>)
 <pre><code>expect(<span class="string">'test'</span>).to.have.ownProperty(<span class="string">'length'</span>);</code></pre>
 </div>
               </div>
+              <div id="ownPropertyDescriptor-section" class="segment">
+                <div class="summary"><h3 id="-ownpropertydescriptor-name-descriptor-message-">.ownPropertyDescriptor(name[, descriptor[, message]])</h3>
+</div>
+                <ul class="tags">
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">name</span><span class="desc"></span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Object &#125;</span><span class="name">descriptor</span><span class="desc">_optional_</span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">message</span><span class="desc">_optional_</span></li>
+                </ul>
+                <div class="description"><p>Asserts that the target has an own property descriptor <code>name</code>, that optionally matches <code>descriptor</code>.</p>
+<pre><code>expect(<span class="string">'test'</span>).to.have.ownPropertyDescriptor(<span class="string">'length'</span>);
+expect(<span class="string">'test'</span>).to.have.ownPropertyDescriptor(<span class="string">'length'</span>, { enumerable: <span class="literal">false</span>, configurable: <span class="literal">false</span>, writable: <span class="literal">false</span>, value: <span class="number">4</span> });
+expect(<span class="string">'test'</span>).not.to.have.ownPropertyDescriptor(<span class="string">'length'</span>, { enumerable: <span class="literal">false</span>, configurable: <span class="literal">false</span>, writable: <span class="literal">false</span>, value: <span class="number">3</span> });
+expect(<span class="string">'test'</span>).ownPropertyDescriptor(<span class="string">'length'</span>).to.have.property(<span class="string">'enumerable'</span>, <span class="literal">false</span>);
+expect(<span class="string">'test'</span>).ownPropertyDescriptor(<span class="string">'length'</span>).to.have.keys(<span class="string">'value'</span>);</code></pre>
+</div>
+              </div>
               <div id="length-section" class="segment">
-                <div class="summary"><h3 id="-length-value-">.length(value)</h3>
+                <div class="summary"><h3 id="-length">.length</h3>
+</div>
+                <ul class="tags">
+                </ul>
+                <div class="description"><p>Sets the <code>doLength</code> flag later used as a chain precursor to a value
+comparison for the <code>length</code> property.</p>
+<pre><code>expect(<span class="string">'foo'</span>).to.have.length.above(<span class="number">2</span>);
+expect([ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ]).to.have.length.above(<span class="number">2</span>);
+expect(<span class="string">'foo'</span>).to.have.length.below(<span class="number">4</span>);
+expect([ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ]).to.have.length.below(<span class="number">4</span>);
+expect(<span class="string">'foo'</span>).to.have.length.within(<span class="number">2</span>,<span class="number">4</span>);
+expect([ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ]).to.have.length.within(<span class="number">2</span>,<span class="number">4</span>);</code></pre>
+<p><em>Deprecation notice:</em> Using <code>length</code> as an assertion will be deprecated
+in version 2.4.0 and removed in 3.0.0. Code using the old style of
+asserting for <code>length</code> property value using <code>length(value)</code> should be
+switched to use <code>lengthOf(value)</code> instead.</p>
+</div>
+              </div>
+              <div id="lengthOf-section" class="segment">
+                <div class="summary"><h3 id="-lengthof-value-message-">.lengthOf(value[, message])</h3>
 </div>
                 <ul class="tags">
                   <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Number &#125;</span><span class="name">length</span><span class="desc"></span></li>
@@ -471,16 +537,8 @@ expect(deepObj).to.have.property(<span class="string">'teas'</span>)
                 </ul>
                 <div class="description"><p>Asserts that the target&#39;s <code>length</code> property has
 the expected value.</p>
-<pre><code>expect([ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]).to.have.length(<span class="number">3</span>);
-expect(<span class="string">'foobar'</span>).to.have.length(<span class="number">6</span>);</code></pre>
-<p>Can also be used as a chain precursor to a value
-comparison for the length property.</p>
-<pre><code>expect(<span class="string">'foo'</span>).to.have.length.above(<span class="number">2</span>);
-expect([ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ]).to.have.length.above(<span class="number">2</span>);
-expect(<span class="string">'foo'</span>).to.have.length.below(<span class="number">4</span>);
-expect([ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ]).to.have.length.below(<span class="number">4</span>);
-expect(<span class="string">'foo'</span>).to.have.length.within(<span class="number">2</span>,<span class="number">4</span>);
-expect([ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ]).to.have.length.within(<span class="number">2</span>,<span class="number">4</span>);</code></pre>
+<pre><code>expect([ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]).to.have.lengthOf(<span class="number">3</span>);
+expect(<span class="string">'foobar'</span>).to.have.lengthOf(<span class="number">6</span>);</code></pre>
 </div>
               </div>
               <div id="match-section" class="segment">
@@ -509,21 +567,21 @@ expect([ <span class="number">1</span>, <span class="number">2</span>, <span cla
                 <div class="summary"><h3 id="-keys-key1-key2-">.keys(key1, [key2], [...])</h3>
 </div>
                 <ul class="tags">
-                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String... | Array | Object &#125;</span><span class="name">keys</span><span class="desc"></span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; ...String | Array | Object &#125;</span><span class="name">keys</span><span class="desc"></span></li>
                 </ul>
                 <div class="description"><p>Asserts that the target contains any or all of the passed-in keys.
-Use in combination with <code>any</code>, <code>all</code>, <code>contains</code>, or <code>have</code> will affect 
+Use in combination with <code>any</code>, <code>all</code>, <code>contains</code>, or <code>have</code> will affect
 what will pass.</p>
-<p>When used in conjunction with <code>any</code>, at least one key that is passed 
-in must exist in the target object. This is regardless whether or not 
+<p>When used in conjunction with <code>any</code>, at least one key that is passed
+in must exist in the target object. This is regardless whether or not
 the <code>have</code> or <code>contain</code> qualifiers are used. Note, either <code>any</code> or <code>all</code>
 should be used in the assertion. If neither are used, the assertion is
 defaulted to <code>all</code>.</p>
-<p>When both <code>all</code> and <code>contain</code> are used, the target object must have at 
+<p>When both <code>all</code> and <code>contain</code> are used, the target object must have at
 least all of the passed-in keys but may have more keys not listed.</p>
 <p>When both <code>all</code> and <code>have</code> are used, the target object must both contain
 all of the passed-in keys AND the number of keys in the target object must
-match the number of keys passed in (in other words, a target object must 
+match the number of keys passed in (in other words, a target object must
 have all and only all of the passed-in keys).</p>
 <pre><code>expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span> }).to.have.any.keys(<span class="string">'foo'</span>, <span class="string">'baz'</span>);
 expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span> }).to.have.any.keys(<span class="string">'foo'</span>);
@@ -531,9 +589,9 @@ expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span> 
 expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span> }).to.contain.any.keys([<span class="string">'foo'</span>]);
 expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span> }).to.contain.any.keys({<span class="string">'foo'</span>: <span class="number">6</span>});
 expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span> }).to.have.all.keys([<span class="string">'bar'</span>, <span class="string">'foo'</span>]);
-expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span> }).to.have.all.keys({<span class="string">'bar'</span>: <span class="number">6</span>, <span class="string">'foo'</span>, <span class="number">7</span>});
+expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span> }).to.have.all.keys({<span class="string">'bar'</span>: <span class="number">6</span>, <span class="string">'foo'</span>: <span class="number">7</span>});
 expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span>, baz: <span class="number">3</span> }).to.contain.all.keys([<span class="string">'bar'</span>, <span class="string">'foo'</span>]);
-expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span>, baz: <span class="number">3</span> }).to.contain.all.keys([{<span class="string">'bar'</span>: <span class="number">6</span>}}]);</code></pre>
+expect({ foo: <span class="number">1</span>, bar: <span class="number">2</span>, baz: <span class="number">3</span> }).to.contain.all.keys({<span class="string">'bar'</span>: <span class="number">6</span>});</code></pre>
 </div>
               </div>
               <div id="throw-section" class="segment">
@@ -556,8 +614,7 @@ expect(fn).to.<span class="keyword">throw</span>(Error);
 expect(fn).to.<span class="keyword">throw</span>(<span class="regexp">/bad function/</span>);
 expect(fn).to.not.<span class="keyword">throw</span>(<span class="string">'good function'</span>);
 expect(fn).to.<span class="keyword">throw</span>(ReferenceError, <span class="regexp">/bad function/</span>);
-expect(fn).to.<span class="keyword">throw</span>(err);
-expect(fn).to.not.<span class="keyword">throw</span>(<span class="keyword">new</span> RangeError(<span class="string">'Out of range.'</span>));</code></pre>
+expect(fn).to.<span class="keyword">throw</span>(err);</code></pre>
 <p>Please note that when a throw expectation is negated, it will check each
 parameter independently, starting with error constructor type. The appropriate way
 to check for the existence of a type of error but for a message that does not match
@@ -640,6 +697,25 @@ expect([<span class="number">5</span>, <span class="number">2</span>]).to.not.ha
 expect([{ id: <span class="number">1</span> }]).to.deep.include.members([{ id: <span class="number">1</span> }]);</code></pre>
 </div>
               </div>
+              <div id="oneOf-section" class="segment">
+                <div class="summary"><h3 id="-oneof-list-">.oneOf(list)</h3>
+</div>
+                <ul class="tags">
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; Array&lt;*&gt; &#125;</span><span class="name">list</span><span class="desc"></span></li>
+                  <li class="tag"><span class="type">&#64;param</span><span class="types">&#123; String &#125;</span><span class="name">message</span><span class="desc">_optional_</span></li>
+                </ul>
+                <div class="description"><p>Assert that a value appears somewhere in the top level of array <code>list</code>.</p>
+<pre><code>expect(<span class="string">'a'</span>).to.be.oneOf([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]);
+expect(<span class="number">9</span>).to.not.be.oneOf([<span class="string">'z'</span>]);
+expect([<span class="number">3</span>]).to.not.be.oneOf([<span class="number">1</span>, <span class="number">2</span>, [<span class="number">3</span>]]);
+
+<span class="keyword">var</span> three = [<span class="number">3</span>];
+<span class="comment">// for object-types, contents are not compared</span>
+expect(three).to.not.be.oneOf([<span class="number">1</span>, <span class="number">2</span>, [<span class="number">3</span>]]);
+<span class="comment">// comparing references works</span>
+expect(three).to.be.oneOf([<span class="number">1</span>, <span class="number">2</span>, three]);</code></pre>
+</div>
+              </div>
               <div id="change-section" class="segment">
                 <div class="summary"><h3 id="-change-function-">.change(function)</h3>
 </div>
@@ -682,6 +758,51 @@ expect(fn).to.increase(obj, <span class="string">'val'</span>);</code></pre>
 <pre><code><span class="keyword">var</span> obj = { val: <span class="number">10</span> };
 <span class="keyword">var</span> fn = <span class="keyword">function</span>() { obj.val = <span class="number">5</span> };
 expect(fn).to.decrease(obj, <span class="string">'val'</span>);</code></pre>
+</div>
+              </div>
+              <div id="extensible-section" class="segment">
+                <div class="summary"><h3 id="-extensible">.extensible</h3>
+</div>
+                <ul class="tags">
+                </ul>
+                <div class="description"><p>Asserts that the target is extensible (can have new properties added to
+it).</p>
+<pre><code><span class="keyword">var</span> nonExtensibleObject = Object.preventExtensions({});
+<span class="keyword">var</span> sealedObject = Object.seal({});
+<span class="keyword">var</span> frozenObject = Object.freeze({});
+
+expect({}).to.be.extensible;
+expect(nonExtensibleObject).to.not.be.extensible;
+expect(sealedObject).to.not.be.extensible;
+expect(frozenObject).to.not.be.extensible;</code></pre>
+</div>
+              </div>
+              <div id="sealed-section" class="segment">
+                <div class="summary"><h3 id="-sealed">.sealed</h3>
+</div>
+                <ul class="tags">
+                </ul>
+                <div class="description"><p>Asserts that the target is sealed (cannot have new properties added to it
+and its existing properties cannot be removed).</p>
+<pre><code><span class="keyword">var</span> sealedObject = Object.seal({});
+<span class="keyword">var</span> frozenObject = Object.freeze({});
+
+expect(sealedObject).to.be.sealed;
+expect(frozenObject).to.be.sealed;
+expect({}).to.not.be.sealed;</code></pre>
+</div>
+              </div>
+              <div id="frozen-section" class="segment">
+                <div class="summary"><h3 id="-frozen">.frozen</h3>
+</div>
+                <ul class="tags">
+                </ul>
+                <div class="description"><p>Asserts that the target is frozen (cannot have new properties added to it
+and its existing properties cannot be modified).</p>
+<pre><code><span class="keyword">var</span> frozenObject = Object.freeze({});
+
+expect(frozenObject).to.be.frozen;
+expect({}).to.not.be.frozen;</code></pre>
 </div>
               </div>
             </div>

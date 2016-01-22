@@ -101,6 +101,15 @@ describe('should', function() {
     }, "expected '' to be null")
   });
 
+  it('NaN', function(){
+    'foo'.should.be.NaN;
+    (4).should.not.be.NaN;
+
+    err(function(){
+      (4).should.be.NaN;
+    }, "expected 4 to be NaN")
+  });
+
   it('undefined', function(){
     (0).should.not.be.undefined;
 
@@ -396,6 +405,40 @@ describe('should', function() {
     }, "blah: expected { length: 12 } to not have own property 'length'");
   });
 
+  it('ownPropertyDescriptor(name)', function(){
+    'test'.should.haveOwnPropertyDescriptor('length');
+    'test'.should.have.ownPropertyDescriptor('length');
+    'test'.should.not.have.ownPropertyDescriptor('foo');
+
+    var obj = { };
+    var descriptor = {
+      configurable: false,
+      enumerable: true,
+      writable: true,
+      value: NaN
+    };
+    Object.defineProperty(obj, 'test', descriptor);
+    obj.should.haveOwnPropertyDescriptor('test', descriptor);
+    err(function(){
+      obj.should.not.haveOwnPropertyDescriptor('test', descriptor, 'blah');
+    }, /^blah: expected the own property descriptor for 'test' on \{ test: NaN \} to not match \{ [^\}]+ \}$/);
+    err(function(){
+      var wrongDescriptor = {
+        configurable: false,
+        enumerable: true,
+        writable: false,
+        value: NaN
+      };
+      obj.should.haveOwnPropertyDescriptor('test', wrongDescriptor, 'blah');
+    }, /^blah: expected the own property descriptor for 'test' on \{ test: NaN \} to match \{ [^\}]+ \}, got \{ [^\}]+ \}$/);
+
+    err(function(){
+      obj.should.haveOwnPropertyDescriptor('test2', 'blah');
+    }, "blah: expected { test: NaN } to have an own property descriptor for 'test2'");
+
+    obj.should.have.ownPropertyDescriptor('test').and.have.property('enumerable', true);
+  });
+
   it('string()', function(){
     'foobar'.should.contain.string('bar');
     'foobar'.should.contain.string('foo');
@@ -412,6 +455,13 @@ describe('should', function() {
     err(function(){
       'foobar'.should.not.contain.string('bar', 'blah');
     }, "blah: expected 'foobar' to not contain 'bar'");
+  });
+
+  it('oneOf()', function(){
+    'foo'.should.be.oneOf(['foo', 'bar']);
+    'bar'.should.be.oneOf(['foo', 'bar']);
+    'baz'.should.not.be.oneOf(['foo', 'bar']);
+    'baz'.should.not.be.oneOf([]);
   });
 
   it('include()', function(){
@@ -434,7 +484,23 @@ describe('should', function() {
 
     err(function(){
       ({a:1}).should.include({b:2});
-    }, "expected { a: 1 } to have a property 'b'")
+    }, "expected { a: 1 } to have a property 'b'");
+
+    err(function(){
+      (true).should.include(true);
+    }, "object tested must be an array, an object, or a string, but boolean given");
+
+    err(function(){
+      (42).should.include(4);
+    }, "object tested must be an array, an object, or a string, but number given");
+
+    err(function(){
+      (true).should.not.include(true);
+    }, "object tested must be an array, an object, or a string, but boolean given");
+
+    err(function(){
+      (42).should.not.include(4);
+    }, "object tested must be an array, an object, or a string, but number given");
   });
 
   it('keys(array|Object|arguments)', function(){
@@ -816,11 +882,31 @@ describe('should', function() {
 
     err(function() {
       (1.5).should.be.closeTo("1.0", 0.5);
-    }, "the arguments to closeTo must be numbers");
+    }, "the arguments to closeTo or approximately must be numbers");
 
     err(function() {
       (1.5).should.be.closeTo(1.0, true);
-    }, "the arguments to closeTo must be numbers");
+    }, "the arguments to closeTo or approximately must be numbers");
+  });
+
+  it('approximately', function(){
+    (1.5).should.be.approximately(1.0, 0.5);
+
+    err(function(){
+      (2).should.be.approximately(1.0, 0.5, 'blah');
+    }, "blah: expected 2 to be close to 1 +/- 0.5");
+
+    err(function() {
+      [1.5].should.be.approximately(1.0, 0.5);
+    }, "expected [ 1.5 ] to be a number");
+
+    err(function() {
+      (1.5).should.be.approximately("1.0", 0.5);
+    }, "the arguments to closeTo or approximately must be numbers");
+
+    err(function() {
+      (1.5).should.be.approximately(1.0, true);
+    }, "the arguments to closeTo or approximately must be numbers");
   });
 
   it('include.members', function() {
@@ -867,7 +953,7 @@ describe('should', function() {
         fn     = function() { obj.value += 5 },
         sameFn = function() { obj.value += 0 },
         decFn  = function() { obj.value -= 3 },
-        bangFn = function() { obj.str += '!' }; 
+        bangFn = function() { obj.str += '!' };
 
     fn.should.change(obj, 'value');
     sameFn.should.not.change(obj, 'value');
@@ -888,5 +974,104 @@ describe('should', function() {
     smFn.should.not.decrease(obj, 'value');
     incFn.should.not.decrease(obj, 'value');
     decFn.should.decrease(obj, 'value');
+  });
+
+  it('extensible', function() {
+     var nonExtensibleObject = Object.preventExtensions({});
+
+     ({}).should.be.extensible;
+     nonExtensibleObject.should.not.be.extensible;
+
+     err(function() {
+       nonExtensibleObject.should.be.extensible;
+     }, 'expected {} to be extensible');
+
+     err(function() {
+       ({}).should.not.be.extensible;
+     }, 'expected {} to not be extensible');
+
+     // Making sure ES6-like Object.isExtensible response is respected for all primitive types
+
+     (42).should.not.be.extensible;
+     'foo'.should.not.be.extensible;
+     false.should.not.be.extensible;
+
+     err(function() {
+       (42).should.be.extensible;
+     }, 'expected 42 to be extensible');
+
+     err(function() {
+       'foo'.should.be.extensible;
+     }, 'expected \'foo\' to be extensible');
+
+     err(function() {
+       false.should.be.extensible;
+     }, 'expected false to be extensible');
+  });
+
+  it('sealed', function() {
+    var sealedObject = Object.seal({});
+
+    sealedObject.should.be.sealed;
+    ({}).should.not.be.sealed;
+
+    err(function() {
+      ({}).should.be.sealed;
+    }, 'expected {} to be sealed');
+
+    err(function() {
+      sealedObject.should.not.be.sealed;
+    }, 'expected {} to not be sealed');
+
+    // Making sure ES6-like Object.isSealed response is respected for all primitive types
+
+    (42).should.be.sealed;
+    'foo'.should.be.sealed;
+    false.should.be.sealed;
+
+    err(function() {
+      (42).should.not.be.sealed;
+    }, 'expected 42 to not be sealed');
+
+    err(function() {
+      'foo'.should.not.be.sealed;
+    }, 'expected \'foo\' to not be sealed');
+
+    err(function() {
+      false.should.not.be.sealed;
+    }, 'expected false to not be sealed');
+  });
+
+  it('frozen', function() {
+    var frozenObject = Object.freeze({});
+
+    frozenObject.should.be.frozen;
+    ({}).should.not.be.frozen;
+
+    err(function() {
+        ({}).should.be.frozen;
+    }, 'expected {} to be frozen');
+
+    err(function() {
+        frozenObject.should.not.be.frozen;
+    }, 'expected {} to not be frozen');
+
+    // Making sure ES6-like Object.isFrozen response is respected for all primitive types
+
+    (42).should.be.frozen;
+    'foo'.should.be.frozen;
+    false.should.be.frozen;
+
+    err(function() {
+      (42).should.not.be.frozen;
+    }, 'expected 42 to not be frozen');
+
+    err(function() {
+      'foo'.should.not.be.frozen;
+    }, 'expected \'foo\' to not be frozen');
+
+    err(function() {
+      false.should.not.be.frozen;
+    }, 'expected false to not be frozen');
   });
 });

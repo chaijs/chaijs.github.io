@@ -10,10 +10,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?2.1.0"></script>
+    <script src="/public/js/main.js?3.4.2"></script>
     <script src="/public/js/guide.js"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?2.1.0" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?2.1.0" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/antiscroll.css?3.4.2" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?3.4.2" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -203,7 +203,7 @@ core. </p>
 
 expect(arr).to.contain(<span class="number">2</span>);
 expect(obj).to.contain.key(<span class="string">'a'</span>);</code></pre>
-<p>For this to work, two seperate functions are needed. One that will be invoked when the 
+<p>For this to work, two separate functions are needed. One that will be invoked when the 
 chain is used as either a property or a method, and one that will be invoked when only used
 as a method. </p>
 <p>In these examples, and with all of the other chainable methods in core, the only function
@@ -254,7 +254,7 @@ to use when invoking the <code>age</code> method.</p>
     , age
   );
 }</code></pre>
-<p>By now, that should be self-explanitory. Now for our property function.</p>
+<p>By now, that should be self-explanatory. Now for our property function.</p>
 <pre><code class="lang-javascript"><span class="function"><span class="keyword">function</span> <span class="title">chainModelAge</span> <span class="params">()</span> {</span>
   utils.flag(<span class="keyword">this</span>, <span class="string">'model.age'</span>, <span class="literal">true</span>);
 }</code></pre>
@@ -311,11 +311,11 @@ trouble if we try to negate an <code>ok</code> assertion on a model.</p>
 <pre><code class="lang-javascript"><span class="keyword">var</span> arthur = <span class="keyword">new</span> Model(<span class="string">'person'</span>);
 arthur.set(<span class="string">'id'</span>, <span class="string">'dont panic'</span>);
 expect(arthur).to.not.be.ok;</code></pre>
-<p>We would expect this expection to pass as well, as our statement is
+<p>We would expect this expectation to pass as well, as our statement is
 negated and the id is not a number. Unfortunately, the negation flag
 was not passed to our number assertion, so it still expects the value
 to be a number. </p>
-<h5 id="transfering-flags">Transfering Flags</h5>
+<h5 id="transferring-flags">Transferring Flags</h5>
 <p>For this we will expand on this assertion by transfering all of the 
 flags from the original assertion to our new assertion. The final 
 property overwrite would look like this.</p>

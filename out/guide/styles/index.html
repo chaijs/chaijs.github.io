@@ -10,10 +10,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/public/js/jquery-mousewheel.js"></script>
     <script src="/public/js/antiscroll.js"></script>
-    <script src="/public/js/main.js?2.1.0"></script>
+    <script src="/public/js/main.js?3.4.2"></script>
     <script src="/public/js/guide.js"></script>
-    <link rel="stylesheet" href="/public/css/antiscroll.css?2.1.0" type="text/css" media="all">
-    <link rel="stylesheet" href="/public/css/main.css?2.1.0" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/antiscroll.css?3.4.2" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/css/main.css?3.4.2" type="text/css" media="all">
     <script type="text/javascript">
       var mpq = [];
       mpq.push(["init", "d5e84615dbd02dbc359b0f76d0ed7cf5"]);
@@ -83,7 +83,7 @@ at the API Documentation for your selected style.</p>
               <article id="assert-section"><h2 id="assert">Assert</h2>
 <p><a href="/api/assert" class="clean-button">View full Assert API</a></p>
 <p>The assert style is exposed through <code>assert</code> interface. This provides
-the classic assert-dot notation, similiar to that packaged with
+the classic assert-dot notation, similar to that packaged with
 node.js. This assert module, however, provides several additional
 tests and is browser compatible.</p>
 <pre><code><span class="keyword">var</span> assert = require(<span class="string">'chai'</span>).assert
@@ -125,13 +125,13 @@ expect(answer).to.equal(<span class="number">42</span>);
 
 <span class="comment">// AssertionError: topic [answer]: expected 43 to equal 42.</span>
 expect(answer, <span class="string">'topic [answer]'</span>).to.equal(<span class="number">42</span>);</code></pre>
-<p>This comes in handy when being used with non-descript topics such as 
+<p>This comes in handy when being used with nondescript topics such as 
 booleans or numbers.</p>
 </article>
               <article id="should-section"><h3 id="should">Should</h3>
 <p>The <code>should</code> style allows for the same chainable assertions as the
 <code>expect</code> interface, however it extends each object with a <code>should</code>
-property to start your chain. This style has some issues when used Internet
+property to start your chain. This style has some issues when used with Internet
 Explorer, so be aware of browser compatibility. </p>
 <pre><code><span class="keyword">var</span> should = require(<span class="string">'chai'</span>).should() <span class="comment">//actually call the function</span>
   , foo = <span class="string">'bar'</span>

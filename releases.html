@@ -1,0 +1,11 @@
+---
+bodyClass: index
+permalink: /releases/
+---
+
+{% for release in site.data.releases %}
+<h2>{{ release.name }}</h2>
+<h3>Version {{ release.tag_name }}</h3>
+{{ release.body | markdownify }}
+</pre>
+{% endfor %}

@@ -2,7 +2,7 @@
 # Generate the docs and start the doc server
 #
 
-all: plugins api-docs docs-server
+all: plugins releases api-docs docs-server
 
 #
 # Generate the api docs

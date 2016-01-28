@@ -1,3 +1,0 @@
-[submodule "chai"]
-	path = chai
-	url = git://github.com/chaijs/chai.git

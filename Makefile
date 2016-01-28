@@ -18,7 +18,7 @@ api-docs: clean-api-docs
 # Generate the releases
 #
 
-releases:
+releases: clean-releases
 	@mkdir -p _data
 	@curl -s "https://api.github.com/repos/chaijs/chai/releases" > _data/releases.json
 
@@ -41,11 +41,17 @@ install:
 	@bundle install
 
 #
+# Clean
+#
+
+clean: clean-plugins clean-api-docs clean-releases
+
+#
 # Clean the plugins
 #
 
 clean-plugins:
-	@rm -rf _data/plugins*
+	@rm -rf _data/plugins/ _data/plugin_keywords.json
 
 #
 # Clean the api- docs
@@ -53,6 +59,13 @@ clean-plugins:
 
 clean-api-docs:
 	@rm -rf _data/chai.json
+
+#
+# Clean the releases
+#
+
+clean-releases:
+	@rm -rf _data/releases.json
 
 #
 # Start the doc server locally
@@ -76,8 +89,4 @@ nightly:
 	@echo "refusing to build nightly, as it just build"
 endif
 
-#
-# Instructions
-#
-
-.PHONY: install plugins api-docs docs-server nightly
+.PHONY: all api-docs releases plugins install clean-plugins clean-api-docs docs-server nightly

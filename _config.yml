@@ -26,6 +26,8 @@ mixpanel: "d5e84615dbd02dbc359b0f76d0ed7cf5"
 tweeturl: "http://chaijs.com"
 tweetvia: "jakeluer"
 tweetrelated: "jakeluer"
+sass:
+  style: compressed
 
 defaults:
   -

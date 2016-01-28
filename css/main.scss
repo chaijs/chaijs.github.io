@@ -2,4 +2,5 @@
 ---
 @charset "utf-8";
 $baseurl: "{{ site.baseurl }}";
+@import "pygments-github-style";
 @import "main";

@@ -14,7 +14,7 @@
     "express": "3.0.0rc2",
     "filtr": "0.3.x",
     "codex": "0.2.x",
-    "superagent": "0.7.x",
+    "superagent": "1.7.0",
     "jade": "0.27.x",
     "marked": "0.2.x",
     "highlight.js": "7.0.1",

@@ -1,7 +1,9 @@
+chai-spies
+chai-http
+chai-jquery
 chai-fuzzy
 chai-interface
 chai-json-schema
-chai-json-equal
 chai-datetime
 chai-fs
 chai-webdriver
@@ -9,7 +11,4 @@ chai-bookshelf
 chai-change
 chai-shallow-deep-equal
 chai-subset
-chai-param
-chai-colors
-chaid
 chai-signals

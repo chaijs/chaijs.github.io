@@ -2,7 +2,12 @@
 # Generate the docs and start the doc server
 #
 
-all: plugins releases api-docs docs-server
+all: generated_data docs-server
+
+#
+# Generate the docs
+#
+generated_data: plugins releases api-docs chaijs
 
 #
 # Generate the api docs
@@ -12,6 +17,13 @@ api-docs: clean-api-docs
 	@mkdir -p _data
 	@npm install chai@latest
 	@./node_modules/.bin/dox < ./node_modules/chai/chai.js > _data/chai.json
+
+#
+# Generate the api docs
+#
+
+chaijs: ./node_modules/chai/chai.js
+	@@cp ./node_modules/chai/chai.js ./chai.js
 
 
 #
@@ -89,4 +101,4 @@ nightly:
 	@echo "refusing to build nightly, as it just build"
 endif
 
-.PHONY: all api-docs releases plugins install clean-plugins clean-api-docs docs-server nightly
+.PHONY: all api-docs releases plugins install clean-plugins clean-api-docs docs-server nightly chaijs

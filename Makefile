@@ -64,7 +64,7 @@ docs-server:
 #
 # Nightly data build process
 #
-nightly: plugins releases api-docs
+nightly: clean plugins releases api-docs
 	@git config user.name "ChaiJs Bot"
 	@git config user.email "chaijs-bot@keithcirkel.co.uk"
 	@git add _data

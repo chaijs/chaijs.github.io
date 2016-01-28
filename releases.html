@@ -1,11 +1,24 @@
 ---
-bodyClass: index
+bodyClass: guide
 permalink: /releases/
 ---
-
-{% for release in site.data.releases %}
-<h2>{{ release.name }}</h2>
-<h3>Version {{ release.tag_name }}</h3>
-{{ release.body | markdownify }}
-</pre>
-{% endfor %}
+<nav id="guide" class="sidebar sticky">
+    {% for release in site.data.releases %}
+    <div class="item primary">
+      <a href="#{{release.tag_name}}" class="title">{{release.name}}</a>
+    </div>
+    {% endfor %}
+</nav>
+<div class="documentation">
+    <div class="wrap">
+        <div class="rendered">
+        <h1>Release History</h1>
+        {% for release in site.data.releases %}
+        <h2 id="{{release.tag_name}}">{{ release.name }}</h2>
+        <h3>Version {{ release.tag_name }}</h3>
+        {{ release.body | markdownify }}
+        </pre>
+        {% endfor %}
+      </div>
+  </div>
+</div>

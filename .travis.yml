@@ -1,6 +1,6 @@
 sudo: false
 caches:
-  - bundler
+  bundler: true
   directories:
     - node_modules
 branches:

@@ -90,15 +90,15 @@ docs-server:
 # Nightly data build process
 #
 ifeq ($(git --no-pager show -s  --format="%aN" HEAD),"ChaiJs Bot")
+nightly:
+	@echo "refusing to build nightly, as it just build"
+else
 nightly: clean plugins releases api-docs
 	@git config user.name "ChaiJs Bot"
 	@git config user.email "chaijs-bot@keithcirkel.co.uk"
 	@git add -f _data
 	@git commit -m '(nightly): build _data'
 	@git push "https://${GH_TOKEN}@github.com/chaijs/chai-docs" HEAD:refs/heads/gh-pages
-else
-nightly:
-	@echo "refusing to build nightly, as it just build"
 endif
 
 .PHONY: all api-docs releases plugins install clean-plugins clean-api-docs docs-server nightly chaijs

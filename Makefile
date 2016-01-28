@@ -62,7 +62,17 @@ docs-server:
 	@bundle exec jekyll serve
 
 #
+# Nightly data build process
+#
+nightly: all
+	@git config user.name "ChaiJs Bot"
+	@git config user.email "chaijs-bot@keithcirkel.co.uk"
+	@git add _data
+	@git commit -m '(nightly): build _data'
+	@git push "https://${GH_TOKEN}@github.com/chaijs/chai-docs" HEAD:refs/heads/gh-pages
+
+#
 # Instructions
 #
 
-.PHONY: install plugins api-docs docs-server
+.PHONY: install plugins api-docs docs-server nightly

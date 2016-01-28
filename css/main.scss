@@ -4,3 +4,15 @@
 $baseurl: "{{ site.baseurl }}";
 @import "pygments-github-style";
 @import "main";
+
+.rendered {
+  h1, h2, h3, h4, div {
+    &[id]:before {
+      display: block;
+      content: " ";
+      margin-top: -80px;
+      height: 80px;
+      visibility: hidden;
+    }
+  }
+}

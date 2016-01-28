@@ -35,7 +35,7 @@ bodyClass: api
                       {% endif %}
                     {% endfor %}
                     {% if render %}
-                      <a href="#method={{ name | slugify }}" class="scroll item">{{ name }}</a>
+                      <a href="#method_{{ name | slugify }}" class="scroll item">{{ name }}</a>
                     {% endif %}
                   {% endfor %}
                 </div>
@@ -64,7 +64,7 @@ bodyClass: api
                   {% endif %}
                 {% endfor %}
                 {% if render %}
-                  <div id="method={{ name | slugify }}" class="api_method_wrapper">
+                  <div id="method_{{ name | slugify }}" class="api_method_wrapper">
                     {{ method.description.full }}
                   </div>
                 {% endif %}

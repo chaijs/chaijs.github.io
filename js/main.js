@@ -1,12 +1,15 @@
 $(function () {
-  $('a.scroll').click(function (e) {
+
+  $('a[href^="#"]').click(function (e) {
     e.preventDefault();
 
     var section = $(this).attr('href')
-      , $scrollto = $(section + '-section');
+      , $scrollto = $(section);
 
     $('html,body').animate({
-      scrollTop: $scrollto.offset().top - 90
+      scrollTop: $scrollto.offset().top
+    }, function () {
+      window.location.hash = section;
     });
   });
 

@@ -24,7 +24,7 @@ bodyClass: guide
       <div id="{{ slug }}" class="subitems">
           {% for heading in guide.headings %}
           {% assign headingSlug = heading | slugify %}
-          <a href="{{ url }}#{{ headingSlug }}" class="item secondary group-{{ slug }}{{ expanded }}">{{ heading }}</a>
+          <a href="#{{ headingSlug }}" class="item secondary group-{{ slug }}{{ expanded }}">{{ heading }}</a>
           {% endfor %}
       </div>
       {% endif %}

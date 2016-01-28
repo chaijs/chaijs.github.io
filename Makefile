@@ -89,9 +89,9 @@ docs-server:
 #
 # Nightly data build process
 #
-ifeq ($(git --no-pager show -s  --format="%aN" HEAD),"ChaiJs Bot")
+ifeq ($(shell git --no-pager show -s  --format="%aN" HEAD), ChaiJs Bot)
 nightly:
-	@echo "refusing to build nightly, as it just build"
+	@echo "Cowardly refusing to build nightly"
 else
 nightly: clean plugins releases api-docs
 	@git config user.name "ChaiJs Bot"

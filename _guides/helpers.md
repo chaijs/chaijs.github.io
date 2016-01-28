@@ -13,7 +13,7 @@
 
 # Building a Helper
 
-> This tutorial assumes that you are familiar with the plugin [core concepts](/guide/plugins/).
+> This tutorial assumes that you are familiar with the plugin [core concepts]({{site.baseurl}}/guide/plugins/).
 > If you have not yet read that article, it is recommended that you do so before continuing.
 
 Providing chainable helper assertions is the most common use of the plugin utilities
@@ -128,7 +128,7 @@ we will be calling the methods directly from `Assertion`.
 
 > Note: Multiple plugins defining the same method name using `addMethod` will conflict, with the last-registered plugin winning. The plugin API is pending a major overhaul in future versions of Chai that will, among other things, deal with this conflict. In the mean time, please prefer using `overwriteMethod`.
 
-Though a property is an elegant solution, it is likely not specific enough for 
+Though a property is an elegant solution, it is likely not specific enough for
 the helper we are constructing. As our models have types, it would be beneficial
 to assert that our model is of a specific type. For this, we need a method.
 

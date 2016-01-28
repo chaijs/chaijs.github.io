@@ -9,4 +9,4 @@
 
 The BDD styles are `expect` and `should`. Both use the same chainable language to
 construct assertions, but they differ in the way an assertion is initially constructed.
-Check out the [Style Guide](/guide/styles) for a comparison.
+Check out the [Style Guide]({{site.baseurl}}/guide/styles) for a comparison.

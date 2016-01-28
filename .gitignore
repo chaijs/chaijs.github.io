@@ -16,5 +16,6 @@ npm-debug.log
 .DS_Store
 *.swp
 
+_data
 _site
 .sass-cache

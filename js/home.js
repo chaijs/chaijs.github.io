@@ -2,8 +2,9 @@ $(function () {
 
   var lastInstall = '#node'
     , allowToggle = true;
-  $('.install a.toggle').click(function (e) {
+  $('.install').on('click', 'a.toggle', function (e) {
     e.preventDefault();
+    e.stopPropagation();
     if (!allowToggle) return;
     var which = $(this).attr('href');
     allowToggle = false;

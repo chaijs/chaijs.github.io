@@ -158,6 +158,23 @@ quick helpers to keep you out of trouble when using `should`.
 - `should.Throw`
 - `should.not.Throw`
 
+### Using Should in ES2015
+
+It isn't possible to chain a function call from an ES2015 `import`
+statement – it has to go on its own line, which looks a little
+verbose:
+
+```js
+import chai from 'chai';
+chai.should();
+```
+
+For a cleaner look, you can do this instead:
+
+```js
+import 'chai/should';
+```
+
 ## Configuration
 
 ### config.includeStack

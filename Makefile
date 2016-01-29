@@ -32,7 +32,7 @@ chaijs: ./node_modules/chai/chai.js
 
 releases: clean-releases
 	@mkdir -p _data
-	@curl -s "https://api.github.com/repos/chaijs/chai/releases" > _data/releases.json
+	@curl -s $(shell [ -n "${GH_TOKEN}" ] && echo "-H \"Authorization: token ${GH_TOKEN}\"") "https://api.github.com/repos/chaijs/chai/releases" > _data/releases.json
 
 #
 # Generate plugins

@@ -87,18 +87,19 @@ docs-server:
 	@bundle exec jekyll serve
 
 #
-# Nightly data build process
+# Pages data build process
 #
-ifeq ($(shell git --no-pager show -s  --format="%aN" HEAD), ChaiJs Bot)
-nightly:
-	@echo "Cowardly refusing to build nightly"
+ifneq ($(TRAVIS_BRANCH), master)
+pages:
+	@echo "Cowardly refusing to build pages"
 else
-nightly: clean plugins releases api-docs
+pages: install clean plugins releases api-docs
+	@echo "Comitting to gh-pages"
 	@git config user.name "ChaiJs Bot"
 	@git config user.email "chaijs-bot@keithcirkel.co.uk"
 	@git add -f _data
 	@git commit -m '(data): Auto build _data'
-	@git push "https://${GH_TOKEN}@github.com/chaijs/chai-docs" HEAD:refs/heads/gh-pages
+	@git push "https://${GH_TOKEN}@github.com/chaijs/chai-docs" HEAD:refs/heads/gh-pages -f
 endif
 
 .PHONY: all api-docs releases plugins install clean-plugins clean-api-docs docs-server nightly chaijs

@@ -5,7 +5,7 @@ caches:
     - node_modules
 branches:
   only:
-    - gh-pages
+    - master
 language: node_js
 node_js:
   - stable

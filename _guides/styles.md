@@ -87,7 +87,7 @@ booleans or numbers.
 
 The `should` style allows for the same chainable assertions as the
 `expect` interface, however it extends each object with a `should`
-property to start your chain. This style has some issues when used Internet
+property to start your chain. This style has some issues when used with Internet
 Explorer, so be aware of browser compatibility.
 
 ```js

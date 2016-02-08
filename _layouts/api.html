@@ -65,7 +65,7 @@ bodyClass: api
                 {% endfor %}
                 {% if render %}
                   <div id="method_{{ name | slugify }}" class="api_method_wrapper">
-                    {{ method.description.full }}
+                    {{ method.description.full | markdownify }}
                   </div>
                 {% endif %}
               {% endfor %}

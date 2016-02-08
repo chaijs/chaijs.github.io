@@ -7,7 +7,7 @@ order: 1
 # Welcome to Chai
 
 We are glad that you have decided to give Chai.js a try! If this is your first
-visit, get aquainted with the basics, such as installation and our included
+visit, get acquainted with the basics, such as installation and our included
 assertion styles.
 
 ## The Basics

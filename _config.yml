@@ -5,14 +5,13 @@ description: |
 baseurl: "/chai-docs"
 
 safe: true
-markdown: redcarpet
-redcarpet:
-    extensions:
-      - no_intra_emphasis
-      - tables
-      - autolink
-      - strikethrough
-      - with_toc_data
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    default_lang: js
+
 exclude:
   - node_modules
   - package.json

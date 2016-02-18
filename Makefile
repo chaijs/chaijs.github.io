@@ -40,7 +40,7 @@ releases: clean-releases
 
 plugins: clean-plugins
 	@mkdir -p _data/plugins
-	@./node_modules/.bin/npm-plugin-fetcher -o _data/plugins chai-plugin
+	@./node_modules/.bin/npm-plugin-fetcher -b _scripts/banned_plugins.js -o _data/plugins chai-plugin
 	@xargs -n1 -I! sh -c 'echo ! && curl -s "https://registry.npmjs.com/!" > _data/plugins/!.json' < _legacy_plugins
 	@node _scripts/build-plugin-tags.js
 

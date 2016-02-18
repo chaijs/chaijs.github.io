@@ -8,7 +8,7 @@ files.filter(function (file) {
     var pluginJson = JSON.parse(fs.readFileSync('_data/plugins/' + file, 'utf8'));
     var contents = '---\nlayout: plugin\npermalink: plugins/' + name + '/\npluginName: ' + name + '\n---\n\n' + pluginJson.readme;
     fs.writeFileSync(__dirname + '/../plugins/' + name + '.md', contents, 'utf8');
-    console.log('Wrote', 'plugins/' + file + '.md')
+    console.log('Wrote', 'plugins/' + name + '.md')
   } catch(e) {
     console.error(e.stack || e);
     process.exit(1);

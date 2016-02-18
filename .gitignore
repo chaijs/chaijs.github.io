@@ -20,3 +20,4 @@ _data
 chai.js
 _site
 .sass-cache
+plugins/*.md

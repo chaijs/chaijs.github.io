@@ -1,0 +1,44 @@
+---
+layout: default
+bodyClass: plugin
+---
+{% assign plugin = site.data.plugins[page.pluginName] %}
+<div id="plugin" class="row">
+  <div class="banner grid_4">
+    <div class="wrap">
+      <div class="title">
+        <h2 class="plain">{{ plugin.name }}</h2>
+      </div>
+      <div class="desc">{{ plugin.description }}</div>
+      <h3 class="link">
+        {% if plugin.repository.url contains "github.com" %}
+        <a href="https://{{ plugin.repository.url | replace: 'git@github.com', 'github.com' | replace: 'git+ssh://', '' | replace: 'git+https://', '' | replace: 'git://', '' | replace: 'http://', '' | replace: 'https://', '' | replace: 'github.com:', 'github.com/' }}">
+          View the Project on GitHub
+          <span>{{ plugin.repository.url | split: 'github.com:' | last | split: 'github.com/' | last | replace: '.git', '' }}</span>
+        </a>
+        {% endif %}
+      </h3>
+      {% unless plugin.keywords contains 'browser-only' %}
+      <div class="platform supported">
+        <div class="icon">✓</div>
+        node.js supported
+        <pre><code>npm install {{ plugin.name }}</code></pre>
+      </div>
+      {% endunless %}
+      {% if plugin.keywords contains 'browser' %}
+      <div class="platform supported">
+        <div class="icon">✓</div>
+        browser supported
+      </div>
+      {% endif %}
+      <div class="people">
+        <div class="author">Project maintained by {{ plugin.author.name }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="readme grid_8">
+    <div class="wrap">
+      {{ content }}
+    </div>
+  </div>
+</div>

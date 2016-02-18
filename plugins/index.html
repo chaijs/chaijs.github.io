@@ -1,8 +1,8 @@
 ---
 bodyClass: plugins
 ---
-<div id="ptags" class="grid_3 sticky">
-  <div class="tag">
+<div id="ptags" class="grid_3">
+  <div class="tag active">
     <div id="all" class="which">all plugins</div>
   </div>
   <div class="line"></div>
@@ -18,7 +18,7 @@ bodyClass: plugins
   <div class="plug_list_scratch rowInside" style="height: 3000px;">
     {% for plugin_hash in site.data.plugins %}
     {% assign plugin = plugin_hash[1] %}
-    <article id="{{ plugin.name }}" class="grid_3 contrast plugin-box_s">
+    <article id="{{ plugin.name }}" class="grid_3 contrast plugin-box_s" data-keywords="{{ plugin.keywords | jsonify | escape }}">
       <a href="{{ site.baseurl }}/plugins/{{ plugin.name }}" class="ablock">
         <div class="wrap">
           <h3 class="fancy">{{ plugin.name }}</h3>
@@ -29,3 +29,5 @@ bodyClass: plugins
     {% endfor %}
   </div>
 </div>
+
+<script src="{{ site.baseurl }}/js/plugins.js"></script>

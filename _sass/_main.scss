@@ -1310,6 +1310,18 @@ body.plugins .content #ptags .tag.active span.reset:hover {
   background-color: #faf4e8;
   color: #30759c;
 }
+body.plugins .content #plugins article {
+  transition: transform 500ms, position 500ms 500ms;
+  transform: scale(1);
+  position: static;
+
+  &.hidden {
+    transform: scale(0);
+    position: absolute;
+  }
+
+}
+
 body.plugin .banner {
   position: fixed;
 }

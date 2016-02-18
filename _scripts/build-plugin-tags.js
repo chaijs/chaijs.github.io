@@ -19,7 +19,37 @@ var hiddenKeywords = [
   'jasmine',
   'integration-tests',
   'id',
+  'true',
+  'false',
+  'arbitrary',
+  'big',
+  'number',
+  'schema',
+  'interface',
+  'no-jquery',
+  'API',
+  'api',
 ];
+var keywordMap = {
+  'jquery': 'jQuery',
+  'mongo': 'MongoDB',
+  'mongodb': 'MongoDB',
+  'xml': 'XML',
+  'assertXml': 'XML',
+  'react': 'React',
+  'json': 'JSON',
+  'json-schema': 'JSON Schema',
+  'array': 'Array',
+  'arrays': 'Array',
+  'file': 'filesystem',
+  'path': 'filesystem',
+  'color': 'Colors',
+  'colors': 'Colors',
+  'math': 'Math',
+  'backbone': 'Backbone',
+  'promises': 'Promises',
+  'promises-aplus': 'Promises',
+}
 var keywords = files.filter(function (file) {
   return file.slice(-5) === '.json';
 }).map(function (file) {
@@ -34,7 +64,14 @@ var keywords = files.filter(function (file) {
   return total.concat(current);
 }, []).filter(function(value, index, total) {
   return hiddenKeywords.indexOf(value) === -1 && total.indexOf(value) === index;
-});
+}).sort().reduce(function (total, keyword) {
+  var addition = keyword.trim();
+  if (keywordMap[keyword]) {
+    keyword = keywordMap[keyword];
+  }
+  total[keyword] = (total[keyword] || []).concat(addition);
+  return total;
+}, {});
 
 console.log(keywords);
 

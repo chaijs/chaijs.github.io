@@ -8,7 +8,7 @@ bodyClass: plugins
   <div class="line"></div>
   {% for keyword in site.data.plugin_keywords %}
     <div class="tag">
-      <div id="{{ keyword }}" class="which">{{ keyword }}</div><span class="reset">×</span>
+      <div class="which" data-keywords="{{ keyword[1] | jsonify | escape }}">{{ keyword[0] }}</div><span class="reset">×</span>
     </div>
   {% endfor %}
 

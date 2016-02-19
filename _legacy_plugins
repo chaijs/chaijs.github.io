@@ -1,16 +1,13 @@
 chai-spies
+chai-jquery
 chai-timers
 chai-stats
 chai-null
 chai-factories
 chai-fuzzy
 chai-things
-chai-interface
 chai-json-schema
-chai-date-time
 chai-fs
 chai-bookshelf
 chai-change
-chai-shallow-deep-equal
-chai-subset
 chai-signals

@@ -10,4 +10,3 @@ chai-json-schema
 chai-fs
 chai-bookshelf
 chai-change
-chai-signals

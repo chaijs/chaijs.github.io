@@ -94,7 +94,7 @@ ifneq ($(TRAVIS_BRANCH), master)
 pages:
 	@echo "Cowardly refusing to build pages"
 else
-pages: install clean plugins releases api-docs
+pages: install clean generated_data
 	@echo "Comitting to gh-pages"
 	@git config user.name "ChaiJs Bot"
 	@git config user.email "chaijs-bot@keithcirkel.co.uk"

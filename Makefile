@@ -98,7 +98,7 @@ pages: install clean plugins releases api-docs
 	@echo "Comitting to gh-pages"
 	@git config user.name "ChaiJs Bot"
 	@git config user.email "chaijs-bot@keithcirkel.co.uk"
-	@git add -f _data plugins/*.md
+	@git add -f chai.js _data plugins/*.md
 	@git commit -m '(data): Auto build _data'
 	@git push "https://${GH_TOKEN}@github.com/chaijs/chai-docs" HEAD:refs/heads/gh-pages -f
 endif

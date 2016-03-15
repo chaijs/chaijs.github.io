@@ -8,7 +8,7 @@ bodyClass: guide
     {% assign guides = site.guides | sort: 'order' %}
     {% for guide in guides %}
       {% assign slug = guide.title | slugify %}
-      {% capture url %}{{ site.baseurl }}{{ guide.url }}{% endcapture %}
+      {% capture url %}{{ site.github.url }}{{ guide.url }}{% endcapture %}
       {% capture active %}{% if page.url == guide.url %} active{% endif %}{% endcapture %}
       {% capture expanded %}{% if page.url == guide.url %} expanded{% endif %}{% endcapture %}
       <div id="{{ slug }}" class="item primary{{ active }}{{ expanded }}">
@@ -41,4 +41,4 @@ bodyClass: guide
     </div>
 </div>
 
-<script src="{{site.baseurl}}/js/guide.js"></script>
+<script src="{{site.github.url}}/js/guide.js"></script>

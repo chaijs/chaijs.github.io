@@ -16,7 +16,7 @@ within a single assertion and reused throughout your tests.
 
 This tutorial will show you how to access Chai's plugin API, use flags to transfer data through
 the language chain, and write your first assertion (and thorough error messages). Once you have
-finished here, [Building a Helper]({{site.baseurl}}/guide/helpers) will show you how to compose properties and
+finished here, [Building a Helper]({{site.github.url}}/guide/helpers) will show you how to compose properties and
 methods for use on the Chai language chain.
 
 ## Accessing Utilities

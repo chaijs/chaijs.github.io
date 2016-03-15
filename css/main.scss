@@ -1,7 +1,7 @@
 ---
 ---
 @charset "utf-8";
-$baseurl: "{{ site.baseurl }}";
+$baseurl: "{{ site.github.url }}";
 @import "pygments-github-style";
 @import "main";
 

@@ -13,7 +13,7 @@
 
 # Building a Helper
 
-> This tutorial assumes that you are familiar with the plugin [core concepts]({{site.baseurl}}/guide/plugins/).
+> This tutorial assumes that you are familiar with the plugin [core concepts]({{site.github.url}}/guide/plugins/).
 > If you have not yet read that article, it is recommended that you do so before continuing.
 
 Providing chainable helper assertions is the most common use of the plugin utilities

@@ -19,7 +19,7 @@ bodyClass: plugins
     {% for plugin_hash in site.data.plugins %}
     {% assign plugin = plugin_hash[1] %}
     <article id="{{ plugin.name }}" class="grid_3 contrast plugin-box_s" data-keywords="{{ plugin.keywords | jsonify | escape }}">
-      <a href="{{ site.baseurl }}/plugins/{{ plugin.name }}/" class="ablock">
+      <a href="{{ site.github.url }}/plugins/{{ plugin.name }}/" class="ablock">
         <div class="wrap">
           <h3 class="fancy">{{ plugin.name }}</h3>
           <p>{{ plugin.description }}</p>
@@ -30,4 +30,4 @@ bodyClass: plugins
   </div>
 </div>
 
-<script src="{{ site.baseurl }}/js/plugins.js"></script>
+<script src="{{ site.github.url }}/js/plugins.js"></script>

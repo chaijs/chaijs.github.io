@@ -4,7 +4,6 @@ chai-timers
 chai-stats
 chai-null
 chai-factories
-chai-fuzzy
 chai-things
 chai-json-schema
 chai-fs

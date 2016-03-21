@@ -213,8 +213,7 @@ and negation impacts ALL assertions after it is set, we would receive an error m
 `expected [object Model] not to be instance of [object Model]`. As such, please obey this general
 guideline when constructing chainable methods.
 
-> When constructing chainable methods, the property function should only serve to set a flag
-> for later modifying the behavior of an existing assertion.
+> When constructing chainable methods, the property function should only serve to set a flag for later modifying the behavior of an existing assertion.
 
 ##### An Appropriate Example
 
@@ -253,7 +252,7 @@ function assertModelAge (n) {
 }
 ```
 
-By now, that should be self-explanitory. Now for our property function.
+By now, that should be self-explanatory. Now for our property function.
 
 ```javascript
 function chainModelAge () {

@@ -63,7 +63,17 @@ bodyClass: api
                 {% endfor %}
                 {% if render %}
                   <div id="method_{{ name | slugify }}" class="api_method_wrapper">
-                    {{ method.description.full | markdownify }}
+                    {{ method.description.summary | markdownify }}
+                    <ul>
+                      {% for tag in method.tags %}
+                        {% if tag.type == "param" %}
+                          <li>&#64;{{ tag.type }} &#123; {{ tag.types | join: ' | ' }} &#125; {{ tag.name }} {{ tag.description }}</li>
+                        {% elsif tag.type == "see" %}
+                          <li>&#64;{{ tag.type }} {% if tag.url %}<a href='{{ tag.url }}' target='_blank'>{{ tag.url }}</a>{% else %}{{ tag.local }}{% endif %}</li>
+                        {% endif %}
+                      {% endfor %}
+                    </ul>
+                    {{ method.description.body | markdownify }}
                   </div>
                 {% endif %}
               {% endfor %}

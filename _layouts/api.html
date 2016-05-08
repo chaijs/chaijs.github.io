@@ -64,12 +64,12 @@ bodyClass: api
                 {% if render %}
                   <div id="method_{{ name | slugify }}" class="api_method_wrapper">
                     {{ method.description.summary | markdownify }}
-                    <ul>
+                    <ul class="tags">
                       {% for tag in method.tags %}
                         {% if tag.type == "param" %}
-                          <li>&#64;{{ tag.type }} &#123; {{ tag.types | join: ' | ' }} &#125; {{ tag.name }} {{ tag.description }}</li>
+                          <li class="tag"><span class="type">&#64;{{ tag.type }}</span> <span class="types">&#123; {{ tag.types | join: ' | ' }} &#125;</span> <span class="name">{{ tag.name }}</span> <span class="desc">{{ tag.description }}</span></li>
                         {% elsif tag.type == "see" %}
-                          <li>&#64;{{ tag.type }} {% if tag.url %}<a href='{{ tag.url }}' target='_blank'>{{ tag.url }}</a>{% else %}{{ tag.local }}{% endif %}</li>
+                          <li class="tag"><span class="type">&#64;{{ tag.type }}</span> {% if tag.url %}<span class="type"><a href='{{ tag.url }}' target='_blank'>{{ tag.url }}</a></span>{% else %}<span class="name">{{ tag.local }}</span>{% endif %}</li>
                         {% endif %}
                       {% endfor %}
                     </ul>

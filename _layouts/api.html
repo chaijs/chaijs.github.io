@@ -41,8 +41,6 @@ bodyClass: api
                 </div>
             </div>
         </div>
-        <div class="antiscroll-scrollbar antiscroll-scrollbar-vertical antiscroll-scrollbar-shown" style="height: 76.1754px; top: 0px;">
-        </div>
     </div>
     {% endif %}
 </nav>
@@ -65,7 +63,17 @@ bodyClass: api
                 {% endfor %}
                 {% if render %}
                   <div id="method_{{ name | slugify }}" class="api_method_wrapper">
-                    {{ method.description.full | markdownify }}
+                    {{ method.description.summary | markdownify }}
+                    <ul class="tags">
+                      {% for tag in method.tags %}
+                        {% if tag.type == "param" %}
+                          <li class="tag"><span class="type">&#64;{{ tag.type }}</span> <span class="types">&#123; {{ tag.types | join: ' | ' }} &#125;</span> <span class="name">{{ tag.name }}</span> <span class="desc">{{ tag.description }}</span></li>
+                        {% elsif tag.type == "see" %}
+                          <li class="tag"><span class="type">&#64;{{ tag.type }}</span> {% if tag.url %}<span class="type"><a href='{{ tag.url }}' target='_blank'>{{ tag.url }}</a></span>{% else %}<span class="name">{{ tag.local }}</span>{% endif %}</li>
+                        {% endif %}
+                      {% endfor %}
+                    </ul>
+                    {{ method.description.body | markdownify }}
                   </div>
                 {% endif %}
               {% endfor %}

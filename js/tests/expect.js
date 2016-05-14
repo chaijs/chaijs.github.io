@@ -264,10 +264,15 @@ describe('expect', function () {
 
   it('match(regexp)', function(){
     expect('foobar').to.match(/^foo/)
+    expect('foobar').to.matches(/^foo/)
     expect('foobar').to.not.match(/^bar/)
 
     err(function(){
       expect('foobar').to.match(/^bar/i, 'blah')
+    }, "blah: expected 'foobar' to match /^bar/i");
+
+    err(function(){
+      expect('foobar').to.matches(/^bar/i, 'blah')
     }, "blah: expected 'foobar' to match /^bar/i");
 
     err(function(){
@@ -394,6 +399,26 @@ describe('expect', function () {
     }, "expected { foo: \'bar\' } to be empty");
   });
 
+  it('NaN', function() {
+    expect(NaN).to.be.NaN;
+    expect('foo').to.be.NaN;
+    expect({}).to.be.NaN;
+    expect(4).not.to.be.NaN;
+    expect([]).not.to.be.NaN;
+
+    err(function(){
+      expect(4).to.be.NaN;
+    }, "expected 4 to be NaN");
+
+    err(function(){
+      expect([]).to.be.NaN;
+    }, "expected [] to be NaN");
+
+    err(function(){
+      expect('foo').not.to.be.NaN;
+    }, "expected 'foo' not to be NaN");
+  });
+
   it('property(name)', function(){
     expect('test').to.have.property('length');
     expect(4).to.not.have.property('length');
@@ -410,6 +435,9 @@ describe('expect', function () {
     });
     expect(obj).to.have.property('foo');
     expect(obj).to.have.property('bar');
+
+    expect({ 'foo.bar[]': 'baz'})
+      .to.have.property('foo.bar[]');
 
     err(function(){
       expect('asd').to.have.property('foo');
@@ -429,6 +457,9 @@ describe('expect', function () {
     expect({ 'foo': [1, 2, 3] })
       .to.have.deep.property('foo[1]');
 
+    expect({ 'foo.bar[]': 'baz'})
+      .to.have.deep.property('foo\\.bar\\[\\]');
+
     err(function(){
       expect({ 'foo.bar': 'baz' })
         .to.have.deep.property('foo.bar');
@@ -446,6 +477,12 @@ describe('expect', function () {
     expect(deepObj).to.have.deep.property('green.tea', 'matcha');
     expect(deepObj).to.have.deep.property('teas[1]', 'matcha');
     expect(deepObj).to.have.deep.property('teas[2].tea', 'konacha');
+
+    expect(deepObj).to.have.property('teas')
+      .that.is.an('array')
+      .with.deep.property('[2]')
+        .that.deep.equals({tea: 'konacha'});
+
     err(function(){
       expect(deepObj).to.have.deep.property('teas[3]');
     }, "expected { Object (green, teas) } to have a deep property 'teas[3]'");
@@ -519,6 +556,40 @@ describe('expect', function () {
     }, "blah: expected { length: 12 } to not have own property 'length'");
   });
 
+  it('ownPropertyDescriptor(name)', function(){
+    expect('test').to.have.ownPropertyDescriptor('length');
+    expect('test').to.haveOwnPropertyDescriptor('length');
+    expect('test').not.to.have.ownPropertyDescriptor('foo');
+
+    var obj = {};
+    var descriptor = {
+      configurable: false,
+      enumerable: true,
+      writable: true,
+      value: NaN
+    };
+    Object.defineProperty(obj, 'test', descriptor);
+    expect(obj).to.have.ownPropertyDescriptor('test', descriptor);
+    err(function(){
+      expect(obj).not.to.have.ownPropertyDescriptor('test', descriptor, 'blah');
+    }, /^blah: expected the own property descriptor for 'test' on \{ test: NaN \} to not match \{ [^\}]+ \}$/);
+    err(function(){
+      var wrongDescriptor = {
+        configurable: false,
+        enumerable: true,
+        writable: false,
+        value: NaN
+      };
+      expect(obj).to.have.ownPropertyDescriptor('test', wrongDescriptor, 'blah');
+    }, /^blah: expected the own property descriptor for 'test' on \{ test: NaN \} to match \{ [^\}]+ \}, got \{ [^\}]+ \}$/);
+
+    err(function(){
+      expect(obj).to.have.ownPropertyDescriptor('test2', 'blah');
+    }, "blah: expected { test: NaN } to have an own property descriptor for 'test2'");
+
+    expect(obj).to.have.ownPropertyDescriptor('test').and.have.property('enumerable', true);
+  });
+
   it('string()', function(){
     expect('foobar').to.have.string('bar');
     expect('foobar').to.have.string('foo');
@@ -572,6 +643,38 @@ describe('expect', function () {
     err(function(){
       expect([{a:1},{b:2}]).to.not.include({b:2});
     }, "expected [ { a: 1 }, { b: 2 } ] to not include { b: 2 }");
+
+    err(function(){
+      expect(true).to.include(true);
+    }, "object tested must be an array, an object, or a string, but boolean given");
+
+    err(function(){
+      expect(42.0).to.include(42);
+    }, "object tested must be an array, an object, or a string, but number given");
+
+    err(function(){
+      expect(null).to.include(42);
+    }, "object tested must be an array, an object, or a string, but null given");
+
+    err(function(){
+      expect(undefined).to.include(42);
+    }, "object tested must be an array, an object, or a string, but undefined given");
+
+    err(function(){
+      expect(true).to.not.include(true);
+    }, "object tested must be an array, an object, or a string, but boolean given");
+
+    err(function(){
+      expect(42.0).to.not.include(42);
+    }, "object tested must be an array, an object, or a string, but number given");
+
+    err(function(){
+      expect(null).to.not.include(42);
+    }, "object tested must be an array, an object, or a string, but null given");
+
+    err(function(){
+      expect(undefined).to.not.include(42);
+    }, "object tested must be an array, an object, or a string, but undefined given");
   });
 
   it('keys(array|Object|arguments)', function(){
@@ -943,11 +1046,45 @@ describe('expect', function () {
 
     err(function() {
       expect(1.5).to.be.closeTo("1.0", 0.5);
-    }, "the arguments to closeTo must be numbers");
+    }, "the arguments to closeTo or approximately must be numbers");
 
     err(function() {
       expect(1.5).to.be.closeTo(1.0, true);
-    }, "the arguments to closeTo must be numbers");
+    }, "the arguments to closeTo or approximately must be numbers");
+  });
+
+  it('approximately', function(){
+    expect(1.5).to.be.approximately(1.0, 0.5);
+    expect(10).to.be.approximately(20, 20);
+    expect(-10).to.be.approximately(20, 30);
+
+    err(function(){
+      expect(2).to.be.approximately(1.0, 0.5, 'blah');
+    }, "blah: expected 2 to be close to 1 +/- 0.5");
+
+    err(function(){
+      expect(-10).to.be.approximately(20, 29, 'blah');
+    }, "blah: expected -10 to be close to 20 +/- 29");
+
+    err(function() {
+      expect([1.5]).to.be.approximately(1.0, 0.5);
+    }, "expected [ 1.5 ] to be a number");
+
+    err(function() {
+      expect(1.5).to.be.approximately("1.0", 0.5);
+    }, "the arguments to closeTo or approximately must be numbers");
+
+    err(function() {
+      expect(1.5).to.be.approximately(1.0, true);
+    }, "the arguments to closeTo or approximately must be numbers");
+  });
+
+  it('oneOf', function() {
+    expect(1).to.be.oneOf([1, 2, 3]);
+    expect('1').to.not.be.oneOf([1, 2, 3]);
+    expect([3, [4]]).to.not.be.oneOf([1, 2, [3, 4]]);
+    var threeFour = [3, [4]];
+    expect(threeFour).to.be.oneOf([1, 2, threeFour]);
   });
 
   it('include.members', function() {
@@ -1009,5 +1146,132 @@ describe('expect', function () {
     expect(decFn).to.decrease(obj, 'value');
   });
 
+  it('extensible', function() {
+    var nonExtensibleObject = Object.preventExtensions({});
 
+    expect({}).to.be.extensible;
+    expect(nonExtensibleObject).to.not.be.extensible;
+
+    err(function() {
+        expect(nonExtensibleObject).to.be.extensible;
+    }, 'expected {} to be extensible');
+
+    err(function() {
+        expect({}).to.not.be.extensible;
+    }, 'expected {} to not be extensible');
+
+    // Making sure ES6-like Object.isExtensible response is respected for all primitive types
+
+    expect(42).to.not.be.extensible;
+    expect(null).to.not.be.extensible;
+    expect('foo').to.not.be.extensible;
+    expect(false).to.not.be.extensible;
+    expect(undefined).to.not.be.extensible;
+
+    err(function() {
+      expect(42).to.be.extensible;
+    }, 'expected 42 to be extensible');
+
+    err(function() {
+      expect(null).to.be.extensible;
+    }, 'expected null to be extensible');
+
+    err(function() {
+      expect('foo').to.be.extensible;
+    }, 'expected \'foo\' to be extensible');
+
+    err(function() {
+      expect(false).to.be.extensible;
+    }, 'expected false to be extensible');
+
+    err(function() {
+      expect(undefined).to.be.extensible;
+    }, 'expected undefined to be extensible');
+  });
+
+  it('sealed', function() {
+    var sealedObject = Object.seal({});
+
+    expect(sealedObject).to.be.sealed;
+    expect({}).to.not.be.sealed;
+
+    err(function() {
+        expect({}).to.be.sealed;
+    }, 'expected {} to be sealed');
+
+    err(function() {
+        expect(sealedObject).to.not.be.sealed;
+    }, 'expected {} to not be sealed');
+
+    // Making sure ES6-like Object.isSealed response is respected for all primitive types
+
+    expect(42).to.be.sealed;
+    expect(null).to.be.sealed;
+    expect('foo').to.be.sealed;
+    expect(false).to.be.sealed;
+    expect(undefined).to.be.sealed;
+
+    err(function() {
+      expect(42).to.not.be.sealed;
+    }, 'expected 42 to not be sealed');
+
+    err(function() {
+      expect(null).to.not.be.sealed;
+    }, 'expected null to not be sealed');
+
+    err(function() {
+      expect('foo').to.not.be.sealed;
+    }, 'expected \'foo\' to not be sealed');
+
+    err(function() {
+      expect(false).to.not.be.sealed;
+    }, 'expected false to not be sealed');
+
+    err(function() {
+      expect(undefined).to.not.be.sealed;
+    }, 'expected undefined to not be sealed');
+  });
+
+  it('frozen', function() {
+    var frozenObject = Object.freeze({});
+
+    expect(frozenObject).to.be.frozen;
+    expect({}).to.not.be.frozen;
+
+    err(function() {
+        expect({}).to.be.frozen;
+    }, 'expected {} to be frozen');
+
+    err(function() {
+        expect(frozenObject).to.not.be.frozen;
+    }, 'expected {} to not be frozen');
+
+    // Making sure ES6-like Object.isFrozen response is respected for all primitive types
+
+    expect(42).to.be.frozen;
+    expect(null).to.be.frozen;
+    expect('foo').to.be.frozen;
+    expect(false).to.be.frozen;
+    expect(undefined).to.be.frozen;
+
+    err(function() {
+      expect(42).to.not.be.frozen;
+    }, 'expected 42 to not be frozen');
+
+    err(function() {
+      expect(null).to.not.be.frozen;
+    }, 'expected null to not be frozen');
+
+    err(function() {
+      expect('foo').to.not.be.frozen;
+    }, 'expected \'foo\' to not be frozen');
+
+    err(function() {
+      expect(false).to.not.be.frozen;
+    }, 'expected false to not be frozen');
+
+    err(function() {
+      expect(undefined).to.not.be.frozen;
+    }, 'expected undefined to not be frozen');
+  });
 });

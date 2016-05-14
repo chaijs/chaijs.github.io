@@ -1,0 +1,61 @@
+---
+layout: default
+bodyClass: tests
+---
+<nav id="api" class="sidebar sticky">
+    <a href="{{ site.github.url }}/api/" class="item{% if page.url == '/api/index.html' %} active{% endif %}">
+        Introduction
+    </a>
+    <a href="{{ site.github.url }}/api/bdd/" class="item{% if page.url == '/api/bdd/' %} active{% endif %}">
+        Expect / Should
+    </a>
+    <a href="{{ site.github.url }}/api/assert/" class="item{% if page.url == '/api/assert/' %} active{% endif %}">
+        Assert
+    </a>
+    <a href="{{ site.github.url }}/api/plugins/" class="item{% if page.url == '/api/plugins/' %} active{% endif %}">
+        Plugin Utilities
+    </a>
+    <a href="{{ site.github.url }}/api/test/" class="item{% if page.url == '/api/test/' %} active{% endif %}">
+        Online Test Suite
+    </a>
+</nav>
+<div class="documentation">
+    <div class="wrap">
+        <div class="rendered">
+            <article>
+                {{ content }}
+            </article>
+        </div>
+        <div id="mocha"></div>
+    </div>
+</div>
+<script src="{{site.github.url}}/js/tests/mocha.js"></script>
+<script>
+  mocha.setup('tdd');
+</script>
+<script src="{{site.github.url}}/chai.js"></script>
+<script>
+  err = function (fn, msg) {
+    try {
+      fn();
+      throw new chai.AssertionError({ message: 'Expected an error' });
+    } catch (err) {
+      if ('string' === typeof msg) {
+        chai.expect(err.message).to.equal(msg);
+      } else {
+        chai.expect(err.message).to.match(msg);
+      }
+    }
+  };
+</script>
+<script src="{{site.github.url}}/js/tests/configuration.js"></script>
+<script src="{{site.github.url}}/js/tests/expect.js"></script>
+<script src="{{site.github.url}}/js/tests/should.js"></script>
+<script src="{{site.github.url}}/js/tests/assert.js"></script>
+<script src="{{site.github.url}}/js/tests/plugins.js"></script>
+<script src="{{site.github.url}}/js/tests/utilities.js"></script>
+<script>
+  onload = function () {
+    mocha.run();
+  };
+</script>

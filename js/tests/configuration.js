@@ -165,6 +165,6 @@ describe('configuration', function () {
       chai.config.showDiff = !chai.config.showDiff;
       assert.equal(chai.Assertion.showDiff, chai.config.showDiff);
     });
-    
+
   });
 });

@@ -109,7 +109,7 @@ describe('utilities', function () {
       info.value.should.equal(obj.dimensions.units);
       info.name.should.equal('units');
       info.exists.should.be.true;
-    }); 
+    });
 
     it('should handle non-existent property', function() {
       var info = gpi('dimensions.size', obj);
@@ -118,7 +118,7 @@ describe('utilities', function () {
       expect(info.value).to.be.undefined;
       info.name.should.equal('size');
       info.exists.should.be.false;
-    }); 
+    });
 
     it('should handle array index', function() {
       var info = gpi('primes[2]', obj);
@@ -127,7 +127,7 @@ describe('utilities', function () {
       info.value.should.equal(obj.primes[2]);
       info.name.should.equal(2);
       info.exists.should.be.true;
-    }); 
+    });
 
     it('should handle dimensional array', function() {
       var info = gpi('dimensions.lengths[2][1]', obj);
@@ -136,7 +136,7 @@ describe('utilities', function () {
       info.value.should.equal(obj.dimensions.lengths[2][1]);
       info.name.should.equal(1);
       info.exists.should.be.true;
-    }); 
+    });
 
     it('should handle out of bounds array index', function() {
       var info = gpi('dimensions.lengths[3]', obj);
@@ -180,13 +180,13 @@ describe('utilities', function () {
       hp(1, arr).should.be.true;
       hp(3, arr).should.be.false;
     });
-    
+
     it('should handle literal types', function() {
       var s = 'string literal';
       hp('length', s).should.be.true;
       hp(3, s).should.be.true;
       hp(14, s).should.be.false;
-      
+
       hp('foo', 1).should.be.false;
     });
 
@@ -342,13 +342,78 @@ describe('utilities', function () {
       var obj = {};
       _.flag(obj, 'message', 'foo');
       expect(_.getMessage(obj, [])).to.contain('foo');
+    });
+  });
 
+  it('getMessage passed message as function', function () {
+    chai.use(function (_chai, _) {
       var obj = {};
       var msg = function() { return "expected a to eql b"; }
       var negateMsg = function() { return "expected a not to eql b"; }
       expect(_.getMessage(obj, [null, msg, negateMsg])).to.equal("expected a to eql b");
       _.flag(obj, 'negate', true);
       expect(_.getMessage(obj, [null, msg, negateMsg])).to.equal("expected a not to eql b");
+    });
+  });
+
+  it('getMessage template tag substitution', function () {
+    chai.use(function (_chai, _) {
+      var objName = 'trojan horse';
+      var actualValue = 'an actual value';
+      var expectedValue = 'an expected value';
+      [
+          // known template tags
+          {
+              template: 'one #{this} two',
+              expected: 'one \'' + objName + '\' two'
+          },
+          {
+              template: 'one #{act} two',
+              expected: 'one \'' + actualValue + '\' two'
+          },
+          {
+              template: 'one #{exp} two',
+              expected: 'one \'' + expectedValue + '\' two'
+          },
+          // unknown template tag
+          {
+              template: 'one #{unknown} two',
+              expected: 'one #{unknown} two'
+          },
+          // repeated template tag
+          {
+              template: '#{this}#{this}',
+              expected: '\'' + objName + '\'\'' + objName + '\''
+          },
+          // multiple template tags in different order
+          {
+              template: '#{this}#{act}#{exp}#{act}#{this}',
+              expected: '\'' + objName + '\'\'' + actualValue + '\'\'' + expectedValue + '\'\'' + actualValue + '\'\'' + objName + '\''
+          },
+          // immune to string.prototype.replace() `$` substitution
+          {
+              objName: '-$$-',
+              template: '#{this}',
+              expected: '\'-$$-\''
+          },
+          {
+              actualValue: '-$$-',
+              template: '#{act}',
+              expected: '\'-$$-\''
+          },
+          {
+              expectedValue: '-$$-',
+              template: '#{exp}',
+              expected: '\'-$$-\''
+          }
+      ].forEach(function (config) {
+          config.objName = config.objName || objName;
+          config.actualValue = config.actualValue || actualValue;
+          config.expectedValue = config.expectedValue || expectedValue;
+          var obj = {_obj: config.actualValue};
+          _.flag(obj, 'object', config.objName);
+          expect(_.getMessage(obj, [null, config.template, null, config.expectedValue])).to.equal(config.expected);
+      });
     });
   });
 

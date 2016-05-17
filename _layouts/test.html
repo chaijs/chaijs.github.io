@@ -13,9 +13,9 @@ bodyClass: tests
         <div id="mocha"></div>
     </div>
 </div>
-<script src="{{ site.github.url }}/js/tests/mocha.js"></script>
+<script src="{{ site.github.url }}/js/mocha.js"></script>
 <script>
-  mocha.setup('tdd');
+  mocha.setup('bdd');
 </script>
 <script src="https://cdn.rawgit.com/chaijs/chai/{{ site.data.releases[0].tag_name }}/chai.js"></script>
 <script>
@@ -39,7 +39,5 @@ bodyClass: tests
 <script src="https://cdn.rawgit.com/chaijs/chai/{{ site.data.releases[0].tag_name }}/test/plugins.js"></script>
 <script src="https://cdn.rawgit.com/chaijs/chai/{{ site.data.releases[0].tag_name }}/test/utilities.js"></script>
 <script>
-  onload = function () {
-    mocha.run();
-  };
+  mocha.run();
 </script>

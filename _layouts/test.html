@@ -16,9 +16,7 @@ bodyClass: tests
 <script src="{{ site.github.url }}/js/mocha.js"></script>
 <script>
   mocha.setup('bdd');
-</script>
-<script src="https://cdn.rawgit.com/chaijs/chai/{{ site.data.releases[0].tag_name }}/chai.js"></script>
-<script>
+
   err = function (fn, msg) {
     try {
       fn();
@@ -32,11 +30,12 @@ bodyClass: tests
     }
   };
 </script>
+<script src="https://cdn.rawgit.com/chaijs/chai/{{ site.data.releases[0].tag_name }}/test/assert.js"></script>
 <script src="https://cdn.rawgit.com/chaijs/chai/{{ site.data.releases[0].tag_name }}/test/configuration.js"></script>
 <script src="https://cdn.rawgit.com/chaijs/chai/{{ site.data.releases[0].tag_name }}/test/expect.js"></script>
-<script src="https://cdn.rawgit.com/chaijs/chai/{{ site.data.releases[0].tag_name }}/test/should.js"></script>
-<script src="https://cdn.rawgit.com/chaijs/chai/{{ site.data.releases[0].tag_name }}/test/assert.js"></script>
+<script src="https://cdn.rawgit.com/chaijs/chai/{{ site.data.releases[0].tag_name }}/test/globalShould.js"></script>
 <script src="https://cdn.rawgit.com/chaijs/chai/{{ site.data.releases[0].tag_name }}/test/plugins.js"></script>
+<script src="https://cdn.rawgit.com/chaijs/chai/{{ site.data.releases[0].tag_name }}/test/should.js"></script>
 <script src="https://cdn.rawgit.com/chaijs/chai/{{ site.data.releases[0].tag_name }}/test/utilities.js"></script>
 <script>
   mocha.run();

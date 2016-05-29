@@ -12,8 +12,8 @@ assertion styles.
 
 ## The Basics
 
-- [Install Chai](/guide/installation/) in node, the browser, and other environments.
-- [Learn about styles](/guide/styles/) that you can use to define assertions.
+- [Install Chai]({{site.github.url}}/guide/installation/) in node, the browser, and other environments.
+- [Learn about styles]({{site.github.url}}/guide/styles/) that you can use to define assertions.
 
 ## Making Plugins
 
@@ -23,5 +23,5 @@ than what is included, limited only by what you want to achieve. The Plugin API
 is also intended as a way to simplify testing by providing users a way to
 encapsulate common assertions for repeat use.
 
-- [Core Plugin Concepts](/guide/plugins/) covers the basics of using the Chai Plugin API.
-- [Building a Helper](/guide/helpers/) is a walkthrough for writing your first plugin.
+- [Core Plugin Concepts]({{site.github.url}}/guide/plugins/) covers the basics of using the Chai Plugin API.
+- [Building a Helper]({{site.github.url}}/guide/helpers/) is a walkthrough for writing your first plugin.

@@ -1,5 +1,8 @@
 ---
   title: Building a Helper
+  layout: guide
+  bodyClass: guide
+  weight: 0
   order: 40
   headings:
     - Adding Language Chains

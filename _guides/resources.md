@@ -1,5 +1,8 @@
 ---
   title: Resources
+  layout: guide
+  bodyClass: guide
+  weight: 0
   order: 50
   headings:
     - Getting Help

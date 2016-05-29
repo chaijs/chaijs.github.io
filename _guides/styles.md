@@ -1,5 +1,8 @@
 ---
   title: Assertion Styles
+  layout: guide
+  bodyClass: guide
+  weight: 0
   order: 20
   headings:
     - Assert

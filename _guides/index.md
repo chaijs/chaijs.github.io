@@ -1,5 +1,8 @@
 ---
 title: Getting Started Guide
+layout: guide
+bodyClass: guide
+weight: 0
 permalink: /guide/
 order: 1
 ---

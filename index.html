@@ -22,9 +22,9 @@ chai.should();
 
 foo.should.be.a('string');
 foo.should.equal('bar');
-foo.should.have.length(3);
+foo.should.have.lengthOf(3);
 tea.should.have.property('flavors')
-  .with.length(3);
+  .with.lengthOf(3);
                 {% endhighlight %}
               </div>
               <div class="more-wrap">
@@ -42,9 +42,9 @@ var expect = chai.expect;
 
 expect(foo).to.be.a('string');
 expect(foo).to.equal('bar');
-expect(foo).to.have.length(3);
+expect(foo).to.have.lengthOf(3);
 expect(tea).to.have.property('flavors')
-  .with.length(3);
+  .with.lengthOf(3);
                 {% endhighlight %}
               </div>
               <div class="more-wrap">

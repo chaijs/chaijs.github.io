@@ -62,8 +62,8 @@ var expect = require('chai').expect
 
 expect(foo).to.be.a('string');
 expect(foo).to.equal('bar');
-expect(foo).to.have.length(3);
-expect(beverages).to.have.property('tea').with.length(3);
+expect(foo).to.have.lengthOf(3);
+expect(beverages).to.have.property('tea').with.lengthOf(3);
 ```
 
 Expect also allows you to include arbitrary messages to prepend to any failed
@@ -97,8 +97,8 @@ var should = require('chai').should() //actually call the function
 
 foo.should.be.a('string');
 foo.should.equal('bar');
-foo.should.have.length(3);
-beverages.should.have.property('tea').with.length(3);
+foo.should.have.lengthOf(3);
+beverages.should.have.property('tea').with.lengthOf(3);
 ```
 
 ### Differences

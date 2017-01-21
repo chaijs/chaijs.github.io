@@ -404,7 +404,9 @@ module.exports = function (chai, _) {
    * ### .all
    *
    * Sets the `all` flag (opposite of the `any` flag)
-   * later used by the `keys` assertion.
+   * later used by the `keys` assertion.  When checking keys, `all`
+   * means all-and-only, so the following example would fail if foo
+   * has keys 'bar', 'baz' and 'bof'.
    *
    *     expect(foo).to.have.all.keys('bar', 'baz');
    *

@@ -21,7 +21,7 @@ command.
 
 ### Testing
 
-Tests are written in `exports` style on [mocha test framework](http://visionmedia.github.com/mocha/).
+Tests are written in `exports` style on [mocha test framework](https://mochajs.org/).
 There is a test file for each of the interfaces. The tests for `expect` and `assert` must pass in node.js
 and in the browser, whereas the should tests only need to pass on node.js.
 

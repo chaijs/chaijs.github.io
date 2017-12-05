@@ -1,5 +1,8 @@
 ---
   title: Installation
+  layout: guide
+  bodyClass: guide
+  weight: 0
   order: 10
   headings:
     - Node.js

@@ -1,5 +1,8 @@
 ---
   title: Assertion Styles
+  layout: guide
+  bodyClass: guide
+  weight: 0
   order: 20
   headings:
     - Assert
@@ -17,7 +20,7 @@ This section of the guide introduces you to the three different assertion styles
 
 ## Assert
 
-<a href="/api/assert" class="clean-button">View full Assert API</a>
+<a href="{{site.github.url}}/api/assert" class="clean-button">View full Assert API</a>
 
 The assert style is exposed through `assert` interface. This provides
 the classic assert-dot notation, similar to that packaged with
@@ -43,7 +46,7 @@ error messages should your assertion not pass.
 
 ## BDD
 
-<a href="/api/bdd" class="clean-button">View full BDD API</a>
+<a href="{{site.github.url}}/api/bdd" class="clean-button">View full BDD API</a>
 
 The BDD style comes in two flavors: `expect` and `should`. Both use the same
 chainable language to construct assertions, but they differ in the way an

@@ -1,5 +1,8 @@
 ---
   title: Core Plugin Concepts
+  layout: guide
+  bodyClass: guide
+  weight: 0
   order: 30
   headings:
     - Accessing Utilities

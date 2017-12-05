@@ -1,5 +1,8 @@
 ---
   title: Building a Helper
+  layout: guide
+  bodyClass: guide
+  weight: 0
   order: 40
   headings:
     - Adding Language Chains
@@ -110,7 +113,7 @@ utils.addProperty(Assertion.prototype, 'model', function () {
 });
 ```
 
-<a href="/api/plugins/#addProperty-section" class="clean-button">View addProperty API</a>
+<a href="{{site.github.url}}/api/plugins/#method_addproperty" class="clean-button">View addProperty API</a>
 
 Simple and concise. Chai can take it from here. It is also worth mentioning that
 because this extension pattern is used so often, Chai makes it just a bit easier.
@@ -154,7 +157,7 @@ Assertion.addMethod('model', function (type) {
 });
 ```
 
-<a href="/api/plugins/#addMethod-section" class="clean-button">View addMethod API</a>
+<a href="{{site.github.url}}/api/plugins/#method_addmethod" class="clean-button">View addMethod API</a>
 
 All calls to `assert` are synchronous, so if the first one fails the `AssertionError`
 is thrown and the second one will not be reached. It is up to the test runner to interpret
@@ -268,7 +271,7 @@ finish up here first...
 Assertion.addChainableMethod('age', assertModelAge, chainModelAge);
 ```
 
-<a href="/api/plugins/#addChainableMethod-section" class="clean-button">View addChainableMethod API</a>
+<a href="{{site.github.url}}/api/plugins/#method_addchainablemethod" class="clean-button">View addChainableMethod API</a>
 
 Done. Now we can assert Arthur's exact age. We will pick up again with this example when learning how to overwrite methods.
 
@@ -308,7 +311,7 @@ chai.overwriteProperty('ok', function (_super) {
 });
 ```
 
-<a href="/api/plugins/#overwriteProperty-section" class="clean-button">View overwriteProperty API</a>
+<a href="{{site.github.url}}/api/plugins/#method_overwriteproperty" class="clean-button">View overwriteProperty API</a>
 
 ##### Overwrite Structure
 
@@ -426,7 +429,7 @@ Assertion.overwriteMethod('above', function (_super) {
 });
 ```
 
-<a href="/api/plugins/#overwriteMethod-section" class="clean-button">View overwriteMethod API</a>
+<a href="{{site.github.url}}/api/plugins/#method_overwritemethod" class="clean-button">View overwriteMethod API</a>
 
 This covers both positive and negative scenarios. No need to transfer flags in this
 case as `this.assert` handles that automatically. The same pattern can also be used

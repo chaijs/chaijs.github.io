@@ -175,7 +175,7 @@ chai.should();
 For a cleaner look, you can do this instead:
 
 ```js
-import 'chai/should';
+import 'chai/register-should';
 ```
 
 ## Configuration

@@ -183,7 +183,7 @@ expect(arr).to.contain(2);
 expect(obj).to.contain.key('a');
 ```
 
-For this to work, two seperate functions are needed. One that will be invoked when the
+For this to work, two separate functions are needed. One that will be invoked when the
 chain is used as either a property or a method, and one that will be invoked when only used
 as a method.
 
@@ -341,14 +341,14 @@ arthur.set('id', 'dont panic');
 expect(arthur).to.not.be.ok;
 ```
 
-We would expect this expection to pass as well, as our statement is
+We would expect this expectation to pass as well, as our statement is
 negated and the id is not a number. Unfortunately, the negation flag
 was not passed to our number assertion, so it still expects the value
 to be a number.
 
-##### Transfering Flags
+##### Transferring Flags
 
-For this we will expand on this assertion by transfering all of the
+For this we will expand on this assertion by transferring all of the
 flags from the original assertion to our new assertion. The final
 property overwrite would look like this.
 

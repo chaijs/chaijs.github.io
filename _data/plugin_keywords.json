@@ -1,0 +1,489 @@
+{
+  "Array": [
+    "Array",
+    "array",
+    "arrays"
+  ],
+  "Cheerio": [
+    "Cheerio"
+  ],
+  "Firebase": [
+    "Firebase"
+  ],
+  "Fireproof": [
+    "Fireproof"
+  ],
+  "JSON": [
+    "JSON",
+    "json"
+  ],
+  "ajv": [
+    "ajv"
+  ],
+  "any": [
+    "any"
+  ],
+  "approximation": [
+    "approximation"
+  ],
+  "arithmetic": [
+    "arithmetic"
+  ],
+  "XML": [
+    "assertXml",
+    "xml"
+  ],
+  "async": [
+    "async"
+  ],
+  "Backbone": [
+    "backbone"
+  ],
+  "bignumber": [
+    "bignumber"
+  ],
+  "bn": [
+    "bn"
+  ],
+  "bn.js": [
+    "bn.js"
+  ],
+  "bookshelf": [
+    "bookshelf"
+  ],
+  "brookjs": [
+    "brookjs"
+  ],
+  "buffers": [
+    "buffers"
+  ],
+  "chai-deep-match": [
+    "chai-deep-match"
+  ],
+  "chai-exclude": [
+    "chai-exclude"
+  ],
+  "chai-json": [
+    "chai-json"
+  ],
+  "chaiplugin": [
+    "chaiplugin"
+  ],
+  "changes": [
+    "changes"
+  ],
+  "checkit": [
+    "checkit"
+  ],
+  "clojure.spec": [
+    "clojure.spec"
+  ],
+  "codemod": [
+    "codemod"
+  ],
+  "Colors": [
+    "color",
+    "colors"
+  ],
+  "containSubset": [
+    "containSubset"
+  ],
+  "containSubsetInOrder": [
+    "containSubsetInOrder"
+  ],
+  "contains": [
+    "contains"
+  ],
+  "counting": [
+    "counting"
+  ],
+  "cron": [
+    "cron"
+  ],
+  "cron-parser": [
+    "cron-parser"
+  ],
+  "crontab": [
+    "crontab"
+  ],
+  "cucumber": [
+    "cucumber"
+  ],
+  "date": [
+    "date"
+  ],
+  "decimal": [
+    "decimal"
+  ],
+  "deep": [
+    "deep"
+  ],
+  "deep-eql": [
+    "deep-eql"
+  ],
+  "deep-equality": [
+    "deep-equality"
+  ],
+  "deep-match": [
+    "deep-match"
+  ],
+  "doge": [
+    "doge"
+  ],
+  "dom": [
+    "dom"
+  ],
+  "enzyme": [
+    "enzyme"
+  ],
+  "equal": [
+    "equal"
+  ],
+  "equality": [
+    "equality"
+  ],
+  "es2015": [
+    "es2015"
+  ],
+  "es6": [
+    "es6"
+  ],
+  "eventemitter": [
+    "eventemitter"
+  ],
+  "exclude": [
+    "exclude"
+  ],
+  "exec": [
+    "exec"
+  ],
+  "executeScript": [
+    "executeScript"
+  ],
+  "expect": [
+    "expect"
+  ],
+  "expectorant": [
+    "expectorant"
+  ],
+  "factory": [
+    "factory"
+  ],
+  "fetch": [
+    "fetch"
+  ],
+  "fetch-polyfill": [
+    "fetch-polyfill"
+  ],
+  "fetch-ponyfill": [
+    "fetch-ponyfill"
+  ],
+  "filesystem": [
+    "file",
+    "filesystem",
+    "path"
+  ],
+  "float": [
+    "float"
+  ],
+  "flux": [
+    "flux"
+  ],
+  "flux-standard-action": [
+    "flux-standard-action"
+  ],
+  "fs": [
+    "fs"
+  ],
+  "fsa": [
+    "fsa"
+  ],
+  "functional": [
+    "functional"
+  ],
+  "fuzzy": [
+    "fuzzy"
+  ],
+  "generator": [
+    "generator"
+  ],
+  "graphql": [
+    "graphql"
+  ],
+  "graphql-response": [
+    "graphql-response"
+  ],
+  "guard": [
+    "guard"
+  ],
+  "guid": [
+    "guid"
+  ],
+  "http": [
+    "http"
+  ],
+  "http-response": [
+    "http-response"
+  ],
+  "immutable": [
+    "immutable"
+  ],
+  "includes": [
+    "includes"
+  ],
+  "integration": [
+    "integration"
+  ],
+  "isMatch": [
+    "isMatch"
+  ],
+  "iterable": [
+    "iterable"
+  ],
+  "iteration": [
+    "iteration"
+  ],
+  "iterator": [
+    "iterator"
+  ],
+  "jQuery": [
+    "jQuery",
+    "jquery"
+  ],
+  "js-factories": [
+    "js-factories"
+  ],
+  "js-signals": [
+    "js-signals"
+  ],
+  "js.spec": [
+    "js.spec"
+  ],
+  "jscodeshift": [
+    "jscodeshift"
+  ],
+  "jsdoc": [
+    "jsdoc"
+  ],
+  "JSON Schema": [
+    "json-schema"
+  ],
+  "karma": [
+    "karma"
+  ],
+  "kefir": [
+    "kefir"
+  ],
+  "like": [
+    "like"
+  ],
+  "lodash": [
+    "lodash"
+  ],
+  "match": [
+    "match"
+  ],
+  "matchers": [
+    "matchers"
+  ],
+  "matching": [
+    "matching"
+  ],
+  "Math": [
+    "math"
+  ],
+  "mocks": [
+    "mocks"
+  ],
+  "mocks-and-spies": [
+    "mocks-and-spies"
+  ],
+  "moment": [
+    "moment"
+  ],
+  "MongoDB": [
+    "mongo",
+    "mongodb"
+  ],
+  "node-fetch": [
+    "node-fetch"
+  ],
+  "number-equality": [
+    "number-equality"
+  ],
+  "numbers": [
+    "numbers"
+  ],
+  "object-constructors": [
+    "object-constructors"
+  ],
+  "objectid": [
+    "objectid"
+  ],
+  "objects": [
+    "objects"
+  ],
+  "observables": [
+    "observables"
+  ],
+  "optimisation": [
+    "optimisation"
+  ],
+  "order": [
+    "order"
+  ],
+  "parameter": [
+    "parameter"
+  ],
+  "parameter check": [
+    "parameter check"
+  ],
+  "precision": [
+    "precision"
+  ],
+  "Promises": [
+    "promises",
+    "promises-aplus"
+  ],
+  "protractor": [
+    "protractor"
+  ],
+  "quantifiers": [
+    "quantifiers"
+  ],
+  "React": [
+    "react"
+  ],
+  "reactive": [
+    "reactive"
+  ],
+  "redux": [
+    "redux"
+  ],
+  "repl": [
+    "repl"
+  ],
+  "request": [
+    "request"
+  ],
+  "rounding-errors": [
+    "rounding-errors"
+  ],
+  "rxjs": [
+    "rxjs"
+  ],
+  "samsam": [
+    "samsam"
+  ],
+  "selenium": [
+    "selenium"
+  ],
+  "serenity": [
+    "serenity"
+  ],
+  "serenity-js": [
+    "serenity-js"
+  ],
+  "shallow": [
+    "shallow"
+  ],
+  "shallowly": [
+    "shallowly"
+  ],
+  "should": [
+    "should"
+  ],
+  "signals": [
+    "signals"
+  ],
+  "similar": [
+    "similar"
+  ],
+  "sinon": [
+    "sinon"
+  ],
+  "snapshot": [
+    "snapshot"
+  ],
+  "sort": [
+    "sort"
+  ],
+  "specs": [
+    "specs"
+  ],
+  "spies": [
+    "spies"
+  ],
+  "spy": [
+    "spy"
+  ],
+  "streams": [
+    "streams"
+  ],
+  "string": [
+    "string"
+  ],
+  "stubs": [
+    "stubs"
+  ],
+  "subset": [
+    "subset"
+  ],
+  "superagent": [
+    "superagent"
+  ],
+  "superset": [
+    "superset"
+  ],
+  "supertest": [
+    "supertest"
+  ],
+  "tdd": [
+    "tdd"
+  ],
+  "testing-libraries": [
+    "testing-libraries"
+  ],
+  "time": [
+    "time"
+  ],
+  "tolerance": [
+    "tolerance"
+  ],
+  "type": [
+    "type"
+  ],
+  "typescript": [
+    "typescript"
+  ],
+  "uint8array": [
+    "uint8array"
+  ],
+  "url": [
+    "url"
+  ],
+  "uuid": [
+    "uuid"
+  ],
+  "v8": [
+    "v8"
+  ],
+  "vendor": [
+    "vendor"
+  ],
+  "webdriver": [
+    "webdriver"
+  ],
+  "webdriverjs": [
+    "webdriverjs"
+  ],
+  "wow": [
+    "wow"
+  ],
+  "yield": [
+    "yield"
+  ],
+  "zombie": [
+    "zombie"
+  ]
+}

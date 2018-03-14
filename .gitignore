@@ -16,8 +16,5 @@ npm-debug.log
 .DS_Store
 *.swp
 
-_data
-chai.js
 _site
 .sass-cache
-plugins/*.md

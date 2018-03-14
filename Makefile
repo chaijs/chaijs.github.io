@@ -100,7 +100,7 @@ pages: install clean generated_data
 	@git config user.email "chaijs-bot@keithcirkel.co.uk"
 	@git add -f chai.js _data plugins/*.md
 	@git commit -m '(data): Auto build _data'
-	@git push "https://${GH_TOKEN}@github.com/chaijs/chai-docs" HEAD:refs/heads/gh-pages -f
+	@git push "https://${GH_TOKEN}@github.com/chaijs/chaijs.github.io" HEAD:refs/heads/gh-pages -f
 endif
 
 .PHONY: all api-docs releases plugins install clean-plugins clean-api-docs docs-server nightly chaijs

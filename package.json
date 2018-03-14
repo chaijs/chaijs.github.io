@@ -7,7 +7,7 @@
   "homepage": "http://chaijs.com",
   "repository": "git://github.com/chaijs/chai-docs.git",
   "dependencies": {
-    "chai": "*",
+    "chai": "^4.1.2",
     "codex": "0.2.x",
     "dox": "^0.9.0",
     "npm-plugin-fetcher": "^2.0.0"

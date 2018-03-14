@@ -90,7 +90,14 @@ docs-server:
 #
 # Pages data build process
 #
+should_build = true
 ifneq ($(TRAVIS_BRANCH), master)
+	should_build = false
+endif
+ifneq ($(TRAVIS_PULL_REQUEST), false)
+	should_build = false
+endif
+ifeq ($(should_build), false)
 pages:
 	@echo "Cowardly refusing to build pages"
 else

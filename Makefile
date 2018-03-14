@@ -90,17 +90,24 @@ docs-server:
 #
 # Pages data build process
 #
+should_build = true
 ifneq ($(TRAVIS_BRANCH), master)
+	should_build = false
+endif
+ifneq ($(TRAVIS_PULL_REQUEST), false)
+	should_build = false
+endif
+ifeq ($(should_build), false)
 pages:
 	@echo "Cowardly refusing to build pages"
 else
 pages: install clean generated_data
-	@echo "Comitting to gh-pages"
+	@echo "Comitting to master"
 	@git config user.name "ChaiJs Bot"
 	@git config user.email "chaijs-bot@keithcirkel.co.uk"
 	@git add -f chai.js _data plugins/*.md
 	@git commit -m '(data): Auto build _data'
-	@git push "https://${GH_TOKEN}@github.com/chaijs/chaijs.github.io" HEAD:refs/heads/gh-pages -f
+	@git push "https://${GH_TOKEN}@github.com/chaijs/chaijs.github.io" HEAD:refs/heads/master
 endif
 
 .PHONY: all api-docs releases plugins install clean-plugins clean-api-docs docs-server nightly chaijs

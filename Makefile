@@ -95,12 +95,12 @@ pages:
 	@echo "Cowardly refusing to build pages"
 else
 pages: install clean generated_data
-	@echo "Comitting to gh-pages"
+	@echo "Comitting to master"
 	@git config user.name "ChaiJs Bot"
 	@git config user.email "chaijs-bot@keithcirkel.co.uk"
 	@git add -f chai.js _data plugins/*.md
 	@git commit -m '(data): Auto build _data'
-	@git push "https://${GH_TOKEN}@github.com/chaijs/chaijs.github.io" HEAD:refs/heads/gh-pages -f
+	@git push "https://${GH_TOKEN}@github.com/chaijs/chaijs.github.io" HEAD:refs/heads/master
 endif
 
 .PHONY: all api-docs releases plugins install clean-plugins clean-api-docs docs-server nightly chaijs

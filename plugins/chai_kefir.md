@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_kefir/
-pluginName: chai_kefir
+permalink: plugins/chai-kefir/
+pluginName: chai-kefir
 ---
 
 # chai-kefir

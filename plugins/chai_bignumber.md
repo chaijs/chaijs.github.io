@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_bignumber/
-pluginName: chai_bignumber
+permalink: plugins/chai-bignumber/
+pluginName: chai-bignumber
 ---
 
 # chai-bignumber

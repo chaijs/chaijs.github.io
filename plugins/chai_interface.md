@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_interface/
-pluginName: chai_interface
+permalink: plugins/chai-interface/
+pluginName: chai-interface
 ---
 
 # chai-interface

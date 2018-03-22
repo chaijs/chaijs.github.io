@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_fetch/
-pluginName: chai_fetch
+permalink: plugins/chai-fetch/
+pluginName: chai-fetch
 ---
 
 # chai-fetch [![Travis Build Status](https://img.shields.io/travis/pimterry/chai-fetch.svg)](https://travis-ci.org/pimterry/chai-fetch)

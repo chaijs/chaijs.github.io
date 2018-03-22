@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_http/
-pluginName: chai_http
+permalink: plugins/chai-http/
+pluginName: chai-http
 ---
 
 # Chai HTTP [![Build Status](https://travis-ci.org/chaijs/chai-http.svg?branch=master)](https://travis-ci.org/chaijs/chai-http)
@@ -67,6 +67,24 @@ chai.request(app)
   .get('/')
 ```
 
+When passing an `app` to `request`; it will automatically open the server for
+incoming requests (by calling `listen()`) and, once a request has been made
+the server will automatically shut down (by calling `.close()`). If you want to
+keep the server open, perhaps if you're making multiple requests, you must call
+`.keepOpen()` after `.request()`, and manually close the server down:
+
+```js
+var requester = chai.request(app).keepOpen()
+
+Promise.all([
+  requester.get('/a'),
+  requester.get('/b'),
+])
+.then(responses => ....)
+.then(() => requester.close())
+```
+
+
 #### URL
 
 You may also use a base url as the foundation of your request.
@@ -93,9 +111,12 @@ chai.request(app)
 // Send some Form Data
 chai.request(app)
   .post('/user/me')
-  .field('_method', 'put')
-  .field('password', '123')
-  .field('confirmPassword', '123')
+  .type('form')
+  .send({
+    '_method': 'put',
+    'password': '123',
+    'confirmPassword': '123'
+  })
 ```
 
 ```js
@@ -121,6 +142,12 @@ chai.request(app)
 
 #### Dealing with the response - traditional
 
+In the following examples we use Chai's Expect assertion library:
+
+```js
+var expect = chai.expect;
+```
+
 To make the request and assert on its response, the `end` method can be used:
 
 ```js
@@ -132,7 +159,9 @@ chai.request(app)
      expect(res).to.have.status(200);
   });
 ```
+
 ##### Caveat
+
 Because the `end` function is passed a callback, assertions are run
 asynchronously. Therefore, a mechanism must be used to notify the testing
 framework that the callback has completed. Otherwise, the test will pass before
@@ -151,7 +180,7 @@ it('fails, as expected', function(done) { // <= Pass in done callback
     expect(res).to.have.status(123);
     done();                               // <= Call done to signal callback end
   });
-}) ;
+});
 
 it('succeeds silently!', function() {   // <= No done callback
   chai.request('http://localhost:8080')
@@ -159,7 +188,7 @@ it('succeeds silently!', function() {   // <= No done callback
   .end(function(err, res) {
     expect(res).to.have.status(123);    // <= Test completes before this runs
   });
-}) ;
+});
 ```
 
 When `done` is passed in, Mocha will wait until the call to `done()`, or until
@@ -180,30 +209,31 @@ chai.request(app)
   })
   .catch(function (err) {
      throw err;
-  })
+  });
 ```
 
 __Note:__ Node.js version 0.10.x and some older web browsers do not have
-native promise support. You can use any promise library, such as
-[es6-promise](https://github.com/jakearchibald/es6-promise) or
-[kriskowal/q](https://github.com/kriskowal/q) and call the `addPromise`
-method to use that library with Chai HTTP. For example:
+native promise support. You can use any spec compliant library, such as:
+ - [kriskowal/q](https://github.com/kriskowal/q)
+ - [stefanpenner/es6-promise](https://github.com/stefanpenner/es6-promise)
+ - [petkaantonov/bluebird](https://github.com/petkaantonov/bluebird)
+ - [then/promise](https://github.com/then/promise)
+You will need to set the library you use to `global.Promise`, before
+requiring in chai-http. For example:
 
 ```js
-var chai = require('chai');
-chai.use(require('chai-http'));
-
 // Add promise support if this does not exist natively.
 if (!global.Promise) {
-  var q = require('q');
-  chai.request.addPromises(q.Promise);
+  global.Promise = require('q');
 }
+var chai = require('chai');
+chai.use(require('chai-http'));
 ```
 
 #### Retaining cookies with each request
 
 Sometimes you need to keep cookies from one request, and send them with the
-next. For this, `.request.agent()` is available:
+next (for example, when you want to login with the first request, then access an authenticated-only resource later). For this, `.request.agent()` is available:
 
 ```js
 // Log in
@@ -218,9 +248,11 @@ agent
     return agent.get('/user/me')
       .then(function (res) {
          expect(res).to.have.status(200);
-      })
-  })
+      });
+  });
 ```
+
+Note: The server started by `chai.request.agent(app)` will not automatically close following the test(s). You should call `agent.close()` after your tests to ensure your program exits.
 
 ## Assertions
 
@@ -301,6 +333,7 @@ Assert that a `Response` object has a redirect status code.
 
 ```js
 expect(res).to.redirect;
+expect(res).to.not.redirect;
 ```
 
 ### .redirectTo

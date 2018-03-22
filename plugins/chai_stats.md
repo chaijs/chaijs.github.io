@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_stats/
-pluginName: chai_stats
+permalink: plugins/chai-stats/
+pluginName: chai-stats
 ---
 
 # Chai Stats

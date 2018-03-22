@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_cheerio/
-pluginName: chai_cheerio
+permalink: plugins/chai-cheerio/
+pluginName: chai-cheerio
 ---
 
 # chai-cheerio

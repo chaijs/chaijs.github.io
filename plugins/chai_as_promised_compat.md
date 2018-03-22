@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_as_promised_compat/
-pluginName: chai_as_promised_compat
+permalink: plugins/chai-as-promised-compat/
+pluginName: chai-as-promised-compat
 ---
 
 # Fork notes

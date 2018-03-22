@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_fuzzy/
-pluginName: chai_fuzzy
+permalink: plugins/chai-fuzzy/
+pluginName: chai-fuzzy
 ---
 
 # chai-fuzzy

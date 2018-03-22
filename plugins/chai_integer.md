@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_integer/
-pluginName: chai_integer
+permalink: plugins/chai-integer/
+pluginName: chai-integer
 ---
 
 # Usage:

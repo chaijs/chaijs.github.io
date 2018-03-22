@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/brookjs_desalinate/
-pluginName: brookjs_desalinate
+permalink: plugins/brookjs-desalinate/
+pluginName: brookjs-desalinate
 ---
 
 ERROR: No README data found!

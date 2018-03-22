@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_generator/
-pluginName: chai_generator
+permalink: plugins/chai-generator/
+pluginName: chai-generator
 ---
 
 # chai-generator [![NPM Version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]

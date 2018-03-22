@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_json_schema/
-pluginName: chai_json_schema
+permalink: plugins/chai-json-schema/
+pluginName: chai-json-schema
 ---
 
 # chai-json-schema

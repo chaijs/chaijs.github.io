@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_arrays/
-pluginName: chai_arrays
+permalink: plugins/chai-arrays/
+pluginName: chai-arrays
 ---
 
 # chai-arrays  [![CircleCI](https://circleci.com/gh/GaneshSPatil/chai-arrays.svg?style=shield)](https://circleci.com/gh/GaneshSPatil/chai-arrays)

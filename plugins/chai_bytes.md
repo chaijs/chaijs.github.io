@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_bytes/
-pluginName: chai_bytes
+permalink: plugins/chai-bytes/
+pluginName: chai-bytes
 ---
 
 # Chai Assertions for Byte Arrays Equality

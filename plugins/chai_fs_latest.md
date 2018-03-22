@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_fs_latest/
-pluginName: chai_fs_latest
+permalink: plugins/chai-fs-latest/
+pluginName: chai-fs-latest
 ---
 
 # chai-fs

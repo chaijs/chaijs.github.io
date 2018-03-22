@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_webdriver_promised/
-pluginName: chai_webdriver_promised
+permalink: plugins/chai-webdriver-promised/
+pluginName: chai-webdriver-promised
 ---
 
 Provides [selenium-webdriver](https://npmjs.org/package/selenium-webdriver) sugar for the [Chai](http://chaijs.com/) assertion library. Allows you to create expressive integration tests:

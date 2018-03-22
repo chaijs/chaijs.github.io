@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_exclude/
-pluginName: chai_exclude
+permalink: plugins/chai-exclude/
+pluginName: chai-exclude
 ---
 
 # chai-exclude

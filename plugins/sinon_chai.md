@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/sinon_chai/
-pluginName: sinon_chai
+permalink: plugins/sinon-chai/
+pluginName: sinon-chai
 ---
 
 # Sinon.JS Assertions for Chai

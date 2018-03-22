@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_immutable/
-pluginName: chai_immutable
+permalink: plugins/chai-immutable/
+pluginName: chai-immutable
 ---
 
 [![npm Version](https://img.shields.io/npm/v/chai-immutable.svg)](https://npmjs.org/package/chai-immutable)

@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_sorted/
-pluginName: chai_sorted
+permalink: plugins/chai-sorted/
+pluginName: chai-sorted
 ---
 
 [![npm Version](https://img.shields.io/npm/v/chai-sorted.svg)](https://npmjs.org/package/chai-sorted)
@@ -37,7 +37,7 @@ chai.use(require("chai-sorted"));
 
 ### In the browser
 
-There is no planned support for keeping a browser *build* in this respository, so please consider [Webpack](https://webpack.github.io/) or similar tool.
+There is no planned support for keeping a browser *build* in this repository, so please consider [Webpack](https://webpack.github.io/) or similar tool.
 
 If you do want Browser installation support, please open an issue.
 
@@ -49,12 +49,14 @@ Test for ascending sort order of array
 
 ```javascript
 expect(["a","b"]).to.be.sorted()
+// or
+expect(["a","b"]).to.be.sorted(false) 
 ```
 
 Test for descending sort order of array
 
 ```javascript
-expect(["b","apples"]).to.be.sorted(false)
+expect(["b","apples"]).to.be.sorted(true)
 ```
 
 ### `.sortedBy` method
@@ -70,7 +72,7 @@ expect([{id:2,name:"apple"},{id:3,name:"bat"}]).to.be.sortedBy("name")
 Test for descending sort order of array by `name` attribute
 
 ```javascript
-expect([{id:2,name:"bat"},{id:3,name:"apples"}]).to.be.sortedBy("name",true)
+expect([{id:2,name:"bat"},{id:3,name:"apples"}]).to.be.sortedBy("name", true)
 ```
 
 ### `.ascendingBy` method

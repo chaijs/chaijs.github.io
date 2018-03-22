@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_rxjs/
-pluginName: chai_rxjs
+permalink: plugins/chai-rxjs/
+pluginName: chai-rxjs
 ---
 
 # Chai Assertions for RxJS Observables

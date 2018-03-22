@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_backbone/
-pluginName: chai_backbone
+permalink: plugins/chai-backbone/
+pluginName: chai-backbone
 ---
 
 chai-backbone

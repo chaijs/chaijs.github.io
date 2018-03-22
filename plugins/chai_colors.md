@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_colors/
-pluginName: chai_colors
+permalink: plugins/chai-colors/
+pluginName: chai-colors
 ---
 
 chai-colors

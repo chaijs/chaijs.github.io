@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_shallow_deep_equal/
-pluginName: chai_shallow_deep_equal
+permalink: plugins/chai-shallow-deep-equal/
+pluginName: chai-shallow-deep-equal
 ---
 
 # chai-shallow-deep-equal

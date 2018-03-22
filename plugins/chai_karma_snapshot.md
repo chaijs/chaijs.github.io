@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_karma_snapshot/
-pluginName: chai_karma_snapshot
+permalink: plugins/chai-karma-snapshot/
+pluginName: chai-karma-snapshot
 ---
 
 # Chai Plugin for Snapshot Testing with Karma

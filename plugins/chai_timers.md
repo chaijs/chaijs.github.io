@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_timers/
-pluginName: chai_timers
+permalink: plugins/chai-timers/
+pluginName: chai-timers
 ---
 
 chai-timers

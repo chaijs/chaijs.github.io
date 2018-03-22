@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_almost/
-pluginName: chai_almost
+permalink: plugins/chai-almost/
+pluginName: chai-almost
 ---
 
 # chai-almost

@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/dirty_chai__/
-pluginName: dirty_chai__
+permalink: plugins/dirty-chai-2/
+pluginName: dirty-chai-2
 ---
 
 dirty-chai

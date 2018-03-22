@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/_cypress_sinon_chai/
-pluginName: _cypress_sinon_chai
+permalink: plugins/@cypress/sinon-chai/
+pluginName: @cypress/sinon-chai
 ---
 
 # Sinon.JS Assertions for Chai

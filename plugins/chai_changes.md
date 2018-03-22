@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_changes/
-pluginName: chai_changes
+permalink: plugins/chai-changes/
+pluginName: chai-changes
 ---
 
 chai-changes

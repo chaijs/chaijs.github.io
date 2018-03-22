@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_js_factories/
-pluginName: chai_js_factories
+permalink: plugins/chai-js-factories/
+pluginName: chai-js-factories
 ---
 
 # chai-js-factories

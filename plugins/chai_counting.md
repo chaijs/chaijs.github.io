@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_counting/
-pluginName: chai_counting
+permalink: plugins/chai-counting/
+pluginName: chai-counting
 ---
 
 # Chai Counting

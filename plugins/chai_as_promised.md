@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_as_promised/
-pluginName: chai_as_promised
+permalink: plugins/chai-as-promised/
+pluginName: chai-as-promised
 ---
 
 <a href="http://promisesaplus.com/">

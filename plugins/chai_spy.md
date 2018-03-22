@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_spy/
-pluginName: chai_spy
+permalink: plugins/chai-spy/
+pluginName: chai-spy
 ---
 
 # chai-spy

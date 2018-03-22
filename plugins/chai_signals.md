@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_signals/
-pluginName: chai_signals
+permalink: plugins/chai-signals/
+pluginName: chai-signals
 ---
 
 # chai-signals [![Build Status](https://travis-ci.org/StephenDavidson/chai-signals.svg?branch=master)](https://travis-ci.org/StephenDavidson/chai-signals) [![npm version](https://badge.fury.io/js/chai-signals.svg)](https://badge.fury.io/js/chai-signals)

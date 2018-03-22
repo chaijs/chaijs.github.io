@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_xml/
-pluginName: chai_xml
+permalink: plugins/chai-xml/
+pluginName: chai-xml
 ---
 
 chai-xml

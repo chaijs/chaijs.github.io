@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_files/
-pluginName: chai_files
+permalink: plugins/chai-files/
+pluginName: chai-files
 ---
 
 

@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_subset_in_order/
-pluginName: chai_subset_in_order
+permalink: plugins/chai-subset-in-order/
+pluginName: chai-subset-in-order
 ---
 
 "containSubsetInOrder" object properties matcher for [Chai](http://chaijs.com/) assertion library

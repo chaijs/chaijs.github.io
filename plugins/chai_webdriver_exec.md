@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_webdriver_exec/
-pluginName: chai_webdriver_exec
+permalink: plugins/chai-webdriver-exec/
+pluginName: chai-webdriver-exec
 ---
 
 # chai-webdriver-exec [![Build Status](https://travis-ci.org/clns/chai-webdriver-exec.svg?branch=master)](https://travis-ci.org/clns/chai-webdriver-exec)

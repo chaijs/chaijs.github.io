@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/sinon_chai_in_order/
-pluginName: sinon_chai_in_order
+permalink: plugins/sinon-chai-in-order/
+pluginName: sinon-chai-in-order
 ---
 
 # In-Order Sinon-Chai Assertions

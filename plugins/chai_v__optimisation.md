@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_v__optimisation/
-pluginName: chai_v__optimisation
+permalink: plugins/chai-v8-optimisation/
+pluginName: chai-v8-optimisation
 ---
 
 <!-- TITLE -->

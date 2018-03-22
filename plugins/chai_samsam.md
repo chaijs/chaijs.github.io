@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_samsam/
-pluginName: chai_samsam
+permalink: plugins/chai-samsam/
+pluginName: chai-samsam
 ---
 
 # chai-samsam [![Build Status](https://travis-ci.org/TimBeyer/chai-samsam.svg?branch=master)](https://travis-ci.org/TimBeyer/chai-samsam) [![codecov](https://codecov.io/gh/TimBeyer/chai-samsam/branch/master/graph/badge.svg)](https://codecov.io/gh/TimBeyer/chai-samsam)

@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_fireproof/
-pluginName: chai_fireproof
+permalink: plugins/chai-fireproof/
+pluginName: chai-fireproof
 ---
 
 chai-fireproof

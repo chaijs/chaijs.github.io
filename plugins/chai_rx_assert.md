@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_rx_assert/
-pluginName: chai_rx_assert
+permalink: plugins/chai-rx-assert/
+pluginName: chai-rx-assert
 ---
 
 # chai-rx-assert

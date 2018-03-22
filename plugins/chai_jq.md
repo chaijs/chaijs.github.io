@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_jq/
-pluginName: chai_jq
+permalink: plugins/chai-jq/
+pluginName: chai-jq
 ---
 
 Chai-jQ

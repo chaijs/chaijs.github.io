@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_deep_match/
-pluginName: chai_deep_match
+permalink: plugins/chai-deep-match/
+pluginName: chai-deep-match
 ---
 
 # chai-deep-match

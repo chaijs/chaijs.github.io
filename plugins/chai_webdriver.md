@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_webdriver/
-pluginName: chai_webdriver
+permalink: plugins/chai-webdriver/
+pluginName: chai-webdriver
 ---
 
 # chai-webdriver [![Build Status](https://travis-ci.org/goodeggs/chai-webdriver.png)](https://travis-ci.org/goodeggs/chai-webdriver) [![Dependency Status](https://david-dm.org/goodeggs/chai-webdriver.png)](https://david-dm.org/goodeggs/chai-webdriver) [![NPM version](https://badge.fury.io/js/chai-webdriver.png)](http://badge.fury.io/js/chai-webdriver)

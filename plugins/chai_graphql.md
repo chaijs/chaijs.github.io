@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_graphql/
-pluginName: chai_graphql
+permalink: plugins/chai-graphql/
+pluginName: chai-graphql
 ---
 
 chai-graphql [![npm version](https://badge.fury.io/js/chai-graphql.svg)](https://badge.fury.io/js/chai-graphql) [![Build Status](https://travis-ci.org/bustle/chai-graphql.svg?branch=master)](https://travis-ci.org/bustle/chai-graphql) [![devDependency Status](https://david-dm.org/bustle/chai-graphql/dev-status.svg)](https://david-dm.org/bustle/chai-graphql#info=devDependencies)

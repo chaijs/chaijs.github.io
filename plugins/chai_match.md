@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_match/
-pluginName: chai_match
+permalink: plugins/chai-match/
+pluginName: chai-match
 ---
 
 Chai Match

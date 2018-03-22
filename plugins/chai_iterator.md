@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_iterator/
-pluginName: chai_iterator
+permalink: plugins/chai-iterator/
+pluginName: chai-iterator
 ---
 
 # Chai Iterator: Assertions for iterable objects

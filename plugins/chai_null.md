@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_null/
-pluginName: chai_null
+permalink: plugins/chai-null/
+pluginName: chai-null
 ---
 
 # Chai Null

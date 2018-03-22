@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_stats_jamestalmage/
-pluginName: chai_stats_jamestalmage
+permalink: plugins/chai-stats-jamestalmage/
+pluginName: chai-stats-jamestalmage
 ---
 
 # Chai Stats

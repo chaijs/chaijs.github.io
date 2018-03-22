@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_moment_string/
-pluginName: chai_moment_string
+permalink: plugins/chai-moment-string/
+pluginName: chai-moment-string
 ---
 
 # chai-moment-string

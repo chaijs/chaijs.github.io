@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/js_spec_chai/
-pluginName: js_spec_chai
+permalink: plugins/js.spec-chai/
+pluginName: js.spec-chai
 ---
 
 # js.spec-chai

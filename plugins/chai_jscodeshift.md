@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_jscodeshift/
-pluginName: chai_jscodeshift
+permalink: plugins/chai-jscodeshift/
+pluginName: chai-jscodeshift
 ---
 
 # chai-jscodeshift

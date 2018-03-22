@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_smoothie/
-pluginName: chai_smoothie
+permalink: plugins/chai-smoothie/
+pluginName: chai-smoothie
 ---
 
 # Chai Smoothie - Protractor assertions for Chai

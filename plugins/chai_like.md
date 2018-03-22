@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_like/
-pluginName: chai_like
+permalink: plugins/chai-like/
+pluginName: chai-like
 ---
 
 [![Build status](https://img.shields.io/travis/zation/chai-like.svg?label=travis)](https://travis-ci.org/zation/chai-like)

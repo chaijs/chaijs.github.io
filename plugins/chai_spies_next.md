@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai_spies_next/
-pluginName: chai_spies_next
+permalink: plugins/chai-spies-next/
+pluginName: chai-spies-next
 ---
 
 # chai-spies-next

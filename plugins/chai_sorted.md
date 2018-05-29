@@ -50,13 +50,13 @@ Test for ascending sort order of array
 ```javascript
 expect(["a","b"]).to.be.sorted()
 // or
-expect(["a","b"]).to.be.sorted(false) 
+expect(["a","b"]).to.be.sorted({descending: false}) 
 ```
 
 Test for descending sort order of array
 
 ```javascript
-expect(["b","apples"]).to.be.sorted(true)
+expect(["b","apples"]).to.be.sorted({descending: true})
 ```
 
 ### `.sortedBy` method
@@ -72,7 +72,7 @@ expect([{id:2,name:"apple"},{id:3,name:"bat"}]).to.be.sortedBy("name")
 Test for descending sort order of array by `name` attribute
 
 ```javascript
-expect([{id:2,name:"bat"},{id:3,name:"apples"}]).to.be.sortedBy("name", true)
+expect([{id:2,name:"bat"},{id:3,name:"apples"}]).to.be.sortedBy("name", {descending: true})
 ```
 
 ### `.ascendingBy` method

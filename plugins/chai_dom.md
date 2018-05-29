@@ -142,16 +142,16 @@ expect(document.querySelector('#content')).to.contain('p')
 Same as `contain` but changes the assertion subject to the matched element.
 
 ```js
-document.querySelector('section').should.have.descedant('ul').and.have.class('items')
-document.querySelector('section').should.have.descedant(document.querySelector('section div'))
-expect(document.querySelector('#content')).to.have.descedant('p')
+document.querySelector('section').should.have.descendant('ul').and.have.class('items')
+document.querySelector('section').should.have.descendant(document.querySelector('section div'))
+expect(document.querySelector('#content')).to.have.descendant('p')
 ```
 
 ### `descendants(selector)`
 Same as `descendant` but uses [`querySelectorAll`][querySelectorAll] instead of [`querySelector`][querySelector] to change the assertion subject to a [NodeList][] instead of a single element.
 
 ```js
-document.querySelector('section').should.have.descedants('ul li').and.have.length(3)
+document.querySelector('section').should.have.descendants('ul li').and.have.length(3)
 ```
 
 ### `displayed`
@@ -160,6 +160,14 @@ Assert that the [HTMLElement][] is displayed (that display is not equal to "none
 ```js
 document.querySelector('dl dd').should.be.displayed
 expect(document.querySelector('.hidden')).not.to.be.displayed
+```
+
+### `visible`
+Assert that the [HTMLElement][] is visible (that visibility is not equal to "hidden" or "collapse"). If the element is attached to the body, it will call [`getComputedStyle`](https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle); otherwise it will look at the inline visibility attribute.
+
+```js
+document.querySelector('dl dd').should.be.visible
+expect(document.querySelector('.invisible')).not.to.be.visible
 ```
 
 ## Installation

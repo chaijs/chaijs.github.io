@@ -36,7 +36,11 @@ chai.expect( { a: 'foo', b: 'bar', c: 'baz' } ).to.not.deep.match( { a: 'fuzz', 
 ```
 
 
+### Note about `URL` objects
+
+This module also supports [WHATWG `URL` objects](https://nodejs.org/docs/latest/api/url.html#url_the_whatwg_url_api), as introduced in Node `7.x` (and backported into Node `6.x`, it seems). However, it is important to note that the behavior by which it compares two `URL` objects will only consider them deeply matched if they are a full 100% match rather than a "subset" match. Hopefully this behavior is acceptable to those making use of it! :pray:
+
 
 ## License
 
-Copyright (c) 2016, James M. Greene (MIT License)
+Copyright (c) 2016-2018, James M. Greene (MIT License)

@@ -83,9 +83,9 @@ You can also pass a regular expression: `.responseText(/match a substring/)`.
 This does _not_ test the status code (just like fetch itself doesn't), but both normal and negated tests will fail
 if a passed response promise is rejected entirely (e.g. if you have a network error).
 
-### `.responseStatus(expectedStatus)`
+### `.status(expectedStatus)`
 
-e.g. `expect(fetch('http://example.com')).to.have.responseStatus(200)`
+e.g. `expect(fetch('http://example.com')).to.have.status(200)`
 
 If the object being tested is a fetch response, or a promise for a fetch response, this asserts that the status of
 the response is the status given.

@@ -351,6 +351,9 @@
   "quantifiers": [
     "quantifiers"
   ],
+  "range": [
+    "range"
+  ],
   "React": [
     "react"
   ],
@@ -377,6 +380,9 @@
   ],
   "selenium": [
     "selenium"
+  ],
+  "semver": [
+    "semver"
   ],
   "serenity": [
     "serenity"
@@ -458,6 +464,9 @@
   ],
   "uint8array": [
     "uint8array"
+  ],
+  "unit test": [
+    "unit test"
   ],
   "url": [
     "url"

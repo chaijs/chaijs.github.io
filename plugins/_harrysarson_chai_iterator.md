@@ -1,11 +1,23 @@
 ---
 layout: plugin
-permalink: plugins/chai-iterator/
-pluginName: chai-iterator
+permalink: plugins/@harrysarson/chai-iterator/
+pluginName: @harrysarson/chai-iterator
 ---
 
+:exclamation: :exclamation: :exclamation: :exclamation: :exclamation: :exclamation:
+# Fork of [chai-iterator](https://github.com/mcmath/chai-iterator).
 
-# chai-iterator: Assertions for iterable objects
+chai-iterator is currently not maintained and is incompatible with chai@4.
+
+Install this fork by running
+
+```sh
+npm install --save chai @harrysarson/chai-iterator
+```
+
+:exclamation: :exclamation: :exclamation: :exclamation: :exclamation: :exclamation:
+
+# Chai Iterator: Assertions for iterable objects
 
 [![Version][version-badge]][npm]
 [![License][license-badge]][license]
@@ -25,18 +37,13 @@ pluginName: chai-iterator
 
 ## Overview
 
-**chai-iterator** extends the [Chai][chai] assertion library with methods for
+**Chai Iterator** extends the [Chai][chai] assertion library with methods for
 testing [iterable][iterable] objects. Introduced in the
 [ES2015 specification][ecma-iterable], iterable objects have an
 [`@@iterator`][iterator-method] method, which allows us to iterate over them with
 a [`for...of`][for-of] loop. A number of [built-in][built-in-iterable] types are
 iterable by default, while [custom iterable objects][custom-iterable] may also
-be defined. chai-iterator makes it easy to test all such objects.
-
-#### You may not need chai-iterator
-
-In many cases the [array spread operator][array-spread] is the best way to test iterables.
-chai-iterator is however very usefull for testing part of a very long (or infinite) iterable.
+be defined. Chai Iterator makes it easy to test all such objects.
 
 #### Basic usage
 
@@ -76,7 +83,8 @@ And we can pass any iterable as our expected values too.
 
 #### User-defined iterable objects
 
-chai-iterator is best used to test
+That's enough fiddling around with built-in objects whose iteration
+behavior is well-known. Chai Iterator is best used to test
 [user-defined iterable objects][custom-iterable], like the one constructed by
 the following [class][class].
 
@@ -111,7 +119,7 @@ tens.should.iterate.from([10, 20, 30, 40, 50]);
 
 Just don't go trying to use [`over()`](#iterateoverexpected) or
 [`until()`](#iterateuntilexpected) on infinite sequences. The former will always
-fail and the latter will never stop.
+fail; the latter will never stop.
 
 #### Generators and iterators
 
@@ -150,7 +158,7 @@ fibonacci().should.iterate.from([1, 1, 2, 3, 5, 8, 13]);
 
 ## Compatibility
 
-chai-iterator requires that [`Symbol.iterator`][iterator-method] be
+Chai Iterator requires that [`Symbol.iterator`][iterator-method] be
 available in the environment. In [Node][node], this means the version must be
 v4.0 or greater. While the latest versions of [most browsers][browser-list] are
 compatible, web-facing projects should almost certainly use a polyfill.
@@ -166,7 +174,7 @@ require('core-js/fn/symbol/iterator');
 
 ## Installation
 
-Install chai-iterator using [npm][npm]. And be sure, of course, to install [Chai][chai-npm].
+Install Chai Iterator using [npm][npm]. And be sure, of course, to install [Chai][chai-npm].
 
 ```sh
 npm install --save chai chai-iterator
@@ -174,13 +182,13 @@ npm install --save chai chai-iterator
 
 ## Setup
 
-chai-iterator can be imported as a [Node][node] module, an [AMD][amd]
+Chai Iterator can be imported as a [Node][node] module, an [AMD][amd]
 module, or included in an HTML [`<script>`][script-tag] tag. For
 [TypeScript][typescript] users, declarations are installed with the package.
 
 #### Node
 
-To set up chai-iterator for [Node][node], make sure the version is v4.0 or
+To set up Chai Iterator for [Node][node], make sure the version is v4.0 or
 higher, as prior versions lack support for the [`@@iterator`][iterator-method]
 method.
 
@@ -193,7 +201,7 @@ chai.use(chaiIterator);
 
 #### AMD
 
-chai-iterator can be set up inside of an [AMD][amd] module like so.
+Chai Iterator can be set up inside of an [AMD][amd] module like so.
 
 ```js
 define((require, exports, module) => {
@@ -206,7 +214,7 @@ define((require, exports, module) => {
 
 #### HTML script tag
 
-chai-iterator can be included via a [`<script>`][script-tag] tag. If it is
+Chai Iterator can be included via a [`<script>`][script-tag] tag. If it is
 loaded after `chai.js`, Chai will use it automatically.
 
 ```html
@@ -217,7 +225,7 @@ loaded after `chai.js`, Chai will use it automatically.
 #### TypeScript
 
 [TypeScript][typescript] declarations are included in the package. To use them,
-ensure chai-iterator is installed with [npm][npm], then install the declarations
+ensure Chai Iterator is installed with [npm][npm], then install the declarations
 and their dependencies via [typings][typings]. And be sure to install the
 declarations for [chai][chai-typings].
 
@@ -602,7 +610,6 @@ Copyright &copy; 2016&ndash;2017 Akim McMath. Licensed under the [MIT License][l
 [ecma-iterable]: http://www.ecma-international.org/ecma-262/6.0/#sec-iterable-interface
 [iterator-method]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator
 [for-of]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
-[array-spread]: (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) 
 [built-in-iterable]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#Builtin_iterables
 [custom-iterable]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#User-defined_iterables
 [assertion-style]: http://chaijs.com/guide/styles/

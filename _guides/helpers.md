@@ -101,7 +101,7 @@ var arthur = new Model('person');
 expect(arthur).to.be.a.model;
 ```
 
-For this, we will use be using the `addProperty` utility.
+For this, we will use the `addProperty` utility.
 
 ```javascript
 utils.addProperty(Assertion.prototype, 'model', function () {

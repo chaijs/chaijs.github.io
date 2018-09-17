@@ -161,7 +161,7 @@ const expectedObj = {
   d: ['a', 'c']
 }
 
-const expectedObj = [expectedObj]
+const expectedArray = [expectedObj]
 
 // Object
 assert.deepEqualExcludingEvery(actualObj, expectedObj, 'a')

@@ -6,11 +6,11 @@
     <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
     <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | markdownify | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
-    <link rel='icon' type='image/x-icon' href="https://www.chaijs.com/img/favicon.ico">
+    <link rel='icon' type='image/x-icon' href="/img/favicon.ico">
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url }}">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="https://www.chaijs.com/js/jquery-mousewheel.js"></script>
+    <script src="/js/jquery-mousewheel.js"></script>
     <script src="{{ "/js/antiscroll.js" | prepend: site.github.url | replace: 'http://', '//' }}></script>
     <script src="{{ "/js/main.js" | prepend: site.github.url | replace: 'http://', '//' }}"></script>
     <script src="/chai.js"></script>

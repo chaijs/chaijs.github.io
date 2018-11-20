@@ -20,12 +20,12 @@ Sometimes you'll need to exclude object properties that generate unique values w
 
 https://github.com/chaijs/chai/issues/885
 
-Works with both array of objects and objects.
+Works with both objects and array of objects with or without circular references.
 
 ## Installation
 
 ```bash
-npm install chai-exclude --only=dev
+npm install chai-exclude --save-dev
 ```
 
 ```bash
@@ -63,7 +63,9 @@ use(chaiExclude);
 // The typings for chai-exclude are included with the package itself.
 ```
 
-## Example
+## Examples
+
+All these examples are for JavaScript. If you are using TypeScript and `assert`, you'll need to deal with strict types. Take a look at the [type definition](lib/chai-exclude.d.ts).
 
 ### a) excluding
 

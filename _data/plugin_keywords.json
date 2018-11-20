@@ -33,6 +33,9 @@
     "assertXml",
     "xml"
   ],
+  "asserttype": [
+    "asserttype"
+  ],
   "async": [
     "async"
   ],
@@ -132,6 +135,9 @@
   ],
   "dom": [
     "dom"
+  ],
+  "each": [
+    "each"
   ],
   "enzyme": [
     "enzyme"

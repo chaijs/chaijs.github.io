@@ -1,5 +1,46 @@
 [
   {
+    "url": "https://api.github.com/repos/chaijs/chai/releases/13092683",
+    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/13092683/assets",
+    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/13092683/assets{?name,label}",
+    "html_url": "https://github.com/chaijs/chai/releases/tag/4.2.0",
+    "id": 13092683,
+    "node_id": "MDc6UmVsZWFzZTEzMDkyNjgz",
+    "tag_name": "4.2.0",
+    "target_commitish": "master",
+    "name": "4.2.0 / 2018-09-25",
+    "draft": false,
+    "author": {
+      "login": "meeber",
+      "id": 17260989,
+      "node_id": "MDQ6VXNlcjE3MjYwOTg5",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/17260989?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/meeber",
+      "html_url": "https://github.com/meeber",
+      "followers_url": "https://api.github.com/users/meeber/followers",
+      "following_url": "https://api.github.com/users/meeber/following{/other_user}",
+      "gists_url": "https://api.github.com/users/meeber/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/meeber/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/meeber/subscriptions",
+      "organizations_url": "https://api.github.com/users/meeber/orgs",
+      "repos_url": "https://api.github.com/users/meeber/repos",
+      "events_url": "https://api.github.com/users/meeber/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/meeber/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "prerelease": false,
+    "created_at": "2018-09-26T09:39:58Z",
+    "published_at": "2018-09-26T09:40:42Z",
+    "assets": [
+
+    ],
+    "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/4.2.0",
+    "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/4.2.0",
+    "body": "This is a minor release. Thank you to all of our contributors and users!\r\n\r\n# New Features\r\n* feat(assertions): add 'still' language chain (#1194; @ScottRudiger)\r\n* .lengthOf for Maps and Sets (#1110, #1131; @asbish)\r\n* feat: Add the assert.fail([message]) interface (#1116, #1117; @s-leroux)\r\n\r\n# Bug Fixes\r\n* fix: remove Chai frames from `.deep.equal` stack (#1124; @meeber)\r\n* add 'catch' keyword to proxyExcludedKeys (#1050, #1101; @generalandrew)\r\n* property assertion should only accept strings if nested (#1043, #1044; @solodynamo)\r\n* fix: Make tests pass with `--use_strict` (#1034, #1040; @shvaikalesh)\r\n\r\n# Performance\r\n* perf: Optimize proxify and stringDistance (#1098; @sophiebits)\r\n* fix: Avoid repeated String#slice calls in stringDistance (#1095; @bmeurer)\r\n\r\n# Style\r\n* Fix typos and remove trailing whitespaces (#1042; @simonewebdesign)\r\n* Remove unnecessary code (#1049; @abetomo)\r\n* Fix variable declaration (#1048; @abetomo)\r\n\r\n# Tests\r\n* test(assert): increase coverage (#1084, #1085; @brutalcrozt)\r\n* test: stop modifying globals in Proxy tests (#1144; @meeber)\r\n\r\n# Docs\r\n* Fix unbalanced quotes in assert.notInclude example (#1200; @haykam821)\r\n* docs: fix bad `.string` example (#1156, #1157; @meeber)\r\n* fixed package npm url (#1151; @wadie)\r\n* Spelling (#1145; @jsoref)\r\n* docs: corrected spelling (#1141; @Powell-v2)\r\n* docs: fix wrong `.property` chaining examples (https://github.com/chaijs/chai/issues/193#issuecomment-360334369, #1130; @meeber)\r\n* docs: improve throws examples (#1113; @ColinEberhardt)\r\n* Fix typos (#1107; @tbroadley) \r\n* docs: correct `.ok` description (#1047; @shvaikalesh) \r\n\r\n# Chores\r\n* chore: update package-lock.json (#1198; @meeber)\r\n* Update mocha to the latest version (#1127)\r\n* chore: update dependencies (#1157; @meeber)\r\n* Update browserify to the latest version (#1135)\r\n* chore: update Node versions in Travis config (#1126; @meeber)\r\n* chore: remove Opera from Sauce config (#1125; @meeber)\r\n* chore: update dependencies (#1118; @meeber)\r\n* chore: update dependencies (#1074; @meeber) \r\n* Chore: change coverage service (coverall to codecov) (#927, #1073; @brutalcrozt)\r\n* chore: add package-lock.json (#1013; @meeber)"
+  },
+  {
     "url": "https://api.github.com/repos/chaijs/chai/releases/7597887",
     "assets_url": "https://api.github.com/repos/chaijs/chai/releases/7597887/assets",
     "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/7597887/assets{?name,label}",
@@ -1121,7 +1162,7 @@
         "content_type": "text/javascript",
         "state": "uploaded",
         "size": 117322,
-        "download_count": 7583,
+        "download_count": 7584,
         "created_at": "2014-01-30T00:03:47Z",
         "updated_at": "2014-01-30T00:03:53Z",
         "browser_download_url": "https://github.com/chaijs/chai/releases/download/1.9.0/chai.js"

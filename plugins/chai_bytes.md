@@ -26,12 +26,13 @@ which can be used to test equality of byte arrays (i.e., `Uint8Array` instances)
 ## Basic Usage
 
 ```javascript
-const expect = require('chai')
-  .use(require('chai-bytes'))
-  .expect();
+const { expect, assert } = require('chai')
+  .use(require('chai-bytes'));
 
-var buffer = new Uint8Array([ 1, 2, 3, 4, 5 ]);
+const buffer = new Uint8Array([ 1, 2, 3, 4, 5 ]);
 expect(buffer).to.equalBytes('0102030405');
+// `assert` style works, too
+assert.equalBytes(buffer, [1, 2, 3, 4, 5], 'error message');
 ```
 
 An expected value passed to `equalBytes` can be:
@@ -54,7 +55,7 @@ of their methods).
 
 ## License
 
-(c) 2017 Alex Ostrovski
+(c) 2018 Alex Ostrovski
 
 **chai-bytes** is available under [Apache-2.0 license](LICENSE).
 

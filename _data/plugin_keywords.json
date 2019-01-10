@@ -78,6 +78,9 @@
   "checkit": [
     "checkit"
   ],
+  "cli": [
+    "cli"
+  ],
   "clojure.spec": [
     "clojure.spec"
   ],
@@ -240,6 +243,9 @@
   "integration": [
     "integration"
   ],
+  "interceptor": [
+    "interceptor"
+  ],
   "isMatch": [
     "isMatch"
   ],
@@ -298,6 +304,12 @@
   "Math": [
     "math"
   ],
+  "maybe": [
+    "maybe"
+  ],
+  "maybe-chai": [
+    "maybe-chai"
+  ],
   "mocks": [
     "mocks"
   ],
@@ -307,9 +319,15 @@
   "moment": [
     "moment"
   ],
+  "monad": [
+    "monad"
+  ],
   "MongoDB": [
     "mongo",
     "mongodb"
+  ],
+  "nock": [
+    "nock"
   ],
   "node-fetch": [
     "node-fetch"
@@ -419,6 +437,9 @@
   ],
   "sort": [
     "sort"
+  ],
+  "spawn": [
+    "spawn"
   ],
   "specs": [
     "specs"

@@ -9,7 +9,6 @@ pluginName: chai-exclude
 [![npm](https://img.shields.io/npm/v/chai-exclude.svg)](https://www.npmjs.com/package/chai-exclude)
 [![npm](https://img.shields.io/npm/dt/chai-exclude.svg)](https://www.npmjs.com/package/chai-exclude)
 [![Build Status](https://travis-ci.org/mesaugat/chai-exclude.svg?branch=master)](https://travis-ci.org/mesaugat/chai-exclude)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/18c8dd78120442688cb4b19f758c4b96)](https://www.codacy.com/app/mesaugat/chai-exclude?utm_source=github.com&utm_medium=referral&utm_content=mesaugat/chai-exclude&utm_campaign=badger)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 Exclude keys to compare from a deep equal operation with chai [expect](http://chaijs.com/api/bdd/) or [assert](http://chaijs.com/api/assert/).

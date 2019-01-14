@@ -23,7 +23,7 @@ layout: default
       <div id="{{ slug }}" class="subitems">
           {% for heading in guide.headings %}
           {% assign headingSlug = heading | slugify: 'pretty' | remove: '.' %}
-          <a href="#{{ headingSlug }}" class="item secondary group-{{ slug }}{{ expanded }}">{{ heading }}</a>
+          <a href="{{ url }}#{{ headingSlug }}" class="item secondary group-{{ slug }}{{ expanded }}">{{ heading }}</a>
           {% endfor %}
       </div>
       {% endif %}

@@ -35,6 +35,7 @@ The following assertion methods are provided and will override the existing buil
 - least/gte
 - below/lt/lessThan
 - most/lte
+- closeTo
 
 A set of additional assertion properties is also provided:
 - negative

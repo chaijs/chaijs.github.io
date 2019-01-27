@@ -262,6 +262,9 @@
     "jQuery",
     "jquery"
   ],
+  "jest": [
+    "jest"
+  ],
   "js-factories": [
     "js-factories"
   ],

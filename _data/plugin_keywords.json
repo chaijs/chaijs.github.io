@@ -60,6 +60,12 @@
   "buffers": [
     "buffers"
   ],
+  "cd": [
+    "cd"
+  ],
+  "chai util": [
+    "chai util"
+  ],
   "chai-deep-match": [
     "chai-deep-match"
   ],
@@ -77,6 +83,9 @@
   ],
   "checkit": [
     "checkit"
+  ],
+  "ci": [
+    "ci"
   ],
   "cli": [
     "cli"
@@ -399,11 +408,17 @@
   "rounding-errors": [
     "rounding-errors"
   ],
+  "rtp": [
+    "rtp"
+  ],
   "rxjs": [
     "rxjs"
   ],
   "samsam": [
     "samsam"
+  ],
+  "scaip": [
+    "scaip"
   ],
   "selenium": [
     "selenium"
@@ -434,6 +449,12 @@
   ],
   "sinon": [
     "sinon"
+  ],
+  "sip": [
+    "sip"
+  ],
+  "siprec": [
+    "siprec"
   ],
   "snapshot": [
     "snapshot"

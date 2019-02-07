@@ -39,6 +39,11 @@ Current version supports
 * Supports SIP over UDP, TCP and TLS transports
 * Supports deployments with multiple proxy hops and record-route
 
+In addtion to be able to send and receive SIP requests it provides the following new asserts:
+
+* to.be.method() - To assert on a received SIP requests method type, for example `request.to.be.method("INVITE")`
+* to.be.status() - To assert on a received SIP response status code, for example `response.to.be.status(200)`
+
 If no headers, content-types and bodies are passed to the request function the plugin will generate default headers and bodies useful for basic test scenarios.
 
 The plugin using sip.js, please have a look at its [documentation](https://github.com/kirm/sip.js/blob/master/doc/api.markdown) to understand the configuration options and SIP request and response models and header configuration in more detail.

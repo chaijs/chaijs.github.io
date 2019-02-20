@@ -4,6 +4,8 @@ permalink: plugins/chai-subset-in-order/
 pluginName: chai-subset-in-order
 ---
 
+[![NPM status](https://nodei.co/npm/chai-subset-in-order.png?downloads=true&stars=true)](https://npmjs.org/package/chai-subset-in-order)
+
 "containSubsetInOrder" object properties matcher for [Chai](http://chaijs.com/) assertion library
 
 It works in similar way as [chai-subset](https://www.npmjs.com/package/chai-subset).

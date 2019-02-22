@@ -32,9 +32,11 @@ Current version supports
   * Custom headers and values
   * Content-type
   * Request body
+* Build SIP Cancel requests from provisional response
 * Wait for incoming SIP requests
 * High level API to send SIP Bye request within established dialog
 * Callback upon final SIP response
+* Callback upon provisional SIP response
 * Support for proxy authentication using SIP digest authentication
 * Supports SIP over UDP, TCP and TLS transports
 * Supports deployments with multiple proxy hops and record-route

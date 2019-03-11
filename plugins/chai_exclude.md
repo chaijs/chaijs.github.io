@@ -45,26 +45,26 @@ chai.use(chaiExclude);
 ### ES6 Import
 
 ```js
-import { use } from 'chai';
+import chai from 'chai';
 import chaiExclude from 'chai-exclude';
 
-use(chaiExclude);
+chai.use(chaiExclude);
 ```
 
 ### TypeScript
 
 ```js
-import { use } from 'chai';
-import chaiExclude = require('chai-exclude');
+import * as chai from 'chai';
+import chaiExclude from 'chai-exclude';
 
-use(chaiExclude);
+chai.use(chaiExclude);
 
 // The typings for chai-exclude are included with the package itself.
 ```
 
 ## Examples
 
-All these examples are for JavaScript. If you are using TypeScript and `assert`, you'll need to deal with strict types. Take a look at the [type definition](lib/chai-exclude.d.ts).
+All these examples are for JavaScript. If you are using TypeScript and `assert`, you'll need to deal with strict types. Take a look at the [type definition](index.d.ts).
 
 ### a) excluding
 

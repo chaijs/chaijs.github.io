@@ -6,7 +6,7 @@ pluginName: chai-increasing
 
 # chai-increasing
 
-*Flexible chai matchers for snabbdom*
+*Chai matchers for increasing/decreasing sequences*
 
 A [chai](http://chaijs.com/) plugin for forming assertions on [increasing/decreasing sequences](https://en.wikipedia.org/wiki/Sequence#Increasing_and_decreasing).
 

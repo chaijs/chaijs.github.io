@@ -31,6 +31,23 @@ const {
 chai.use(require('./chai-immutable'));
 -->
 
+## Assertions
+
+- BDD API Reference (Expect / Should)
+  - [`.empty`](#empty)
+  - [`.equal(collection)`](#equalcollection)
+  - [`.referenceEqual(value)`](#referenceequalvalue)
+  - [`.include(value)`](#includevalue)
+  - [`.keys(key1[, key2[, ...]])`](#keyskey1-key2-)
+  - [`.property(path[, val])`](#propertypath-val)
+  - [`.size(value)`](#sizevalue)
+- TDD API Reference (Assert)
+  - [`.equal(actual, expected)`](#equalactual-expected)
+  - [`.referenceEqual(actual, expected)`](#referenceequalactual-expected)
+  - [`.notEqual(actual, expected)`](#notequalactual-expected)
+  - [`.notReferenceEqual(actual, expected)`](#notreferenceequalactual-expected)
+  - [`.sizeOf(collection, length)`](#sizeofcollection-length)
+
 ## Installation
 
 ### Node.js
@@ -101,7 +118,7 @@ expect(Promise.resolve(List.of(1, 2, 3))).to.eventually.have.size(3);
 expect(true).to.be.true();
 ```
 
-## BDD API Reference
+## BDD API Reference (Expect / Should)
 
 ### .empty
 
@@ -128,12 +145,30 @@ expect(a).to.equal(b);
 Immutable data structures should only contain other immutable data
 structures (unlike `Array`s and `Object`s) to be considered immutable and
 properly work against `.equal()`. See
-[this issue](https://github.com/astorije/chai-immutable/issues/24) for
-more information.
+[issue #24](https://github.com/astorije/chai-immutable/issues/24) for more
+information.
 
 Also, note that `deep.equal` and `eql` are synonyms of `equal` when
 tested against immutable data structures, therefore they are aliases to
 `equal`.
+
+### .referenceEqual(value)
+
+- **@param** _{Collection}_ value
+
+Asserts that the reference of the target is equivalent to the reference of
+`collection`. This method preserves the original behavior of Chai's `equal`.
+
+See [issue #210](https://github.com/astorije/chai-immutable/issues/210) for
+more details.
+
+```js
+const a = List.of(1, 2, 3);
+const b = a;
+const c = List.of(1, 2, 3);
+expect(a).to.referenceEqual(b);
+expect(a).to.not.referenceEqual(c);
+```
 
 ### .include(value)
 
@@ -371,7 +406,7 @@ Similarly to `length`/`lengthOf`, `sizeOf` is an alias of `size`:
 expect(List.of(1, 2, 3)).to.have.sizeOf(3);
 ```
 
-## TDD API Reference
+## TDD API Reference (Assert)
 
 ### .equal(actual, expected)
 
@@ -391,8 +426,27 @@ assert.equal(a, b);
 Immutable data structures should only contain other immutable data
 structures (unlike `Array`s and `Object`s) to be considered immutable and
 properly work against `.equal()`, `.strictEqual()` or `.deepEqual()`. See
-[this issue](https://github.com/astorije/chai-immutable/issues/24) for
-more information.
+[issue #24](https://github.com/astorije/chai-immutable/issues/24) for more
+information.
+
+### .referenceEqual(actual, expected)
+
+- **@param** _{Collection}_ actual
+- **@param** _{Collection}_ expected
+
+Asserts that the reference of `actual` is equivalent to the reference of
+`expected`. This method preserves the original behavior of Chai's `equal`.
+
+See [issue #210](https://github.com/astorije/chai-immutable/issues/210) for
+more details.
+
+```js
+const a = List.of(1, 2, 3);
+const b = a;
+const c = List.of(1, 2, 3);
+assert.referenceEqual(a, b);
+assert.throws(() => assert.referenceEqual(a, c));
+```
 
 ### .notEqual(actual, expected)
 
@@ -407,6 +461,25 @@ exactly like `.notEqual()` in the context of Immutable data structures.
 const a = List.of(1, 2, 3);
 const b = List.of(4, 5, 6);
 assert.notEqual(a, b);
+```
+
+### .notReferenceEqual(actual, expected)
+
+- **@param** _{Collection}_ actual
+- **@param** _{Collection}_ expected
+
+Asserts that the reference of `actual` is not equivalent to the reference of
+`expected`. This method preserves the original behavior of Chai's `notEqual`.
+
+See [issue #210](https://github.com/astorije/chai-immutable/issues/210) for
+more details.
+
+```js
+const a = List.of(1, 2, 3);
+const b = a;
+const c = List.of(1, 2, 3);
+assert.throws(() => assert.notReferenceEqual(a, b));
+assert.notReferenceEqual(a, c);
 ```
 
 ### .sizeOf(collection, length)

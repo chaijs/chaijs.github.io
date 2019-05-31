@@ -20,6 +20,9 @@
   "ajv": [
     "ajv"
   ],
+  "and": [
+    "and"
+  ],
   "any": [
     "any"
   ],
@@ -75,6 +78,9 @@
   "chai-json": [
     "chai-json"
   ],
+  "chai-stuff": [
+    "chai-stuff"
+  ],
   "chaiplugin": [
     "chaiplugin"
   ],
@@ -86,6 +92,12 @@
   ],
   "ci": [
     "ci"
+  ],
+  "class": [
+    "class"
+  ],
+  "classes": [
+    "classes"
   ],
   "cli": [
     "cli"
@@ -99,6 +111,12 @@
   "Colors": [
     "color",
     "colors"
+  ],
+  "function Object() { [native code] }": [
+    "constructor"
+  ],
+  "constructors": [
+    "constructors"
   ],
   "containSubset": [
     "containSubset"
@@ -237,6 +255,12 @@
   "guid": [
     "guid"
   ],
+  "helper": [
+    "helper"
+  ],
+  "helpers": [
+    "helpers"
+  ],
   "http": [
     "http"
   ],
@@ -298,11 +322,23 @@
   "kefir": [
     "kefir"
   ],
+  "keys": [
+    "keys"
+  ],
+  "length-of": [
+    "length-of"
+  ],
+  "lengthOf": [
+    "lengthOf"
+  ],
   "like": [
     "like"
   ],
   "lodash": [
     "lodash"
+  ],
+  "map": [
+    "map"
   ],
   "match": [
     "match"
@@ -344,11 +380,20 @@
   "node-fetch": [
     "node-fetch"
   ],
+  "not-length-of": [
+    "not-length-of"
+  ],
+  "notLengthOf": [
+    "notLengthOf"
+  ],
   "number-equality": [
     "number-equality"
   ],
   "numbers": [
     "numbers"
+  ],
+  "object": [
+    "object"
   ],
   "object-constructors": [
     "object-constructors"
@@ -374,12 +419,21 @@
   "parameter check": [
     "parameter check"
   ],
+  "plugins": [
+    "plugins"
+  ],
   "precision": [
     "precision"
   ],
   "Promises": [
     "promises",
     "promises-aplus"
+  ],
+  "properties": [
+    "properties"
+  ],
+  "props": [
+    "props"
   ],
   "protractor": [
     "protractor"
@@ -414,6 +468,18 @@
   "rxjs": [
     "rxjs"
   ],
+  "same": [
+    "same"
+  ],
+  "same-props": [
+    "same-props"
+  ],
+  "sameKeysAndValues": [
+    "sameKeysAndValues"
+  ],
+  "sameProps": [
+    "sameProps"
+  ],
   "samsam": [
     "samsam"
   ],
@@ -431,6 +497,9 @@
   ],
   "serenity-js": [
     "serenity-js"
+  ],
+  "set": [
+    "set"
   ],
   "shallow": [
     "shallow"
@@ -510,6 +579,9 @@
   "type": [
     "type"
   ],
+  "typeof": [
+    "typeof"
+  ],
   "typescript": [
     "typescript"
   ],
@@ -527,6 +599,9 @@
   ],
   "v8": [
     "v8"
+  ],
+  "values": [
+    "values"
   ],
   "vendor": [
     "vendor"

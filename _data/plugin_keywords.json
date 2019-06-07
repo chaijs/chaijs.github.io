@@ -407,6 +407,9 @@
   "observables": [
     "observables"
   ],
+  "openapi": [
+    "openapi"
+  ],
   "optimisation": [
     "optimisation"
   ],
@@ -458,6 +461,9 @@
   ],
   "request": [
     "request"
+  ],
+  "response": [
+    "response"
   ],
   "rounding-errors": [
     "rounding-errors"
@@ -599,6 +605,9 @@
   ],
   "v8": [
     "v8"
+  ],
+  "validate": [
+    "validate"
   ],
   "values": [
     "values"

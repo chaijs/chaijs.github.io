@@ -68,7 +68,7 @@ var nullobject = chai.Null(obj).create();
 
 ## Tests
 
-Tests are written using [mocha](http://github.com/visionmedia/mocha).
+Tests are written using [mocha](https://github.com/mochajs/mocha).
 Node tests can be executed using `make test`. Browser tests can be seen by opening `test/browser/index.html`.
 
 ## License

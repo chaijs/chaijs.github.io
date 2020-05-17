@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-exec/
-pluginName: chai-exec
+permalink: plugins/@jsdevtools/chai-exec/
+pluginName: @jsdevtools/chai-exec
 ---
 
 Chai Exec

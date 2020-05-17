@@ -60,7 +60,13 @@ expect( 'string' ).to.be.just(5)            // fails
 expect( 'string' ).to.not.be.just(5)        // OK!
 ```
 
-`.just` changes the target of any assertions that follow in the chain to be the value inside the original Just object.
+`.just` also deep equals the contents of the monad.
+
+```javascript
+expect( Maybe.just({a: 'test'}) ).to.be.just({a: 'test'})
+```
+
+Moreover, `.just` changes the target of any assertions that follow in the chain to be the value inside the original Just object.
 
 ```javascript
 expect( Maybe.just( { status: 200 } ) ).to.be.a.just()
@@ -88,6 +94,7 @@ most popular monad libraries in Javascript:
 - [ ] TSMonad
 - [ ] Folktale
 - [ ] Monet
+- [ ] Funfix
 - [ ] Crocks
 - [ ] KudoJS
 - [ ] Purify

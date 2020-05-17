@@ -17,29 +17,32 @@ This is based on [ajv](https://github.com/epoberezkin/ajv), a JSON schema Valida
 |---|---|---|
 |[v1](https://github.com/up9cloud/chai-json-schema-ajv/tree/v1)|4.11.8|[JSON Schema draft 4](http://json-schema.org/)|
 |[v2](https://github.com/up9cloud/chai-json-schema-ajv/tree/v2)|5.5.2|[JSON Schema draft-06](https://trac.tools.ietf.org/html/draft-wright-json-schema-validation-01)|
-|[v3](https://github.com/up9cloud/chai-json-schema-ajv/tree/v3)|6.7.0|[JSON Schema draft-07](http://json-schema.org/latest/json-schema-validation.html)|
+|[v3](https://github.com/up9cloud/chai-json-schema-ajv/tree/v3)|^6.7.0|[JSON Schema draft-07](http://json-schema.org/latest/json-schema-validation.html)|
 |v4|Up to you||
+|v5|Up to you|Same as v4, but different message format|
 
-## Usage
+## Installation
 
 ```sh
-npm i ajv --save-dev # or any version you prefer `npm i ajv@4 --save-dev`
+npm i ajv --save-dev # Or any version you prefer `npm i ajv@4 --save-dev`
 npm i chai-json-schema-ajv --save-dev
 ```
 
-### Basic (jsonSchema)
+## Usage
+
+### Validate data (jsonSchema)
 
 ```js
 const chai = require('chai')
 chai.use(require('chai-json-schema-ajv'))
 const expect = chai.expect
 
-let apple = {
+const apple = {
   name: 'foo',
   color: ['red', 'green', 'yellow'],
   value: 10
 }
-let schema = {
+const schema = {
   title: 'fruit schema v0.1',
   type: 'object',
   required: ['name', 'color', 'value'],
@@ -66,14 +69,14 @@ let schema = {
 expect(apple).to.be.jsonSchema(schema)
 ```
 
-### Basic (validJsonSchema)
+### Validate schema (validJsonSchema)
 
 ```js
 const chai = require('chai')
 chai.use(require('chai-json-schema-ajv'))
 const expect = chai.expect
 
-let schema = {
+const schema = {
   title: 'valid schema',
   type: 'object',
   required: ['name'],
@@ -88,20 +91,22 @@ let schema = {
 expect(schema).to.be.validJsonSchema
 ```
 
-### With custom ajv options
+### Custom options
+
+Options will also pass to [ajv](https://github.com/epoberezkin/ajv#options)
 
 ```js
 ...
 const options = { ... }
 chai.use(
-  require('chai-json-schema-ajv').withOptions(options)
+  require('chai-json-schema-ajv').create(options)
 )
 ...
+
+// Basically, it's same as `new Ajv(options)`
 ```
 
-- options will be send to [ajv](https://github.com/epoberezkin/ajv#options)
-
-## Verbose
+#### Option verbose
 
 Default error message is parsed by `ajv.errorsText`.
 
@@ -114,8 +119,8 @@ chai.use(
 ```
 
 ```console
-expected value not match the json-schema
-data.value should be integer
+expected data to match json-schema
+data should have required property 'color'
 ```
 
 If you go with option `{verbose: true}`, it will print full errors.
@@ -123,7 +128,7 @@ If you go with option `{verbose: true}`, it will print full errors.
 ```js
 ...
 chai.use(
-  require('chai-json-schema-ajv').withOptions({
+  require('chai-json-schema-ajv').create({
     verbose: true
   })
 )
@@ -131,31 +136,70 @@ chai.use(
 ```
 
 ```console
-expected value not match the json-schema
-[
- {
-   "keyword": "type",
-   "dataPath": ".value",
-   "schemaPath": "#/properties/value/type",
-   "params": {
-     "type": "integer"
-   },
-   "message": "should be integer",
-   "schema": "integer",
-   "parentSchema": {
-     "type": "integer"
-   },
-   "data": 1.1
- }
-]
+expected { name: 'bar', speed: 1.1 } to match json-schema
+[ { keyword: 'required',
+    dataPath: '',
+    schemaPath: '#/required',
+    params: { missingProperty: 'color' },
+    message: 'should have required property \'color\'',
+    schema: 
+     { name: { type: 'string', minLength: 3 },
+       color: 
+        { type: 'array',
+          minItems: 1,
+          uniqueItems: true,
+          items: { type: 'string' } },
+       value: { type: 'integer', minimum: 5 } },
+    parentSchema: 
+     { title: 'fruit schema v0.1',
+       type: 'object',
+       required: [ 'name', 'color', 'value' ],
+       properties: 
+        { name: { type: 'string', minLength: 3 },
+          color: 
+           { type: 'array',
+             minItems: 1,
+             uniqueItems: true,
+             items: { type: 'string' } },
+          value: { type: 'integer', minimum: 5 } } },
+    data: { name: 'bar', speed: 1.1 } } ]
+```
+
+#### Option ajv
+
+If you want to reuse ajv instance, you can
+
+```js
+const ajv = new Ajv
+...
+chai.use(
+  require('chai-json-schema-ajv').create({
+    ajv
+  })
+)
+...
+
+assert.ok(ajv === chai.ajv)
+```
+
+### Access ajv instance
+
+```js
+...
+chai.use(
+  require('chai-json-schema-ajv')
+)
+...
+
+assert.ok(chai.ajv instanceof Ajv)
 ```
 
 ## TODO
 
-- support browser side
-- move to es2017 async/await
-- ~~add linter~~
-- ~~send option to ajv~~ (thanks @dimac)
+- Support browser side
+- Move to es2017 async/await
+- ~~Add linter~~
+- ~~Send option to ajv~~ (thanks @dimac)
 
 ## License
 

@@ -9,6 +9,7 @@ pluginName: chai-datetime
 Matchers for chai to help with common date comparison assertions against
 JavaScript Date objects.
 
+[![npm version](https://badge.fury.io/js/chai-datetime.svg)](https://badge.fury.io/js/chai-datetime)
 [![Build Status](https://travis-ci.org/mguterl/chai-datetime.png?branch=master)](https://travis-ci.org/mguterl/chai-datetime)
 
 ## Why?
@@ -53,6 +54,7 @@ assertion that specifies date in the name only compares the date
 portion of the Date object.
 
 * equalTime
+* closeToTime (with a configurable delta in seconds)
 * beforeTime
 * afterTime
 * withinTime

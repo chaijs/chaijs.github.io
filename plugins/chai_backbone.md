@@ -116,6 +116,6 @@ Copyright (c) 2012-2015 Matthijs Groen
 MIT License (see the LICENSE file)
 
 [chai]: http://chaijs.com/
-[mocha]: https://github.com/mochajs/mocha
+[mocha]: http://visionmedia.github.com/mocha/
 [amd]: https://github.com/amdjs/amdjs-api/wiki/AMD
 

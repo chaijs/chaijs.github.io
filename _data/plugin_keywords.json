@@ -57,9 +57,6 @@
   "bookshelf": [
     "bookshelf"
   ],
-  "brookjs": [
-    "brookjs"
-  ],
   "buffers": [
     "buffers"
   ],
@@ -181,6 +178,9 @@
   "es2015": [
     "es2015"
   ],
+  "es5": [
+    "es5"
+  ],
   "es6": [
     "es6"
   ],
@@ -240,6 +240,9 @@
   "fuzzy": [
     "fuzzy"
   ],
+  "gaps": [
+    "gaps"
+  ],
   "generator": [
     "generator"
   ],
@@ -266,6 +269,15 @@
   ],
   "http-response": [
     "http-response"
+  ],
+  "ie11": [
+    "ie11"
+  ],
+  "image": [
+    "image"
+  ],
+  "imagediff": [
+    "imagediff"
   ],
   "immutable": [
     "immutable"
@@ -422,6 +434,9 @@
   "parameter check": [
     "parameter check"
   ],
+  "pixeldiff": [
+    "pixeldiff"
+  ],
   "plugins": [
     "plugins"
   ],
@@ -462,8 +477,20 @@
   "request": [
     "request"
   ],
+  "rerun": [
+    "rerun"
+  ],
   "response": [
     "response"
+  ],
+  "rest": [
+    "rest"
+  ],
+  "restapi": [
+    "restapi"
+  ],
+  "retry": [
+    "retry"
   ],
   "rounding-errors": [
     "rounding-errors"
@@ -570,6 +597,9 @@
   "supertest": [
     "supertest"
   ],
+  "swagger": [
+    "swagger"
+  ],
   "tdd": [
     "tdd"
   ],
@@ -608,6 +638,9 @@
   ],
   "validate": [
     "validate"
+  ],
+  "validator": [
+    "validator"
   ],
   "values": [
     "values"

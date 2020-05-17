@@ -134,6 +134,22 @@ it('requestedWithHeadersMatch', () => {
 });
 ```
 
+## Setting a Timeout
+* By default, a timeout of 2 seconds is applied to assertions on nock requests. This means that if nock has not intercepted the request within the set time, the assertion will be false
+* You can set a custom global timeout by calling `setTimeout` on the `chaiNock` object:
+```javascript
+const chaiNock = require('chai-nock');
+
+chai.use(chaiNock);
+// Set a timeout of 10 seconds
+chaiNock.setTimeout(10000);
+```
+* WARNING: If not set already, the test timeout must be greater than that of chaiNock! 
+```javascript 
+jest.setTimeout(12000);
+```
+
+
 ## Usage
 
 ```javascript

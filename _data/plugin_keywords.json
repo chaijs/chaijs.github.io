@@ -422,9 +422,6 @@
   "openapi": [
     "openapi"
   ],
-  "optimisation": [
-    "optimisation"
-  ],
   "order": [
     "order"
   ],
@@ -632,9 +629,6 @@
   ],
   "uuid": [
     "uuid"
-  ],
-  "v8": [
-    "v8"
   ],
   "validate": [
     "validate"

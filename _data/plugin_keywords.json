@@ -474,9 +474,6 @@
   "request": [
     "request"
   ],
-  "rerun": [
-    "rerun"
-  ],
   "response": [
     "response"
   ],
@@ -485,9 +482,6 @@
   ],
   "restapi": [
     "restapi"
-  ],
-  "retry": [
-    "retry"
   ],
   "rounding-errors": [
     "rounding-errors"

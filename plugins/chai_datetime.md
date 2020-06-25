@@ -56,11 +56,15 @@ portion of the Date object.
 * equalTime
 * closeToTime (with a configurable delta in seconds)
 * beforeTime
+* beforeOrEqualTime
 * afterTime
+* afterOrEqualTime
 * withinTime
 * equalDate
 * beforeDate
+* beforeOrEqualDate
 * afterDate
+* afterOrEqualDate
 * withinDate
 
 All assertions are defined for both the BDD and TDD syntaxes.

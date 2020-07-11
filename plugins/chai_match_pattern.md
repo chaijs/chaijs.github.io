@@ -7,7 +7,6 @@ pluginName: chai-match-pattern
 # chai-match-pattern
 [![NPM](https://nodei.co/npm/chai-match-pattern.png?downloads=true)](https://www.npmjs.com/package/chai-match-pattern)
 
-![CircleCI](https://circleci.com/gh/Originate/chai-match-pattern.svg?style=shield&circle-token=:circle-token)
 [![David Dependencies](https://david-dm.org/Originate/chai-match-pattern.svg)](https://david-dm.org/Originate/chai-match-pattern)
 
 Related Modules:
@@ -28,15 +27,20 @@ Related Modules:
 
 #### Basic Usage
 ```
+# with npm
 npm install chai-match-pattern --save-dev
+# or with yarn
+yarn add --dev chai-match-pattern
 ```
+
+
 In your test file insert
 
 ```javascript
-var chai = require('chai');
-var chaiMatchPattern = require('chai-match-pattern');
+const chai = require('chai');
+const chaiMatchPattern = require('chai-match-pattern');
 chai.use(chaiMatchPattern);
-var _ = chaiMatchPattern.getLodashModule(); // recommend using our lodash extension
+const _ = chaiMatchPattern.getLodashModule(); // recommend using our lodash extension
 ```
 
 Then use patterns to check your JSON with the `.matchPattern(pattern)` assertion function.  For example

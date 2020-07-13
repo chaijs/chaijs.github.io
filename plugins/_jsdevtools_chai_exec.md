@@ -9,8 +9,8 @@ Chai Exec
 
 #### Chai assertions for testing your CLI
 
-[![Cross-Platform Compatibility](https://jstools.dev/img/badges/os-badges.svg)](https://github.com/JS-DevTools/chai-exec/blob/master/.github/workflows/CI-CD.yaml)
-[![Build Status](https://github.com/JS-DevTools/chai-exec/workflows/CI-CD/badge.svg)](https://github.com/JS-DevTools/chai-exec/blob/master/.github/workflows/CI-CD.yaml)
+[![Cross-Platform Compatibility](https://jstools.dev/img/badges/os-badges.svg)](https://github.com/JS-DevTools/chai-exec/actions)
+[![Build Status](https://github.com/JS-DevTools/chai-exec/workflows/CI-CD/badge.svg)](https://github.com/JS-DevTools/chai-exec/actions)
 
 [![Coverage Status](https://coveralls.io/repos/github/JS-DevTools/chai-exec/badge.svg?branch=master)](https://coveralls.io/github/JS-DevTools/chai-exec?branch=master)
 [![Dependencies](https://david-dm.org/JS-DevTools/chai-exec.svg)](https://david-dm.org/JS-DevTools/chai-exec)
@@ -319,7 +319,7 @@ assert.notMatch(myCLI.output, /^Success!$/);
 
 Contributing
 --------------------------
-Contributions, enhancements, and bug-fixes are welcome! [File an issue](https://github.com/JS-DevTools/chai-exec/issues) on GitHub and [submit a pull request](https://github.com/JS-DevTools/chai-exec/pulls).
+Contributions, enhancements, and bug-fixes are welcome! [Open an issue](https://github.com/JS-DevTools/chai-exec/issues) on GitHub and [submit a pull request](https://github.com/JS-DevTools/chai-exec/pulls).
 
 #### Building/Testing
 To build/test the project locally on your computer:

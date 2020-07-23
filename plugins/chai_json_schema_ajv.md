@@ -36,11 +36,16 @@ npm i chai-json-schema-ajv --save-dev
 const chai = require('chai')
 chai.use(require('chai-json-schema-ajv'))
 const expect = chai.expect
+const assert = chai.assert
 
 const apple = {
   name: 'foo',
   color: ['red', 'green', 'yellow'],
   value: 10
+}
+const car = {
+  name: 'bar',
+  speed: 1.1
 }
 const schema = {
   title: 'fruit schema v0.1',
@@ -66,7 +71,11 @@ const schema = {
   }
 }
 
-expect(apple).to.be.jsonSchema(schema)
+expect(apple).to.be.jsonSchema(schema, 'custom flag')
+expect(car).to.not.be.jsonSchema(schema, 'custom flag')
+
+assert.jsonSchema(apple, schema, 'custom flag')
+assert.notJsonSchema(car, schema, 'custom flag')
 ```
 
 ### Validate schema (validJsonSchema)
@@ -75,6 +84,7 @@ expect(apple).to.be.jsonSchema(schema)
 const chai = require('chai')
 chai.use(require('chai-json-schema-ajv'))
 const expect = chai.expect
+const assert = chai.assert
 
 const schema = {
   title: 'valid schema',
@@ -88,7 +98,11 @@ const schema = {
   }
 }
 
-expect(schema).to.be.validJsonSchema
+expect(schema, 'custom flag').to.be.validJsonSchema
+expect({ type: '__invalid__' }, 'custom flag').to.not.be.validJsonSchema
+
+assert.validJsonSchema(schema, 'custom flag')
+assert.notValidJsonSchema({ type: '__invalid__' }, 'custom flag')
 ```
 
 ### Custom options

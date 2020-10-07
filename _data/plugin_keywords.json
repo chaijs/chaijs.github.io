@@ -437,6 +437,9 @@
   "plugins": [
     "plugins"
   ],
+  "postman": [
+    "postman"
+  ],
   "precision": [
     "precision"
   ],

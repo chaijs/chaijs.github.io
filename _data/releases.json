@@ -5,6 +5,26 @@
     "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/13092683/assets{?name,label}",
     "html_url": "https://github.com/chaijs/chai/releases/tag/4.2.0",
     "id": 13092683,
+    "author": {
+      "login": "meeber",
+      "id": 17260989,
+      "node_id": "MDQ6VXNlcjE3MjYwOTg5",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/17260989?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/meeber",
+      "html_url": "https://github.com/meeber",
+      "followers_url": "https://api.github.com/users/meeber/followers",
+      "following_url": "https://api.github.com/users/meeber/following{/other_user}",
+      "gists_url": "https://api.github.com/users/meeber/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/meeber/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/meeber/subscriptions",
+      "organizations_url": "https://api.github.com/users/meeber/orgs",
+      "repos_url": "https://api.github.com/users/meeber/repos",
+      "events_url": "https://api.github.com/users/meeber/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/meeber/received_events",
+      "type": "User",
+      "site_admin": false
+    },
     "node_id": "MDc6UmVsZWFzZTEzMDkyNjgz",
     "tag_name": "4.2.0",
     "target_commitish": "master",
@@ -18,6 +38,14 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/4.2.0",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/4.2.0",
+    "body": "This is a minor release. Thank you to all of our contributors and users!\r\n\r\n# New Features\r\n* feat(assertions): add 'still' language chain (#1194; @ScottRudiger)\r\n* .lengthOf for Maps and Sets (#1110, #1131; @asbish)\r\n* feat: Add the assert.fail([message]) interface (#1116, #1117; @s-leroux)\r\n\r\n# Bug Fixes\r\n* fix: remove Chai frames from `.deep.equal` stack (#1124; @meeber)\r\n* add 'catch' keyword to proxyExcludedKeys (#1050, #1101; @generalandrew)\r\n* property assertion should only accept strings if nested (#1043, #1044; @solodynamo)\r\n* fix: Make tests pass with `--use_strict` (#1034, #1040; @shvaikalesh)\r\n\r\n# Performance\r\n* perf: Optimize proxify and stringDistance (#1098; @sophiebits)\r\n* fix: Avoid repeated String#slice calls in stringDistance (#1095; @bmeurer)\r\n\r\n# Style\r\n* Fix typos and remove trailing whitespaces (#1042; @simonewebdesign)\r\n* Remove unnecessary code (#1049; @abetomo)\r\n* Fix variable declaration (#1048; @abetomo)\r\n\r\n# Tests\r\n* test(assert): increase coverage (#1084, #1085; @brutalcrozt)\r\n* test: stop modifying globals in Proxy tests (#1144; @meeber)\r\n\r\n# Docs\r\n* Fix unbalanced quotes in assert.notInclude example (#1200; @haykam821)\r\n* docs: fix bad `.string` example (#1156, #1157; @meeber)\r\n* fixed package npm url (#1151; @wadie)\r\n* Spelling (#1145; @jsoref)\r\n* docs: corrected spelling (#1141; @Powell-v2)\r\n* docs: fix wrong `.property` chaining examples (https://github.com/chaijs/chai/issues/193#issuecomment-360334369, #1130; @meeber)\r\n* docs: improve throws examples (#1113; @ColinEberhardt)\r\n* Fix typos (#1107; @tbroadley) \r\n* docs: correct `.ok` description (#1047; @shvaikalesh) \r\n\r\n# Chores\r\n* chore: update package-lock.json (#1198; @meeber)\r\n* Update mocha to the latest version (#1127)\r\n* chore: update dependencies (#1157; @meeber)\r\n* Update browserify to the latest version (#1135)\r\n* chore: update Node versions in Travis config (#1126; @meeber)\r\n* chore: remove Opera from Sauce config (#1125; @meeber)\r\n* chore: update dependencies (#1118; @meeber)\r\n* chore: update dependencies (#1074; @meeber) \r\n* Chore: change coverage service (coverall to codecov) (#927, #1073; @brutalcrozt)\r\n* chore: add package-lock.json (#1013; @meeber)"
+  },
+  {
+    "url": "https://api.github.com/repos/chaijs/chai/releases/7597887",
+    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/7597887/assets",
+    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/7597887/assets{?name,label}",
+    "html_url": "https://github.com/chaijs/chai/releases/tag/4.1.2",
+    "id": 7597887,
     "author": {
       "login": "meeber",
       "id": 17260989,
@@ -38,14 +66,6 @@
       "type": "User",
       "site_admin": false
     },
-    "body": "This is a minor release. Thank you to all of our contributors and users!\r\n\r\n# New Features\r\n* feat(assertions): add 'still' language chain (#1194; @ScottRudiger)\r\n* .lengthOf for Maps and Sets (#1110, #1131; @asbish)\r\n* feat: Add the assert.fail([message]) interface (#1116, #1117; @s-leroux)\r\n\r\n# Bug Fixes\r\n* fix: remove Chai frames from `.deep.equal` stack (#1124; @meeber)\r\n* add 'catch' keyword to proxyExcludedKeys (#1050, #1101; @generalandrew)\r\n* property assertion should only accept strings if nested (#1043, #1044; @solodynamo)\r\n* fix: Make tests pass with `--use_strict` (#1034, #1040; @shvaikalesh)\r\n\r\n# Performance\r\n* perf: Optimize proxify and stringDistance (#1098; @sophiebits)\r\n* fix: Avoid repeated String#slice calls in stringDistance (#1095; @bmeurer)\r\n\r\n# Style\r\n* Fix typos and remove trailing whitespaces (#1042; @simonewebdesign)\r\n* Remove unnecessary code (#1049; @abetomo)\r\n* Fix variable declaration (#1048; @abetomo)\r\n\r\n# Tests\r\n* test(assert): increase coverage (#1084, #1085; @brutalcrozt)\r\n* test: stop modifying globals in Proxy tests (#1144; @meeber)\r\n\r\n# Docs\r\n* Fix unbalanced quotes in assert.notInclude example (#1200; @haykam821)\r\n* docs: fix bad `.string` example (#1156, #1157; @meeber)\r\n* fixed package npm url (#1151; @wadie)\r\n* Spelling (#1145; @jsoref)\r\n* docs: corrected spelling (#1141; @Powell-v2)\r\n* docs: fix wrong `.property` chaining examples (https://github.com/chaijs/chai/issues/193#issuecomment-360334369, #1130; @meeber)\r\n* docs: improve throws examples (#1113; @ColinEberhardt)\r\n* Fix typos (#1107; @tbroadley) \r\n* docs: correct `.ok` description (#1047; @shvaikalesh) \r\n\r\n# Chores\r\n* chore: update package-lock.json (#1198; @meeber)\r\n* Update mocha to the latest version (#1127)\r\n* chore: update dependencies (#1157; @meeber)\r\n* Update browserify to the latest version (#1135)\r\n* chore: update Node versions in Travis config (#1126; @meeber)\r\n* chore: remove Opera from Sauce config (#1125; @meeber)\r\n* chore: update dependencies (#1118; @meeber)\r\n* chore: update dependencies (#1074; @meeber) \r\n* Chore: change coverage service (coverall to codecov) (#927, #1073; @brutalcrozt)\r\n* chore: add package-lock.json (#1013; @meeber)"
-  },
-  {
-    "url": "https://api.github.com/repos/chaijs/chai/releases/7597887",
-    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/7597887/assets",
-    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/7597887/assets{?name,label}",
-    "html_url": "https://github.com/chaijs/chai/releases/tag/4.1.2",
-    "id": 7597887,
     "node_id": "MDc6UmVsZWFzZTc1OTc4ODc=",
     "tag_name": "4.1.2",
     "target_commitish": "master",
@@ -59,26 +79,6 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/4.1.2",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/4.1.2",
-    "author": {
-      "login": "meeber",
-      "id": 17260989,
-      "node_id": "MDQ6VXNlcjE3MjYwOTg5",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/17260989?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/meeber",
-      "html_url": "https://github.com/meeber",
-      "followers_url": "https://api.github.com/users/meeber/followers",
-      "following_url": "https://api.github.com/users/meeber/following{/other_user}",
-      "gists_url": "https://api.github.com/users/meeber/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/meeber/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/meeber/subscriptions",
-      "organizations_url": "https://api.github.com/users/meeber/orgs",
-      "repos_url": "https://api.github.com/users/meeber/repos",
-      "events_url": "https://api.github.com/users/meeber/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/meeber/received_events",
-      "type": "User",
-      "site_admin": false
-    },
     "body": "This release fixes a bug when running in certain environments, and includes a few minor documentation fixes.\r\n\r\n# Bug Fixes\r\n* fix: update `deep-eql` to version 3.0.0 (#1020)\r\n* fix: replace code causing breakage under strict CSP (#1032; @Alhadis)\r\n\r\n# Docs\r\n* docs: add missing assert parameters (#1017, #1023; @Hpauric)\r\n* docs: update year in license file (#1025; @yanca018)"
   },
   {
@@ -87,6 +87,26 @@
     "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/7292792/assets{?name,label}",
     "html_url": "https://github.com/chaijs/chai/releases/tag/4.1.1",
     "id": 7292792,
+    "author": {
+      "login": "keithamus",
+      "id": 118266,
+      "node_id": "MDQ6VXNlcjExODI2Ng==",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/118266?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/keithamus",
+      "html_url": "https://github.com/keithamus",
+      "followers_url": "https://api.github.com/users/keithamus/followers",
+      "following_url": "https://api.github.com/users/keithamus/following{/other_user}",
+      "gists_url": "https://api.github.com/users/keithamus/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/keithamus/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/keithamus/subscriptions",
+      "organizations_url": "https://api.github.com/users/keithamus/orgs",
+      "repos_url": "https://api.github.com/users/keithamus/repos",
+      "events_url": "https://api.github.com/users/keithamus/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/keithamus/received_events",
+      "type": "User",
+      "site_admin": true
+    },
     "node_id": "MDc6UmVsZWFzZTcyOTI3OTI=",
     "tag_name": "4.1.1",
     "target_commitish": "master",
@@ -100,26 +120,6 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/4.1.1",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/4.1.1",
-    "author": {
-      "login": "keithamus",
-      "id": 118266,
-      "node_id": "MDQ6VXNlcjExODI2Ng==",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/118266?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/keithamus",
-      "html_url": "https://github.com/keithamus",
-      "followers_url": "https://api.github.com/users/keithamus/followers",
-      "following_url": "https://api.github.com/users/keithamus/following{/other_user}",
-      "gists_url": "https://api.github.com/users/keithamus/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/keithamus/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/keithamus/subscriptions",
-      "organizations_url": "https://api.github.com/users/keithamus/orgs",
-      "repos_url": "https://api.github.com/users/keithamus/repos",
-      "events_url": "https://api.github.com/users/keithamus/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/keithamus/received_events",
-      "type": "User",
-      "site_admin": true
-    },
     "body": "This release includes a few bug and documentation fixes.\r\n\r\n# Bug Fixes\r\n\r\n- fix: `.instanceof` to allow DOM interfaces in IE11 (#1000, #1008; @meeber)\r\n- fix: `.include` to work with all objects (#1009, #1012; @meeber)\r\n\r\n# Docs\r\n\r\n- fix: correct hasAnyKeys comment error (#1014; @zenHeart)\r\n- docs: re-indent hasAnyKeys code (#1016; @keithamus)"
   },
   {
@@ -128,19 +128,6 @@
     "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/7006823/assets{?name,label}",
     "html_url": "https://github.com/chaijs/chai/releases/tag/4.1.0",
     "id": 7006823,
-    "node_id": "MDc6UmVsZWFzZTcwMDY4MjM=",
-    "tag_name": "4.1.0",
-    "target_commitish": "master",
-    "name": "4.1.0 / 2017-07-11",
-    "draft": false,
-    "prerelease": false,
-    "created_at": "2017-07-11T23:57:05Z",
-    "published_at": "2017-07-12T00:13:52Z",
-    "assets": [
-
-    ],
-    "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/4.1.0",
-    "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/4.1.0",
     "author": {
       "login": "meeber",
       "id": 17260989,
@@ -161,6 +148,19 @@
       "type": "User",
       "site_admin": false
     },
+    "node_id": "MDc6UmVsZWFzZTcwMDY4MjM=",
+    "tag_name": "4.1.0",
+    "target_commitish": "master",
+    "name": "4.1.0 / 2017-07-11",
+    "draft": false,
+    "prerelease": false,
+    "created_at": "2017-07-11T23:57:05Z",
+    "published_at": "2017-07-12T00:13:52Z",
+    "assets": [
+
+    ],
+    "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/4.1.0",
+    "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/4.1.0",
     "body": "This release includes one new feature and a few bug fixes.\r\n\r\n# New Features\r\n\r\n- Add ES6 collection support to include() (#970, #994; @shvaikalesh)\r\n\r\n# Bug Fixes\r\n\r\n- Allow dates for isBelow and isAbove assertions (#980, #990; @v1adko)\r\n- fix: check target's type in `.property` assertion (#992; @meeber)\r\n\r\n# Chores\r\n\r\n- Add a missing var keyword found by lgtm.com (#988; @samlanning)\r\n- refactor: `expectTypes` to access `ssfi` flag (#993; @meeber)\r\n- Create CODEOWNERS (#1004; @keithamus)\r\n\r\n"
   },
   {
@@ -169,6 +169,26 @@
     "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/6608844/assets{?name,label}",
     "html_url": "https://github.com/chaijs/chai/releases/tag/4.0.2",
     "id": 6608844,
+    "author": {
+      "login": "keithamus",
+      "id": 118266,
+      "node_id": "MDQ6VXNlcjExODI2Ng==",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/118266?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/keithamus",
+      "html_url": "https://github.com/keithamus",
+      "followers_url": "https://api.github.com/users/keithamus/followers",
+      "following_url": "https://api.github.com/users/keithamus/following{/other_user}",
+      "gists_url": "https://api.github.com/users/keithamus/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/keithamus/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/keithamus/subscriptions",
+      "organizations_url": "https://api.github.com/users/keithamus/orgs",
+      "repos_url": "https://api.github.com/users/keithamus/repos",
+      "events_url": "https://api.github.com/users/keithamus/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/keithamus/received_events",
+      "type": "User",
+      "site_admin": true
+    },
     "node_id": "MDc6UmVsZWFzZTY2MDg4NDQ=",
     "tag_name": "4.0.2",
     "target_commitish": "master",
@@ -182,6 +202,14 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/4.0.2",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/4.0.2",
+    "body": "We have another bugfix release, addressing some issues for WebPack 1 users.\r\n\r\n# Bug Fixes\r\n- Revert getting version information from package.json, some bundler tools like Webpack do not come default with json loaders despite Node being able to handle this. This change moves back to hardcoding the version number in the codebase. ([#985](https://github.com/chaijs/chai/issues/985), [#986](https://github.com/chaijs/chai/pull/986))"
+  },
+  {
+    "url": "https://api.github.com/repos/chaijs/chai/releases/6564169",
+    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/6564169/assets",
+    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/6564169/assets{?name,label}",
+    "html_url": "https://github.com/chaijs/chai/releases/tag/4.0.1",
+    "id": 6564169,
     "author": {
       "login": "keithamus",
       "id": 118266,
@@ -202,14 +230,6 @@
       "type": "User",
       "site_admin": true
     },
-    "body": "We have another bugfix release, addressing some issues for WebPack 1 users.\r\n\r\n# Bug Fixes\r\n- Revert getting version information from package.json, some bundler tools like Webpack do not come default with json loaders despite Node being able to handle this. This change moves back to hardcoding the version number in the codebase. ([#985](https://github.com/chaijs/chai/issues/985), [#986](https://github.com/chaijs/chai/pull/986))"
-  },
-  {
-    "url": "https://api.github.com/repos/chaijs/chai/releases/6564169",
-    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/6564169/assets",
-    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/6564169/assets{?name,label}",
-    "html_url": "https://github.com/chaijs/chai/releases/tag/4.0.1",
-    "id": 6564169,
     "node_id": "MDc6UmVsZWFzZTY1NjQxNjk=",
     "tag_name": "4.0.1",
     "target_commitish": "master",
@@ -223,6 +243,14 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/4.0.1",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/4.0.1",
+    "body": "# 4.0.1\r\n\r\nOf course, any major release cannot go without a quick bugfix release shortly after - and here's ours!\r\n\r\n# Bug Fixes\r\n- Remove package.json `browser` field which was mistakenly added, and caused bundler tools like Browserify or Webpack to fail as it attempted to rebundle an already bundled file. ([#978](https://github.com/chaijs/chai/issues/978), [#982](https://github.com/chaijs/chai/pull/982))"
+  },
+  {
+    "url": "https://api.github.com/repos/chaijs/chai/releases/6099745",
+    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/6099745/assets",
+    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/6099745/assets{?name,label}",
+    "html_url": "https://github.com/chaijs/chai/releases/tag/4.0.0-canary.2",
+    "id": 6099745,
     "author": {
       "login": "keithamus",
       "id": 118266,
@@ -243,14 +271,6 @@
       "type": "User",
       "site_admin": true
     },
-    "body": "# 4.0.1\r\n\r\nOf course, any major release cannot go without a quick bugfix release shortly after - and here's ours!\r\n\r\n# Bug Fixes\r\n- Remove package.json `browser` field which was mistakenly added, and caused bundler tools like Browserify or Webpack to fail as it attempted to rebundle an already bundled file. ([#978](https://github.com/chaijs/chai/issues/978), [#982](https://github.com/chaijs/chai/pull/982))"
-  },
-  {
-    "url": "https://api.github.com/repos/chaijs/chai/releases/6099745",
-    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/6099745/assets",
-    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/6099745/assets{?name,label}",
-    "html_url": "https://github.com/chaijs/chai/releases/tag/4.0.0-canary.2",
-    "id": 6099745,
     "node_id": "MDc6UmVsZWFzZTYwOTk3NDU=",
     "tag_name": "4.0.0-canary.2",
     "target_commitish": "master",
@@ -264,26 +284,6 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/4.0.0-canary.2",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/4.0.0-canary.2",
-    "author": {
-      "login": "keithamus",
-      "id": 118266,
-      "node_id": "MDQ6VXNlcjExODI2Ng==",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/118266?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/keithamus",
-      "html_url": "https://github.com/keithamus",
-      "followers_url": "https://api.github.com/users/keithamus/followers",
-      "following_url": "https://api.github.com/users/keithamus/following{/other_user}",
-      "gists_url": "https://api.github.com/users/keithamus/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/keithamus/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/keithamus/subscriptions",
-      "organizations_url": "https://api.github.com/users/keithamus/orgs",
-      "repos_url": "https://api.github.com/users/keithamus/repos",
-      "events_url": "https://api.github.com/users/keithamus/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/keithamus/received_events",
-      "type": "User",
-      "site_admin": true
-    },
     "body": "# 4.0.0-canary.2 / 2017-04-17\r\n\r\nThe second release in the 4.0.0 canary release cycle. Around the end of April, barring any showstopper bugs, this will be released as `4.0.0`\r\n\r\n## Breaking Changes\r\n\r\n - We've dropped support for Node 0.10 (See [#816](https://github.com/chaijs/chai/pull/816)) and Node 0.12 ([#901](https://github.com/chaijs/chai/pull/901)). The minimum supported version is now Node 4.0. If you wish to continue using older versions of Node with Chai, please continue to use the `3.5.0` release. Officially, version 4.0.0 of chai supports Nodes 4, 6, 7, as well as the moving LTS version (currently 6.10.2). We plan to support Node 4 until at-least April 2018 (inline with Node Foundation support).\r\n\r\n - `.not.keys` on its own is now the equivalent of `.not.all.keys` ([#924](https://github.com/chaijs/chai/pull/924)). The docs mention this, and suggest to always pair `.keys` with something.\r\n\r\n## New Features\r\n\r\n - Added side-effectful \"register\" style scripts for each interface, (See [#868](https://github.com/chaijs/chai/pull/868/files)). This allows one to `require('chai/should')` which will automatically call `global.should = chai.should()`. This is useful for users who wish to automatically get a global for their codebase. [Read the docs for more info](https://github.com/chaijs/chai/blob/4.0.0-canary.2/README.md#native-modules-usage-registers-the-chai-testing-style-globally)!\r\n\r\n - Added the `browser` field to the package json ([#875](https://github.com/chaijs/chai/pull/875)). This will help with browser bundling tools.\r\n\r\n - Added `.own.include` and `.nested.include` ([#926](https://github.com/chaijs/chai/pull/926)).\r\n\r\n - If you attempt to call `.throws` with something that isn't a constructor (like `TypeError`) you will now get a more helpful error message about this. (before it would say `Right-hand side of 'instanceof' is not an object`, now it says `The instanceof assertion needs a constructor but <type> was given`). ([#899](https://github.com/chaijs/chai/pull/899/files)).\r\n\r\n## Bug Fixes\r\n\r\n - Minor update deep-eql to 2.0.1 ([#871](https://github.com/chaijs/chai/pull/871)) which fixes bugs around Memoization, and lets comparators override evaluation of primitives.\r\n\r\n - We've updated documentation and error handling around using `.length` ([#897](https://github.com/chaijs/chai/pull/897)) - which can, in some cases, be problematic. Typically, you'll want to use `.lengthOf` instead - but the documentation now makes this clear, and errors are more helpful when bad things happen.\r\n\r\n - We've improved stack traces to strip out chai's internals, especially in newer environments which use Proxies ([#884](https://github.com/chaijs/chai/pull/884) and [#922](https://github.com/chaijs/chai/pull/922)). \r\n\r\n - We've gone through and made sure every assertion honors the custom error message you pass it - some didn't! ([#947](https://github.com/chaijs/chai/pull/947)).\r\n\r\n - `getFuncName` has had an update since we pulled out the behaviour in `4.0.0-canary.1` ([#915](https://github.com/chaijs/chai/pull/915)). Practically this doesn't change anything in Chai.\r\n\r\n## Documentation\r\n\r\n - Added LICENSE file ([#854](https://github.com/chaijs/chai/pull/854))\r\n - Major documentation rewrite including the plugin docs ([#911](https://github.com/chaijs/chai/pull/911)), `.throw` docs ([#866](https://github.com/chaijs/chai/pull/866)), and, well, just about all other docs ([#920](https://github.com/chaijs/chai/pull/920)). These docs are far more detailed now, explaining caveats, algorithms and best practices.\r\n\r\n"
   },
   {
@@ -292,19 +292,6 @@
     "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/4471956/assets{?name,label}",
     "html_url": "https://github.com/chaijs/chai/releases/tag/4.0.0-canary.1",
     "id": 4471956,
-    "node_id": "MDc6UmVsZWFzZTQ0NzE5NTY=",
-    "tag_name": "4.0.0-canary.1",
-    "target_commitish": "master",
-    "name": "4.0.0-canary.1",
-    "draft": false,
-    "prerelease": true,
-    "created_at": "2016-10-24T22:07:30Z",
-    "published_at": "2016-10-24T22:09:18Z",
-    "assets": [
-
-    ],
-    "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/4.0.0-canary.1",
-    "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/4.0.0-canary.1",
     "author": {
       "login": "lucasfcosta",
       "id": 6868147,
@@ -325,6 +312,19 @@
       "type": "User",
       "site_admin": false
     },
+    "node_id": "MDc6UmVsZWFzZTQ0NzE5NTY=",
+    "tag_name": "4.0.0-canary.1",
+    "target_commitish": "master",
+    "name": "4.0.0-canary.1",
+    "draft": false,
+    "prerelease": true,
+    "created_at": "2016-10-24T22:07:30Z",
+    "published_at": "2016-10-24T22:09:18Z",
+    "assets": [
+
+    ],
+    "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/4.0.0-canary.1",
+    "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/4.0.0-canary.1",
     "body": "# 4.0.0-canary.1\n\n# Breaking Changes\n- Instead of allowing the user to write the path of a property, **now the deep flag performs a deep equality comparison when used with the `.property` assertion**.\n  If you want the old behavior of using the dot or bracket notation to denote the property you want to assert against **you can use the new `.nested` flag**. _(Related Issues: #745, #743, PRs: #758, #757)_\n  \n  ``` js\n  const obj = {a: 1};\n  \n  // The `.deep` flag now does deep equality comparisons\n  expect({foo: obj}).to.have.deep.property('foo', {a: 1});\n  \n  // Use the `nested` flag if you want to assert against a nested property using the bracket or dot notation\n  expect({foo: obj}).to.have.nested.property('foo.a', 1);\n  \n  // You can also use both flags combined\n  const obj2 = {a: {b: 2}};\n  expect({foo: obj2}).to.have.deep.nested.property('foo.a', {b: 2});\n  ```\n  \n  Please notice that the old methods which used the old behavior of the `deep` flag on the `assert` interface have been renamed. They all have had the `deep` word changed by the `nested` word. If you want to know more about this please take a look at #757.\n- Previously, `expect(obj).not.property(name, val)` would throw an Error if `obj` didn't have a property named `name`. This change causes the assertion to pass instead.\n  The `assert.propertyNotVal` and `assert.deepPropertyNotVal` assertions were renamed to `assert.notPropertyVal` and `assert.notDeepPropertyVal`, respectively. _(Related Issues: #16, #743, #758)_\n- You can now use the `deep` flag for the `.include` assertion in order to perform a `deep` equality check to see if something is included on the `target`.\n  Previously, `.include` was using strict equality (`===`) for non-negated property inclusion, but `deep` equality for negated property inclusion and array inclusion.\n  **This change causes the .include assertion to always use strict equality unless the deep flag is set.**\n  Please take a look [at this comment](https://github.com/chaijs/chai/issues/743#issuecomment-235763477) if you want to know more about it.  _(Related Issues: #743, PRs: #760, #761)_\n  \n  ``` js\n  const obj = {a: 1};\n  expect([obj]).to.deep.include({a:1});\n  expect({foo: obj}).to.deep.include({foo: {a:1}});\n  ```\n- Fix unstable behavior of the `NaN` assertion. Now we use the suggested ES6 implementation.\n  The new implementation is now more correct, strict and simple. While the old one threw false positives, the new implementation only checks if something is `NaN` (or not if the `.not` flag is used) and nothing else. _(Related Issues: #498, #682, #681, PRs: #508)_\n  \n  ``` js\n  // Only `NaN` will be considered to be `NaN` and nothing else\n  expect(NaN).to.be.NaN;\n  \n  // Anything that is not `NaN` cannot be considered as `NaN`\n  expect('randomString').not.to.be.NaN;\n  expect(true).not.to.be.NaN;\n  expect({}).not.to.be.NaN;\n  expect(4).not.to.be.NaN;\n  ```\n- Throw when calling `_super`on `overwriteMethod`if the method being overwritten is `undefined`.\n  Currently if the method you are trying to overwrite is not defined and your new method calls `_super` it will throw an `Error`._(Related Issues: #467, PRs: #528)_\n  Before this change, calling `_super` would simply return `this`.\n  \n  ``` js\n  // Considering the method `imaginaryMethod` does not exist, this would throw an error for example:\n  chai.use(function (chai, utilities) {\n    chai.Assertion.overwriteMethod('imaginaryMethod', function (_super) {\n      return function () {\n        _super.apply(this, arguments);\n      }\n    });\n  });\n  \n  // This will throw an error since you are calling `_super` which should be a method (in this case, the overwritten assertion) that does not exist\n  expect('anything').to.imaginaryMethod(); \n  ```\n- Now `showDiff` is turned on by default whenever the `showDiff` flag is anything other than `false`.\n  This issue will mostly affect plugin creators or anyone that made extensions to the core, since this affects the `Assertion.assert` method. _(Related Issues: #574, PRs: #515)_\n  \n  ``` js\n  // Now whenever you call `Assertion.assert` with anything that is not false for the `showDiff` flag it will be true\n  // The assertion error that was thrown will have the `showDiff` flag turned on since it was not passed to the `assert` method\n  try {\n    new chai.Assertion().assert(\n        'one' === 'two'\n      , 'expected #{this} to equal #{exp}'\n      , 'expected #{this} to not equal #{act}'\n      , 'one'\n      , 'two'\n    );\n  } catch(e) {\n    assert.isTrue(e.showDiff);\n  }\n  \n  // The assertion error that was thrown will have the `showDiff` flag turned off since here we passed `false` explicitly\n  try {\n    new chai.Assertion().assert(\n        'one' === 'two'\n      , 'expected #{this} to equal #{exp}'\n      , 'expected #{this} to not equal #{act}'\n      , 'one'\n      , 'two'\n      , false\n    );\n  } catch(e) {\n    assert.isFalse(e.showDiff);\n  }\n  ```\n- The Typed Array types are now truncated if they're too long (in this case, if they exceed the `truncateThreshold` value on the `config`). _(Related Issues: #441, PRs: #576)_\n  \n  ``` js\n  var arr = [];\n  for (var i = 1; i <= 1000; i++) {\n    arr.push(i);\n  }\n  \n  // The assertion below will truncate the diff shown and the enourmous typed array will be shown as:\n  // [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ...  ] instead of printing the whole typed array\n  chai.expect(new Float32Array(100)).to.equal(1);\n  ```\n- The assertions: `within`, `above`, `least`, `below`, `most`, `increase`, `decrease` will throw an error if the assertion's target or arguments are not numbers. _(Related Issues: #691, PRs: #692, #796)_\n  \n  ``` js\n  // These will throw errors, for example:\n  expect(null).to.be.within(0, 1);\n  expect(null).to.be.above(10);\n  expect(null).to.be.at.least(20);\n  expect(null).to.be.below(20);\n  expect(null).to.be.at.most(20);\n  expect(null).to.increase.by(20);\n  expect(null).to.decrease.by(20);\n  \n  // This will not:\n  expect('string').to.have.a.length.of.at.least(3);\n  ```\n- Previously, expect(obj).not.ownProperty(name, val) would throw an Error if obj didn't have an own property (non-inherited) named name. This change causes the assertion to pass instead. (Related Issues: #795, #, PRs: #744, #810)*\n  \n  ``` js\n  expect({ foo: 'baz' }).to.not.have.own.property('quux', 'baz');\n  ```\n- The `.empty` assertion will now throw when it is passed non-string primitives and functions _(PRs: #763, #812)_\n  \n  ``` js\n  // These will throw TypeErrors:\n  expect(Symbol()).to.be.empty;\n  expect(function() {}).to.be.empty;\n  expect(true).to.be.empty;\n  expect(1).to.be.empty\n  ```\n- Assertion subject (`obj`) changes when using `ownProperty` or `own.property` and thus enables chaining. _(Related Issues: #281, PRs: #641)_\n  \n  ``` js\n  expect({val: 20}).to.have.own.property('val').above(10);\n  ```\n- The `utils` (second argument passed to the `chai.use` callback function) no longer exports the `getPathValue` function. If you want to use that please use the [`pathval`](https://github.com/chaijs/pathval) module, which is what chai uses internally now. _(Related Issues: #457, #737, PRs: #830)_\n\n# New Features\n- Throw when non-existent property is read. _(Related Issues: #407, #766 PRs: #721, #770)_\n  **This is a potentially breaking change. Your build will fail if you have typos in your property assertions**\n  Before `4.x.x` when using property assertions they would not throw an error if you wrote it incorrectly.\n  The example below, for example, would pass:\n  \n  ``` js\n  expect(true).to.be.ture; // Oops, typo, now Chai will throw an Error\n  ```\n  \n  Since this implementation depends on ES6 `Proxies` it will only work on platforms that support it.\n  \n  **This property can be enabled (default) or disabled through the `config.useProxy` property**, for example:\n  \n  ``` js\n  chai.config.useProxy = false;  // disable use of Proxy\n  ```\n- Add fix suggestions when accessing a nonexistent property in proxy mode. _(Related Issues: #771, PRs: #782)_\n  When a nonexistent property is accessed in proxy mode, Chai will compute [the levenshtein distance](http://www.levenshtein.net) to all possible properties in order to suggest the best fix to the user.\n  \n  ``` js\n  expect(false).to.be.fals; // Error: Invalid Chai property: fals. Did you mean \"false\"?\n  expect('foo').to.be.undefind; // Error: Invalid Chai property: undefind. Did you mean \"undefined\"?\n  \n  // If the Levenshtein distance between the word and any Chai property is greater than 4, no fix will be suggested\n  expect('foo').to.be.fdsakfdsafsagsadgagsdfasf // error thrown, no fix suggested\n  ```\n- When non-chainable methods (including overwritten non-chainable methods) are used incorrectly an error will be thrown with a helpful error message. _(PRs: #789)_\n  \n  ``` js\n  expect(true).to.equal.true;  // Invalid Chai property: equal.true. See docs for proper usage of \"equal\".\n  ```\n- Add a new configuration setting that describes which keys will be ignored when checking for non-existing properties on an assertion before throwing an error.\n  Since this implementation depends on ES6 `Proxies` it will only work on platforms that support it. Also, if you disable `config.useProxy`, this setting will have no effect. *(Related Issues: #765, PRs: #774)\n  \n  ``` js\n  chai.config.proxyExcludedKeys.push('nonExistingProp');\n  \n  expect('my string').to.nonExistingProp; // This won't throw an error now\n  ```\n- Add script that registers should as a side-effect. _(Related Issues: #594, #693 PRs: #604)_\n  \n  ``` js\n  // You can now write:\n  import 'chai/should';\n  \n  // as opposed to:\n  import {should} from 'chai';\n  should();\n  ```\n  \n  You can also register should via a `mocha` option: `mocha --require chai/should`.\n- The `change` assertion accepts a function as object. _(Related Issues: #544, PRs: #607)_\n  \n  ``` js\n  // Now you can also check if the return value of a function changes, for example\n  assert.increases(\n    someOperation,\n    () => getSomething().length\n  )\n  ```\n-  You can also assert for a delta using the `by` assertion alongside the `change`, `increase` and `decrease` assertions. _(Related Issues: #339, PRs: #621)_\n  \n  ``` js\n  // You can use `.by` to assert the amount you want something to change\n  var obj = { val: 10 };\n  var increaseByTwo = function() { obj.val += 2 };\n  var decreaseByTwo = function() { obj.val -= 2 };\n  var increaseByThree = function() { obj.val += 3 };\n  \n  expect(increaseByThree).to.change(obj, 'val').by(3);\n  expect(increaseByTwo).to.increase(obj, 'val').by(2);\n  expect(decreaseByTwo).to.decrease(obj, 'val').by(2);\n  \n  // Please notice that if you want to assert something did change but not by some amount you need to use `.not` **after** the `change` related assertion\n  // Take a look at the examples below:\n  expect(increaseByThree).to.change(obj, 'val').but.not.by(5)\n  expect(increaseByTwo).to.increase(obj, 'val').but.not.by(1)\n  expect(decreaseByTwo).to.decrease(obj, 'val').but.not.by(1)\n  ```\n-  The `.keys` assertion can now operate on `map`s and `set`s. _(Related Issues: #632, PRs: #633, #668)_\n  \n  ``` js\n  // The `.keys` assertion now works on `map`s and `set`s natively, like the examples below:\n  expect(new Map([[{objKey: 'value'}, 'value'], [1, 2]])).to.contain.key({objKey: 'value'});\n  expect(new Map([[{objKey: 'value'}, 'value'], [1, 2]])).to.contain.any.keys([{objKey: 'value'}, {anotherKey: 'anotherValue'}]);\n  expect(new Map([['firstKey', 'firstValue'], [1, 2]])).to.contain.all.keys('firstKey', 1);\n  expect(new Set([['foo', 'bar'], ['example', 1]])).to.have.any.keys('foo');\n  \n  // You can also use `.deep` when asserting agains `Map`s and `Set`s\n  expect(new Map([[{objKey: 'value'}, 'value'], [1, 2]])).to.contain.any.deep.keys([{objKey: 'value'}, {anotherKey: 'anotherValue'}]);\n  expect(new Map([['firstKey', 'firstValue'], [1, 2]])).to.contain.all.deep.keys('firstKey', 1);\n  expect(new Set([['foo', 'bar'], ['example', 1]])).to.have.any.deep.keys('foo');\n  ```\n- Add compatibility with strict mode. _(Related Issues: #578, PRs: #665)_\n  \n  ``` js\n  // This means you can now run your code with the `--use_strict` flag on Node\n  // If want to understand more about this please read the issue related to this change\n  ```\n- Add `does` and `but` as new no-op assertion. _(Related Issues: #700, #339 PRs: #621, #701)_\n  \n  ``` js\n  // You can now write assertions forming phrases with these two new words:\n  expect(increaseByThree).to.change(obj, 'val').but.not.by(5);\n  expect(foobar).to.have.property(\"baz\").which.does.not.have.property(\"thing\");\n  ```\n- Allow `use` to be imported using new ES6 module syntax. _(Related Issues: #718, PRs: #724)_\n  \n  ``` js\n  // You can now import `use` using the ES6 module syntax, like the example below:\n  import sinonChai from \"sinon-chai\";\n  import {expect, use} from \"chai\";\n  \n  use(sinonChai);\n  ```\n  \n  You can also use `require` alongside the new ES6 destructuring feature:\n  \n  ``` js\n  const sinonChai = require('sinon-chai');\n  const {expect, use} = require(\"chai\");\n  \n  use(sinonChai);\n  ```\n- Add ordered flag for members assertion. _(Related Issues: #717, PRs: #728)_\n  \n  ``` js\n  // You can now use the `ordered` flag to assert the order of elements when using the `members` assertion:\n  expect([1, 2, 3]).to.include.ordered.members([1, 2]); // This passes\n  expect([1, 2, 3]).to.include.ordered.members([2, 3]); // This will fail! Read the docs to know more.\n  ```\n- Add `.own` flag to `.property` assertion. It does the same thing as `.ownProperty` and cannot be used alongisde the new `.nested` flag. _(Related Issues: #795, PRs: #810)_\n  \n  ``` js\n  expect({a: 1}).to.have.own.property('a');\n  \n  // The example below will thrown an Error\n  expect({a: {b: 1}}).to.have.own.nested.property('a.b', 1);\n  ```\n- Add `.deep` support to `.property` assertion. _(Related Issues: #795, PRs: #810)_\n  \n  ``` js\n  expect({ foo: { bar: 'baz' } }).to.have.deep.own.property('foo', { bar: 'baz' });\n  expect({ foo: { bar: { baz: 'quux' } } }).to.have.deep.nested.property('foo.bar', { baz: 'quux' });\n  ```\n- The `.empty` assertion will now work with ES6 collections _(PRs: #763, #812, #814)_\n  Please notice that this assertion will throw an error when it is passed a `WeakMap` or `WeakSet`.\n  \n  ``` js\n  expect(new Set()).to.be.empty;\n  expect(new Map()).to.be.empty;\n  \n  // The examples below will throw a TypeError:\n  expect(new WeakSet()).to.be.empty;\n  expect(new WeakMap()).to.be.empty;\n  ```\n\n# Bug Fixes\n- Fix missing msg argument for change related assertions. _(Related Issues: None, PRs: #606)_\n- The addMethod function returns a new assertion with flags copied over instead of `this`. _(Related Issues: #562, #684, #723, PRs: #642, #660)_\n- Fix stacktraces for overwritten properties and methods. _(Related Issues: #659, #661)_\n- Fix bug when testing Symbol equality with should syntax. _(Related Issues: #669, PRs: #672)_\n- Fix bug when asserting some valid ES6 keys. _(Related Issues: #674, PRs: #676)_\n- Fix bug caused when custom inspect method is used and this method calls stylize. _(PRs: #680)_\n- Fix ownProperty on objects with no prototype. _(Related Issues: #688, PRs: #689)_\n- Fix swapped expected and actual results for the `.members` assertion. _(Related Issues: #511, PRs: #702)_\n- Fix `same.members` to properly handle duplicates by treating each one as a unique member. _(Related Issues: #590, PRs: #739)_\n- Fix deep.have.same.members() that was not printing a diff. _(PRs: #509)_\n- Diff will be shown for assert's equal and notEqual methods. _(Related Issues: #790, PRs: #794)_\n- The `overwriteMethod`, `overwriteProperty`, `addChainableMethod`, `overwriteChainableMethod` functions will return new assertion with flags copied over instead of this. _(Related Issues: #562, #642, #791, PRs: #799)_\n"
   },
   {
@@ -333,6 +333,26 @@
     "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/2507943/assets{?name,label}",
     "html_url": "https://github.com/chaijs/chai/releases/tag/3.5.0",
     "id": 2507943,
+    "author": {
+      "login": "keithamus",
+      "id": 118266,
+      "node_id": "MDQ6VXNlcjExODI2Ng==",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/118266?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/keithamus",
+      "html_url": "https://github.com/keithamus",
+      "followers_url": "https://api.github.com/users/keithamus/followers",
+      "following_url": "https://api.github.com/users/keithamus/following{/other_user}",
+      "gists_url": "https://api.github.com/users/keithamus/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/keithamus/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/keithamus/subscriptions",
+      "organizations_url": "https://api.github.com/users/keithamus/orgs",
+      "repos_url": "https://api.github.com/users/keithamus/repos",
+      "events_url": "https://api.github.com/users/keithamus/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/keithamus/received_events",
+      "type": "User",
+      "site_admin": true
+    },
     "node_id": "MDc6UmVsZWFzZTI1MDc5NDM=",
     "tag_name": "3.5.0",
     "target_commitish": "master",
@@ -346,6 +366,14 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/3.5.0",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/3.5.0",
+    "body": "For `assert` fans: you now have `assert.includeDeepMembers()` which matches `expect().to.include.deep.members()` and `.should.include.deep.members()`!\n\nThis release also includes a variety of small bugfixes and documentation fixes. Most notably, we are now governed by a Code Of Conduct - which gives Chai contributors (including those who files issues, work on code, or documentation, or even just hang out on our Slack & Gitter channels) safety from harassment and discrimination.\n\nFull changes below:\n\n### Community Contributions\n- [#589](https://github.com/chaijs/chai/pull/589) Add `assert.includeDeepMembers()`. By [@qbolec](https://github.com/qbolec)\n- [#570](https://github.com/chaijs/chai/pull/570) Fix error when using $ signs in messages. By [@jurko-gospodnetic](https://github.com/jurko-gospodnetic)\n- [#575](https://github.com/chaijs/chai/pull/575) Clean browser before karma in Makefile. By [@lucasfcosta](https://github.com/lucasfcosta)\n- [#577](https://github.com/chaijs/chai/pull/577) Fix non ES5 compliant regexp. By [@zetaben](https://github.com/zetaben)\n- [#579](https://github.com/chaijs/chai/pull/579) Update karma for build. By [@greenkeeperio-bot](https://github.com/greenkeeperio-bot)\n\n#### Documentation fixes\n- [#561](https://github.com/chaijs/chai/pull/561) (docs) Added JSDocs to 'should' interface. By [@DavidBR-SW](https://github.com/DavidBR-SW)\n- [#565](https://github.com/chaijs/chai/pull/565) Add Code of Conduct. By [@keithamus](https://github.com/keithamus)\n- [#566](https://github.com/chaijs/chai/pull/566) Fix typo in .change() docs. By [@lizhengnacl](https://github.com/lizhengnacl)\n- [#567](https://github.com/chaijs/chai/pull/567) Add badges for Slack and Gitter. By [@outsideris](https://github.com/outsideris)\n- [#574](https://github.com/chaijs/chai/pull/573) clarified assert.isObject & assert.isNotObject documentation. By [@gdelmas](https://github.com/gdelmas)\n"
+  },
+  {
+    "url": "https://api.github.com/repos/chaijs/chai/releases/2129490",
+    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/2129490/assets",
+    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/2129490/assets{?name,label}",
+    "html_url": "https://github.com/chaijs/chai/releases/tag/3.4.2",
+    "id": 2129490,
     "author": {
       "login": "keithamus",
       "id": 118266,
@@ -366,14 +394,6 @@
       "type": "User",
       "site_admin": true
     },
-    "body": "For `assert` fans: you now have `assert.includeDeepMembers()` which matches `expect().to.include.deep.members()` and `.should.include.deep.members()`!\n\nThis release also includes a variety of small bugfixes and documentation fixes. Most notably, we are now governed by a Code Of Conduct - which gives Chai contributors (including those who files issues, work on code, or documentation, or even just hang out on our Slack & Gitter channels) safety from harassment and discrimination.\n\nFull changes below:\n\n### Community Contributions\n- [#589](https://github.com/chaijs/chai/pull/589) Add `assert.includeDeepMembers()`. By [@qbolec](https://github.com/qbolec)\n- [#570](https://github.com/chaijs/chai/pull/570) Fix error when using $ signs in messages. By [@jurko-gospodnetic](https://github.com/jurko-gospodnetic)\n- [#575](https://github.com/chaijs/chai/pull/575) Clean browser before karma in Makefile. By [@lucasfcosta](https://github.com/lucasfcosta)\n- [#577](https://github.com/chaijs/chai/pull/577) Fix non ES5 compliant regexp. By [@zetaben](https://github.com/zetaben)\n- [#579](https://github.com/chaijs/chai/pull/579) Update karma for build. By [@greenkeeperio-bot](https://github.com/greenkeeperio-bot)\n\n#### Documentation fixes\n- [#561](https://github.com/chaijs/chai/pull/561) (docs) Added JSDocs to 'should' interface. By [@DavidBR-SW](https://github.com/DavidBR-SW)\n- [#565](https://github.com/chaijs/chai/pull/565) Add Code of Conduct. By [@keithamus](https://github.com/keithamus)\n- [#566](https://github.com/chaijs/chai/pull/566) Fix typo in .change() docs. By [@lizhengnacl](https://github.com/lizhengnacl)\n- [#567](https://github.com/chaijs/chai/pull/567) Add badges for Slack and Gitter. By [@outsideris](https://github.com/outsideris)\n- [#574](https://github.com/chaijs/chai/pull/573) clarified assert.isObject & assert.isNotObject documentation. By [@gdelmas](https://github.com/gdelmas)\n"
-  },
-  {
-    "url": "https://api.github.com/repos/chaijs/chai/releases/2129490",
-    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/2129490/assets",
-    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/2129490/assets{?name,label}",
-    "html_url": "https://github.com/chaijs/chai/releases/tag/3.4.2",
-    "id": 2129490,
     "node_id": "MDc6UmVsZWFzZTIxMjk0OTA=",
     "tag_name": "3.4.2",
     "target_commitish": "master",
@@ -387,6 +407,14 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/3.4.2",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/3.4.2",
+    "body": "This is a small documentation bug fix release - it adds extra metatags to each public method to allow us to generate the docs easier for the website.\n\n### Community Contributions\n\n#### Documentation fixes\n- [#552](https://github.com/chaijs/chai/pull/552) (docs) Add namespace to all public methods. By [@keithamus](https://github.com/keithamus)\n"
+  },
+  {
+    "url": "https://api.github.com/repos/chaijs/chai/releases/2089896",
+    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/2089896/assets",
+    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/2089896/assets{?name,label}",
+    "html_url": "https://github.com/chaijs/chai/releases/tag/3.4.1",
+    "id": 2089896,
     "author": {
       "login": "keithamus",
       "id": 118266,
@@ -407,14 +435,6 @@
       "type": "User",
       "site_admin": true
     },
-    "body": "This is a small documentation bug fix release - it adds extra metatags to each public method to allow us to generate the docs easier for the website.\n\n### Community Contributions\n\n#### Documentation fixes\n- [#552](https://github.com/chaijs/chai/pull/552) (docs) Add namespace to all public methods. By [@keithamus](https://github.com/keithamus)\n"
-  },
-  {
-    "url": "https://api.github.com/repos/chaijs/chai/releases/2089896",
-    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/2089896/assets",
-    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/2089896/assets{?name,label}",
-    "html_url": "https://github.com/chaijs/chai/releases/tag/3.4.1",
-    "id": 2089896,
     "node_id": "MDc6UmVsZWFzZTIwODk4OTY=",
     "tag_name": "3.4.1",
     "target_commitish": "master",
@@ -428,6 +448,14 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/3.4.1",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/3.4.1",
+    "body": "This is a small documentation bug fix release - it just fixes a couple of issues with the documentation.\n\n### Community Contributions\n\n#### Documentation fixes\n- [#546](https://github.com/chaijs/chai/pull/546) Remove incorrect `.throws()` example. By [@Pklong](https://github.com/Pklong)\n- [#547](https://github.com/chaijs/chai/pull/547) Fix documentation syntax errors. By [@keithamus](https://github.com/keithamus)\n"
+  },
+  {
+    "url": "https://api.github.com/repos/chaijs/chai/releases/1994857",
+    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/1994857/assets",
+    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/1994857/assets{?name,label}",
+    "html_url": "https://github.com/chaijs/chai/releases/tag/3.4.0",
+    "id": 1994857,
     "author": {
       "login": "keithamus",
       "id": 118266,
@@ -448,14 +476,6 @@
       "type": "User",
       "site_admin": true
     },
-    "body": "This is a small documentation bug fix release - it just fixes a couple of issues with the documentation.\n\n### Community Contributions\n\n#### Documentation fixes\n- [#546](https://github.com/chaijs/chai/pull/546) Remove incorrect `.throws()` example. By [@Pklong](https://github.com/Pklong)\n- [#547](https://github.com/chaijs/chai/pull/547) Fix documentation syntax errors. By [@keithamus](https://github.com/keithamus)\n"
-  },
-  {
-    "url": "https://api.github.com/repos/chaijs/chai/releases/1994857",
-    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/1994857/assets",
-    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/1994857/assets{?name,label}",
-    "html_url": "https://github.com/chaijs/chai/releases/tag/3.4.0",
-    "id": 1994857,
     "node_id": "MDc6UmVsZWFzZTE5OTQ4NTc=",
     "tag_name": "3.4.0",
     "target_commitish": "master",
@@ -469,6 +489,14 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/3.4.0",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/3.4.0",
+    "body": "This release improves some confusing error messages, and adds some new assertions. Key points:\n- Feature: New assertion: `expect(1).oneOf([1,2,3])` - for asserting that a given value is one of a set.\n- Feature: `.include()` (and variants) will now give better error messages for bad object types. Before `expect(undefined).to.include(1)` would say \"expected undefined to include 1\", now says \"object tested must be an array, an object, or a string but undefined given\"\n- Feature: `.throw()` (and variants) can now better determine the Error types, for example `expect(foo).to.throw(node_assert.AssertionError)` now works.\n- Feature: `.closeTo` is now aliased as `.approximately`\n- BugFix: `.empty` changes from 3.3.0 have been reverted, as they caused breaking changes to arrays which manually set keys.\n\n### Community Contributions\n\n#### Code Features & Fixes\n- [#503](https://github.com/chaijs/chai/pull/503) Checking that argument given to expect is of the right type when using with include. By [@astorije](https://github.com/astorije)\n- [#446](https://github.com/chaijs/chai/pull/446) Make chai able to cope with AssertionErrors raised from node's assert. By [@danielbprice](https://github.com/danielbprice)\n- [#527](https://github.com/chaijs/chai/pull/527) Added approximately alias to close to. By [@danielbprice](https://github.com/danielbprice)\n- [#534](https://github.com/chaijs/chai/pull/534) `expect(inList).to.be.oneOf` assertion. By [@Droogans](https://github.com/Droogans)\n- [#538](https://github.com/chaijs/chai/pull/538) Revert .empty assertion change from PR #499. By [@tusbar](https://github.com/tusbar)\n\n#### Documentation fixes\n- [#521](https://github.com/chaijs/chai/pull/521) document how the `new Error` type gets detected by the `a`/`an` matcher. By [@jurko-gospodnetic](https://github.com/jurko-gospodnetic)\n- [#522](https://github.com/chaijs/chai/pull/522) Fixes spelling error \"everthing\" -> \"everything\". By [@austinpray](https://github.com/austinpray)\n- [#529](https://github.com/chaijs/chai/pull/529) Fix assert lengthOf example. By [@dxuehu](https://github.com/dxuehu)\n- [#533](https://github.com/chaijs/chai/pull/533) Fix typo in README.md. By [@astorije](https://github.com/astorije)\n"
+  },
+  {
+    "url": "https://api.github.com/repos/chaijs/chai/releases/1780975",
+    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/1780975/assets",
+    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/1780975/assets{?name,label}",
+    "html_url": "https://github.com/chaijs/chai/releases/tag/3.3.0",
+    "id": 1780975,
     "author": {
       "login": "keithamus",
       "id": 118266,
@@ -489,14 +517,6 @@
       "type": "User",
       "site_admin": true
     },
-    "body": "This release improves some confusing error messages, and adds some new assertions. Key points:\n- Feature: New assertion: `expect(1).oneOf([1,2,3])` - for asserting that a given value is one of a set.\n- Feature: `.include()` (and variants) will now give better error messages for bad object types. Before `expect(undefined).to.include(1)` would say \"expected undefined to include 1\", now says \"object tested must be an array, an object, or a string but undefined given\"\n- Feature: `.throw()` (and variants) can now better determine the Error types, for example `expect(foo).to.throw(node_assert.AssertionError)` now works.\n- Feature: `.closeTo` is now aliased as `.approximately`\n- BugFix: `.empty` changes from 3.3.0 have been reverted, as they caused breaking changes to arrays which manually set keys.\n\n### Community Contributions\n\n#### Code Features & Fixes\n- [#503](https://github.com/chaijs/chai/pull/503) Checking that argument given to expect is of the right type when using with include. By [@astorije](https://github.com/astorije)\n- [#446](https://github.com/chaijs/chai/pull/446) Make chai able to cope with AssertionErrors raised from node's assert. By [@danielbprice](https://github.com/danielbprice)\n- [#527](https://github.com/chaijs/chai/pull/527) Added approximately alias to close to. By [@danielbprice](https://github.com/danielbprice)\n- [#534](https://github.com/chaijs/chai/pull/534) `expect(inList).to.be.oneOf` assertion. By [@Droogans](https://github.com/Droogans)\n- [#538](https://github.com/chaijs/chai/pull/538) Revert .empty assertion change from PR #499. By [@tusbar](https://github.com/tusbar)\n\n#### Documentation fixes\n- [#521](https://github.com/chaijs/chai/pull/521) document how the `new Error` type gets detected by the `a`/`an` matcher. By [@jurko-gospodnetic](https://github.com/jurko-gospodnetic)\n- [#522](https://github.com/chaijs/chai/pull/522) Fixes spelling error \"everthing\" -> \"everything\". By [@austinpray](https://github.com/austinpray)\n- [#529](https://github.com/chaijs/chai/pull/529) Fix assert lengthOf example. By [@dxuehu](https://github.com/dxuehu)\n- [#533](https://github.com/chaijs/chai/pull/533) Fix typo in README.md. By [@astorije](https://github.com/astorije)\n"
-  },
-  {
-    "url": "https://api.github.com/repos/chaijs/chai/releases/1780975",
-    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/1780975/assets",
-    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/1780975/assets{?name,label}",
-    "html_url": "https://github.com/chaijs/chai/releases/tag/3.3.0",
-    "id": 1780975,
     "node_id": "MDc6UmVsZWFzZTE3ODA5NzU=",
     "tag_name": "3.3.0",
     "target_commitish": "master",
@@ -510,6 +530,14 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/3.3.0",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/3.3.0",
+    "body": "This release adds some new assertions and fixes some quite important, long standing bugs. Here are the cliff notes:\n- Bugfix: Property assertions that fail now show a stack trace!\n- Bugfix: If you've used the `frozen`, `sealed` or `extensible` assertions to test primitives (e.g. `expect(1).to.be.frozen`), you may have noticed that in older browsers (ES5) these fail, and in new ones (ES6) they pass. They have now been fixed to consistently pass\n- The `assert` interface has been given the following new methods, to align better with other interfaces:, `assert.isAtMost`, `assert.isAtLeast`, `assert.isNotTrue`, `assert.isNotFalse`.\n\n### Community Contributions\n\n#### Code Features & Fixes\n- [#494](https://github.com/chaijs/chai/pull/494) Add `assert.isNotTrue` and `assert.isNotFalse`.\n  By [@cezarykluczynski](https://github.com/cezarykluczynski)\n- [#496](https://github.com/chaijs/chai/pull/496) `frozen`/`extensible`/`sealed` assertions behave the same in ES6 and ES5 environments.\n  By [@astorije](https://github.com/astorije)\n- [#499](https://github.com/chaijs/chai/pull/499) Simplify the `.empty` assertion.\n  By [@Daveloper87](https://github.com/Daveloper87)\n- [#500](https://github.com/chaijs/chai/pull/500) Add `assert.isAtMost` and `assert.isAtLeast`.\n  By [@wraithan](https://github.com/wraithan)\n- [#512](https://github.com/chaijs/chai/pull/512) fixed expect('').to.contain('') so it passes. By [@dereke](https://github.com/dereke)\n- [#514](https://github.com/chaijs/chai/pull/514) Fix stack trace tracking for property assertions.\n  By [@kpdecker](https://github.com/kpdecker)\n\n#### Documentation fixes\n- [#495](https://github.com/chaijs/chai/pull/495) Correct misplaced docs for assertions (`isBelow`, `isAbove`, `isTrue`).\n  By [@cezarykluczynski](https://github.com/cezarykluczynski)\n"
+  },
+  {
+    "url": "https://api.github.com/repos/chaijs/chai/releases/1556980",
+    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/1556980/assets",
+    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/1556980/assets{?name,label}",
+    "html_url": "https://github.com/chaijs/chai/releases/tag/3.2.0",
+    "id": 1556980,
     "author": {
       "login": "keithamus",
       "id": 118266,
@@ -530,14 +558,6 @@
       "type": "User",
       "site_admin": true
     },
-    "body": "This release adds some new assertions and fixes some quite important, long standing bugs. Here are the cliff notes:\n- Bugfix: Property assertions that fail now show a stack trace!\n- Bugfix: If you've used the `frozen`, `sealed` or `extensible` assertions to test primitives (e.g. `expect(1).to.be.frozen`), you may have noticed that in older browsers (ES5) these fail, and in new ones (ES6) they pass. They have now been fixed to consistently pass\n- The `assert` interface has been given the following new methods, to align better with other interfaces:, `assert.isAtMost`, `assert.isAtLeast`, `assert.isNotTrue`, `assert.isNotFalse`.\n\n### Community Contributions\n\n#### Code Features & Fixes\n- [#494](https://github.com/chaijs/chai/pull/494) Add `assert.isNotTrue` and `assert.isNotFalse`.\n  By [@cezarykluczynski](https://github.com/cezarykluczynski)\n- [#496](https://github.com/chaijs/chai/pull/496) `frozen`/`extensible`/`sealed` assertions behave the same in ES6 and ES5 environments.\n  By [@astorije](https://github.com/astorije)\n- [#499](https://github.com/chaijs/chai/pull/499) Simplify the `.empty` assertion.\n  By [@Daveloper87](https://github.com/Daveloper87)\n- [#500](https://github.com/chaijs/chai/pull/500) Add `assert.isAtMost` and `assert.isAtLeast`.\n  By [@wraithan](https://github.com/wraithan)\n- [#512](https://github.com/chaijs/chai/pull/512) fixed expect('').to.contain('') so it passes. By [@dereke](https://github.com/dereke)\n- [#514](https://github.com/chaijs/chai/pull/514) Fix stack trace tracking for property assertions.\n  By [@kpdecker](https://github.com/kpdecker)\n\n#### Documentation fixes\n- [#495](https://github.com/chaijs/chai/pull/495) Correct misplaced docs for assertions (`isBelow`, `isAbove`, `isTrue`).\n  By [@cezarykluczynski](https://github.com/cezarykluczynski)\n"
-  },
-  {
-    "url": "https://api.github.com/repos/chaijs/chai/releases/1556980",
-    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/1556980/assets",
-    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/1556980/assets{?name,label}",
-    "html_url": "https://github.com/chaijs/chai/releases/tag/3.2.0",
-    "id": 1556980,
     "node_id": "MDc6UmVsZWFzZTE1NTY5ODA=",
     "tag_name": "3.2.0",
     "target_commitish": "master",
@@ -551,6 +571,14 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/3.2.0",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/3.2.0",
+    "body": "This release fixes a bug with the previous additions in `3.1.0`. `assert.frozen`/`expect().to.be.frozen`/`.should.be.frozen` all accidentally called `Object.isSealed()` instead. Now they correctly call `Object.isFrozen()`.\n\nIf you're using these features, please upgrade immediately.\n\nIt also adds aliases for a lot of `assert` methods: \n- expect/should..respondTo: respondsTo\n- expect/should..satisfy: satisfies\n- assert.ok: assert.isOk\n- assert.notOk: assert.isNotOk\n- assert.extensible: assert.isExtensible\n- assert.notExtensible: assert.isNotExtensible\n- assert.sealed: assert.isSealed\n- assert.notSealed: assert.isNotSealed\n- assert.frozen: assert.isFrozen\n- assert.notFrozen: assert.isNotFrozen\n\n### Community Contributions\n\n#### Code Features & Fixes\n- [#482](https://github.com/chaijs/chai/pull/482) Re-encrypt travis API key \n  By [@keithamus](https://github.com/keithamus)\n- [#482](https://github.com/chaijs/chai/pull/482) Add respondsTo and satisfies as aliases\n  By [@couchand](https://github.com/couchand)\n- [#485](https://github.com/chaijs/chai/pull/485) Fixing a typo in the `getProperties()` utility\n  By [@jluchiji](https://github.com/jluchiji)\n- [#486](https://github.com/chaijs/chai/pull/486) Added links to contribution guidelines to README\n  By [@jluchiji](https://github.com/jluchiji)\n- [#489](https://github.com/chaijs/chai/pull/489) Various work on aliases\n  By [@astorije](https://github.com/astorije)\n- [#490](https://github.com/chaijs/chai/pull/490) Fix wrong call to the underlying method when checking if an object is frozen\n  By [@astorije](https://github.com/astorije)\n"
+  },
+  {
+    "url": "https://api.github.com/repos/chaijs/chai/releases/1526590",
+    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/1526590/assets",
+    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/1526590/assets{?name,label}",
+    "html_url": "https://github.com/chaijs/chai/releases/tag/3.1.0",
+    "id": 1526590,
     "author": {
       "login": "keithamus",
       "id": 118266,
@@ -571,14 +599,6 @@
       "type": "User",
       "site_admin": true
     },
-    "body": "This release fixes a bug with the previous additions in `3.1.0`. `assert.frozen`/`expect().to.be.frozen`/`.should.be.frozen` all accidentally called `Object.isSealed()` instead. Now they correctly call `Object.isFrozen()`.\n\nIf you're using these features, please upgrade immediately.\n\nIt also adds aliases for a lot of `assert` methods: \n- expect/should..respondTo: respondsTo\n- expect/should..satisfy: satisfies\n- assert.ok: assert.isOk\n- assert.notOk: assert.isNotOk\n- assert.extensible: assert.isExtensible\n- assert.notExtensible: assert.isNotExtensible\n- assert.sealed: assert.isSealed\n- assert.notSealed: assert.isNotSealed\n- assert.frozen: assert.isFrozen\n- assert.notFrozen: assert.isNotFrozen\n\n### Community Contributions\n\n#### Code Features & Fixes\n- [#482](https://github.com/chaijs/chai/pull/482) Re-encrypt travis API key \n  By [@keithamus](https://github.com/keithamus)\n- [#482](https://github.com/chaijs/chai/pull/482) Add respondsTo and satisfies as aliases\n  By [@couchand](https://github.com/couchand)\n- [#485](https://github.com/chaijs/chai/pull/485) Fixing a typo in the `getProperties()` utility\n  By [@jluchiji](https://github.com/jluchiji)\n- [#486](https://github.com/chaijs/chai/pull/486) Added links to contribution guidelines to README\n  By [@jluchiji](https://github.com/jluchiji)\n- [#489](https://github.com/chaijs/chai/pull/489) Various work on aliases\n  By [@astorije](https://github.com/astorije)\n- [#490](https://github.com/chaijs/chai/pull/490) Fix wrong call to the underlying method when checking if an object is frozen\n  By [@astorije](https://github.com/astorije)\n"
-  },
-  {
-    "url": "https://api.github.com/repos/chaijs/chai/releases/1526590",
-    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/1526590/assets",
-    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/1526590/assets{?name,label}",
-    "html_url": "https://github.com/chaijs/chai/releases/tag/3.1.0",
-    "id": 1526590,
     "node_id": "MDc6UmVsZWFzZTE1MjY1OTA=",
     "tag_name": "3.1.0",
     "target_commitish": "master",
@@ -592,6 +612,14 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/3.1.0",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/3.1.0",
+    "body": "This release adds assertions for extensibility/freezing/sealing on objects:\n\n``` js\nassert.extensible({});\nassert.notExtensible(Object.preventExtensions({}));\nexpect(Object.preventExtensions({})).to.not.be.extensible;\nObject.preventExtensions({}).should.not.be.extensible;\n\nassert.notSealed({});\nassert.sealed(Object.seal({}));\nexpect(Object.seal({})).to.be.sealed;\nObject.seal({}).should.be.sealed;\n\nassert.notFrozen({});\nassert.frozen(Object.freeze({}));\nexpect(Object.freeze({})).to.be.frozen;\nObject.freeze({}).should.be.frozen;\n```\n\nIt also adds assertions for checking if a number is NaN:\n\n``` js\nassert.isNaN(NaN);\nassert.isNotNaN(5);\nexpect(NaN).to.be.NaN;\nexpect(5).to.not.be.NaN;\nNaN.should.be.NaN;\n5.should.not.be.NaN;\n```\n\n### Community Contributions\n\n#### Code Features & Fixes\n- [#480](https://github.com/chaijs/chai/pull/480) Added tests and expectations for NaN\n  By [@bradcypert](https://github.com/bradcypert)\n- [#479](https://github.com/chaijs/chai/pull/479) Assertions to test if objects are extensible/sealed/frozen.\n  By [@matthewlucock](https://github.com/matthewlucock)\n- [#468](https://github.com/chaijs/chai/pull/468) Remove moot `version` property from bower.json.\n  By [@kkirsche](https://github.com/kkirsche)\n"
+  },
+  {
+    "url": "https://api.github.com/repos/chaijs/chai/releases/1480946",
+    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/1480946/assets",
+    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/1480946/assets{?name,label}",
+    "html_url": "https://github.com/chaijs/chai/releases/tag/4.0.0",
+    "id": 1480946,
     "author": {
       "login": "keithamus",
       "id": 118266,
@@ -612,14 +640,6 @@
       "type": "User",
       "site_admin": true
     },
-    "body": "This release adds assertions for extensibility/freezing/sealing on objects:\n\n``` js\nassert.extensible({});\nassert.notExtensible(Object.preventExtensions({}));\nexpect(Object.preventExtensions({})).to.not.be.extensible;\nObject.preventExtensions({}).should.not.be.extensible;\n\nassert.notSealed({});\nassert.sealed(Object.seal({}));\nexpect(Object.seal({})).to.be.sealed;\nObject.seal({}).should.be.sealed;\n\nassert.notFrozen({});\nassert.frozen(Object.freeze({}));\nexpect(Object.freeze({})).to.be.frozen;\nObject.freeze({}).should.be.frozen;\n```\n\nIt also adds assertions for checking if a number is NaN:\n\n``` js\nassert.isNaN(NaN);\nassert.isNotNaN(5);\nexpect(NaN).to.be.NaN;\nexpect(5).to.not.be.NaN;\nNaN.should.be.NaN;\n5.should.not.be.NaN;\n```\n\n### Community Contributions\n\n#### Code Features & Fixes\n- [#480](https://github.com/chaijs/chai/pull/480) Added tests and expectations for NaN\n  By [@bradcypert](https://github.com/bradcypert)\n- [#479](https://github.com/chaijs/chai/pull/479) Assertions to test if objects are extensible/sealed/frozen.\n  By [@matthewlucock](https://github.com/matthewlucock)\n- [#468](https://github.com/chaijs/chai/pull/468) Remove moot `version` property from bower.json.\n  By [@kkirsche](https://github.com/kkirsche)\n"
-  },
-  {
-    "url": "https://api.github.com/repos/chaijs/chai/releases/1480946",
-    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/1480946/assets",
-    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/1480946/assets{?name,label}",
-    "html_url": "https://github.com/chaijs/chai/releases/tag/4.0.0",
-    "id": 1480946,
     "node_id": "MDc6UmVsZWFzZTE0ODA5NDY=",
     "tag_name": "4.0.0",
     "target_commitish": "master",
@@ -633,6 +653,14 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/4.0.0",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/4.0.0",
+    "body": "# 4.0.0\r\n\r\n4.0 has been a huge undertaking by the chai community! A lot has changed to ensure Chai 4 is a stable, reliable, well documented codebase. Here are just some of the major improvements:\r\n\r\n - almost all documentation has been rewritten, with detailed instructions on how assertions work, which flags they can be combined with and the best practices for how to use them.\r\n\r\n - deep equality has been rewritten from the ground up to support ES6 types like `Map` and `Set`, and better support existing types. It is now also much, much faster than before and allows us to bring some great improvements in upcoming releases.\r\n\r\n - we have made sure the `deep` flag now _only ever does deep equality_. Beforehand, it would sometimes also be used to test nested properties (for example `expect(foo).to.have.deep.property('bar.baz')`. For nested assertions, please now use the `.nested` flag.\r\n\r\n - many assertions have become more strict, which means you get better error messages explaining where things have gone wrong. For the most part, this wont mean error messages where there weren't error messages before, but it will mean better error messages to replace the, sometimes cryptic, default `TypeError` messages.\r\n\r\n - we've added detections and helpful error messages for common mistakes and typos. The error messages will, in some cases, point you to documentation or in other cases suggest alternatives. These messages will continue to be improved in future releases, so let us know if you have any suggestions!\r\n\r\n# Breaking Changes\r\n- We no longer support Node v0.10 and v0.12 (since their LTS has ended) _(PRs: #816, #901)_\r\n- Instead of allowing the user to write the path of a property, **now the deep flag performs a deep equality comparison when used with the `.property` assertion**.\r\n  If you want the old behavior of using the dot or bracket notation to denote the property you want to assert against **you can use the new `.nested` flag**. _(Related Issues: #745, #743, PRs: #758, #757)_\r\n\r\n  ``` js\r\n  const obj = {a: 1};\r\n\r\n  // The `.deep` flag now does deep equality comparisons\r\n  expect({foo: obj}).to.have.deep.property('foo', {a: 1});\r\n\r\n  // Use the `nested` flag if you want to assert against a nested property using the bracket or dot notation\r\n  expect({foo: obj}).to.have.nested.property('foo.a', 1);\r\n\r\n  // You can also use both flags combined\r\n  const obj2 = {a: {b: 2}};\r\n  expect({foo: obj2}).to.have.deep.nested.property('foo.a', {b: 2});\r\n  ```\r\n\r\n  Please notice that the old methods which used the old behavior of the `deep` flag on the `assert` interface have been renamed. They all have had the `deep` word changed by the `nested` word. If you want to know more about this please take a look at #757.\r\n\r\n- Previously, `expect(obj).not.property(name, val)` would throw an Error if `obj` didn't have a property named `name`. This change causes the assertion to pass instead.\r\n  The `assert.propertyNotVal` and `assert.deepPropertyNotVal` assertions were renamed to `assert.notPropertyVal` and `assert.notDeepPropertyVal`, respectively. _(Related Issues: #16, #743, #758)_\r\n\r\n- You can now use the `deep` flag for the `.include` assertion in order to perform a `deep` equality check to see if something is included on the `target`.\r\n  Previously, `.include` was using strict equality (`===`) for non-negated property inclusion, but `deep` equality for negated property inclusion and array inclusion.\r\n  **This change causes the .include assertion to always use strict equality unless the deep flag is set.**\r\n  Please take a look [at this comment](https://github.com/chaijs/chai/issues/743#issuecomment-235763477) if you want to know more about it.  _(Related Issues: #743, PRs: #760, #761)_\r\n\r\n  ``` js\r\n  const obj = {a: 1};\r\n  expect([obj]).to.deep.include({a:1});\r\n  expect({foo: obj}).to.deep.include({foo: {a:1}});\r\n  ```\r\n\r\n- Fix unstable behavior of the `NaN` assertion. Now we use the suggested ES6 implementation.\r\n  The new implementation is now more correct, strict and simple. While the old one threw false positives, the new implementation only checks if something is `NaN` (or not if the `.not` flag is used) and nothing else. _(Related Issues: #498, #682, #681, PRs: #508)_\r\n\r\n  ``` js\r\n  // Only `NaN` will be considered to be `NaN` and nothing else\r\n  expect(NaN).to.be.NaN;\r\n\r\n  // Anything that is not `NaN` cannot be considered as `NaN`\r\n  expect('randomString').not.to.be.NaN;\r\n  expect(true).not.to.be.NaN;\r\n  expect({}).not.to.be.NaN;\r\n  expect(4).not.to.be.NaN;\r\n  ```\r\n\r\n- The Typed Array types are now truncated if they're too long (in this case, if they exceed the `truncateThreshold` value on the `config`). _(Related Issues: #441, PRs: #576)_\r\n\r\n  ``` js\r\n  var arr = [];\r\n  for (var i = 1; i <= 1000; i++) {\r\n    arr.push(i);\r\n  }\r\n\r\n  // The assertion below will truncate the diff shown and the enormous typed array will be shown as:\r\n  // [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ...  ] instead of printing the whole typed array\r\n  chai.expect(new Float32Array(100)).to.equal(1);\r\n  ```\r\n\r\n- The assertions: `within`, `above`, `least`, `below`, `most`, `increase`, `decrease` will throw an error if the assertion's target or arguments are not numbers. _(Related Issues: #691, PRs: #692, #796)_\r\n\r\n  ``` js\r\n  // These will throw errors, for example:\r\n  expect(null).to.be.within(0, 1);\r\n  expect(null).to.be.above(10);\r\n  expect(null).to.be.at.least(20);\r\n  expect(null).to.be.below(20);\r\n  expect(null).to.be.at.most(20);\r\n  expect(null).to.increase.by(20);\r\n  expect(null).to.decrease.by(20);\r\n\r\n  // This will not:\r\n  expect('string').to.have.a.lengthOf.at.least(3);\r\n  ```\r\n\r\n- Previously, `expect(obj).not.ownProperty(name, val)` would throw an Error if obj didn't have an own property (non-inherited) named name. This change causes the assertion to pass instead. (Related Issues: #795, #, PRs: #744, #810)*\r\n\r\n  ``` js\r\n  expect({ foo: 'baz' }).to.not.have.own.property('quux', 'baz');\r\n  ```\r\n- The `.empty` assertion will now throw when it is passed non-string primitives and functions _(PRs: #763, #812)_\r\n  \r\n  ``` js\r\n  // These will throw TypeErrors:\r\n  expect(Symbol()).to.be.empty;\r\n  expect(function() {}).to.be.empty;\r\n  expect(true).to.be.empty;\r\n  expect(1).to.be.empty\r\n  ```\r\n- Assertion subject (`obj`) changes when using `ownProperty` or `own.property` and thus enables chaining. _(Related Issues: #281, PRs: #641)_\r\n  \r\n  ``` js\r\n  expect({val: 20}).to.have.own.property('val').above(10);\r\n  ```\r\n\r\n- The `.change`, `.increase`, and `.decrease` assertions changed from chainable method assertions to method assertions. They don't have any chaining behavior, and there's no generic semantic benefit to chaining them. _(Related Issues: #917, PRs: #925)_\r\n\r\n```\r\n// This will not work anymore because there is no benefit to chaining these assertions:\r\nexpect(function() {}).to.change.by(2)\r\nexpect(function() {}).to.increase.by(2)\r\nexpect(function() {}).to.decrease.by(2)\r\n```\r\n\r\n- The `utils` (second argument passed to the `chai.use` callback function) no longer exports the `getPathValue` function. If you want to use that please use the [`pathval`](https://github.com/chaijs/pathval) module, which is what chai uses internally now. _(Related Issues: #457, #737, PRs: #830)_\r\n\r\n- (*For plugin authors*) Throw when calling `_super`on `overwriteMethod`if the method being overwritten is `undefined`.\r\n  Currently if the method you are trying to overwrite is not defined and your new method calls `_super` it will throw an `Error`._(Related Issues: #467, PRs: #528)_\r\n  Before this change, calling `_super` would simply return `this`.\r\n\r\n  ``` js\r\n  // Considering the method `imaginaryMethod` does not exist, this would throw an error for example:\r\n  chai.use(function (chai, utilities) {\r\n    chai.Assertion.overwriteMethod('imaginaryMethod', function (_super) {\r\n      return function () {\r\n        _super.apply(this, arguments);\r\n      }\r\n    });\r\n  });\r\n\r\n  // This will throw an error since you are calling `_super` which should be a method (in this case, the overwritten assertion) that does not exist\r\n  expect('anything').to.imaginaryMethod(); \r\n  ```\r\n\r\n- (*For plugin authors*) Now `showDiff` is turned on by default whenever the `showDiff` flag is anything other than `false`.\r\n  This issue will mostly affect plugin creators or anyone that made extensions to the core, since this affects the `Assertion.assert` method. _(Related Issues: #574, PRs: #515)_\r\n\r\n  ``` js\r\n  // Now whenever you call `Assertion.assert` with anything that is not false for the `showDiff` flag it will be true\r\n  // The assertion error that was thrown will have the `showDiff` flag turned on since it was not passed to the `assert` method\r\n  try {\r\n    new chai.Assertion().assert(\r\n        'one' === 'two'\r\n      , 'expected #{this} to equal #{exp}'\r\n      , 'expected #{this} to not equal #{act}'\r\n      , 'one'\r\n      , 'two'\r\n    );\r\n  } catch(e) {\r\n    assert.isTrue(e.showDiff);\r\n  }\r\n\r\n  // The assertion error that was thrown will have the `showDiff` flag turned off since here we passed `false` explicitly\r\n  try {\r\n    new chai.Assertion().assert(\r\n        'one' === 'two'\r\n      , 'expected #{this} to equal #{exp}'\r\n      , 'expected #{this} to not equal #{act}'\r\n      , 'one'\r\n      , 'two'\r\n      , false\r\n    );\r\n  } catch(e) {\r\n    assert.isFalse(e.showDiff);\r\n  }\r\n  ```\r\n\r\n# New Features\r\n\r\n- Throw when non-existent property is read. _(Related Issues: #407, #766 PRs: #721, #770)_\r\n  **This is a potentially breaking change. Your build will fail if you have typos in your property assertions**\r\n  Before `4.x.x` when using property assertions they would not throw an error if you wrote it incorrectly.\r\n  The example below, for example, would pass:\r\n\r\n  ``` js\r\n  expect(true).to.be.ture; // Oops, typo, now Chai will throw an Error\r\n  ```\r\n\r\n  Since this implementation depends on ES6 `Proxies` it will only work on platforms that support it.\r\n\r\n  **This property can be enabled (default) or disabled through the `config.useProxy` property**, for example:\r\n\r\n  ``` js\r\n  chai.config.useProxy = false;  // disable use of Proxy\r\n  ```\r\n\r\n- Add fix suggestions when accessing a nonexistent property in proxy mode. _(Related Issues: #771, PRs: #782)_\r\n  When a nonexistent property is accessed in proxy mode, Chai will compute [the levenshtein distance](http://www.levenshtein.net) to all possible properties in order to suggest the best fix to the user.\r\n\r\n  ``` js\r\n  expect(false).to.be.fals; // Error: Invalid Chai property: fals. Did you mean \"false\"?\r\n  expect('foo').to.be.undefind; // Error: Invalid Chai property: undefind. Did you mean \"undefined\"?\r\n\r\n  // If the Levenshtein distance between the word and any Chai property is greater than 4, no fix will be suggested\r\n  expect('foo').to.be.fdsakfdsafsagsadgagsdfasf // error thrown, no fix suggested\r\n  ```\r\n\r\n- When non-chainable methods (including overwritten non-chainable methods) are used incorrectly an error will be thrown with a helpful error message. _(PRs: #789)_\r\n\r\n  ``` js\r\n  expect(true).to.equal.true;  // Invalid Chai property: equal.true. See docs for proper usage of \"equal\".\r\n  ```\r\n\r\n- Add a new configuration setting that describes which keys will be ignored when checking for non-existing properties on an assertion before throwing an error.\r\n  Since this implementation depends on ES6 `Proxies` it will only work on platforms that support it. Also, if you disable `config.useProxy`, this setting will have no effect. _(Related Issues: #765, PRs: #774)_\r\n\r\n  ``` js\r\n  chai.config.proxyExcludedKeys.push('nonExistingProp');\r\n\r\n  expect('my string').to.nonExistingProp; // This won't throw an error now\r\n  ```\r\n\r\n- Add script that registers should as a side-effect. _(Related Issues: #594, #693 PRs: #604)_\r\n\r\n  ``` js\r\n  // You can now write:\r\n  import 'chai/should';\r\n\r\n  // as opposed to:\r\n  import {should} from 'chai';\r\n  should();\r\n  ```\r\n\r\n  You can also register should via a `mocha` option: `mocha --require chai/should`.\r\n\r\n- The `change` assertion accepts a function as object. _(Related Issues: #544, PRs: #607)_\r\n\r\n  ``` js\r\n  // Now you can also check if the return value of a function changes, for example\r\n  assert.increases(\r\n    someOperation,\r\n    () => getSomething().length\r\n  )\r\n  ```\r\n\r\n-  You can also assert for a delta using the `by` assertion alongside the `change`, `increase` and `decrease` assertions. _(Related Issues: #339, PRs: #621)_\r\n\r\n  ``` js\r\n  // You can use `.by` to assert the amount you want something to change\r\n  var obj = { val: 10 };\r\n  var increaseByTwo = function() { obj.val += 2 };\r\n  var decreaseByTwo = function() { obj.val -= 2 };\r\n  var increaseByThree = function() { obj.val += 3 };\r\n\r\n  expect(increaseByThree).to.change(obj, 'val').by(3);\r\n  expect(increaseByTwo).to.increase(obj, 'val').by(2);\r\n  expect(decreaseByTwo).to.decrease(obj, 'val').by(2);\r\n\r\n  // Please notice that if you want to assert something did change but not by some amount you need to use `.not` **after** the `change` related assertion\r\n  // Take a look at the examples below:\r\n  expect(increaseByThree).to.change(obj, 'val').but.not.by(5)\r\n  expect(increaseByTwo).to.increase(obj, 'val').but.not.by(1)\r\n  expect(decreaseByTwo).to.decrease(obj, 'val').but.not.by(1)\r\n  ```\r\n\r\n-  The `.keys` assertion can now operate on `map`s and `set`s. _(Related Issues: #632, PRs: #633, #668)_\r\n\r\n  ``` js\r\n  // The `.keys` assertion now works on `map`s and `set`s natively, like the examples below:\r\n  expect(new Map([[{objKey: 'value'}, 'value'], [1, 2]])).to.contain.key({objKey: 'value'});\r\n  expect(new Map([[{objKey: 'value'}, 'value'], [1, 2]])).to.contain.any.keys([{objKey: 'value'}, {anotherKey: 'anotherValue'}]);\r\n  expect(new Map([['firstKey', 'firstValue'], [1, 2]])).to.contain.all.keys('firstKey', 1);\r\n  expect(new Set([['foo', 'bar'], ['example', 1]])).to.have.any.keys('foo');\r\n\r\n  // You can also use `.deep` when asserting agains `Map`s and `Set`s\r\n  expect(new Map([[{objKey: 'value'}, 'value'], [1, 2]])).to.contain.any.deep.keys([{objKey: 'value'}, {anotherKey: 'anotherValue'}]);\r\n  expect(new Map([['firstKey', 'firstValue'], [1, 2]])).to.contain.all.deep.keys('firstKey', 1);\r\n  expect(new Set([['foo', 'bar'], ['example', 1]])).to.have.any.deep.keys('foo');\r\n  ```\r\n\r\n- Add compatibility with strict mode. _(Related Issues: #578, PRs: #665)_\r\n\r\n  ``` js\r\n  // This means you can now run your code with the `--use_strict` flag on Node\r\n  // If want to understand more about this please read the issue related to this change\r\n  ```\r\n\r\n- Add `does` and `but` as new no-op assertion. _(Related Issues: #700, #339 PRs: #621, #701)_\r\n\r\n  ``` js\r\n  // You can now write assertions forming phrases with these two new words:\r\n  expect(increaseByThree).to.change(obj, 'val').but.not.by(5);\r\n  expect(foobar).to.have.property(\"baz\").which.does.not.have.property(\"thing\");\r\n  ```\r\n\r\n- Allow `use` to be imported using new ES6 module syntax. _(Related Issues: #718, PRs: #724)_\r\n\r\n  ``` js\r\n  // You can now import `use` using the ES6 module syntax, like the example below:\r\n  import sinonChai from \"sinon-chai\";\r\n  import {expect, use} from \"chai\";\r\n\r\n  use(sinonChai);\r\n  ```\r\n\r\n  You can also use `require` alongside the new ES6 destructuring feature:\r\n\r\n  ``` js\r\n  const sinonChai = require('sinon-chai');\r\n  const {expect, use} = require(\"chai\");\r\n\r\n  use(sinonChai);\r\n  ```\r\n\r\n- Add ordered flag for members assertion. _(Related Issues: #717, PRs: #728)_\r\n\r\n  ``` js\r\n  // You can now use the `ordered` flag to assert the order of elements when using the `members` assertion:\r\n  expect([1, 2, 3]).to.include.ordered.members([1, 2]); // This passes\r\n  expect([1, 2, 3]).to.include.ordered.members([2, 3]); // This will fail! Read the docs to know more.\r\n  ```\r\n\r\n- Add `.own` flag to `.property` assertion. It does the same thing as `.ownProperty` and cannot be used alongisde the new `.nested` flag. _(Related Issues: #795, PRs: #810)_\r\n\r\n  ``` js\r\n  expect({a: 1}).to.have.own.property('a');\r\n\r\n  // The example below will thrown an Error\r\n  expect({a: {b: 1}}).to.have.own.nested.property('a.b', 1);\r\n  ```\r\n\r\n- Add `.deep` support to `.property` assertion. _(Related Issues: #795, PRs: #810)_\r\n\r\n  ``` js\r\n  expect({ foo: { bar: 'baz' } }).to.have.deep.own.property('foo', { bar: 'baz' });\r\n  expect({ foo: { bar: { baz: 'quux' } } }).to.have.deep.nested.property('foo.bar', { baz: 'quux' });\r\n  ```\r\n\r\n- The `.empty` assertion will now work with ES6 collections _(PRs: #763, #812, #814)_\r\n  Please notice that this assertion will throw an error when it is passed a `WeakMap` or `WeakSet`.\r\n\r\n  ``` js\r\n  expect(new Set()).to.be.empty;\r\n  expect(new Map()).to.be.empty;\r\n\r\n  // The examples below will throw a TypeError:\r\n  expect(new WeakSet()).to.be.empty;\r\n  expect(new WeakMap()).to.be.empty;\r\n  ```\r\n\r\n- Add script that registers `should` as a side-effect. This change allows you to register `should` via a mocha option by using: `mocha spec.js -r chai/register-should` and also allows you to register the testing style globally. _(Issues: #693, PRs: #868)_\r\n\r\n  ``` js\r\n  require('chai/register-should');  // Using Should style\r\n  ```\r\n\r\n- Add script that registers `assert` as a side-effect. This change allows you to register `assert` via a mocha option by using: `mocha spec.js -r chai/register-assert` _(Issues: #693, PRs: #868, #872)_\r\n\r\n ``` js\r\n require('chai/register-assert');  // Using Assert style\r\n ```\r\n\r\n- Add script that registers `expect` as a side-effect. This change allows you to register `expect` via a mocha option by using: `mocha spec.js -r chai/register-expect` _(Issues: #693, PRs: #868, #872)_\r\n\r\n  ``` js\r\n  require('chai/register-expect');  // Using Expect style\r\n  ```\r\n\r\n- When the `length` assertion is chained directly off of an uninvoked method, it references `function`'s built-in `length` property instead of Chai's `length` assertion. This commit adds a guard to Chai methods to detect this problem and throw a helpful error message that advises the user on how to correct it. _(Issues: #684, #841, PRs: #897)_\r\n\r\n- Allows the `lockSsfi` flag to be set when creating new Assertion. This flag controls whether or not the given `ssfi` flag should retain its current value, even as assertions are chained off of this object. This is usually set to `true` when creating a new assertion from within another assertion. It's also temporarily set to `true` before an overwritten assertion gets called by the overwriting assertion. _(Issues: #878, #904, PRs: #922)_\r\n\r\n  ```js\r\n  // This will lock the stack stack function from this line on\r\n  // The SSFI is the reference to the starting point for removing irrelevant frames from the stack trace\r\n  new Assertion(obj, msg, ssfi, true).to.have.property('length')\r\n  ```\r\n\r\n- The `nestedInclude`, `deepNestedInclude`, `ownInclude` and `deepOwnInclude` assertions and there negated pairs were added to the `assert` interface. _(Issues: #905, PRs: #964)_\r\n\r\n  ```js\r\n  // '[]' and '.' in property names can be escaped using double backslashes.\r\n\r\n  assert.nestedInclude({'.a': {'b': 'x'}}, {'\\\\.a.[b]': 'x'});\r\n  assert.notNestedInclude({'.a': {'b': 'x'}}, {'\\\\.a.b': 'y'});\r\n\r\n  assert.deepNestedInclude({a: {b: [{x: 1}]}}, {'a.b[0]': {x: 1}});\r\n  assert.notDeepNestedInclude({a: {b: [{x: 1}]}}, {'a.b[0]': {y: 1}});\r\n\r\n  assert.ownInclude({ a: 1 }, { a: 1 });\r\n  assert.notOwnInclude({ a: 1 }, { b: 2 });\r\n\r\n  assert.deepOwnInclude({a: {b: 2}}, {a: {b: 2}});\r\n  assert.notDeepOwnInclude({a: {b: 2}}, {a: {c: 3}});\r\n  ```\r\n\r\n\r\n\r\n# Bug Fixes\r\n- Fix missing msg argument for change related assertions. _(Related Issues: None, PRs: #606)_\r\n- The addMethod function returns a new assertion with flags copied over instead of `this`. _(Related Issues: #562, #684, #723, PRs: #642, #660)_\r\n- Fix stacktraces for overwritten properties and methods. _(Related Issues: #659, #661)_\r\n- Fix bug when testing Symbol equality with should syntax. _(Related Issues: #669, PRs: #672)_\r\n- Fix bug when asserting some valid ES6 keys. _(Related Issues: #674, PRs: #676)_\r\n- Fix bug caused when custom inspect method is used and this method calls stylize. _(PRs: #680)_\r\n- Fix ownProperty on objects with no prototype. _(Related Issues: #688, PRs: #689)_\r\n- Fix swapped expected and actual results for the `.members` assertion. _(Related Issues: #511, PRs: #702)_\r\n- Fix `same.members` to properly handle duplicates by treating each one as a unique member. _(Related Issues: #590, PRs: #739)_\r\n- Fix deep.have.same.members() that was not printing a diff. _(PRs: #509)_\r\n- Diff will be shown for assert's equal and notEqual methods. _(Related Issues: #790, PRs: #794)_\r\n- The `overwriteMethod`, `overwriteProperty`, `addChainableMethod`, `overwriteChainableMethod` functions will return new assertion with flags copied over instead of this. _(Related Issues: #562, #642, #791, PRs: #799)_\r\n- Proxy-related implementation frames were showing up in the stack traces for failed property assertions. Now we remove them by setting the proxy getter (instead of the property getter) as the starting point to remove all implementation frames. _(PRs: #884)_\r\n- Negated `keys` assertions will now consider size of sets. _(Related Issues: #919, PRs: #924)_\r\n- Whenever passed something that is not an instance of a function, the instanceof assertion will now throw an error informing the user that he should pass a constructor to this assertion, but instead he has passed <type>. _(Related Issues: #893, PRs: #924)_\r\n- Fix all issues on expect/should interfaces that were causing implementation frames to leak through. Also improve the internal Chai error test helper to validate stack traces. _(Issues: #878, #904, PRs: #922)_\r\n- This fixes custom messages not always being respected. _(Issues: #922, #947, #904, PRs: #916, #923)_\r\n- Fix PhantomJS 1.x incompatibility _(Issues: #966, PRs: #890)_\r\n"
+  },
+  {
+    "url": "https://api.github.com/repos/chaijs/chai/releases/1374272",
+    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/1374272/assets",
+    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/1374272/assets{?name,label}",
+    "html_url": "https://github.com/chaijs/chai/releases/tag/3.0.0",
+    "id": 1374272,
     "author": {
       "login": "keithamus",
       "id": 118266,
@@ -653,14 +681,6 @@
       "type": "User",
       "site_admin": true
     },
-    "body": "# 4.0.0\r\n\r\n4.0 has been a huge undertaking by the chai community! A lot has changed to ensure Chai 4 is a stable, reliable, well documented codebase. Here are just some of the major improvements:\r\n\r\n - almost all documentation has been rewritten, with detailed instructions on how assertions work, which flags they can be combined with and the best practices for how to use them.\r\n\r\n - deep equality has been rewritten from the ground up to support ES6 types like `Map` and `Set`, and better support existing types. It is now also much, much faster than before and allows us to bring some great improvements in upcoming releases.\r\n\r\n - we have made sure the `deep` flag now _only ever does deep equality_. Beforehand, it would sometimes also be used to test nested properties (for example `expect(foo).to.have.deep.property('bar.baz')`. For nested assertions, please now use the `.nested` flag.\r\n\r\n - many assertions have become more strict, which means you get better error messages explaining where things have gone wrong. For the most part, this wont mean error messages where there weren't error messages before, but it will mean better error messages to replace the, sometimes cryptic, default `TypeError` messages.\r\n\r\n - we've added detections and helpful error messages for common mistakes and typos. The error messages will, in some cases, point you to documentation or in other cases suggest alternatives. These messages will continue to be improved in future releases, so let us know if you have any suggestions!\r\n\r\n# Breaking Changes\r\n- We no longer support Node v0.10 and v0.12 (since their LTS has ended) _(PRs: #816, #901)_\r\n- Instead of allowing the user to write the path of a property, **now the deep flag performs a deep equality comparison when used with the `.property` assertion**.\r\n  If you want the old behavior of using the dot or bracket notation to denote the property you want to assert against **you can use the new `.nested` flag**. _(Related Issues: #745, #743, PRs: #758, #757)_\r\n\r\n  ``` js\r\n  const obj = {a: 1};\r\n\r\n  // The `.deep` flag now does deep equality comparisons\r\n  expect({foo: obj}).to.have.deep.property('foo', {a: 1});\r\n\r\n  // Use the `nested` flag if you want to assert against a nested property using the bracket or dot notation\r\n  expect({foo: obj}).to.have.nested.property('foo.a', 1);\r\n\r\n  // You can also use both flags combined\r\n  const obj2 = {a: {b: 2}};\r\n  expect({foo: obj2}).to.have.deep.nested.property('foo.a', {b: 2});\r\n  ```\r\n\r\n  Please notice that the old methods which used the old behavior of the `deep` flag on the `assert` interface have been renamed. They all have had the `deep` word changed by the `nested` word. If you want to know more about this please take a look at #757.\r\n\r\n- Previously, `expect(obj).not.property(name, val)` would throw an Error if `obj` didn't have a property named `name`. This change causes the assertion to pass instead.\r\n  The `assert.propertyNotVal` and `assert.deepPropertyNotVal` assertions were renamed to `assert.notPropertyVal` and `assert.notDeepPropertyVal`, respectively. _(Related Issues: #16, #743, #758)_\r\n\r\n- You can now use the `deep` flag for the `.include` assertion in order to perform a `deep` equality check to see if something is included on the `target`.\r\n  Previously, `.include` was using strict equality (`===`) for non-negated property inclusion, but `deep` equality for negated property inclusion and array inclusion.\r\n  **This change causes the .include assertion to always use strict equality unless the deep flag is set.**\r\n  Please take a look [at this comment](https://github.com/chaijs/chai/issues/743#issuecomment-235763477) if you want to know more about it.  _(Related Issues: #743, PRs: #760, #761)_\r\n\r\n  ``` js\r\n  const obj = {a: 1};\r\n  expect([obj]).to.deep.include({a:1});\r\n  expect({foo: obj}).to.deep.include({foo: {a:1}});\r\n  ```\r\n\r\n- Fix unstable behavior of the `NaN` assertion. Now we use the suggested ES6 implementation.\r\n  The new implementation is now more correct, strict and simple. While the old one threw false positives, the new implementation only checks if something is `NaN` (or not if the `.not` flag is used) and nothing else. _(Related Issues: #498, #682, #681, PRs: #508)_\r\n\r\n  ``` js\r\n  // Only `NaN` will be considered to be `NaN` and nothing else\r\n  expect(NaN).to.be.NaN;\r\n\r\n  // Anything that is not `NaN` cannot be considered as `NaN`\r\n  expect('randomString').not.to.be.NaN;\r\n  expect(true).not.to.be.NaN;\r\n  expect({}).not.to.be.NaN;\r\n  expect(4).not.to.be.NaN;\r\n  ```\r\n\r\n- The Typed Array types are now truncated if they're too long (in this case, if they exceed the `truncateThreshold` value on the `config`). _(Related Issues: #441, PRs: #576)_\r\n\r\n  ``` js\r\n  var arr = [];\r\n  for (var i = 1; i <= 1000; i++) {\r\n    arr.push(i);\r\n  }\r\n\r\n  // The assertion below will truncate the diff shown and the enormous typed array will be shown as:\r\n  // [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ...  ] instead of printing the whole typed array\r\n  chai.expect(new Float32Array(100)).to.equal(1);\r\n  ```\r\n\r\n- The assertions: `within`, `above`, `least`, `below`, `most`, `increase`, `decrease` will throw an error if the assertion's target or arguments are not numbers. _(Related Issues: #691, PRs: #692, #796)_\r\n\r\n  ``` js\r\n  // These will throw errors, for example:\r\n  expect(null).to.be.within(0, 1);\r\n  expect(null).to.be.above(10);\r\n  expect(null).to.be.at.least(20);\r\n  expect(null).to.be.below(20);\r\n  expect(null).to.be.at.most(20);\r\n  expect(null).to.increase.by(20);\r\n  expect(null).to.decrease.by(20);\r\n\r\n  // This will not:\r\n  expect('string').to.have.a.lengthOf.at.least(3);\r\n  ```\r\n\r\n- Previously, `expect(obj).not.ownProperty(name, val)` would throw an Error if obj didn't have an own property (non-inherited) named name. This change causes the assertion to pass instead. (Related Issues: #795, #, PRs: #744, #810)*\r\n\r\n  ``` js\r\n  expect({ foo: 'baz' }).to.not.have.own.property('quux', 'baz');\r\n  ```\r\n- The `.empty` assertion will now throw when it is passed non-string primitives and functions _(PRs: #763, #812)_\r\n  \r\n  ``` js\r\n  // These will throw TypeErrors:\r\n  expect(Symbol()).to.be.empty;\r\n  expect(function() {}).to.be.empty;\r\n  expect(true).to.be.empty;\r\n  expect(1).to.be.empty\r\n  ```\r\n- Assertion subject (`obj`) changes when using `ownProperty` or `own.property` and thus enables chaining. _(Related Issues: #281, PRs: #641)_\r\n  \r\n  ``` js\r\n  expect({val: 20}).to.have.own.property('val').above(10);\r\n  ```\r\n\r\n- The `.change`, `.increase`, and `.decrease` assertions changed from chainable method assertions to method assertions. They don't have any chaining behavior, and there's no generic semantic benefit to chaining them. _(Related Issues: #917, PRs: #925)_\r\n\r\n```\r\n// This will not work anymore because there is no benefit to chaining these assertions:\r\nexpect(function() {}).to.change.by(2)\r\nexpect(function() {}).to.increase.by(2)\r\nexpect(function() {}).to.decrease.by(2)\r\n```\r\n\r\n- The `utils` (second argument passed to the `chai.use` callback function) no longer exports the `getPathValue` function. If you want to use that please use the [`pathval`](https://github.com/chaijs/pathval) module, which is what chai uses internally now. _(Related Issues: #457, #737, PRs: #830)_\r\n\r\n- (*For plugin authors*) Throw when calling `_super`on `overwriteMethod`if the method being overwritten is `undefined`.\r\n  Currently if the method you are trying to overwrite is not defined and your new method calls `_super` it will throw an `Error`._(Related Issues: #467, PRs: #528)_\r\n  Before this change, calling `_super` would simply return `this`.\r\n\r\n  ``` js\r\n  // Considering the method `imaginaryMethod` does not exist, this would throw an error for example:\r\n  chai.use(function (chai, utilities) {\r\n    chai.Assertion.overwriteMethod('imaginaryMethod', function (_super) {\r\n      return function () {\r\n        _super.apply(this, arguments);\r\n      }\r\n    });\r\n  });\r\n\r\n  // This will throw an error since you are calling `_super` which should be a method (in this case, the overwritten assertion) that does not exist\r\n  expect('anything').to.imaginaryMethod(); \r\n  ```\r\n\r\n- (*For plugin authors*) Now `showDiff` is turned on by default whenever the `showDiff` flag is anything other than `false`.\r\n  This issue will mostly affect plugin creators or anyone that made extensions to the core, since this affects the `Assertion.assert` method. _(Related Issues: #574, PRs: #515)_\r\n\r\n  ``` js\r\n  // Now whenever you call `Assertion.assert` with anything that is not false for the `showDiff` flag it will be true\r\n  // The assertion error that was thrown will have the `showDiff` flag turned on since it was not passed to the `assert` method\r\n  try {\r\n    new chai.Assertion().assert(\r\n        'one' === 'two'\r\n      , 'expected #{this} to equal #{exp}'\r\n      , 'expected #{this} to not equal #{act}'\r\n      , 'one'\r\n      , 'two'\r\n    );\r\n  } catch(e) {\r\n    assert.isTrue(e.showDiff);\r\n  }\r\n\r\n  // The assertion error that was thrown will have the `showDiff` flag turned off since here we passed `false` explicitly\r\n  try {\r\n    new chai.Assertion().assert(\r\n        'one' === 'two'\r\n      , 'expected #{this} to equal #{exp}'\r\n      , 'expected #{this} to not equal #{act}'\r\n      , 'one'\r\n      , 'two'\r\n      , false\r\n    );\r\n  } catch(e) {\r\n    assert.isFalse(e.showDiff);\r\n  }\r\n  ```\r\n\r\n# New Features\r\n\r\n- Throw when non-existent property is read. _(Related Issues: #407, #766 PRs: #721, #770)_\r\n  **This is a potentially breaking change. Your build will fail if you have typos in your property assertions**\r\n  Before `4.x.x` when using property assertions they would not throw an error if you wrote it incorrectly.\r\n  The example below, for example, would pass:\r\n\r\n  ``` js\r\n  expect(true).to.be.ture; // Oops, typo, now Chai will throw an Error\r\n  ```\r\n\r\n  Since this implementation depends on ES6 `Proxies` it will only work on platforms that support it.\r\n\r\n  **This property can be enabled (default) or disabled through the `config.useProxy` property**, for example:\r\n\r\n  ``` js\r\n  chai.config.useProxy = false;  // disable use of Proxy\r\n  ```\r\n\r\n- Add fix suggestions when accessing a nonexistent property in proxy mode. _(Related Issues: #771, PRs: #782)_\r\n  When a nonexistent property is accessed in proxy mode, Chai will compute [the levenshtein distance](http://www.levenshtein.net) to all possible properties in order to suggest the best fix to the user.\r\n\r\n  ``` js\r\n  expect(false).to.be.fals; // Error: Invalid Chai property: fals. Did you mean \"false\"?\r\n  expect('foo').to.be.undefind; // Error: Invalid Chai property: undefind. Did you mean \"undefined\"?\r\n\r\n  // If the Levenshtein distance between the word and any Chai property is greater than 4, no fix will be suggested\r\n  expect('foo').to.be.fdsakfdsafsagsadgagsdfasf // error thrown, no fix suggested\r\n  ```\r\n\r\n- When non-chainable methods (including overwritten non-chainable methods) are used incorrectly an error will be thrown with a helpful error message. _(PRs: #789)_\r\n\r\n  ``` js\r\n  expect(true).to.equal.true;  // Invalid Chai property: equal.true. See docs for proper usage of \"equal\".\r\n  ```\r\n\r\n- Add a new configuration setting that describes which keys will be ignored when checking for non-existing properties on an assertion before throwing an error.\r\n  Since this implementation depends on ES6 `Proxies` it will only work on platforms that support it. Also, if you disable `config.useProxy`, this setting will have no effect. _(Related Issues: #765, PRs: #774)_\r\n\r\n  ``` js\r\n  chai.config.proxyExcludedKeys.push('nonExistingProp');\r\n\r\n  expect('my string').to.nonExistingProp; // This won't throw an error now\r\n  ```\r\n\r\n- Add script that registers should as a side-effect. _(Related Issues: #594, #693 PRs: #604)_\r\n\r\n  ``` js\r\n  // You can now write:\r\n  import 'chai/should';\r\n\r\n  // as opposed to:\r\n  import {should} from 'chai';\r\n  should();\r\n  ```\r\n\r\n  You can also register should via a `mocha` option: `mocha --require chai/should`.\r\n\r\n- The `change` assertion accepts a function as object. _(Related Issues: #544, PRs: #607)_\r\n\r\n  ``` js\r\n  // Now you can also check if the return value of a function changes, for example\r\n  assert.increases(\r\n    someOperation,\r\n    () => getSomething().length\r\n  )\r\n  ```\r\n\r\n-  You can also assert for a delta using the `by` assertion alongside the `change`, `increase` and `decrease` assertions. _(Related Issues: #339, PRs: #621)_\r\n\r\n  ``` js\r\n  // You can use `.by` to assert the amount you want something to change\r\n  var obj = { val: 10 };\r\n  var increaseByTwo = function() { obj.val += 2 };\r\n  var decreaseByTwo = function() { obj.val -= 2 };\r\n  var increaseByThree = function() { obj.val += 3 };\r\n\r\n  expect(increaseByThree).to.change(obj, 'val').by(3);\r\n  expect(increaseByTwo).to.increase(obj, 'val').by(2);\r\n  expect(decreaseByTwo).to.decrease(obj, 'val').by(2);\r\n\r\n  // Please notice that if you want to assert something did change but not by some amount you need to use `.not` **after** the `change` related assertion\r\n  // Take a look at the examples below:\r\n  expect(increaseByThree).to.change(obj, 'val').but.not.by(5)\r\n  expect(increaseByTwo).to.increase(obj, 'val').but.not.by(1)\r\n  expect(decreaseByTwo).to.decrease(obj, 'val').but.not.by(1)\r\n  ```\r\n\r\n-  The `.keys` assertion can now operate on `map`s and `set`s. _(Related Issues: #632, PRs: #633, #668)_\r\n\r\n  ``` js\r\n  // The `.keys` assertion now works on `map`s and `set`s natively, like the examples below:\r\n  expect(new Map([[{objKey: 'value'}, 'value'], [1, 2]])).to.contain.key({objKey: 'value'});\r\n  expect(new Map([[{objKey: 'value'}, 'value'], [1, 2]])).to.contain.any.keys([{objKey: 'value'}, {anotherKey: 'anotherValue'}]);\r\n  expect(new Map([['firstKey', 'firstValue'], [1, 2]])).to.contain.all.keys('firstKey', 1);\r\n  expect(new Set([['foo', 'bar'], ['example', 1]])).to.have.any.keys('foo');\r\n\r\n  // You can also use `.deep` when asserting agains `Map`s and `Set`s\r\n  expect(new Map([[{objKey: 'value'}, 'value'], [1, 2]])).to.contain.any.deep.keys([{objKey: 'value'}, {anotherKey: 'anotherValue'}]);\r\n  expect(new Map([['firstKey', 'firstValue'], [1, 2]])).to.contain.all.deep.keys('firstKey', 1);\r\n  expect(new Set([['foo', 'bar'], ['example', 1]])).to.have.any.deep.keys('foo');\r\n  ```\r\n\r\n- Add compatibility with strict mode. _(Related Issues: #578, PRs: #665)_\r\n\r\n  ``` js\r\n  // This means you can now run your code with the `--use_strict` flag on Node\r\n  // If want to understand more about this please read the issue related to this change\r\n  ```\r\n\r\n- Add `does` and `but` as new no-op assertion. _(Related Issues: #700, #339 PRs: #621, #701)_\r\n\r\n  ``` js\r\n  // You can now write assertions forming phrases with these two new words:\r\n  expect(increaseByThree).to.change(obj, 'val').but.not.by(5);\r\n  expect(foobar).to.have.property(\"baz\").which.does.not.have.property(\"thing\");\r\n  ```\r\n\r\n- Allow `use` to be imported using new ES6 module syntax. _(Related Issues: #718, PRs: #724)_\r\n\r\n  ``` js\r\n  // You can now import `use` using the ES6 module syntax, like the example below:\r\n  import sinonChai from \"sinon-chai\";\r\n  import {expect, use} from \"chai\";\r\n\r\n  use(sinonChai);\r\n  ```\r\n\r\n  You can also use `require` alongside the new ES6 destructuring feature:\r\n\r\n  ``` js\r\n  const sinonChai = require('sinon-chai');\r\n  const {expect, use} = require(\"chai\");\r\n\r\n  use(sinonChai);\r\n  ```\r\n\r\n- Add ordered flag for members assertion. _(Related Issues: #717, PRs: #728)_\r\n\r\n  ``` js\r\n  // You can now use the `ordered` flag to assert the order of elements when using the `members` assertion:\r\n  expect([1, 2, 3]).to.include.ordered.members([1, 2]); // This passes\r\n  expect([1, 2, 3]).to.include.ordered.members([2, 3]); // This will fail! Read the docs to know more.\r\n  ```\r\n\r\n- Add `.own` flag to `.property` assertion. It does the same thing as `.ownProperty` and cannot be used alongisde the new `.nested` flag. _(Related Issues: #795, PRs: #810)_\r\n\r\n  ``` js\r\n  expect({a: 1}).to.have.own.property('a');\r\n\r\n  // The example below will thrown an Error\r\n  expect({a: {b: 1}}).to.have.own.nested.property('a.b', 1);\r\n  ```\r\n\r\n- Add `.deep` support to `.property` assertion. _(Related Issues: #795, PRs: #810)_\r\n\r\n  ``` js\r\n  expect({ foo: { bar: 'baz' } }).to.have.deep.own.property('foo', { bar: 'baz' });\r\n  expect({ foo: { bar: { baz: 'quux' } } }).to.have.deep.nested.property('foo.bar', { baz: 'quux' });\r\n  ```\r\n\r\n- The `.empty` assertion will now work with ES6 collections _(PRs: #763, #812, #814)_\r\n  Please notice that this assertion will throw an error when it is passed a `WeakMap` or `WeakSet`.\r\n\r\n  ``` js\r\n  expect(new Set()).to.be.empty;\r\n  expect(new Map()).to.be.empty;\r\n\r\n  // The examples below will throw a TypeError:\r\n  expect(new WeakSet()).to.be.empty;\r\n  expect(new WeakMap()).to.be.empty;\r\n  ```\r\n\r\n- Add script that registers `should` as a side-effect. This change allows you to register `should` via a mocha option by using: `mocha spec.js -r chai/register-should` and also allows you to register the testing style globally. _(Issues: #693, PRs: #868)_\r\n\r\n  ``` js\r\n  require('chai/register-should');  // Using Should style\r\n  ```\r\n\r\n- Add script that registers `assert` as a side-effect. This change allows you to register `assert` via a mocha option by using: `mocha spec.js -r chai/register-assert` _(Issues: #693, PRs: #868, #872)_\r\n\r\n ``` js\r\n require('chai/register-assert');  // Using Assert style\r\n ```\r\n\r\n- Add script that registers `expect` as a side-effect. This change allows you to register `expect` via a mocha option by using: `mocha spec.js -r chai/register-expect` _(Issues: #693, PRs: #868, #872)_\r\n\r\n  ``` js\r\n  require('chai/register-expect');  // Using Expect style\r\n  ```\r\n\r\n- When the `length` assertion is chained directly off of an uninvoked method, it references `function`'s built-in `length` property instead of Chai's `length` assertion. This commit adds a guard to Chai methods to detect this problem and throw a helpful error message that advises the user on how to correct it. _(Issues: #684, #841, PRs: #897)_\r\n\r\n- Allows the `lockSsfi` flag to be set when creating new Assertion. This flag controls whether or not the given `ssfi` flag should retain its current value, even as assertions are chained off of this object. This is usually set to `true` when creating a new assertion from within another assertion. It's also temporarily set to `true` before an overwritten assertion gets called by the overwriting assertion. _(Issues: #878, #904, PRs: #922)_\r\n\r\n  ```js\r\n  // This will lock the stack stack function from this line on\r\n  // The SSFI is the reference to the starting point for removing irrelevant frames from the stack trace\r\n  new Assertion(obj, msg, ssfi, true).to.have.property('length')\r\n  ```\r\n\r\n- The `nestedInclude`, `deepNestedInclude`, `ownInclude` and `deepOwnInclude` assertions and there negated pairs were added to the `assert` interface. _(Issues: #905, PRs: #964)_\r\n\r\n  ```js\r\n  // '[]' and '.' in property names can be escaped using double backslashes.\r\n\r\n  assert.nestedInclude({'.a': {'b': 'x'}}, {'\\\\.a.[b]': 'x'});\r\n  assert.notNestedInclude({'.a': {'b': 'x'}}, {'\\\\.a.b': 'y'});\r\n\r\n  assert.deepNestedInclude({a: {b: [{x: 1}]}}, {'a.b[0]': {x: 1}});\r\n  assert.notDeepNestedInclude({a: {b: [{x: 1}]}}, {'a.b[0]': {y: 1}});\r\n\r\n  assert.ownInclude({ a: 1 }, { a: 1 });\r\n  assert.notOwnInclude({ a: 1 }, { b: 2 });\r\n\r\n  assert.deepOwnInclude({a: {b: 2}}, {a: {b: 2}});\r\n  assert.notDeepOwnInclude({a: {b: 2}}, {a: {c: 3}});\r\n  ```\r\n\r\n\r\n\r\n# Bug Fixes\r\n- Fix missing msg argument for change related assertions. _(Related Issues: None, PRs: #606)_\r\n- The addMethod function returns a new assertion with flags copied over instead of `this`. _(Related Issues: #562, #684, #723, PRs: #642, #660)_\r\n- Fix stacktraces for overwritten properties and methods. _(Related Issues: #659, #661)_\r\n- Fix bug when testing Symbol equality with should syntax. _(Related Issues: #669, PRs: #672)_\r\n- Fix bug when asserting some valid ES6 keys. _(Related Issues: #674, PRs: #676)_\r\n- Fix bug caused when custom inspect method is used and this method calls stylize. _(PRs: #680)_\r\n- Fix ownProperty on objects with no prototype. _(Related Issues: #688, PRs: #689)_\r\n- Fix swapped expected and actual results for the `.members` assertion. _(Related Issues: #511, PRs: #702)_\r\n- Fix `same.members` to properly handle duplicates by treating each one as a unique member. _(Related Issues: #590, PRs: #739)_\r\n- Fix deep.have.same.members() that was not printing a diff. _(PRs: #509)_\r\n- Diff will be shown for assert's equal and notEqual methods. _(Related Issues: #790, PRs: #794)_\r\n- The `overwriteMethod`, `overwriteProperty`, `addChainableMethod`, `overwriteChainableMethod` functions will return new assertion with flags copied over instead of this. _(Related Issues: #562, #642, #791, PRs: #799)_\r\n- Proxy-related implementation frames were showing up in the stack traces for failed property assertions. Now we remove them by setting the proxy getter (instead of the property getter) as the starting point to remove all implementation frames. _(PRs: #884)_\r\n- Negated `keys` assertions will now consider size of sets. _(Related Issues: #919, PRs: #924)_\r\n- Whenever passed something that is not an instance of a function, the instanceof assertion will now throw an error informing the user that he should pass a constructor to this assertion, but instead he has passed <type>. _(Related Issues: #893, PRs: #924)_\r\n- Fix all issues on expect/should interfaces that were causing implementation frames to leak through. Also improve the internal Chai error test helper to validate stack traces. _(Issues: #878, #904, PRs: #922)_\r\n- This fixes custom messages not always being respected. _(Issues: #922, #947, #904, PRs: #916, #923)_\r\n- Fix PhantomJS 1.x incompatibility _(Issues: #966, PRs: #890)_\r\n"
-  },
-  {
-    "url": "https://api.github.com/repos/chaijs/chai/releases/1374272",
-    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/1374272/assets",
-    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/1374272/assets{?name,label}",
-    "html_url": "https://github.com/chaijs/chai/releases/tag/3.0.0",
-    "id": 1374272,
     "node_id": "MDc6UmVsZWFzZTEzNzQyNzI=",
     "tag_name": "3.0.0",
     "target_commitish": "master",
@@ -674,6 +694,14 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/3.0.0",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/3.0.0",
+    "body": "This release contains some small breaking changes. Most people are unlikely to\nnotice them - but here are the breaking changes:\n- Switched from \"Component\" builds to \"Browserify\" builds for Browsers. If\n  you're using RequireJS with Chai, you might notice a change (chai used to\n  be a global, now it won't be - instead you'll have to `require` it).\n- `.has.property('foo', undefined)` will now specifically test to make sure\n  that the value `'foo'` is actually undefined - before it simply tested that\n  the key existed (but could have a value).\n- `.to.be.a('type')` has changed to support more types, including ES6 types\n  such as `'promise'`, `'symbol'`, `'float32array'` etc, this also means using\n  ES6's `Symbol.toStringTag` affects the behaviour `.to.be.a()`. In addition to\n  this, Errors have the type of `'error'`.\n- `assert.ifError()` now follows Node's `assert.ifError()` behaviour - in other\n  words, if the first argument is truthy, it'll throw it.\n- ReleaseNotes.md is no longer maintained, see the [Github Releases Page](https://github.com/chaijs/chai/releases) instead.\n- History.md is no longer maintained, see the [Github Commit Log](https://github.com/chaijs/chai/commits/master) instead.\n\n### Community Contributions\n\n#### Code Features & Fixes\n- [#403](https://github.com/chaijs/chai/pull/403) `assert.ifError()` behaves like Node.js: it throws if the first argument is present.\n  By [@cjqed](https://github.com/cjqed)\n- [#419](https://github.com/chaijs/chai/pull/419) [assertion-error](https://github.com/chaijs/assertion-error) bumped to `^1.0.1`\n  By [@keithamus](https://github.com/keithamus) (special thanks to [@simonzack](https://github.com/simonzack) for his work on assertion-error)\n- [#421](https://github.com/chaijs/chai/pull/421) replace type.js with type-detect module.\n  By [@Charminbear](https://github.com/Charminbear)\n- [#439](https://github.com/chaijs/chai/pull/439) Add `.matches()` as alias for `.match()`.\n  By [@thejameskyle](https://github.com/thejameskyle)\n- [#451](https://github.com/chaijs/chai/pull/451) Switch to using Browserify for the build system.\n  By [@csnover](https://github.com/csnover)\n- [#452](https://github.com/chaijs/chai/pull/452) `.property('foo', undefined)` now actually checks to see if `obj.foo === undefined` (before it did not).\n  By [@onefifth](https://github.com/onefifth)\n- [#460](https://github.com/chaijs/chai/pull/460) Automate release process as much as possible\n  By [@keithamus](https://github.com/keithamus)\n\n#### Documentation fixes\n- [#397](https://github.com/chaijs/chai/pull/397) Improve docs for `.assert()`\n  By [@astorije](https://github.com/astorije)\n- [#401](https://github.com/chaijs/chai/pull/401) Add some badges to the Readme.\n  By [@keithamus](https://github.com/keithamus)\n- [#424](https://github.com/chaijs/chai/pull/424) Fix typo in docs for `.keys()`\n  By [@astorije](https://github.com/astorije)\n- [#429](https://github.com/chaijs/chai/pull/429) Deprecate `.length(n)` from the docs - use `.lengthOf(n)` instead.\n  By [@valscion](https://github.com/valscion)\n- [#444](https://github.com/chaijs/chai/pull/444) Change `.length(n)` examples to `.lengthOf(n)` instead.\n  By [@keithamus](https://github.com/keithamus)\n- [#458](https://github.com/chaijs/chai/pull/458) Remove stray character in `assert.notInclude` docs\n  By [@BinaryMuse](https://github.com/BinaryMuse)\n"
+  },
+  {
+    "url": "https://api.github.com/repos/chaijs/chai/releases/1218438",
+    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/1218438/assets",
+    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/1218438/assets{?name,label}",
+    "html_url": "https://github.com/chaijs/chai/releases/tag/2.3.0",
+    "id": 1218438,
     "author": {
       "login": "keithamus",
       "id": 118266,
@@ -694,14 +722,6 @@
       "type": "User",
       "site_admin": true
     },
-    "body": "This release contains some small breaking changes. Most people are unlikely to\nnotice them - but here are the breaking changes:\n- Switched from \"Component\" builds to \"Browserify\" builds for Browsers. If\n  you're using RequireJS with Chai, you might notice a change (chai used to\n  be a global, now it won't be - instead you'll have to `require` it).\n- `.has.property('foo', undefined)` will now specifically test to make sure\n  that the value `'foo'` is actually undefined - before it simply tested that\n  the key existed (but could have a value).\n- `.to.be.a('type')` has changed to support more types, including ES6 types\n  such as `'promise'`, `'symbol'`, `'float32array'` etc, this also means using\n  ES6's `Symbol.toStringTag` affects the behaviour `.to.be.a()`. In addition to\n  this, Errors have the type of `'error'`.\n- `assert.ifError()` now follows Node's `assert.ifError()` behaviour - in other\n  words, if the first argument is truthy, it'll throw it.\n- ReleaseNotes.md is no longer maintained, see the [Github Releases Page](https://github.com/chaijs/chai/releases) instead.\n- History.md is no longer maintained, see the [Github Commit Log](https://github.com/chaijs/chai/commits/master) instead.\n\n### Community Contributions\n\n#### Code Features & Fixes\n- [#403](https://github.com/chaijs/chai/pull/403) `assert.ifError()` behaves like Node.js: it throws if the first argument is present.\n  By [@cjqed](https://github.com/cjqed)\n- [#419](https://github.com/chaijs/chai/pull/419) [assertion-error](https://github.com/chaijs/assertion-error) bumped to `^1.0.1`\n  By [@keithamus](https://github.com/keithamus) (special thanks to [@simonzack](https://github.com/simonzack) for his work on assertion-error)\n- [#421](https://github.com/chaijs/chai/pull/421) replace type.js with type-detect module.\n  By [@Charminbear](https://github.com/Charminbear)\n- [#439](https://github.com/chaijs/chai/pull/439) Add `.matches()` as alias for `.match()`.\n  By [@thejameskyle](https://github.com/thejameskyle)\n- [#451](https://github.com/chaijs/chai/pull/451) Switch to using Browserify for the build system.\n  By [@csnover](https://github.com/csnover)\n- [#452](https://github.com/chaijs/chai/pull/452) `.property('foo', undefined)` now actually checks to see if `obj.foo === undefined` (before it did not).\n  By [@onefifth](https://github.com/onefifth)\n- [#460](https://github.com/chaijs/chai/pull/460) Automate release process as much as possible\n  By [@keithamus](https://github.com/keithamus)\n\n#### Documentation fixes\n- [#397](https://github.com/chaijs/chai/pull/397) Improve docs for `.assert()`\n  By [@astorije](https://github.com/astorije)\n- [#401](https://github.com/chaijs/chai/pull/401) Add some badges to the Readme.\n  By [@keithamus](https://github.com/keithamus)\n- [#424](https://github.com/chaijs/chai/pull/424) Fix typo in docs for `.keys()`\n  By [@astorije](https://github.com/astorije)\n- [#429](https://github.com/chaijs/chai/pull/429) Deprecate `.length(n)` from the docs - use `.lengthOf(n)` instead.\n  By [@valscion](https://github.com/valscion)\n- [#444](https://github.com/chaijs/chai/pull/444) Change `.length(n)` examples to `.lengthOf(n)` instead.\n  By [@keithamus](https://github.com/keithamus)\n- [#458](https://github.com/chaijs/chai/pull/458) Remove stray character in `assert.notInclude` docs\n  By [@BinaryMuse](https://github.com/BinaryMuse)\n"
-  },
-  {
-    "url": "https://api.github.com/repos/chaijs/chai/releases/1218438",
-    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/1218438/assets",
-    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/1218438/assets{?name,label}",
-    "html_url": "https://github.com/chaijs/chai/releases/tag/2.3.0",
-    "id": 1218438,
     "node_id": "MDc6UmVsZWFzZTEyMTg0Mzg=",
     "tag_name": "2.3.0",
     "target_commitish": "master",
@@ -715,6 +735,14 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/2.3.0",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/2.3.0",
+    "body": "Added `ownPropertyDescriptor` assertion:\n\n``` js\nexpect('test').to.have.ownPropertyDescriptor('length');\nexpect('test').to.have.ownPropertyDescriptor('length', { enumerable: false, configurable: false, writable: false, value: 4 });\nexpect('test').not.to.have.ownPropertyDescriptor('length', { enumerable: false, configurable: false, writable: false, value: 3 });\nexpect('test').ownPropertyDescriptor('length').to.have.property('enumerable', false);\nexpect('test').ownPropertyDescriptor('length').to.have.keys('value');\n```\n\n### Community Contributions\n\n#### Code Features & Fixes\n- [#408](https://github.com/chaijs/chai/pull/408) Add `ownPropertyDescriptor`\n  assertion.\n  By [@ljharb](https://github.com/ljharb)\n- [#422](https://github.com/chaijs/chai/pull/422) Improve ownPropertyDescriptor\n  tests.\n  By [@ljharb](https://github.com/ljharb)\n\n#### Documentation fixes\n- [#417](https://github.com/chaijs/chai/pull/417) Fix documentation typo\n  By [@astorije](https://github.com/astorije)\n- [#423](https://github.com/chaijs/chai/pull/423) Fix inconsistency in docs.\n  By [@ehntoo](https://github.com/ehntoo)\n"
+  },
+  {
+    "url": "https://api.github.com/repos/chaijs/chai/releases/1097492",
+    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/1097492/assets",
+    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/1097492/assets{?name,label}",
+    "html_url": "https://github.com/chaijs/chai/releases/tag/2.2.0",
+    "id": 1097492,
     "author": {
       "login": "keithamus",
       "id": 118266,
@@ -735,14 +763,6 @@
       "type": "User",
       "site_admin": true
     },
-    "body": "Added `ownPropertyDescriptor` assertion:\n\n``` js\nexpect('test').to.have.ownPropertyDescriptor('length');\nexpect('test').to.have.ownPropertyDescriptor('length', { enumerable: false, configurable: false, writable: false, value: 4 });\nexpect('test').not.to.have.ownPropertyDescriptor('length', { enumerable: false, configurable: false, writable: false, value: 3 });\nexpect('test').ownPropertyDescriptor('length').to.have.property('enumerable', false);\nexpect('test').ownPropertyDescriptor('length').to.have.keys('value');\n```\n\n### Community Contributions\n\n#### Code Features & Fixes\n- [#408](https://github.com/chaijs/chai/pull/408) Add `ownPropertyDescriptor`\n  assertion.\n  By [@ljharb](https://github.com/ljharb)\n- [#422](https://github.com/chaijs/chai/pull/422) Improve ownPropertyDescriptor\n  tests.\n  By [@ljharb](https://github.com/ljharb)\n\n#### Documentation fixes\n- [#417](https://github.com/chaijs/chai/pull/417) Fix documentation typo\n  By [@astorije](https://github.com/astorije)\n- [#423](https://github.com/chaijs/chai/pull/423) Fix inconsistency in docs.\n  By [@ehntoo](https://github.com/ehntoo)\n"
-  },
-  {
-    "url": "https://api.github.com/repos/chaijs/chai/releases/1097492",
-    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/1097492/assets",
-    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/1097492/assets{?name,label}",
-    "html_url": "https://github.com/chaijs/chai/releases/tag/2.2.0",
-    "id": 1097492,
     "node_id": "MDc6UmVsZWFzZTEwOTc0OTI=",
     "tag_name": "2.2.0",
     "target_commitish": "master",
@@ -756,6 +776,14 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/2.2.0",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/2.2.0",
+    "body": "Deep property strings can now be escaped using `\\\\` - for example:\n\n``` js\nvar deepCss = { '.link': { '[target]': 42 }};\nexpect(deepCss).to.have.deep.property('\\\\.link.\\\\[target\\\\]', 42)\n```\n\n### Community Contributions\n\n#### Code Features & Fixes\n- [#402](https://github.com/chaijs/chai/pull/402) Allow escaping of deep\n  property keys.\n  By [@umireon](https://github.com/umireon)\n\n#### Documentation fixes\n- [#405](https://github.com/chaijs/chai/pull/405) Tweak documentation around\n  deep property escaping.\n  By [@keithamus](https://github.com/keithamus)\n"
+  },
+  {
+    "url": "https://api.github.com/repos/chaijs/chai/releases/1052775",
+    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/1052775/assets",
+    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/1052775/assets{?name,label}",
+    "html_url": "https://github.com/chaijs/chai/releases/tag/2.1.2",
+    "id": 1052775,
     "author": {
       "login": "keithamus",
       "id": 118266,
@@ -776,14 +804,6 @@
       "type": "User",
       "site_admin": true
     },
-    "body": "Deep property strings can now be escaped using `\\\\` - for example:\n\n``` js\nvar deepCss = { '.link': { '[target]': 42 }};\nexpect(deepCss).to.have.deep.property('\\\\.link.\\\\[target\\\\]', 42)\n```\n\n### Community Contributions\n\n#### Code Features & Fixes\n- [#402](https://github.com/chaijs/chai/pull/402) Allow escaping of deep\n  property keys.\n  By [@umireon](https://github.com/umireon)\n\n#### Documentation fixes\n- [#405](https://github.com/chaijs/chai/pull/405) Tweak documentation around\n  deep property escaping.\n  By [@keithamus](https://github.com/keithamus)\n"
-  },
-  {
-    "url": "https://api.github.com/repos/chaijs/chai/releases/1052775",
-    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/1052775/assets",
-    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/1052775/assets{?name,label}",
-    "html_url": "https://github.com/chaijs/chai/releases/tag/2.1.2",
-    "id": 1052775,
     "node_id": "MDc6UmVsZWFzZTEwNTI3NzU=",
     "tag_name": "2.1.2",
     "target_commitish": "master",
@@ -797,6 +817,14 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/2.1.2",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/2.1.2",
+    "body": "A minor bug fix. No new features.\n\n### Community Contributions\n\n#### Code Features & Fixes\n- [#395](https://github.com/chaijs/chai/pull/395) Fix eval-related bugs with\n  assert.operator ([#386](https://github.com/chaijs/chai/pull/386)).\n  By [@cjqed](https://github.com/cjqed)\n"
+  },
+  {
+    "url": "https://api.github.com/repos/chaijs/chai/releases/1013722",
+    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/1013722/assets",
+    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/1013722/assets{?name,label}",
+    "html_url": "https://github.com/chaijs/chai/releases/tag/2.1.1",
+    "id": 1013722,
     "author": {
       "login": "keithamus",
       "id": 118266,
@@ -817,14 +845,6 @@
       "type": "User",
       "site_admin": true
     },
-    "body": "A minor bug fix. No new features.\n\n### Community Contributions\n\n#### Code Features & Fixes\n- [#395](https://github.com/chaijs/chai/pull/395) Fix eval-related bugs with\n  assert.operator ([#386](https://github.com/chaijs/chai/pull/386)).\n  By [@cjqed](https://github.com/cjqed)\n"
-  },
-  {
-    "url": "https://api.github.com/repos/chaijs/chai/releases/1013722",
-    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/1013722/assets",
-    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/1013722/assets{?name,label}",
-    "html_url": "https://github.com/chaijs/chai/releases/tag/2.1.1",
-    "id": 1013722,
     "node_id": "MDc6UmVsZWFzZTEwMTM3MjI=",
     "tag_name": "2.1.1",
     "target_commitish": "master",
@@ -838,6 +858,14 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/2.1.1",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/2.1.1",
+    "body": "Two minor bugfixes. No new features.\n\n### Community Contributions\n\n#### Code Features & Fixes\n- [#385](https://github.com/chaijs/chai/pull/385) Fix a bug (also described in\n  [#387](https://github.com/chaijs/chai/pull/385)) where `deep.property` would not work with single\n  key names. By [@eldritch-fossicker](https://github.com/eldritch-fossicker)\n- [#379](https://github.com/chaijs/chai/pull/379) Fix bug where tools which overwrite\n  primitive prototypes, such as Babel or core-js would fail.\n  By [@dcneiner](https://github.com/dcneiner)\n\n#### Documentation fixes\n- [#382](https://github.com/chaijs/chai/pull/382) Add doc for showDiff argument in assert.\n  By [@astorije](https://github.com/astorije)\n- [#383](https://github.com/chaijs/chai/pull/383) Improve wording for truncateTreshold docs\n  By [@gurdiga](https://github.com/gurdiga)\n- [#381](https://github.com/chaijs/chai/pull/381) Improve wording for assert.empty docs\n  By [@astorije](https://github.com/astorije)\n"
+  },
+  {
+    "url": "https://api.github.com/repos/chaijs/chai/releases/980149",
+    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/980149/assets",
+    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/980149/assets{?name,label}",
+    "html_url": "https://github.com/chaijs/chai/releases/tag/2.1.0",
+    "id": 980149,
     "author": {
       "login": "keithamus",
       "id": 118266,
@@ -858,14 +886,6 @@
       "type": "User",
       "site_admin": true
     },
-    "body": "Two minor bugfixes. No new features.\n\n### Community Contributions\n\n#### Code Features & Fixes\n- [#385](https://github.com/chaijs/chai/pull/385) Fix a bug (also described in\n  [#387](https://github.com/chaijs/chai/pull/385)) where `deep.property` would not work with single\n  key names. By [@eldritch-fossicker](https://github.com/eldritch-fossicker)\n- [#379](https://github.com/chaijs/chai/pull/379) Fix bug where tools which overwrite\n  primitive prototypes, such as Babel or core-js would fail.\n  By [@dcneiner](https://github.com/dcneiner)\n\n#### Documentation fixes\n- [#382](https://github.com/chaijs/chai/pull/382) Add doc for showDiff argument in assert.\n  By [@astorije](https://github.com/astorije)\n- [#383](https://github.com/chaijs/chai/pull/383) Improve wording for truncateTreshold docs\n  By [@gurdiga](https://github.com/gurdiga)\n- [#381](https://github.com/chaijs/chai/pull/381) Improve wording for assert.empty docs\n  By [@astorije](https://github.com/astorije)\n"
-  },
-  {
-    "url": "https://api.github.com/repos/chaijs/chai/releases/980149",
-    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/980149/assets",
-    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/980149/assets{?name,label}",
-    "html_url": "https://github.com/chaijs/chai/releases/tag/2.1.0",
-    "id": 980149,
     "node_id": "MDc6UmVsZWFzZTk4MDE0OQ==",
     "tag_name": "2.1.0",
     "target_commitish": "master",
@@ -879,6 +899,14 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/2.1.0",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/2.1.0",
+    "body": "Small release; fixes an issue where the Chai lib was incorrectly reporting the\nversion number.\n\nAdds new `should.fail()` and `expect.fail()` methods, which are convenience\nmethods to throw Assertion Errors.\n\n### Community Contributions\n\n#### Code Features & Fixes\n- [#356](https://github.com/chaijs/chai/pull/356) Add should.fail(), expect.fail(). By [@Soviut](https://github.com/Soviut)\n- [#374](https://github.com/chaijs/chai/pull/374) Increment version. By [@jmm](https://github.com/jmm)\n"
+  },
+  {
+    "url": "https://api.github.com/repos/chaijs/chai/releases/942046",
+    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/942046/assets",
+    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/942046/assets{?name,label}",
+    "html_url": "https://github.com/chaijs/chai/releases/tag/2.0.0",
+    "id": 942046,
     "author": {
       "login": "keithamus",
       "id": 118266,
@@ -899,14 +927,6 @@
       "type": "User",
       "site_admin": true
     },
-    "body": "Small release; fixes an issue where the Chai lib was incorrectly reporting the\nversion number.\n\nAdds new `should.fail()` and `expect.fail()` methods, which are convenience\nmethods to throw Assertion Errors.\n\n### Community Contributions\n\n#### Code Features & Fixes\n- [#356](https://github.com/chaijs/chai/pull/356) Add should.fail(), expect.fail(). By [@Soviut](https://github.com/Soviut)\n- [#374](https://github.com/chaijs/chai/pull/374) Increment version. By [@jmm](https://github.com/jmm)\n"
-  },
-  {
-    "url": "https://api.github.com/repos/chaijs/chai/releases/942046",
-    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/942046/assets",
-    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/942046/assets{?name,label}",
-    "html_url": "https://github.com/chaijs/chai/releases/tag/2.0.0",
-    "id": 942046,
     "node_id": "MDc6UmVsZWFzZTk0MjA0Ng==",
     "tag_name": "2.0.0",
     "target_commitish": "master",
@@ -920,26 +940,6 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/2.0.0",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/2.0.0",
-    "author": {
-      "login": "keithamus",
-      "id": 118266,
-      "node_id": "MDQ6VXNlcjExODI2Ng==",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/118266?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/keithamus",
-      "html_url": "https://github.com/keithamus",
-      "followers_url": "https://api.github.com/users/keithamus/followers",
-      "following_url": "https://api.github.com/users/keithamus/following{/other_user}",
-      "gists_url": "https://api.github.com/users/keithamus/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/keithamus/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/keithamus/subscriptions",
-      "organizations_url": "https://api.github.com/users/keithamus/orgs",
-      "repos_url": "https://api.github.com/users/keithamus/repos",
-      "events_url": "https://api.github.com/users/keithamus/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/keithamus/received_events",
-      "type": "User",
-      "site_admin": true
-    },
     "body": "Unfortunately with 1.10.0 - compatibility broke with older versions because of\nthe `addChainableNoop`. This change has been reverted.\n\nAny plugins using `addChainableNoop` should cease to do so.\n\nAny developers wishing for this behaviour can use [dirty-chai](https://www.npmjs.com/package/dirty-chai)\nby [@joshperry](https://github.com/joshperry)\n\n### Community Contributions\n\n#### Code Features & Fixes\n- [#361](https://github.com/chaijs/chai/pull/361) `.keys()` now accepts Objects, extracting keys from them. By [@gregglind](https://github.com/gregglind)\n- [#359](https://github.com/chaijs/chai/pull/359) `.keys()` no longer mutates passed arrays. By [@gregglind](https://github.com/gregglind)\n- [#349](https://github.com/chaijs/chai/pull/349) Add a new chainable keyword - `.which`. By [@toastynerd](https://github.com/toastynerd)\n- [#333](https://github.com/chaijs/chai/pull/333) Add `.change`, `.increase` and `.decrease` assertions. By [@cmpolis](https://github.com/cmpolis)\n- [#335](https://github.com/chaijs/chai/pull/335) `chai.util` is now exposed [@DingoEatingFuzz](https://github.com/DingoEatingFuzz)\n- [#328](https://github.com/chaijs/chai/pull/328) Add `.includes` and `.contains` aliases (for `.include` and `.contain`). By [@lo1tuma](https://github.com/lo1tuma)\n- [#313](https://github.com/chaijs/chai/pull/313) Add `.any.keys()` and `.all.keys()` qualifiers. By [@cjqed](https://github.com/cjqed)\n- [#312](https://github.com/chaijs/chai/pull/312) Add `assert.sameDeepMembers()`. By [@cjqed](https://github.com/cjqed)\n- [#311](https://github.com/chaijs/chai/pull/311) Add `assert.isAbove()` and `assert.isBelow()`. By [@cjqed](https://github.com/cjqed)\n- [#308](https://github.com/chaijs/chai/pull/308) `property` and `deep.property` now pass if a value is set to `undefined`. By [@prodatakey](https://github.com/prodatakey)\n- [#309](https://github.com/chaijs/chai/pull/309) optimize deep equal in Arrays. By [@ericdouglas](https://github.com/ericdouglas)\n- [#306](https://github.com/chaijs/chai/pull/306) revert #297 - allowing lint-friendly tests. By [@keithamus](https://github.com/keithamus)\n\n#### Documentation fixes\n- [#357](https://github.com/chaijs/chai/pull/357) Copyright year updated in docs. By [@danilovaz](https://github.com/danilovaz)\n- [#325](https://github.com/chaijs/chai/pull/325) Fix documentation for overwriteChainableMethod. By [@chasenlehara](https://github.com/chasenlehara)\n- [#334](https://github.com/chaijs/chai/pull/334) Typo fix. By [@hurrymaplelad](https://github.com/hurrymaplelad)\n- [#317](https://github.com/chaijs/chai/pull/317) Typo fix. By [@jasonkarns](https://github.com/jasonkarns)\n- [#318](https://github.com/chaijs/chai/pull/318) Typo fix. By [@jasonkarns](https://github.com/jasonkarns)\n- [#316](https://github.com/chaijs/chai/pull/316) Typo fix. By [@jasonkarns](https://github.com/jasonkarns)\n"
   },
   {
@@ -948,6 +948,26 @@
     "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/691789/assets{?name,label}",
     "html_url": "https://github.com/chaijs/chai/releases/tag/1.10.0",
     "id": 691789,
+    "author": {
+      "login": "logicalparadox",
+      "id": 58988,
+      "node_id": "MDQ6VXNlcjU4OTg4",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/58988?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/logicalparadox",
+      "html_url": "https://github.com/logicalparadox",
+      "followers_url": "https://api.github.com/users/logicalparadox/followers",
+      "following_url": "https://api.github.com/users/logicalparadox/following{/other_user}",
+      "gists_url": "https://api.github.com/users/logicalparadox/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/logicalparadox/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/logicalparadox/subscriptions",
+      "organizations_url": "https://api.github.com/users/logicalparadox/orgs",
+      "repos_url": "https://api.github.com/users/logicalparadox/repos",
+      "events_url": "https://api.github.com/users/logicalparadox/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/logicalparadox/received_events",
+      "type": "User",
+      "site_admin": false
+    },
     "node_id": "MDc6UmVsZWFzZTY5MTc4OQ==",
     "tag_name": "1.10.0",
     "target_commitish": "master",
@@ -961,6 +981,14 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/1.10.0",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/1.10.0",
+    "body": "The following changes are required if you are upgrading from the previous version:\n- **Users:**\n  - No changes required\n- **Plugin Developers:** \n  - Review `addChainableNoop` notes below.\n- **Core Contributors:** \n  - Refresh `node_modules` folder for updated dependencies. \n\n### Noop Function for Terminating Assertion Properties\n\nThe following assertions can now also be used in the function-call form:\n- ok\n- true\n- false\n- null\n- undefined\n- exist\n- empty\n- arguments\n- Arguments\n\nThe above list of assertions are property getters that assert immediately on access. Because of that, they were written to be used by terminating the assertion chain with a property access.\n\n``` js\nexpect(true).to.be.true;\nfoo.should.be.ok;\n```\n\nThis syntax is definitely aesthetically pleasing but, if you are linting your test code, your linter will complain with an error something like \"Expected an assignment or function call and instead saw an expression.\" Since the linter doesn't know about the property getter it assumes this line has no side-effects, and throws a warning in case you made a mistake.\n\nSquelching these errors is not a good solution as test code is getting to be just as important as, if not more than, production code. Catching syntactical errors in tests using static analysis is a great tool to help make sure that your tests are well-defined and free of typos.\n\nA better option was to provide a function-call form for these assertions so that the code's intent is more clear and the linters stop complaining about something looking off. This form is added in addition to the existing property access form and does not impact existing test code.\n\n``` js\nexpect(true).to.be.true();\nfoo.should.be.ok();\n```\n\nThese forms can also be mixed in any way, these are all functionally identical:\n\n``` js\nexpect(true).to.be.true.and.not.false();\nexpect(true).to.be.true().and.not.false;\nexpect(true).to.be.true.and.not.false;\n```\n\n#### Plugin Authors\n\nIf you would like to provide this function-call form for your terminating assertion properties, there is a new function to register these types of asserts. Instead of using `addProperty` to register terminating assertions, simply use `addChainableNoop` instead; the arguments to both are identical. The latter will make the assertion available in both the attribute and function-call forms and should have no impact on existing users of your plugin.\n\n### Community Contributions\n- [#297](https://github.com/chaijs/chai/pull/297) Allow writing lint-friendly tests. [@joshperry](https://github.com/joshperry)\n- [#298](https://github.com/chaijs/chai/pull/298) Add check for logging `-0`. [@dasilvacontin](https://github.com/dasilvacontin)\n- [#300](https://github.com/chaijs/chai/pull/300) Fix #299: the test is defining global variables [@julienw](https://github.com/julienw)\n\nThank you to all who took time to contribute!\n"
+  },
+  {
+    "url": "https://api.github.com/repos/chaijs/chai/releases/691783",
+    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/691783/assets",
+    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/691783/assets{?name,label}",
+    "html_url": "https://github.com/chaijs/chai/releases/tag/1.9.2",
+    "id": 691783,
     "author": {
       "login": "logicalparadox",
       "id": 58988,
@@ -981,14 +1009,6 @@
       "type": "User",
       "site_admin": false
     },
-    "body": "The following changes are required if you are upgrading from the previous version:\n- **Users:**\n  - No changes required\n- **Plugin Developers:** \n  - Review `addChainableNoop` notes below.\n- **Core Contributors:** \n  - Refresh `node_modules` folder for updated dependencies. \n\n### Noop Function for Terminating Assertion Properties\n\nThe following assertions can now also be used in the function-call form:\n- ok\n- true\n- false\n- null\n- undefined\n- exist\n- empty\n- arguments\n- Arguments\n\nThe above list of assertions are property getters that assert immediately on access. Because of that, they were written to be used by terminating the assertion chain with a property access.\n\n``` js\nexpect(true).to.be.true;\nfoo.should.be.ok;\n```\n\nThis syntax is definitely aesthetically pleasing but, if you are linting your test code, your linter will complain with an error something like \"Expected an assignment or function call and instead saw an expression.\" Since the linter doesn't know about the property getter it assumes this line has no side-effects, and throws a warning in case you made a mistake.\n\nSquelching these errors is not a good solution as test code is getting to be just as important as, if not more than, production code. Catching syntactical errors in tests using static analysis is a great tool to help make sure that your tests are well-defined and free of typos.\n\nA better option was to provide a function-call form for these assertions so that the code's intent is more clear and the linters stop complaining about something looking off. This form is added in addition to the existing property access form and does not impact existing test code.\n\n``` js\nexpect(true).to.be.true();\nfoo.should.be.ok();\n```\n\nThese forms can also be mixed in any way, these are all functionally identical:\n\n``` js\nexpect(true).to.be.true.and.not.false();\nexpect(true).to.be.true().and.not.false;\nexpect(true).to.be.true.and.not.false;\n```\n\n#### Plugin Authors\n\nIf you would like to provide this function-call form for your terminating assertion properties, there is a new function to register these types of asserts. Instead of using `addProperty` to register terminating assertions, simply use `addChainableNoop` instead; the arguments to both are identical. The latter will make the assertion available in both the attribute and function-call forms and should have no impact on existing users of your plugin.\n\n### Community Contributions\n- [#297](https://github.com/chaijs/chai/pull/297) Allow writing lint-friendly tests. [@joshperry](https://github.com/joshperry)\n- [#298](https://github.com/chaijs/chai/pull/298) Add check for logging `-0`. [@dasilvacontin](https://github.com/dasilvacontin)\n- [#300](https://github.com/chaijs/chai/pull/300) Fix #299: the test is defining global variables [@julienw](https://github.com/julienw)\n\nThank you to all who took time to contribute!\n"
-  },
-  {
-    "url": "https://api.github.com/repos/chaijs/chai/releases/691783",
-    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/691783/assets",
-    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/691783/assets{?name,label}",
-    "html_url": "https://github.com/chaijs/chai/releases/tag/1.9.2",
-    "id": 691783,
     "node_id": "MDc6UmVsZWFzZTY5MTc4Mw==",
     "tag_name": "1.9.2",
     "target_commitish": "master",
@@ -1002,6 +1022,14 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/1.9.2",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/1.9.2",
+    "body": "The following changes are required if you are upgrading from the previous version:\n- **Users:**\n  - No changes required\n- **Plugin Developers:** \n  - No changes required\n- **Core Contributors:** \n  - Refresh `node_modules` folder for updated dependencies. \n\n### Community Contributions\n- [#264](https://github.com/chaijs/chai/pull/264) Show diff for keys assertions [@cjthompson](https://github.com/cjthompson)\n- [#267](https://github.com/chaijs/chai/pull/267) Use SVG badges [@shinnn](https://github.com/shinnn)\n- [#268](https://github.com/chaijs/chai/pull/268) Allow messages to be functions (sinon-compat) [@charlierudolph](https://github.com/charlierudolph)\n- [#269](https://github.com/chaijs/chai/pull/269) Remove unused argument for #lengthOf [@charlierudolph](https://github.com/charlierudolph)\n- [#275](https://github.com/chaijs/chai/pull/275) Rewrite pretty-printing HTML elements to prevent throwing internal errors [@DrRataplan](https://github.com/DrRataplan)\n- [#277](https://github.com/chaijs/chai/pull/277) Fix assert documentation for #sameMembers [@charlierudolph](https://github.com/charlierudolph)\n- [#279](https://github.com/chaijs/chai/pull/279) closeTo should check value's type before assertion [@mohayonao](https://github.com/mohayonao)\n- [#289](https://github.com/chaijs/chai/pull/289) satisfy is called twice [@charlierudolph](https://github.com/charlierudolph)\n- [#292](https://github.com/chaijs/chai/pull/292) resolve conflicts with node-webkit and global usage [@boneskull](https://github.com/boneskull)\n\nThank you to all who took time to contribute!\n"
+  },
+  {
+    "url": "https://api.github.com/repos/chaijs/chai/releases/230982",
+    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/230982/assets",
+    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/230982/assets{?name,label}",
+    "html_url": "https://github.com/chaijs/chai/releases/tag/1.9.1",
+    "id": 230982,
     "author": {
       "login": "logicalparadox",
       "id": 58988,
@@ -1022,14 +1050,6 @@
       "type": "User",
       "site_admin": false
     },
-    "body": "The following changes are required if you are upgrading from the previous version:\n- **Users:**\n  - No changes required\n- **Plugin Developers:** \n  - No changes required\n- **Core Contributors:** \n  - Refresh `node_modules` folder for updated dependencies. \n\n### Community Contributions\n- [#264](https://github.com/chaijs/chai/pull/264) Show diff for keys assertions [@cjthompson](https://github.com/cjthompson)\n- [#267](https://github.com/chaijs/chai/pull/267) Use SVG badges [@shinnn](https://github.com/shinnn)\n- [#268](https://github.com/chaijs/chai/pull/268) Allow messages to be functions (sinon-compat) [@charlierudolph](https://github.com/charlierudolph)\n- [#269](https://github.com/chaijs/chai/pull/269) Remove unused argument for #lengthOf [@charlierudolph](https://github.com/charlierudolph)\n- [#275](https://github.com/chaijs/chai/pull/275) Rewrite pretty-printing HTML elements to prevent throwing internal errors [@DrRataplan](https://github.com/DrRataplan)\n- [#277](https://github.com/chaijs/chai/pull/277) Fix assert documentation for #sameMembers [@charlierudolph](https://github.com/charlierudolph)\n- [#279](https://github.com/chaijs/chai/pull/279) closeTo should check value's type before assertion [@mohayonao](https://github.com/mohayonao)\n- [#289](https://github.com/chaijs/chai/pull/289) satisfy is called twice [@charlierudolph](https://github.com/charlierudolph)\n- [#292](https://github.com/chaijs/chai/pull/292) resolve conflicts with node-webkit and global usage [@boneskull](https://github.com/boneskull)\n\nThank you to all who took time to contribute!\n"
-  },
-  {
-    "url": "https://api.github.com/repos/chaijs/chai/releases/230982",
-    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/230982/assets",
-    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/230982/assets{?name,label}",
-    "html_url": "https://github.com/chaijs/chai/releases/tag/1.9.1",
-    "id": 230982,
     "node_id": "MDc6UmVsZWFzZTIzMDk4Mg==",
     "tag_name": "1.9.1",
     "target_commitish": "master",
@@ -1076,6 +1096,14 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/1.9.1",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/1.9.1",
+    "body": "The following changes are required if you are upgrading from the previous version:\n- **Users:**\n  - Migrate configuration options to new interface. (see notes)\n- **Plugin Developers:** \n  - No changes required\n- **Core Contributors:** \n  - Refresh `node_modules` folder for updated dependencies. \n\n### Configuration\n\nThere have been requests for changes and additions to the configuration mechanisms\nand their impact in the Chai architecture. As such, we have decoupled the \nconfiguration from the `Assertion` constructor. This not only allows for centralized\nconfiguration, but will allow us to shift the responsibility from the `Assertion` \nconstructor to the `assert` interface in future releases.\n\nThese changes have been implemented in a non-breaking way, but a depretiation\nwarning will be presented to users until they migrate. The old config method will \nbe removed in either `v1.11.0` or `v2.0.0`, whichever comes first.\n\n#### Quick Migration\n\n``` js\n// change this:\nchai.Assertion.includeStack = true;\nchai.Assertion.showDiff = false;\n\n// ... to this:\nchai.config.includeStack = true;\nchai.config.showDiff = false;\n```\n\n#### All Config Options\n\n##### config.includeStack\n- **@param** _{Boolean}_\n- **@default** `false`\n\nUser configurable property, influences whether stack trace is included in \nAssertion error message. Default of `false` suppresses stack trace in the error \nmessage.\n\n##### config.showDiff\n- **@param** _{Boolean}_\n- **@default** `true`\n\nUser configurable property, influences whether or not the `showDiff` flag \nshould be included in the thrown AssertionErrors. `false` will always be `false`; \n`true` will be true when the assertion has requested a diff be shown.\n\n##### config.truncateThreshold **(NEW)**\n- **@param** _{Number}_\n- **@default** `40`\n\nUser configurable property, sets length threshold for actual and expected values \nin assertion errors. If this threshold is exceeded, the value is truncated.\n\nSet it to zero if you want to disable truncating altogether.\n\n``` js\nchai.config.truncateThreshold = 0; // disable truncating\n```\n\n### Community Contributions\n- [#228](https://github.com/chaijs/chai/pull/228) Deep equality check for memebers. [@duncanbeevers](https://github.com/duncanbeevers)\n- [#247](https://github.com/chaijs/chai/pull/247) Proofreading. [@didorellano](https://github.com/didoarellano)\n- [#244](https://github.com/chaijs/chai/pull/244) Fix `contain`/`include` 1.9.0 regression. [@leider](https://github.com/leider)\n- [#233](https://github.com/chaijs/chai/pull/233) Improvements to `ssfi` for `assert` interface. [@refack](https://github.com/refack)\n- [#251](https://github.com/chaijs/chai/pull/251) New config option: object display threshold. [@romario333](https://github.com/romario333)\n\nThank you to all who took time to contribute!\n\n### Other Bug Fixes\n- [#183](https://github.com/chaijs/chai/issues/183) Allow `undefined` for actual. (internal api)\n- Update Karam(+plugins)/Istanbul to most recent versions.\n"
+  },
+  {
+    "url": "https://api.github.com/repos/chaijs/chai/releases/165895",
+    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/165895/assets",
+    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/165895/assets{?name,label}",
+    "html_url": "https://github.com/chaijs/chai/releases/tag/1.9.0",
+    "id": 165895,
     "author": {
       "login": "logicalparadox",
       "id": 58988,
@@ -1096,14 +1124,6 @@
       "type": "User",
       "site_admin": false
     },
-    "body": "The following changes are required if you are upgrading from the previous version:\n- **Users:**\n  - Migrate configuration options to new interface. (see notes)\n- **Plugin Developers:** \n  - No changes required\n- **Core Contributors:** \n  - Refresh `node_modules` folder for updated dependencies. \n\n### Configuration\n\nThere have been requests for changes and additions to the configuration mechanisms\nand their impact in the Chai architecture. As such, we have decoupled the \nconfiguration from the `Assertion` constructor. This not only allows for centralized\nconfiguration, but will allow us to shift the responsibility from the `Assertion` \nconstructor to the `assert` interface in future releases.\n\nThese changes have been implemented in a non-breaking way, but a depretiation\nwarning will be presented to users until they migrate. The old config method will \nbe removed in either `v1.11.0` or `v2.0.0`, whichever comes first.\n\n#### Quick Migration\n\n``` js\n// change this:\nchai.Assertion.includeStack = true;\nchai.Assertion.showDiff = false;\n\n// ... to this:\nchai.config.includeStack = true;\nchai.config.showDiff = false;\n```\n\n#### All Config Options\n\n##### config.includeStack\n- **@param** _{Boolean}_\n- **@default** `false`\n\nUser configurable property, influences whether stack trace is included in \nAssertion error message. Default of `false` suppresses stack trace in the error \nmessage.\n\n##### config.showDiff\n- **@param** _{Boolean}_\n- **@default** `true`\n\nUser configurable property, influences whether or not the `showDiff` flag \nshould be included in the thrown AssertionErrors. `false` will always be `false`; \n`true` will be true when the assertion has requested a diff be shown.\n\n##### config.truncateThreshold **(NEW)**\n- **@param** _{Number}_\n- **@default** `40`\n\nUser configurable property, sets length threshold for actual and expected values \nin assertion errors. If this threshold is exceeded, the value is truncated.\n\nSet it to zero if you want to disable truncating altogether.\n\n``` js\nchai.config.truncateThreshold = 0; // disable truncating\n```\n\n### Community Contributions\n- [#228](https://github.com/chaijs/chai/pull/228) Deep equality check for memebers. [@duncanbeevers](https://github.com/duncanbeevers)\n- [#247](https://github.com/chaijs/chai/pull/247) Proofreading. [@didorellano](https://github.com/didoarellano)\n- [#244](https://github.com/chaijs/chai/pull/244) Fix `contain`/`include` 1.9.0 regression. [@leider](https://github.com/leider)\n- [#233](https://github.com/chaijs/chai/pull/233) Improvements to `ssfi` for `assert` interface. [@refack](https://github.com/refack)\n- [#251](https://github.com/chaijs/chai/pull/251) New config option: object display threshold. [@romario333](https://github.com/romario333)\n\nThank you to all who took time to contribute!\n\n### Other Bug Fixes\n- [#183](https://github.com/chaijs/chai/issues/183) Allow `undefined` for actual. (internal api)\n- Update Karam(+plugins)/Istanbul to most recent versions.\n"
-  },
-  {
-    "url": "https://api.github.com/repos/chaijs/chai/releases/165895",
-    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/165895/assets",
-    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/165895/assets{?name,label}",
-    "html_url": "https://github.com/chaijs/chai/releases/tag/1.9.0",
-    "id": 165895,
     "node_id": "MDc6UmVsZWFzZTE2NTg5NQ==",
     "tag_name": "1.9.0",
     "target_commitish": "master",
@@ -1150,26 +1170,6 @@
     ],
     "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/1.9.0",
     "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/1.9.0",
-    "author": {
-      "login": "logicalparadox",
-      "id": 58988,
-      "node_id": "MDQ6VXNlcjU4OTg4",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/58988?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/logicalparadox",
-      "html_url": "https://github.com/logicalparadox",
-      "followers_url": "https://api.github.com/users/logicalparadox/followers",
-      "following_url": "https://api.github.com/users/logicalparadox/following{/other_user}",
-      "gists_url": "https://api.github.com/users/logicalparadox/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/logicalparadox/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/logicalparadox/subscriptions",
-      "organizations_url": "https://api.github.com/users/logicalparadox/orgs",
-      "repos_url": "https://api.github.com/users/logicalparadox/repos",
-      "events_url": "https://api.github.com/users/logicalparadox/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/logicalparadox/received_events",
-      "type": "User",
-      "site_admin": false
-    },
     "body": "The following changes are required if you are upgrading from the previous version:\n- **Users:**\n  - No changes required\n- **Plugin Developers:** \n  - Review [#219](https://github.com/chaijs/chai/pull/219).\n- **Core Contributors:** \n  - Refresh `node_modules` folder for updated dependencies. \n\n### Community Contributions\n- [#202](https://github.com/chaijs/chai/pull/201) Improve error message for .throw(). [@andreineculau](https://github.com/andreineculau)\n- [#217](https://github.com/chaijs/chai/pull/217) Chai tests can be run with `--watch`. [@demands](https://github.com/demands)\n- [#219](https://github.com/chaijs/chai/pull/219) Add overwriteChainableMethod utility. [@demands](https://github.com/demands)\n- [#224](https://github.com/chaijs/chai/pull/224) Return error on throw method to chain on error properties. [@vbardales](https://github.com/vbardales)\n- [#226](https://github.com/chaijs/chai/pull/226) Add `has` to language chains. [@duncanbeevers](https://github.com/duncanbeevers)\n- [#230](https://github.com/chaijs/chai/pull/230) Support `{a:1,b:2}.should.include({a:1})` [@jkroso](https://github.com/jkroso)\n- [#231](https://github.com/chaijs/chai/pull/231) Update Copyright notices to 2014 [@duncanbeevers](https://github.com/duncanbeevers)\n- [#232](https://github.com/chaijs/chai/pull/232) Avoid error instantiation if possible on assert.throws. [@laconbass](https://github.com/laconbass)\n\nThank you to all who took time to contribute!\n\n### Other Bug Fixes\n- [#225](https://github.com/chaijs/chai/pull/225) Improved AMD wrapper provided by upstream `component(1)`.\n- [#185](https://github.com/chaijs/chai/issues/185) `assert.throws()` returns thrown error for further assertions.\n- [#237](https://github.com/chaijs/chai/pull/237) Remove coveralls/jscoverage, include istanbul coverage report in travis test.\n- Update Karma and Sauce runner versions for consistent CI results. No more karma@canary.\n"
   }
 ]

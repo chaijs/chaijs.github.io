@@ -25,6 +25,8 @@ Using the plugin is easy. Simply point the plugin to your API definitions file p
 - Coverage report (can be printed to your terminal or exported to a json file)
 - Supports response format from `axios`, `superagent`, `supertest`, `request` and `light-my-request` (used by `fastify`)
 - Supports OpenAPI 3.0
+- Supports multiple definition files
+  
 
 ## How does it work?
 The api-contract-validator transforms your API definition into a json-schema based on the provided API documentation file. Then whenever the `matchApiSchema` assertion is called, it automatically extracts the method, path and status code from the response object returned by the API request that you invoked and validates the response object. Both the response headers and body are validated.
@@ -94,6 +96,11 @@ it('GET /pets/123', async () => {
     expect(response).toHaveStatus(200);
     expect(response).toMatchApiSchema();
 })
+```
+## ***Multiple api definitions files***
+use apiDefinitionsPath option with an array of files paths
+```js
+const apiDefinitionsPath = [path.join(__dirname, 'myApp.yaml'), path.join(__dirname, 'myApp2.yaml')];
 ```
 
 ## Descriptive assertion failures

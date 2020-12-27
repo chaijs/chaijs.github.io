@@ -18,8 +18,9 @@ This is based on [ajv](https://github.com/epoberezkin/ajv), a JSON schema Valida
 |[v1](https://github.com/up9cloud/chai-json-schema-ajv/tree/v1)|4.11.8|[JSON Schema draft 4](http://json-schema.org/)|
 |[v2](https://github.com/up9cloud/chai-json-schema-ajv/tree/v2)|5.5.2|[JSON Schema draft-06](https://trac.tools.ietf.org/html/draft-wright-json-schema-validation-01)|
 |[v3](https://github.com/up9cloud/chai-json-schema-ajv/tree/v3)|^6.7.0|[JSON Schema draft-07](http://json-schema.org/latest/json-schema-validation.html)|
-|v4|Up to you||
-|v5|Up to you|Same as v4, but different message format|
+|v4|>=4 <7||
+|v5|>=4 <7|Same as v4, but different message format|
+|v5.2|>=4||
 
 ## Installation
 

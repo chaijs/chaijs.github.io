@@ -17,6 +17,12 @@
     "JSON",
     "json"
   ],
+  "Monad": [
+    "Monad"
+  ],
+  "Result": [
+    "Result"
+  ],
   "ajv": [
     "ajv"
   ],

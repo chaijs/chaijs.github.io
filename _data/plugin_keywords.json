@@ -358,6 +358,9 @@
   "lodash": [
     "lodash"
   ],
+  "luxon": [
+    "luxon"
+  ],
   "map": [
     "map"
   ],

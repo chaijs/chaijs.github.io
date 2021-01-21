@@ -9,9 +9,10 @@ pluginName: chai-luxon
 A [Chai](https://www.chaijs.com/) plugin that adds matchers for dates and formatted date strings powered by [Luxon](https://moment.github.io/luxon/)
 
 [![NPM Version](https://img.shields.io/npm/v/chai-luxon.svg?style=flat)]()
-[![NPM License](https://img.shields.io/npm/l/all-contributors.svg?style=flat)](http://www.tldrlegal.com/license/mit-license)
+[![NPM License](https://img.shields.io/npm/l/chai-luxon.svg?style=flat)](http://www.tldrlegal.com/license/mit-license)
 [![NPM Downloads](https://img.shields.io/npm/dt/chai-luxon.svg?style=flat)]()  
-[![NPM](https://nodei.co/npm/chai-luxon.png?downloads=true)](https://www.npmjs.com/package/chai-luxon)  
+[![NPM](https://nodei.co/npm/chai-luxon.png?downloads=true)](https://www.npmjs.com/package/chai-luxon)
+
 ## Using
 
 Also see the [tests](https://github.com/cadam11/chai-luxon/tree/master/test/)
@@ -105,6 +106,45 @@ assert.afterDateTime(oneDayLater, luxonDateTime, 'month'); // fails
 assert.afterDateTime(oneDayLater, luxonDateTime, 'month', 'custom error message'); // fails
 assert.afterDateTime(oneDayLater, luxonDateTime, 'custom error message');
 ```
+
+## Date-part only
+
+The library includes convenience methods for comparing only the date portion of DateTime values. These convenience methods are aliases for using a granularity of 'day' with the above matchers. All the same date formats (object, JS Date, string, etc) are supported in the same way.
+
+### sameDate, beforeDate, afterdate
+
+```javascript
+const date = DateTime.fromISO('2020-04-21T12:00:00Z');
+const oneHourLater = date.plus({ hour: 1 });
+const oneHourEarlier = date.minus({ hour: 1 });
+const oneDayLater = date.plus({ day: 1 });
+const oneDayEarlier = date.minus({ day: 1 });
+
+// using should-style assertions
+date.should.be.sameDate(oneHourLater);
+date.should.be.beforeDate(oneHourLater); // fails
+date.should.be.beforeDate(oneDayLater);
+date.should.be.afterDate(oneHourEarlier); // fails
+date.should.be.afterDate(oneDayLater);
+
+// using expect-style assertions
+expect(date).to.be.sameDate(oneHourLater);
+expect(date).to.be.beforeDate(oneHourLater); // fails
+expect(date).to.be.beforeDate(oneDayLater);
+expect(date).to.be.afterDate(oneHourEarlier); // fails
+expect(date).to.be.afterDate(oneDayLater);
+
+// using tdd assertions
+assert.sameDate(date, oneHourLater);
+assert.beforeDate(date, oneDayLater);
+assert.beforeDate(date, oneHourLater); // fails
+assert.afterDate(oneDayLater, date);
+assert.afterDate(oneDayLater, oneHourLater); // fails
+```
+
+## Limitations
+
+Strings are limited to ISO-8601 strings only. Other string Date/Time formats aren't guaranteed to work (and probably won't).
 
 # Thanks
 

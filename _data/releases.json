@@ -1,5 +1,46 @@
 [
   {
+    "url": "https://api.github.com/repos/chaijs/chai/releases/18317056",
+    "assets_url": "https://api.github.com/repos/chaijs/chai/releases/18317056/assets",
+    "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/18317056/assets{?name,label}",
+    "html_url": "https://github.com/chaijs/chai/releases/tag/4.3.0",
+    "id": 18317056,
+    "author": {
+      "login": "lucasfcosta",
+      "id": 6868147,
+      "node_id": "MDQ6VXNlcjY4NjgxNDc=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6868147?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/lucasfcosta",
+      "html_url": "https://github.com/lucasfcosta",
+      "followers_url": "https://api.github.com/users/lucasfcosta/followers",
+      "following_url": "https://api.github.com/users/lucasfcosta/following{/other_user}",
+      "gists_url": "https://api.github.com/users/lucasfcosta/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/lucasfcosta/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/lucasfcosta/subscriptions",
+      "organizations_url": "https://api.github.com/users/lucasfcosta/orgs",
+      "repos_url": "https://api.github.com/users/lucasfcosta/repos",
+      "events_url": "https://api.github.com/users/lucasfcosta/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/lucasfcosta/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "node_id": "MDc6UmVsZWFzZTE4MzE3MDU2",
+    "tag_name": "4.3.0",
+    "target_commitish": "master",
+    "name": "4.3.0 / 2021-02-04",
+    "draft": false,
+    "prerelease": false,
+    "created_at": "2021-02-04T10:55:37Z",
+    "published_at": "2021-02-04T10:58:46Z",
+    "assets": [
+
+    ],
+    "tarball_url": "https://api.github.com/repos/chaijs/chai/tarball/4.3.0",
+    "zipball_url": "https://api.github.com/repos/chaijs/chai/zipball/4.3.0",
+    "body": "This is a minor release.\r\n\r\nNot many changes have got in since the last release but this one contains a very important change (#1257) which will allow `jest` users to get better diffs. From this release onwards, `jest` users will be able to see which operator was used in their diffs. [The `operator` is a property of the `AssertionError` thrown when assertions fail](https://nodejs.org/api/assert.html#assert_assert_deepstrictequal_actual_expected_message). This flag indicates what kind of comparison was made.\r\n\r\nThis is also an important change for plugin maintainers. Plugin maintainers will now have access to the `operator` `flag, which they can have access to through an `util` method called `getOperator`.\r\n\r\nThanks to all the amazing people that contributed to this release.\r\n\r\n# New Features\r\n* Allow `contain.oneOf` to take an array of possible values (@voliva)\r\n* Adding operator attribute to assertion error (#1257) (@rpgeeganage)\r\n* The `closeTo` error message will now inform the user when a `delta` is required (@eouw0o83hf) \r\n\r\n# Docs\r\n* Add contains flag to oneOf documentation (@voliva)\r\n\r\n# Tests\r\n* Make sure that `useProxy` config is checked in `overwriteProperty` (@vieiralucas)\r\n* Add tests for `contain.oneOf` (@voliva )\r\n\r\n# Chores\r\n* Update mocha to version 6.1.4\r\n* Add node v10 and v12 to ci (@vieiralucas)\r\n* Drop support for node v4, v6 and v9 (@vieiralucas)\r\n* Fix sauce config for headless chrome (@meeber)\r\n* Update dev dependencies (@meeber)\r\n* Removed phantomjs dependency (#1204)"
+  },
+  {
     "url": "https://api.github.com/repos/chaijs/chai/releases/13092683",
     "assets_url": "https://api.github.com/repos/chaijs/chai/releases/13092683/assets",
     "upload_url": "https://uploads.github.com/repos/chaijs/chai/releases/13092683/assets{?name,label}",
@@ -1162,7 +1203,7 @@
         "content_type": "text/javascript",
         "state": "uploaded",
         "size": 117322,
-        "download_count": 7657,
+        "download_count": 7658,
         "created_at": "2014-01-30T00:03:47Z",
         "updated_at": "2014-01-30T00:03:53Z",
         "browser_download_url": "https://github.com/chaijs/chai/releases/download/1.9.0/chai.js"

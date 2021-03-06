@@ -11,7 +11,7 @@ assertion for [chai](https://www.chaijs.com) that uses strict
 semantics and an intuitive output diff.
 
 [![NPM version](https://img.shields.io/npm/v/chai-better-shallow-deep-equal.svg)](https://www.npmjs.com/package/chai-better-shallow-deep-equal)
-[![Build Status](https://img.shields.io/travis/alexjeffburke/chai-better-shallow-deep-equal/master.svg)](https://travis-ci.org/alexjeffburke/chai-better-shallow-deep-equal)
+[![Build Status](https://img.shields.io/github/workflow/status/alexjeffburke/chai-better-shallow-deep-equal/tests.svg)](https://github.com/alexjeffburke/chai-better-shallow-deep-equal/actions)
 [![Coverage Status](https://img.shields.io/coveralls/alexjeffburke/chai-better-shallow-deep-equal/master.svg)](https://coveralls.io/r/alexjeffburke/chai-better-shallow-deep-equal?branch=master)
 
 Under the hood the library wraps the [Unexpected](https://unexpected.js.org)
@@ -37,7 +37,9 @@ on error an informative diff will be printed:
 expect({ foo: true, bar: 0 }).to.shallowDeepEqual({ foo: true, bar: 1 });
 ```
 
-```output
+<!-- evaldown output:true -->
+
+```
 expected { foo: true, bar: 0 } to satisfy { foo: true, bar: 1 }
 
 {
@@ -45,6 +47,8 @@ expected { foo: true, bar: 0 } to satisfy { foo: true, bar: 1 }
   bar: 0 // should equal 1
 }
 ```
+
+The assertion works with all three chai APIs: `expect`, `should` and `assert`.
 
 ## Support for ES6 types
 
@@ -64,11 +68,13 @@ expect(
 );
 ```
 
-```output
-expected Map([ ['foo', 1], ['bar', false] ])
-to satisfy Map([ ['foo', 1], ['bar', true] ])
+<!-- evaldown output:true -->
 
-Map([
+```
+expected new Map[ ['foo', 1], ['bar', false] ])
+to satisfy new Map[ ['foo', 1], ['bar', true] ])
+
+new Map[
   ['foo', 1,]
   ['bar',
     false // should equal true
@@ -82,10 +88,12 @@ expect(new Set(["foo", "baz"])).to.shallowDeepEqual(
 );
 ```
 
-```output
-expected Set([ 'foo', 'baz' ]) to satisfy Set([ 'foo', 'bar' ])
+<!-- evaldown output:true -->
 
-Set([
+```
+expected new Set([ 'foo', 'baz' ]) to satisfy new Set([ 'foo', 'bar' ])
+
+new Set([
   'foo',
   'baz' // should be removed
   // missing 'bar'
@@ -157,11 +165,13 @@ expect({ fooDate }).to.shallowDeepEqual({
 });
 ```
 
-```output
-expected { fooDate: new Date('Wed, 11 Mar 2020 17:16:56.326 GMT') }
+<!-- evaldown output:true -->
+
+```
+expected { fooDate: new Date('2020-03-11T17:16:56.326Z') }
 to satisfy { fooDate: '2020-03-11T17:16:56.326Z' }
 
 {
-  fooDate: new Date('Wed, 11 Mar 2020 17:16:56.326 GMT') // should equal '2020-03-11T17:16:56.326Z'
+  fooDate: new Date('2020-03-11T17:16:56.326Z') // should equal '2020-03-11T17:16:56.326Z'
 }
 ```

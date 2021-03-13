@@ -16380,7 +16380,7 @@
     "ignore": false,
     "line": 8539,
     "codeStart": 8554,
-    "code": "function inspect(obj, showHidden, depth, colors) {\n  var ctx = {\n    showHidden: showHidden,\n    seen: [],\n    stylize: function (str) { return str; }\n  };\n  return formatValue(ctx, obj, (typeof depth === 'undefined' ? 2 : depth));\n}\n\n// Returns true if object is a DOM element.\nvar isDOMElement = function (object) {\n  if (typeof HTMLElement === 'object') {\n    return object instanceof HTMLElement;\n  } else {\n    return object &&\n      typeof object === 'object' &&\n      'nodeType' in object &&\n      object.nodeType === 1 &&\n      typeof object.nodeName === 'string';\n  }\n};\n\nfunction formatValue(ctx, value, recurseTimes) {\n  // Provide a hook for user-specified inspect functions.\n  // Check that value is an object with an inspect function on it\n  if (value && typeof value.inspect === 'function' &&\n      // Filter out the util module, it's inspect function is special\n      value.inspect !== exports.inspect &&\n      // Also filter out any prototype objects using the circular check.\n      !(value.constructor && value.constructor.prototype === value)) {\n    var ret = value.inspect(recurseTimes, ctx);\n    if (typeof ret !== 'string') {\n      ret = formatValue(ctx, ret, recurseTimes);\n    }\n    return ret;\n  }\n\n  // Primitive types cannot have properties\n  var primitive = formatPrimitive(ctx, value);\n  if (primitive) {\n    return primitive;\n  }\n\n  // If this is a DOM element, try to get the outer HTML.\n  if (isDOMElement(value)) {\n    if ('outerHTML' in value) {\n      return value.outerHTML;\n      // This value does not have an outerHTML attribute,\n      //   it could still be an XML element\n    } else {\n      // Attempt to serialize it\n      try {\n        if (document.xmlVersion) {\n          var xmlSerializer = new XMLSerializer();\n          return xmlSerializer.serializeToString(value);\n        } else {\n          // Firefox 11- do not support outerHTML\n          //   It does, however, support innerHTML\n          //   Use the following to render the element\n          var ns = \"http://www.w3.org/1999/xhtml\";\n          var container = document.createElementNS(ns, '_');\n\n          container.appendChild(value.cloneNode(false));\n          var html = container.innerHTML\n            .replace('><', '>' + value.innerHTML + '<');\n          container.innerHTML = '';\n          return html;\n        }\n      } catch (err) {\n        // This could be a non-native DOM implementation,\n        //   continue with the normal flow:\n        //   printing the element as if it is an object.\n      }\n    }\n  }\n\n  // Look up the keys of the object.\n  var visibleKeys = getEnumerableProperties(value);\n  var keys = ctx.showHidden ? getProperties(value) : visibleKeys;\n\n  var name, nameSuffix;\n\n  // Some type of object without properties can be shortcut.\n  // In IE, errors have a single `stack` property, or if they are vanilla `Error`,\n  // a `stack` plus `description` property; ignore those for consistency.\n  if (keys.length === 0 || (isError(value) && (\n      (keys.length === 1 && keys[0] === 'stack') ||\n      (keys.length === 2 && keys[0] === 'description' && keys[1] === 'stack')\n     ))) {\n    if (typeof value === 'function') {\n      name = getName(value);\n      nameSuffix = name ? ': ' + name : '';\n      return ctx.stylize('[Function' + nameSuffix + ']', 'special');\n    }\n    if (isRegExp(value)) {\n      return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');\n    }\n    if (isDate(value)) {\n      return ctx.stylize(Date.prototype.toUTCString.call(value), 'date');\n    }\n    if (isError(value)) {\n      return formatError(value);\n    }\n  }\n\n  var base = ''\n    , array = false\n    , typedArray = false\n    , braces = ['{', '}'];\n\n  if (isTypedArray(value)) {\n    typedArray = true;\n    braces = ['[', ']'];\n  }\n\n  // Make Array say that they are Array\n  if (isArray(value)) {\n    array = true;\n    braces = ['[', ']'];\n  }\n\n  // Make functions say that they are functions\n  if (typeof value === 'function') {\n    name = getName(value);\n    nameSuffix = name ? ': ' + name : '';\n    base = ' [Function' + nameSuffix + ']';\n  }\n\n  // Make RegExps say that they are RegExps\n  if (isRegExp(value)) {\n    base = ' ' + RegExp.prototype.toString.call(value);\n  }\n\n  // Make dates with properties first say the date\n  if (isDate(value)) {\n    base = ' ' + Date.prototype.toUTCString.call(value);\n  }\n\n  // Make error with message first say the error\n  if (isError(value)) {\n    return formatError(value);\n  }\n\n  if (keys.length === 0 && (!array || value.length == 0)) {\n    return braces[0] + base + braces[1];\n  }\n\n  if (recurseTimes < 0) {\n    if (isRegExp(value)) {\n      return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');\n    } else {\n      return ctx.stylize('[Object]', 'special');\n    }\n  }\n\n  ctx.seen.push(value);\n\n  var output;\n  if (array) {\n    output = formatArray(ctx, value, recurseTimes, visibleKeys, keys);\n  } else if (typedArray) {\n    return formatTypedArray(value);\n  } else {\n    output = keys.map(function(key) {\n      return formatProperty(ctx, value, recurseTimes, visibleKeys, key, array);\n    });\n  }\n\n  ctx.seen.pop();\n\n  return reduceToSingleString(output, base, braces);\n}\n\nfunction formatPrimitive(ctx, value) {\n  switch (typeof value) {\n    case 'undefined':\n      return ctx.stylize('undefined', 'undefined');\n\n    case 'string':\n      var simple = '\\'' + JSON.stringify(value).replace(/^\"|\"$/g, '')\n                                               .replace(/'/g, \"\\\\'\")\n                                               .replace(/\\\\\"/g, '\"') + '\\'';\n      return ctx.stylize(simple, 'string');\n\n    case 'number':\n      if (value === 0 && (1/value) === -Infinity) {\n        return ctx.stylize('-0', 'number');\n      }\n      return ctx.stylize('' + value, 'number');\n\n    case 'boolean':\n      return ctx.stylize('' + value, 'boolean');\n\n    case 'symbol':\n      return ctx.stylize(value.toString(), 'symbol');\n  }\n  // For some reason typeof null is \"object\", so special case here.\n  if (value === null) {\n    return ctx.stylize('null', 'null');\n  }\n}\n\nfunction formatError(value) {\n  return '[' + Error.prototype.toString.call(value) + ']';\n}\n\nfunction formatArray(ctx, value, recurseTimes, visibleKeys, keys) {\n  var output = [];\n  for (var i = 0, l = value.length; i < l; ++i) {\n    if (Object.prototype.hasOwnProperty.call(value, String(i))) {\n      output.push(formatProperty(ctx, value, recurseTimes, visibleKeys,\n          String(i), true));\n    } else {\n      output.push('');\n    }\n  }\n\n  keys.forEach(function(key) {\n    if (!key.match(/^\\d+$/)) {\n      output.push(formatProperty(ctx, value, recurseTimes, visibleKeys,\n          key, true));\n    }\n  });\n  return output;\n}\n\nfunction formatTypedArray(value) {\n  var str = '[ ';\n\n  for (var i = 0; i < value.length; ++i) {\n    if (str.length >= config.truncateThreshold - 7) {\n      str += '...';\n      break;\n    }\n    str += value[i] + ', ';\n  }\n  str += ' ]';\n\n  // Removing trailing `, ` if the array was not truncated\n  if (str.indexOf(',  ]') !== -1) {\n    str = str.replace(',  ]', ' ]');\n  }\n\n  return str;\n}\n\nfunction formatProperty(ctx, value, recurseTimes, visibleKeys, key, array) {\n  var name;\n  var propDescriptor = Object.getOwnPropertyDescriptor(value, key);\n  var str;\n\n  if (propDescriptor) {\n    if (propDescriptor.get) {\n      if (propDescriptor.set) {\n        str = ctx.stylize('[Getter/Setter]', 'special');\n      } else {\n        str = ctx.stylize('[Getter]', 'special');\n      }\n    } else {\n      if (propDescriptor.set) {\n        str = ctx.stylize('[Setter]', 'special');\n      }\n    }\n  }\n  if (visibleKeys.indexOf(key) < 0) {\n    name = '[' + key + ']';\n  }\n  if (!str) {\n    if (ctx.seen.indexOf(value[key]) < 0) {\n      if (recurseTimes === null) {\n        str = formatValue(ctx, value[key], null);\n      } else {\n        str = formatValue(ctx, value[key], recurseTimes - 1);\n      }\n      if (str.indexOf('\\n') > -1) {\n        if (array) {\n          str = str.split('\\n').map(function(line) {\n            return '  ' + line;\n          }).join('\\n').substr(2);\n        } else {\n          str = '\\n' + str.split('\\n').map(function(line) {\n            return '   ' + line;\n          }).join('\\n');\n        }\n      }\n    } else {\n      str = ctx.stylize('[Circular]', 'special');\n    }\n  }\n  if (typeof name === 'undefined') {\n    if (array && key.match(/^\\d+$/)) {\n      return str;\n    }\n    name = JSON.stringify('' + key);\n    if (name.match(/^\"([a-zA-Z_][a-zA-Z_0-9]*)\"$/)) {\n      name = name.substr(1, name.length - 2);\n      name = ctx.stylize(name, 'name');\n    } else {\n      name = name.replace(/'/g, \"\\\\'\")\n                 .replace(/\\\\\"/g, '\"')\n                 .replace(/(^\"|\"$)/g, \"'\");\n      name = ctx.stylize(name, 'string');\n    }\n  }\n\n  return name + ': ' + str;\n}\n\nfunction reduceToSingleString(output, base, braces) {\n  var length = output.reduce(function(prev, cur) {\n    return prev + cur.length + 1;\n  }, 0);\n\n  if (length > 60) {\n    return braces[0] +\n           (base === '' ? '' : base + '\\n ') +\n           ' ' +\n           output.join(',\\n  ') +\n           ' ' +\n           braces[1];\n  }\n\n  return braces[0] + base + ' ' + output.join(', ') + ' ' + braces[1];\n}\n\nfunction isTypedArray(ar) {\n  // Unfortunately there's no way to check if an object is a TypedArray\n  // We have to check if it's one of these types\n  return (typeof ar === 'object' && /\\w+Array]$/.test(objectToString(ar)));\n}\n\nfunction isArray(ar) {\n  return Array.isArray(ar) ||\n         (typeof ar === 'object' && objectToString(ar) === '[object Array]');\n}\n\nfunction isRegExp(re) {\n  return typeof re === 'object' && objectToString(re) === '[object RegExp]';\n}\n\nfunction isDate(d) {\n  return typeof d === 'object' && objectToString(d) === '[object Date]';\n}\n\nfunction isError(e) {\n  return typeof e === 'object' && objectToString(e) === '[object Error]';\n}\n\nfunction objectToString(o) {\n  return Object.prototype.toString.call(o);\n}\n\n},{\"../config\":4,\"./getEnumerableProperties\":17,\"./getProperties\":22,\"get-func-name\":37}],25:[function(require,module,exports){",
+    "code": "function inspect(obj, showHidden, depth, colors) {\n  var ctx = {\n    showHidden: showHidden,\n    seen: [],\n    stylize: function (str) { return str; }\n  };\n  return formatValue(ctx, obj, (typeof depth === 'undefined' ? 2 : depth));\n}\n\n// Returns true if object is a DOM element.\nvar isDOMElement = function (object) {\n  if (typeof HTMLElement === 'object') {\n    return object instanceof HTMLElement;\n  } else {\n    return object &&\n      typeof object === 'object' &&\n      'nodeType' in object &&\n      object.nodeType === 1 &&\n      typeof object.nodeName === 'string';\n  }\n};\n\nfunction formatValue(ctx, value, recurseTimes) {\n  // Provide a hook for user-specified inspect functions.\n  // Check that value is an object with an inspect function on it\n  if (value && typeof value.inspect === 'function' &&\n      // Filter out the util module, it's inspect function is special\n      value.inspect !== exports.inspect &&\n      // Also filter out any prototype objects using the circular check.\n      !(value.constructor && value.constructor.prototype === value)) {\n    var ret = value.inspect(recurseTimes, ctx);\n    if (typeof ret !== 'string') {\n      ret = formatValue(ctx, ret, recurseTimes);\n    }\n    return ret;\n  }\n\n  // Primitive types cannot have properties\n  var primitive = formatPrimitive(ctx, value);\n  if (primitive) {\n    return primitive;\n  }\n\n  // If this is a DOM element, try to get the outer HTML.\n  if (isDOMElement(value)) {\n    if ('outerHTML' in value) {\n      return value.outerHTML;\n      // This value does not have an outerHTML attribute,\n      //   it could still be an XML element\n    } else {\n      // Attempt to serialize it\n      try {\n        if (document.xmlVersion) {\n          var xmlSerializer = new XMLSerializer();\n          return xmlSerializer.serializeToString(value);\n        } else {\n          // Firefox 11- do not support outerHTML\n          //   It does, however, support innerHTML\n          //   Use the following to render the element\n          var ns = \"http://www.w3.org/1999/xhtml\";\n          var container = document.createElementNS(ns, '_');\n\n          container.appendChild(value.cloneNode(false));\n          var html = container.innerHTML\n            .replace('><', '>' + value.innerHTML + '<');\n          container.innerHTML = '';\n          return html;\n        }\n      } catch (err) {\n        // This could be a non-native DOM implementation,\n        //   continue with the normal flow:\n        //   printing the element as if it is an object.\n      }\n    }\n  }\n\n  // Look up the keys of the object.\n  var visibleKeys = getEnumerableProperties(value);\n  var keys = ctx.showHidden ? getProperties(value) : visibleKeys;\n\n  var name, nameSuffix;\n\n  // Some type of object without properties can be shortcut.\n  // In IE, errors have a single `stack` property, or if they are vanilla `Error`,\n  // a `stack` plus `description` property; ignore those for consistency.\n  if (keys.length === 0 || (isError(value) && (\n      (keys.length === 1 && keys[0] === 'stack') ||\n      (keys.length === 2 && keys[0] === 'description' && keys[1] === 'stack')\n     ))) {\n    if (typeof value === 'function') {\n      name = getName(value);\n      nameSuffix = name ? ': ' + name : '';\n      return ctx.stylize('[Function' + nameSuffix + ']', 'special');\n    }\n    if (isRegExp(value)) {\n      return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');\n    }\n    if (isDate(value)) {\n      return ctx.stylize(Date.prototype.toUTCString.call(value), 'date');\n    }\n    if (isError(value)) {\n      return formatError(value);\n    }\n  }\n\n  var base = ''\n    , array = false\n    , typedArray = false\n    , braces = ['{', '}'];\n\n  if (isTypedArray(value)) {\n    typedArray = true;\n    braces = ['[', ']'];\n  }\n\n  // Make Array say that they are Array\n  if (isArray(value)) {\n    array = true;\n    braces = ['[', ']'];\n  }\n\n  // Make functions say that they are functions\n  if (typeof value === 'function') {\n    name = getName(value);\n    nameSuffix = name ? ': ' + name : '';\n    base = ' [Function' + nameSuffix + ']';\n  }\n\n  // Make RegExps say that they are RegExps\n  if (isRegExp(value)) {\n    base = ' ' + RegExp.prototype.toString.call(value);\n  }\n\n  // Make dates with properties first say the date\n  if (isDate(value)) {\n    base = ' ' + Date.prototype.toUTCString.call(value);\n  }\n\n  // Make error with message first say the error\n  if (isError(value)) {\n    return formatError(value);\n  }\n\n  if (keys.length === 0 && (!array || value.length == 0)) {\n    return braces[0] + base + braces[1];\n  }\n\n  if (recurseTimes < 0) {\n    if (isRegExp(value)) {\n      return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');\n    } else {\n      return ctx.stylize('[Object]', 'special');\n    }\n  }\n\n  ctx.seen.push(value);\n\n  var output;\n  if (array) {\n    output = formatArray(ctx, value, recurseTimes, visibleKeys, keys);\n  } else if (typedArray) {\n    return formatTypedArray(value);\n  } else {\n    output = keys.map(function(key) {\n      return formatProperty(ctx, value, recurseTimes, visibleKeys, key, array);\n    });\n  }\n\n  ctx.seen.pop();\n\n  return reduceToSingleString(output, base, braces);\n}\n\nfunction formatPrimitive(ctx, value) {\n  switch (typeof value) {\n    case 'undefined':\n      return ctx.stylize('undefined', 'undefined');\n\n    case 'string':\n      var simple = '\\'' + JSON.stringify(value).replace(/^\"|\"$/g, '')\n                                               .replace(/'/g, \"\\\\'\")\n                                               .replace(/\\\\\"/g, '\"') + '\\'';\n      return ctx.stylize(simple, 'string');\n\n    case 'number':\n      if (value === 0 && (1/value) === -Infinity) {\n        return ctx.stylize('-0', 'number');\n      }\n      return ctx.stylize('' + value, 'number');\n\n    case 'boolean':\n      return ctx.stylize('' + value, 'boolean');\n\n    case 'symbol':\n      return ctx.stylize(value.toString(), 'symbol');\n\n    case 'bigint':\n      return ctx.stylize(value.toString() + 'n', 'bigint');\n  }\n  // For some reason typeof null is \"object\", so special case here.\n  if (value === null) {\n    return ctx.stylize('null', 'null');\n  }\n}\n\nfunction formatError(value) {\n  return '[' + Error.prototype.toString.call(value) + ']';\n}\n\nfunction formatArray(ctx, value, recurseTimes, visibleKeys, keys) {\n  var output = [];\n  for (var i = 0, l = value.length; i < l; ++i) {\n    if (Object.prototype.hasOwnProperty.call(value, String(i))) {\n      output.push(formatProperty(ctx, value, recurseTimes, visibleKeys,\n          String(i), true));\n    } else {\n      output.push('');\n    }\n  }\n\n  keys.forEach(function(key) {\n    if (!key.match(/^\\d+$/)) {\n      output.push(formatProperty(ctx, value, recurseTimes, visibleKeys,\n          key, true));\n    }\n  });\n  return output;\n}\n\nfunction formatTypedArray(value) {\n  var str = '[ ';\n\n  for (var i = 0; i < value.length; ++i) {\n    if (str.length >= config.truncateThreshold - 7) {\n      str += '...';\n      break;\n    }\n    str += value[i] + ', ';\n  }\n  str += ' ]';\n\n  // Removing trailing `, ` if the array was not truncated\n  if (str.indexOf(',  ]') !== -1) {\n    str = str.replace(',  ]', ' ]');\n  }\n\n  return str;\n}\n\nfunction formatProperty(ctx, value, recurseTimes, visibleKeys, key, array) {\n  var name;\n  var propDescriptor = Object.getOwnPropertyDescriptor(value, key);\n  var str;\n\n  if (propDescriptor) {\n    if (propDescriptor.get) {\n      if (propDescriptor.set) {\n        str = ctx.stylize('[Getter/Setter]', 'special');\n      } else {\n        str = ctx.stylize('[Getter]', 'special');\n      }\n    } else {\n      if (propDescriptor.set) {\n        str = ctx.stylize('[Setter]', 'special');\n      }\n    }\n  }\n  if (visibleKeys.indexOf(key) < 0) {\n    name = '[' + key + ']';\n  }\n  if (!str) {\n    if (ctx.seen.indexOf(value[key]) < 0) {\n      if (recurseTimes === null) {\n        str = formatValue(ctx, value[key], null);\n      } else {\n        str = formatValue(ctx, value[key], recurseTimes - 1);\n      }\n      if (str.indexOf('\\n') > -1) {\n        if (array) {\n          str = str.split('\\n').map(function(line) {\n            return '  ' + line;\n          }).join('\\n').substr(2);\n        } else {\n          str = '\\n' + str.split('\\n').map(function(line) {\n            return '   ' + line;\n          }).join('\\n');\n        }\n      }\n    } else {\n      str = ctx.stylize('[Circular]', 'special');\n    }\n  }\n  if (typeof name === 'undefined') {\n    if (array && key.match(/^\\d+$/)) {\n      return str;\n    }\n    name = JSON.stringify('' + key);\n    if (name.match(/^\"([a-zA-Z_][a-zA-Z_0-9]*)\"$/)) {\n      name = name.substr(1, name.length - 2);\n      name = ctx.stylize(name, 'name');\n    } else {\n      name = name.replace(/'/g, \"\\\\'\")\n                 .replace(/\\\\\"/g, '\"')\n                 .replace(/(^\"|\"$)/g, \"'\");\n      name = ctx.stylize(name, 'string');\n    }\n  }\n\n  return name + ': ' + str;\n}\n\nfunction reduceToSingleString(output, base, braces) {\n  var length = output.reduce(function(prev, cur) {\n    return prev + cur.length + 1;\n  }, 0);\n\n  if (length > 60) {\n    return braces[0] +\n           (base === '' ? '' : base + '\\n ') +\n           ' ' +\n           output.join(',\\n  ') +\n           ' ' +\n           braces[1];\n  }\n\n  return braces[0] + base + ' ' + output.join(', ') + ' ' + braces[1];\n}\n\nfunction isTypedArray(ar) {\n  // Unfortunately there's no way to check if an object is a TypedArray\n  // We have to check if it's one of these types\n  return (typeof ar === 'object' && /\\w+Array]$/.test(objectToString(ar)));\n}\n\nfunction isArray(ar) {\n  return Array.isArray(ar) ||\n         (typeof ar === 'object' && objectToString(ar) === '[object Array]');\n}\n\nfunction isRegExp(re) {\n  return typeof re === 'object' && objectToString(re) === '[object RegExp]';\n}\n\nfunction isDate(d) {\n  return typeof d === 'object' && objectToString(d) === '[object Date]';\n}\n\nfunction isError(e) {\n  return typeof e === 'object' && objectToString(e) === '[object Error]';\n}\n\nfunction objectToString(o) {\n  return Object.prototype.toString.call(o);\n}\n\n},{\"../config\":4,\"./getEnumerableProperties\":17,\"./getProperties\":22,\"get-func-name\":37}],25:[function(require,module,exports){",
     "ctx": {
       "type": "function",
       "name": "inspect",
@@ -16399,8 +16399,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8907,
-    "codeStart": 8912
+    "line": 8910,
+    "codeStart": 8915
   },
   {
     "tags": [
@@ -16438,8 +16438,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 8913,
-    "codeStart": 8925,
+    "line": 8916,
+    "codeStart": 8928,
     "code": "function isNaN(value) {\n  // Refer http://www.ecma-international.org/ecma-262/6.0/#sec-isnan-number\n  // section's NOTE.\n  return value !== value;\n}\n\n// If ECMAScript 6's Number.isNaN is present, prefer that.\nmodule.exports = Number.isNaN || isNaN;\n\n},{}],26:[function(require,module,exports){\nvar config = require('../config');",
     "ctx": {
       "type": "function",
@@ -16459,8 +16459,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8937,
-    "codeStart": 8942
+    "line": 8940,
+    "codeStart": 8945
   },
   {
     "tags": [
@@ -16483,8 +16483,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 8943,
-    "codeStart": 8954,
+    "line": 8946,
+    "codeStart": 8957,
     "code": "module.exports = function isProxyEnabled() {\n  return config.useProxy &&\n    typeof Proxy !== 'undefined' &&\n    typeof Reflect !== 'undefined';\n};\n\n},{\"../config\":4}],27:[function(require,module,exports){",
     "ctx": {
       "type": "method",
@@ -16505,8 +16505,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8961,
-    "codeStart": 8966
+    "line": 8964,
+    "codeStart": 8969
   },
   {
     "tags": [],
@@ -16520,8 +16520,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8967,
-    "codeStart": 8971,
+    "line": 8970,
+    "codeStart": 8974,
     "code": "var inspect = require('./inspect');\nvar config = require('../config');",
     "ctx": {
       "type": "declaration",
@@ -16570,8 +16570,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 8974,
-    "codeStart": 8987,
+    "line": 8977,
+    "codeStart": 8990,
     "code": "module.exports = function objDisplay(obj) {\n  var str = inspect(obj)\n    , type = Object.prototype.toString.call(obj);\n\n  if (config.truncateThreshold && str.length >= config.truncateThreshold) {\n    if (type === '[object Function]') {\n      return !obj.name || obj.name === ''\n        ? '[Function]'\n        : '[Function: ' + obj.name + ']';\n    } else if (type === '[object Array]') {\n      return '[ Array(' + obj.length + ') ]';\n    } else if (type === '[object Object]') {\n      var keys = Object.keys(obj)\n        , kstr = keys.length > 2\n          ? keys.splice(0, 2).join(', ') + ', ...'\n          : keys.join(', ');\n      return '{ Object (' + kstr + ') }';\n    } else {\n      return str;\n    }\n  } else {\n    return str;\n  }\n};\n\n},{\"../config\":4,\"./inspect\":24}],28:[function(require,module,exports){",
     "ctx": {
       "type": "method",
@@ -16592,8 +16592,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9013,
-    "codeStart": 9019,
+    "line": 9016,
+    "codeStart": 9022,
     "code": "var chai = require('../../chai');\nvar transferFlags = require('./transferFlags');",
     "ctx": {
       "type": "declaration",
@@ -16684,8 +16684,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9022,
-    "codeStart": 9055,
+    "line": 9025,
+    "codeStart": 9058,
     "code": "module.exports = function overwriteChainableMethod(ctx, name, method, chainingBehavior) {\n  var chainableBehavior = ctx.__methods[name];\n\n  var _chainingBehavior = chainableBehavior.chainingBehavior;\n  chainableBehavior.chainingBehavior = function overwritingChainableMethodGetter() {\n    var result = chainingBehavior(_chainingBehavior).call(this);\n    if (result !== undefined) {\n      return result;\n    }\n\n    var newAssertion = new chai.Assertion();\n    transferFlags(this, newAssertion);\n    return newAssertion;\n  };\n\n  var _method = chainableBehavior.method;\n  chainableBehavior.method = function overwritingChainableMethodWrapper() {\n    var result = method(_method).apply(this, arguments);\n    if (result !== undefined) {\n      return result;\n    }\n\n    var newAssertion = new chai.Assertion();\n    transferFlags(this, newAssertion);\n    return newAssertion;\n  };\n};\n\n},{\"../../chai\":2,\"./transferFlags\":33}],29:[function(require,module,exports){",
     "ctx": {
       "type": "method",
@@ -16706,8 +16706,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9084,
-    "codeStart": 9090,
+    "line": 9087,
+    "codeStart": 9093,
     "code": "var addLengthGuard = require('./addLengthGuard');\nvar chai = require('../../chai');\nvar flag = require('./flag');\nvar proxify = require('./proxify');\nvar transferFlags = require('./transferFlags');",
     "ctx": {
       "type": "declaration",
@@ -16784,8 +16784,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9096,
-    "codeStart": 9130,
+    "line": 9099,
+    "codeStart": 9133,
     "code": "module.exports = function overwriteMethod(ctx, name, method) {\n  var _method = ctx[name]\n    , _super = function () {\n      throw new Error(name + ' is not a function');\n    };\n\n  if (_method && 'function' === typeof _method)\n    _super = _method;\n\n  var overwritingMethodWrapper = function () {\n    // Setting the `ssfi` flag to `overwritingMethodWrapper` causes this\n    // function to be the starting point for removing implementation frames from\n    // the stack trace of a failed assertion.\n    //\n    // However, we only want to use this function as the starting point if the\n    // `lockSsfi` flag isn't set.\n    //\n    // If the `lockSsfi` flag is set, then either this assertion has been\n    // overwritten by another assertion, or this assertion is being invoked from\n    // inside of another assertion. In the first case, the `ssfi` flag has\n    // already been set by the overwriting assertion. In the second case, the\n    // `ssfi` flag has already been set by the outer assertion.\n    if (!flag(this, 'lockSsfi')) {\n      flag(this, 'ssfi', overwritingMethodWrapper);\n    }\n\n    // Setting the `lockSsfi` flag to `true` prevents the overwritten assertion\n    // from changing the `ssfi` flag. By this point, the `ssfi` flag is already\n    // set to the correct starting point for this assertion.\n    var origLockSsfi = flag(this, 'lockSsfi');\n    flag(this, 'lockSsfi', true);\n    var result = method(_super).apply(this, arguments);\n    flag(this, 'lockSsfi', origLockSsfi);\n\n    if (result !== undefined) {\n      return result;\n    }\n\n    var newAssertion = new chai.Assertion();\n    transferFlags(this, newAssertion);\n    return newAssertion;\n  }\n\n  addLengthGuard(overwritingMethodWrapper, name, false);\n  ctx[name] = proxify(overwritingMethodWrapper, name);\n};\n\n},{\"../../chai\":2,\"./addLengthGuard\":10,\"./flag\":15,\"./proxify\":31,\"./transferFlags\":33}],30:[function(require,module,exports){",
     "ctx": {
       "type": "method",
@@ -16806,8 +16806,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9178,
-    "codeStart": 9184,
+    "line": 9181,
+    "codeStart": 9187,
     "code": "var chai = require('../../chai');\nvar flag = require('./flag');\nvar isProxyEnabled = require('./isProxyEnabled');\nvar transferFlags = require('./transferFlags');",
     "ctx": {
       "type": "declaration",
@@ -16884,8 +16884,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9189,
-    "codeStart": 9223,
+    "line": 9192,
+    "codeStart": 9226,
     "code": "module.exports = function overwriteProperty(ctx, name, getter) {\n  var _get = Object.getOwnPropertyDescriptor(ctx, name)\n    , _super = function () {};\n\n  if (_get && 'function' === typeof _get.get)\n    _super = _get.get\n\n  Object.defineProperty(ctx, name,\n    { get: function overwritingPropertyGetter() {\n        // Setting the `ssfi` flag to `overwritingPropertyGetter` causes this\n        // function to be the starting point for removing implementation frames\n        // from the stack trace of a failed assertion.\n        //\n        // However, we only want to use this function as the starting point if\n        // the `lockSsfi` flag isn't set and proxy protection is disabled.\n        //\n        // If the `lockSsfi` flag is set, then either this assertion has been\n        // overwritten by another assertion, or this assertion is being invoked\n        // from inside of another assertion. In the first case, the `ssfi` flag\n        // has already been set by the overwriting assertion. In the second\n        // case, the `ssfi` flag has already been set by the outer assertion.\n        //\n        // If proxy protection is enabled, then the `ssfi` flag has already been\n        // set by the proxy getter.\n        if (!isProxyEnabled() && !flag(this, 'lockSsfi')) {\n          flag(this, 'ssfi', overwritingPropertyGetter);\n        }\n\n        // Setting the `lockSsfi` flag to `true` prevents the overwritten\n        // assertion from changing the `ssfi` flag. By this point, the `ssfi`\n        // flag is already set to the correct starting point for this assertion.\n        var origLockSsfi = flag(this, 'lockSsfi');\n        flag(this, 'lockSsfi', true);\n        var result = getter(_super).call(this);\n        flag(this, 'lockSsfi', origLockSsfi);\n\n        if (result !== undefined) {\n          return result;\n        }\n\n        var newAssertion = new chai.Assertion();\n        transferFlags(this, newAssertion);\n        return newAssertion;\n      }\n    , configurable: true\n  });\n};\n\n},{\"../../chai\":2,\"./flag\":15,\"./isProxyEnabled\":26,\"./transferFlags\":33}],31:[function(require,module,exports){\nvar config = require('../config');\nvar flag = require('./flag');\nvar getProperties = require('./getProperties');\nvar isProxyEnabled = require('./isProxyEnabled');",
     "ctx": {
       "type": "method",
@@ -16906,8 +16906,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9277,
-    "codeStart": 9282
+    "line": 9280,
+    "codeStart": 9285
   },
   {
     "tags": [
@@ -16958,8 +16958,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9283,
-    "codeStart": 9302,
+    "line": 9286,
+    "codeStart": 9305,
     "code": "var builtins = ['__flags', '__methods', '_obj', 'assert'];\n\nmodule.exports = function proxify(obj, nonChainableMethodName) {\n  if (!isProxyEnabled()) return obj;\n\n  return new Proxy(obj, {\n    get: function proxyGetter(target, property) {\n      // This check is here because we should not throw errors on Symbol properties\n      // such as `Symbol.toStringTag`.\n      // The values for which an error should be thrown can be configured using\n      // the `config.proxyExcludedKeys` setting.\n      if (typeof property === 'string' &&\n          config.proxyExcludedKeys.indexOf(property) === -1 &&\n          !Reflect.has(target, property)) {\n        // Special message for invalid property access of non-chainable methods.\n        if (nonChainableMethodName) {\n          throw Error('Invalid Chai property: ' + nonChainableMethodName + '.' +\n            property + '. See docs for proper usage of \"' +\n            nonChainableMethodName + '\".');\n        }\n\n        // If the property is reasonably close to an existing Chai property,\n        // suggest that property to the user. Only suggest properties with a\n        // distance less than 4.\n        var suggestion = null;\n        var suggestionDistance = 4;\n        getProperties(target).forEach(function(prop) {\n          if (\n            !Object.prototype.hasOwnProperty(prop) &&\n            builtins.indexOf(prop) === -1\n          ) {\n            var dist = stringDistanceCapped(\n              property,\n              prop,\n              suggestionDistance\n            );\n            if (dist < suggestionDistance) {\n              suggestion = prop;\n              suggestionDistance = dist;\n            }\n          }\n        });\n\n        if (suggestion !== null) {\n          throw Error('Invalid Chai property: ' + property +\n            '. Did you mean \"' + suggestion + '\"?');\n        } else {\n          throw Error('Invalid Chai property: ' + property);\n        }\n      }\n\n      // Use this proxy getter as the starting point for removing implementation\n      // frames from the stack trace of a failed assertion. For property\n      // assertions, this prevents the proxy getter from showing up in the stack\n      // trace since it's invoked before the property getter. For method and\n      // chainable method assertions, this flag will end up getting changed to\n      // the method wrapper, which is good since this frame will no longer be in\n      // the stack once the method is invoked. Note that Chai builtin assertion\n      // properties such as `__flags` are skipped since this is only meant to\n      // capture the starting point of an assertion. This step is also skipped\n      // if the `lockSsfi` flag is set, thus indicating that this assertion is\n      // being called from within another assertion. In that case, the `ssfi`\n      // flag is already set to the outer assertion's starting point.\n      if (builtins.indexOf(property) === -1 && !flag(target, 'lockSsfi')) {\n        flag(target, 'ssfi', proxyGetter);\n      }\n\n      return Reflect.get(target, property);\n    }\n  });\n};",
     "ctx": {
       "type": "declaration",
@@ -17041,8 +17041,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9374,
-    "codeStart": 9384,
+    "line": 9377,
+    "codeStart": 9387,
     "code": "function stringDistanceCapped(strA, strB, cap) {\n  if (Math.abs(strA.length - strB.length) >= cap) {\n    return cap;\n  }\n\n  var memo = [];\n  // `memo` is a two-dimensional array containing distances.\n  // memo[i][j] is the distance between strA.slice(0, i) and\n  // strB.slice(0, j).\n  for (var i = 0; i <= strA.length; i++) {\n    memo[i] = Array(strB.length + 1).fill(0);\n    memo[i][0] = i;\n  }\n  for (var j = 0; j < strB.length; j++) {\n    memo[0][j] = j;\n  }\n\n  for (var i = 1; i <= strA.length; i++) {\n    var ch = strA.charCodeAt(i - 1);\n    for (var j = 1; j <= strB.length; j++) {\n      if (Math.abs(i - j) >= cap) {\n        memo[i][j] = cap;\n        continue;\n      }\n      memo[i][j] = Math.min(\n        memo[i - 1][j] + 1,\n        memo[i][j - 1] + 1,\n        memo[i - 1][j - 1] +\n          (ch === strB.charCodeAt(j - 1) ? 0 : 1)\n      );\n    }\n  }\n\n  return memo[strA.length][strB.length];\n}\n\n},{\"../config\":4,\"./flag\":15,\"./getProperties\":22,\"./isProxyEnabled\":26}],32:[function(require,module,exports){",
     "ctx": {
       "type": "function",
@@ -17062,8 +17062,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9421,
-    "codeStart": 9426
+    "line": 9424,
+    "codeStart": 9429
   },
   {
     "tags": [],
@@ -17077,8 +17077,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9427,
-    "codeStart": 9431,
+    "line": 9430,
+    "codeStart": 9434,
     "code": "var flag = require('./flag');",
     "ctx": {
       "type": "declaration",
@@ -17136,8 +17136,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9433,
-    "codeStart": 9444,
+    "line": 9436,
+    "codeStart": 9447,
     "code": "module.exports = function test(obj, args) {\n  var negate = flag(obj, 'negate')\n    , expr = args[0];\n  return negate ? !expr : expr;\n};\n\n},{\"./flag\":15}],33:[function(require,module,exports){",
     "ctx": {
       "type": "method",
@@ -17158,8 +17158,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9451,
-    "codeStart": 9456
+    "line": 9454,
+    "codeStart": 9459
   },
   {
     "tags": [
@@ -17229,8 +17229,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9457,
-    "codeStart": 9480,
+    "line": 9460,
+    "codeStart": 9483,
     "code": "module.exports = function transferFlags(assertion, object, includeAll) {\n  var flags = assertion.__flags || (assertion.__flags = Object.create(null));\n\n  if (!object.__flags) {\n    object.__flags = Object.create(null);\n  }\n\n  includeAll = arguments.length === 3 ? includeAll : true;\n\n  for (var flag in flags) {\n    if (includeAll ||\n        (flag !== 'object' && flag !== 'ssfi' && flag !== 'lockSsfi' && flag != 'message')) {\n      object.__flags[flag] = flags[flag];\n    }\n  }\n};\n\n},{}],34:[function(require,module,exports){",
     "ctx": {
       "type": "method",
@@ -17251,8 +17251,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9498,
-    "codeStart": 9503
+    "line": 9501,
+    "codeStart": 9506
   },
   {
     "tags": [
@@ -17294,8 +17294,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9504,
-    "codeStart": 9513,
+    "line": 9507,
+    "codeStart": 9516,
     "code": "function exclude () {\n  var excludes = [].slice.call(arguments);\n\n  function excludeProps (res, obj) {\n    Object.keys(obj).forEach(function (key) {\n      if (!~excludes.indexOf(key)) res[key] = obj[key];\n    });\n  }\n\n  return function extendExclude () {\n    var args = [].slice.call(arguments)\n      , i = 0\n      , res = {};\n\n    for (; i < args.length; i++) {\n      excludeProps(res, args[i]);\n    }\n\n    return res;\n  };\n};",
     "ctx": {
       "type": "function",
@@ -17315,8 +17315,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9535,
-    "codeStart": 9539,
+    "line": 9538,
+    "codeStart": 9542,
     "code": "module.exports = AssertionError;",
     "ctx": {
       "type": "property",
@@ -17381,8 +17381,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9541,
-    "codeStart": 9552,
+    "line": 9544,
+    "codeStart": 9555,
     "code": "function AssertionError (message, _props, ssf) {\n  var extend = exclude('name', 'message', 'stack', 'constructor', 'toJSON')\n    , props = extend(_props || {});\n\n  // default values\n  this.message = message || 'Unspecified AssertionError';\n  this.showDiff = false;\n\n  // copy from properties\n  for (var key in props) {\n    this[key] = props[key];\n  }\n\n  // capture stack trace\n  ssf = ssf || AssertionError;\n  if (Error.captureStackTrace) {\n    Error.captureStackTrace(this, ssf);\n  } else {\n    try {\n      throw new Error();\n    } catch(e) {\n      this.stack = e.stack;\n    }\n  }\n}",
     "ctx": {
       "type": "function",
@@ -17402,8 +17402,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9578,
-    "codeStart": 9582,
+    "line": 9581,
+    "codeStart": 9585,
     "code": "AssertionError.prototype = Object.create(Error.prototype);",
     "ctx": {
       "type": "property",
@@ -17425,8 +17425,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9584,
-    "codeStart": 9588,
+    "line": 9587,
+    "codeStart": 9591,
     "code": "AssertionError.prototype.name = 'AssertionError';",
     "ctx": {
       "type": "property",
@@ -17449,8 +17449,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9590,
-    "codeStart": 9594,
+    "line": 9593,
+    "codeStart": 9597,
     "code": "AssertionError.prototype.constructor = AssertionError;",
     "ctx": {
       "type": "property",
@@ -17501,8 +17501,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9596,
-    "codeStart": 9603,
+    "line": 9599,
+    "codeStart": 9606,
     "code": "AssertionError.prototype.toJSON = function (stack) {\n  var extend = exclude('constructor', 'toJSON', 'stack')\n    , props = extend({ name: this.name }, this);\n\n  // include stack if exists and not turned off\n  if (false !== stack && this.stack) {\n    props.stack = this.stack;\n  }\n\n  return props;\n};\n\n},{}],35:[function(require,module,exports){\n'use strict';",
     "ctx": {
       "type": "method",
@@ -17524,8 +17524,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9618,
-    "codeStart": 9623
+    "line": 9621,
+    "codeStart": 9626
   },
   {
     "tags": [
@@ -17545,8 +17545,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9624,
-    "codeStart": 9631
+    "line": 9627,
+    "codeStart": 9634
   },
   {
     "tags": [
@@ -17603,8 +17603,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9632,
-    "codeStart": 9646,
+    "line": 9635,
+    "codeStart": 9649,
     "code": "function compatibleInstance(thrown, errorLike) {\n  return errorLike instanceof Error && thrown === errorLike;\n}",
     "ctx": {
       "type": "function",
@@ -17667,8 +17667,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9650,
-    "codeStart": 9666,
+    "line": 9653,
+    "codeStart": 9669,
     "code": "function compatibleConstructor(thrown, errorLike) {\n  if (errorLike instanceof Error) {\n    // If `errorLike` is an instance of any error we compare their constructors\n    return thrown.constructor === errorLike.constructor || thrown instanceof errorLike.constructor;\n  } else if (errorLike.prototype instanceof Error || errorLike === Error) {\n    // If `errorLike` is a constructor that inherits from Error, we compare `thrown` to `errorLike` directly\n    return thrown.constructor === errorLike || thrown instanceof errorLike;\n  }\n\n  return false;\n}",
     "ctx": {
       "type": "function",
@@ -17731,8 +17731,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9678,
-    "codeStart": 9692,
+    "line": 9681,
+    "codeStart": 9695,
     "code": "function compatibleMessage(thrown, errMatcher) {\n  var comparisonString = typeof thrown === 'string' ? thrown : thrown.message;\n  if (errMatcher instanceof RegExp) {\n    return errMatcher.test(comparisonString);\n  } else if (typeof errMatcher === 'string') {\n    return comparisonString.indexOf(errMatcher) !== -1; // eslint-disable-line no-magic-numbers\n  }\n\n  return false;\n}",
     "ctx": {
       "type": "function",
@@ -17780,8 +17780,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9703,
-    "codeStart": 9715,
+    "line": 9706,
+    "codeStart": 9718,
     "code": "var functionNameMatch = /\\s*function(?:\\s|\\s*\\/\\*[^(?:*\\/)]+\\*\\/\\s*)*([^\\(\\/]+)/;\nfunction getFunctionName(constructorFn) {\n  var name = '';\n  if (typeof constructorFn.name === 'undefined') {\n    // Here we run a polyfill if constructorFn.name is not defined\n    var match = String(constructorFn).match(functionNameMatch);\n    if (match) {\n      name = match[1];\n    }\n  } else {\n    name = constructorFn.name;\n  }\n\n  return name;\n}",
     "ctx": {
       "type": "declaration",
@@ -17831,8 +17831,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9731,
-    "codeStart": 9742,
+    "line": 9734,
+    "codeStart": 9745,
     "code": "function getConstructorName(errorLike) {\n  var constructorName = errorLike;\n  if (errorLike instanceof Error) {\n    constructorName = getFunctionName(errorLike.constructor);\n  } else if (typeof errorLike === 'function') {\n    // If `err` is not an instance of Error it is an error constructor itself or another function.\n    // If we've got a common function we get its name, otherwise we may need to create a new instance\n    // of the error just in case it's a poorly-constructed error. Please see chaijs/chai/issues/45 to know more.\n    constructorName = getFunctionName(errorLike).trim() ||\n        getFunctionName(new errorLike()); // eslint-disable-line new-cap\n  }\n\n  return constructorName;\n}",
     "ctx": {
       "type": "function",
@@ -17881,8 +17881,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9757,
-    "codeStart": 9770,
+    "line": 9760,
+    "codeStart": 9773,
     "code": "function getMessage(errorLike) {\n  var msg = '';\n  if (errorLike && errorLike.message) {\n    msg = errorLike.message;\n  } else if (typeof errorLike === 'string') {\n    msg = errorLike;\n  }\n\n  return msg;\n}\n\nmodule.exports = {\n  compatibleInstance: compatibleInstance,\n  compatibleConstructor: compatibleConstructor,\n  compatibleMessage: compatibleMessage,\n  getMessage: getMessage,\n  getConstructorName: getConstructorName,\n};\n\n},{}],36:[function(require,module,exports){\n'use strict';",
     "ctx": {
       "type": "function",
@@ -17902,8 +17902,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9791,
-    "codeStart": 9792
+    "line": 9794,
+    "codeStart": 9795
   },
   {
     "tags": [],
@@ -17917,8 +17917,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9792,
-    "codeStart": 9798,
+    "line": 9795,
+    "codeStart": 9801,
     "code": "var type = require('type-detect');\nfunction FakeMap() {\n  this._key = 'chai/deep-eql__' + Math.random() + Date.now();\n}\n\nFakeMap.prototype = {\n  get: function getMap(key) {\n    return key[this._key];\n  },\n  set: function setMap(key, value) {\n    if (Object.isExtensible(key)) {\n      Object.defineProperty(key, this._key, {\n        value: value,\n        configurable: true,\n      });\n    }\n  },\n};\n\nvar MemoizeMap = typeof WeakMap === 'function' ? WeakMap : FakeMap;",
     "ctx": {
       "type": "declaration",
@@ -17995,8 +17995,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9818,
-    "codeStart": 9826,
+    "line": 9821,
+    "codeStart": 9829,
     "code": "function memoizeCompare(leftHandOperand, rightHandOperand, memoizeMap) {\n  // Technically, WeakMap keys can *only* be objects, not primitives.\n  if (!memoizeMap || isPrimitive(leftHandOperand) || isPrimitive(rightHandOperand)) {\n    return null;\n  }\n  var leftHandMap = memoizeMap.get(leftHandOperand);\n  if (leftHandMap) {\n    var result = leftHandMap.get(rightHandOperand);\n    if (typeof result === 'boolean') {\n      return result;\n    }\n  }\n  return null;\n}",
     "ctx": {
       "type": "function",
@@ -18073,8 +18073,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9841,
-    "codeStart": 9849,
+    "line": 9844,
+    "codeStart": 9852,
     "code": "function memoizeSet(leftHandOperand, rightHandOperand, memoizeMap, result) {\n  // Technically, WeakMap keys can *only* be objects, not primitives.\n  if (!memoizeMap || isPrimitive(leftHandOperand) || isPrimitive(rightHandOperand)) {\n    return;\n  }\n  var leftHandMap = memoizeMap.get(leftHandOperand);\n  if (leftHandMap) {\n    leftHandMap.set(rightHandOperand, result);\n  } else {\n    leftHandMap = new MemoizeMap();\n    leftHandMap.set(rightHandOperand, result);\n    memoizeMap.set(leftHandOperand, leftHandMap);\n  }\n}",
     "ctx": {
       "type": "function",
@@ -18094,8 +18094,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9864,
-    "codeStart": 9868,
+    "line": 9867,
+    "codeStart": 9871,
     "code": "module.exports = deepEqual;\nmodule.exports.MemoizeMap = MemoizeMap;",
     "ctx": {
       "type": "property",
@@ -18201,8 +18201,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9871,
-    "codeStart": 9883,
+    "line": 9874,
+    "codeStart": 9886,
     "code": "function deepEqual(leftHandOperand, rightHandOperand, options) {\n  // If we have a comparator, we can't assume anything; so bail to its check first.\n  if (options && options.comparator) {\n    return extensiveDeepEqual(leftHandOperand, rightHandOperand, options);\n  }\n\n  var simpleResult = simpleEqual(leftHandOperand, rightHandOperand);\n  if (simpleResult !== null) {\n    return simpleResult;\n  }\n\n  // Deeper comparisons are pushed through to a larger function\n  return extensiveDeepEqual(leftHandOperand, rightHandOperand, options);\n}",
     "ctx": {
       "type": "function",
@@ -18264,8 +18264,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9898,
-    "codeStart": 9904,
+    "line": 9901,
+    "codeStart": 9907,
     "code": "function simpleEqual(leftHandOperand, rightHandOperand) {\n  // Equal references (except for Numbers) can be returned early\n  if (leftHandOperand === rightHandOperand) {\n    // Handle +-0 cases\n    return leftHandOperand !== 0 || 1 / leftHandOperand === 1 / rightHandOperand;\n  }\n\n  // handle NaN cases\n  if (\n    leftHandOperand !== leftHandOperand && // eslint-disable-line no-self-compare\n    rightHandOperand !== rightHandOperand // eslint-disable-line no-self-compare\n  ) {\n    return true;\n  }\n\n  // Anything that is not an 'object', i.e. symbols, functions, booleans, numbers,\n  // strings, and undefined, can be compared by reference.\n  if (isPrimitive(leftHandOperand) || isPrimitive(rightHandOperand)) {\n    // Easy out b/c it would have passed the first equality check\n    return false;\n  }\n  return null;\n}",
     "ctx": {
       "type": "function",
@@ -18369,8 +18369,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9928,
-    "codeStart": 9940,
+    "line": 9931,
+    "codeStart": 9943,
     "code": "function extensiveDeepEqual(leftHandOperand, rightHandOperand, options) {\n  options = options || {};\n  options.memoize = options.memoize === false ? false : options.memoize || new MemoizeMap();\n  var comparator = options && options.comparator;\n\n  // Check if a memoized result exists.\n  var memoizeResultLeft = memoizeCompare(leftHandOperand, rightHandOperand, options.memoize);\n  if (memoizeResultLeft !== null) {\n    return memoizeResultLeft;\n  }\n  var memoizeResultRight = memoizeCompare(rightHandOperand, leftHandOperand, options.memoize);\n  if (memoizeResultRight !== null) {\n    return memoizeResultRight;\n  }\n\n  // If a comparator is present, use it.\n  if (comparator) {\n    var comparatorResult = comparator(leftHandOperand, rightHandOperand);\n    // Comparators may return null, in which case we want to go back to default behavior.\n    if (comparatorResult === false || comparatorResult === true) {\n      memoizeSet(leftHandOperand, rightHandOperand, options.memoize, comparatorResult);\n      return comparatorResult;\n    }\n    // To allow comparators to override *any* behavior, we ran them first. Since it didn't decide\n    // what to do, we need to make sure to return the basic tests first before we move on.\n    var simpleResult = simpleEqual(leftHandOperand, rightHandOperand);\n    if (simpleResult !== null) {\n      // Don't memoize this, it takes longer to set/retrieve than to just compare.\n      return simpleResult;\n    }\n  }\n\n  var leftHandType = type(leftHandOperand);\n  if (leftHandType !== type(rightHandOperand)) {\n    memoizeSet(leftHandOperand, rightHandOperand, options.memoize, false);\n    return false;\n  }\n\n  // Temporarily set the operands in the memoize object to prevent blowing the stack\n  memoizeSet(leftHandOperand, rightHandOperand, options.memoize, true);\n\n  var result = extensiveDeepEqualByType(leftHandOperand, rightHandOperand, leftHandType, options);\n  memoizeSet(leftHandOperand, rightHandOperand, options.memoize, result);\n  return result;\n}\n\nfunction extensiveDeepEqualByType(leftHandOperand, rightHandOperand, leftHandType, options) {\n  switch (leftHandType) {\n    case 'String':\n    case 'Number':\n    case 'Boolean':\n    case 'Date':\n      // If these types are their instance types (e.g. `new Number`) then re-deepEqual against their values\n      return deepEqual(leftHandOperand.valueOf(), rightHandOperand.valueOf());\n    case 'Promise':\n    case 'Symbol':\n    case 'function':\n    case 'WeakMap':\n    case 'WeakSet':\n    case 'Error':\n      return leftHandOperand === rightHandOperand;\n    case 'Arguments':\n    case 'Int8Array':\n    case 'Uint8Array':\n    case 'Uint8ClampedArray':\n    case 'Int16Array':\n    case 'Uint16Array':\n    case 'Int32Array':\n    case 'Uint32Array':\n    case 'Float32Array':\n    case 'Float64Array':\n    case 'Array':\n      return iterableEqual(leftHandOperand, rightHandOperand, options);\n    case 'RegExp':\n      return regexpEqual(leftHandOperand, rightHandOperand);\n    case 'Generator':\n      return generatorEqual(leftHandOperand, rightHandOperand, options);\n    case 'DataView':\n      return iterableEqual(new Uint8Array(leftHandOperand.buffer), new Uint8Array(rightHandOperand.buffer), options);\n    case 'ArrayBuffer':\n      return iterableEqual(new Uint8Array(leftHandOperand), new Uint8Array(rightHandOperand), options);\n    case 'Set':\n      return entriesEqual(leftHandOperand, rightHandOperand, options);\n    case 'Map':\n      return entriesEqual(leftHandOperand, rightHandOperand, options);\n    default:\n      return objectEqual(leftHandOperand, rightHandOperand, options);\n  }\n}",
     "ctx": {
       "type": "function",
@@ -18432,8 +18432,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 10030,
-    "codeStart": 10038,
+    "line": 10033,
+    "codeStart": 10041,
     "code": "function regexpEqual(leftHandOperand, rightHandOperand) {\n  return leftHandOperand.toString() === rightHandOperand.toString();\n}",
     "ctx": {
       "type": "function",
@@ -18509,8 +18509,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 10042,
-    "codeStart": 10051,
+    "line": 10045,
+    "codeStart": 10054,
     "code": "function entriesEqual(leftHandOperand, rightHandOperand, options) {\n  // IE11 doesn't support Set#entries or Set#@@iterator, so we need manually populate using Set#forEach\n  if (leftHandOperand.size !== rightHandOperand.size) {\n    return false;\n  }\n  if (leftHandOperand.size === 0) {\n    return true;\n  }\n  var leftHandItems = [];\n  var rightHandItems = [];\n  leftHandOperand.forEach(function gatherEntries(key, value) {\n    leftHandItems.push([ key, value ]);\n  });\n  rightHandOperand.forEach(function gatherEntries(key, value) {\n    rightHandItems.push([ key, value ]);\n  });\n  return iterableEqual(leftHandItems.sort(), rightHandItems.sort(), options);\n}",
     "ctx": {
       "type": "function",
@@ -18586,8 +18586,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 10070,
-    "codeStart": 10079,
+    "line": 10073,
+    "codeStart": 10082,
     "code": "function iterableEqual(leftHandOperand, rightHandOperand, options) {\n  var length = leftHandOperand.length;\n  if (length !== rightHandOperand.length) {\n    return false;\n  }\n  if (length === 0) {\n    return true;\n  }\n  var index = -1;\n  while (++index < length) {\n    if (deepEqual(leftHandOperand[index], rightHandOperand[index], options) === false) {\n      return false;\n    }\n  }\n  return true;\n}",
     "ctx": {
       "type": "function",
@@ -18663,8 +18663,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 10096,
-    "codeStart": 10105,
+    "line": 10099,
+    "codeStart": 10108,
     "code": "function generatorEqual(leftHandOperand, rightHandOperand, options) {\n  return iterableEqual(getGeneratorEntries(leftHandOperand), getGeneratorEntries(rightHandOperand), options);\n}",
     "ctx": {
       "type": "function",
@@ -18712,8 +18712,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 10109,
-    "codeStart": 10115,
+    "line": 10112,
+    "codeStart": 10118,
     "code": "function hasIteratorFunction(target) {\n  return typeof Symbol !== 'undefined' &&\n    typeof target === 'object' &&\n    typeof Symbol.iterator !== 'undefined' &&\n    typeof target[Symbol.iterator] === 'function';\n}",
     "ctx": {
       "type": "function",
@@ -18761,8 +18761,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 10122,
-    "codeStart": 10129,
+    "line": 10125,
+    "codeStart": 10132,
     "code": "function getIteratorEntries(target) {\n  if (hasIteratorFunction(target)) {\n    try {\n      return getGeneratorEntries(target[Symbol.iterator]());\n    } catch (iteratorError) {\n      return [];\n    }\n  }\n  return [];\n}",
     "ctx": {
       "type": "function",
@@ -18810,8 +18810,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 10140,
-    "codeStart": 10146,
+    "line": 10143,
+    "codeStart": 10149,
     "code": "function getGeneratorEntries(generator) {\n  var generatorResult = generator.next();\n  var accumulator = [ generatorResult.value ];\n  while (generatorResult.done === false) {\n    generatorResult = generator.next();\n    accumulator.push(generatorResult.value);\n  }\n  return accumulator;\n}",
     "ctx": {
       "type": "function",
@@ -18859,8 +18859,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 10156,
-    "codeStart": 10162,
+    "line": 10159,
+    "codeStart": 10165,
     "code": "function getEnumerableKeys(target) {\n  var keys = [];\n  for (var key in target) {\n    keys.push(key);\n  }\n  return keys;\n}",
     "ctx": {
       "type": "function",
@@ -18950,8 +18950,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 10170,
-    "codeStart": 10180,
+    "line": 10173,
+    "codeStart": 10183,
     "code": "function keysEqual(leftHandOperand, rightHandOperand, keys, options) {\n  var length = keys.length;\n  if (length === 0) {\n    return true;\n  }\n  for (var i = 0; i < length; i += 1) {\n    if (deepEqual(leftHandOperand[keys[i]], rightHandOperand[keys[i]], options) === false) {\n      return false;\n    }\n  }\n  return true;\n}",
     "ctx": {
       "type": "function",
@@ -19027,8 +19027,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 10193,
-    "codeStart": 10203,
+    "line": 10196,
+    "codeStart": 10206,
     "code": "function objectEqual(leftHandOperand, rightHandOperand, options) {\n  var leftHandKeys = getEnumerableKeys(leftHandOperand);\n  var rightHandKeys = getEnumerableKeys(rightHandOperand);\n  if (leftHandKeys.length && leftHandKeys.length === rightHandKeys.length) {\n    leftHandKeys.sort();\n    rightHandKeys.sort();\n    if (iterableEqual(leftHandKeys, rightHandKeys) === false) {\n      return false;\n    }\n    return keysEqual(leftHandOperand, rightHandOperand, leftHandKeys, options);\n  }\n\n  var leftHandEntries = getIteratorEntries(leftHandOperand);\n  var rightHandEntries = getIteratorEntries(rightHandOperand);\n  if (leftHandEntries.length && leftHandEntries.length === rightHandEntries.length) {\n    leftHandEntries.sort();\n    rightHandEntries.sort();\n    return iterableEqual(leftHandEntries, rightHandEntries, options);\n  }\n\n  if (leftHandKeys.length === 0 &&\n      leftHandEntries.length === 0 &&\n      rightHandKeys.length === 0 &&\n      rightHandEntries.length === 0) {\n    return true;\n  }\n\n  return false;\n}",
     "ctx": {
       "type": "function",
@@ -19076,8 +19076,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 10233,
-    "codeStart": 10242,
+    "line": 10236,
+    "codeStart": 10245,
     "code": "function isPrimitive(value) {\n  return value === null || typeof value !== 'object';\n}\n\n},{\"type-detect\":39}],37:[function(require,module,exports){\n'use strict';",
     "ctx": {
       "type": "function",
@@ -19097,8 +19097,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10249,
-    "codeStart": 10254
+    "line": 10252,
+    "codeStart": 10257
   },
   {
     "tags": [
@@ -19140,8 +19140,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10255,
-    "codeStart": 10268,
+    "line": 10258,
+    "codeStart": 10271,
     "code": "var toString = Function.prototype.toString;\nvar functionNameMatch = /\\s*function(?:\\s|\\s*\\/\\*[^(?:*\\/)]+\\*\\/\\s*)*([^\\s\\(\\/]+)/;\nfunction getFuncName(aFunc) {\n  if (typeof aFunc !== 'function') {\n    return null;\n  }\n\n  var name = '';\n  if (typeof Function.prototype.name === 'undefined' && typeof aFunc.name === 'undefined') {\n    // Here we run a polyfill if Function does not support the `name` property and if aFunc.name is not defined\n    var match = toString.call(aFunc).match(functionNameMatch);\n    if (match) {\n      name = match[1];\n    }\n  } else {\n    // If we've got a `name` property we just use it\n    name = aFunc.name;\n  }\n\n  return name;\n}\n\nmodule.exports = getFuncName;\n\n},{}],38:[function(require,module,exports){\n'use strict';",
     "ctx": {
       "type": "declaration",
@@ -19169,8 +19169,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10295,
-    "codeStart": 10301
+    "line": 10298,
+    "codeStart": 10304
   },
   {
     "tags": [
@@ -19240,8 +19240,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10302,
-    "codeStart": 10339,
+    "line": 10305,
+    "codeStart": 10342,
     "code": "function hasProperty(obj, name) {\n  if (typeof obj === 'undefined' || obj === null) {\n    return false;\n  }\n\n  // The `in` operator does not work with primitives.\n  return name in Object(obj);\n}",
     "ctx": {
       "type": "function",
@@ -19294,8 +19294,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10348,
-    "codeStart": 10367,
+    "line": 10351,
+    "codeStart": 10370,
     "code": "function parsePath(path) {\n  var str = path.replace(/([^\\\\])\\[/g, '$1.[');\n  var parts = str.match(/(\\\\\\.|[^.]+?)+/g);\n  return parts.map(function mapMatches(value) {\n    if (\n      value === 'constructor' ||\n      value === '__proto__' ||\n      value === 'prototype'\n    ) {\n      return {};\n    }\n    var regexp = /^\\[(\\d+)\\]$/;\n    var mArr = regexp.exec(value);\n    var parsed = null;\n    if (mArr) {\n      parsed = { i: parseFloat(mArr[1]) };\n    } else {\n      parsed = { p: value.replace(/\\\\([.[\\]])/g, '$1') };\n    }\n\n    return parsed;\n  });\n}",
     "ctx": {
       "type": "function",
@@ -19377,8 +19377,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10391,
-    "codeStart": 10406,
+    "line": 10394,
+    "codeStart": 10409,
     "code": "function internalGetPathValue(obj, parsed, pathDepth) {\n  var temporaryValue = obj;\n  var res = null;\n  pathDepth = typeof pathDepth === 'undefined' ? parsed.length : pathDepth;\n\n  for (var i = 0; i < pathDepth; i++) {\n    var part = parsed[i];\n    if (temporaryValue) {\n      if (typeof part.p === 'undefined') {\n        temporaryValue = temporaryValue[part.i];\n      } else {\n        temporaryValue = temporaryValue[part.p];\n      }\n\n      if (i === pathDepth - 1) {\n        res = temporaryValue;\n      }\n    }\n  }\n\n  return res;\n}",
     "ctx": {
       "type": "function",
@@ -19444,8 +19444,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10429,
-    "codeStart": 10443,
+    "line": 10432,
+    "codeStart": 10446,
     "code": "function internalSetPathValue(obj, val, parsed) {\n  var tempObj = obj;\n  var pathDepth = parsed.length;\n  var part = null;\n  // Here we iterate through every part of the path\n  for (var i = 0; i < pathDepth; i++) {\n    var propName = null;\n    var propVal = null;\n    part = parsed[i];\n\n    // If it's the last part of the path, we set the 'propName' value with the property name\n    if (i === pathDepth - 1) {\n      propName = typeof part.p === 'undefined' ? part.i : part.p;\n      // Now we set the property with the name held by 'propName' on object with the desired val\n      tempObj[propName] = val;\n    } else if (typeof part.p !== 'undefined' && tempObj[part.p]) {\n      tempObj = tempObj[part.p];\n    } else if (typeof part.i !== 'undefined' && tempObj[part.i]) {\n      tempObj = tempObj[part.i];\n    } else {\n      // If the obj doesn't have the property we create one with that name to define it\n      var next = parsed[i + 1];\n      // Here we set the name of the property which will be defined\n      propName = typeof part.p === 'undefined' ? part.i : part.p;\n      // Here we decide if this property will be an array or a new object\n      propVal = typeof next.p === 'undefined' ? [] : {};\n      tempObj[propName] = propVal;\n      tempObj = tempObj[propName];\n    }\n  }\n}",
     "ctx": {
       "type": "function",
@@ -19520,8 +19520,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10475,
-    "codeStart": 10497,
+    "line": 10478,
+    "codeStart": 10500,
     "code": "function getPathInfo(obj, path) {\n  var parsed = parsePath(path);\n  var last = parsed[parsed.length - 1];\n  var info = {\n    parent:\n      parsed.length > 1 ?\n        internalGetPathValue(obj, parsed, parsed.length - 1) :\n        obj,\n    name: last.p || last.i,\n    value: internalGetPathValue(obj, parsed),\n  };\n  info.exists = hasProperty(info.parent, info.name);\n\n  return info;\n}",
     "ctx": {
       "type": "function",
@@ -19596,8 +19596,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10513,
-    "codeStart": 10544,
+    "line": 10516,
+    "codeStart": 10547,
     "code": "function getPathValue(obj, path) {\n  var info = getPathInfo(obj, path);\n  return info.value;\n}",
     "ctx": {
       "type": "function",
@@ -19665,8 +19665,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10549,
-    "codeStart": 10582,
+    "line": 10552,
+    "codeStart": 10585,
     "code": "function setPathValue(obj, path, val) {\n  var parsed = parsePath(path);\n  internalSetPathValue(obj, val, parsed);\n  return obj;\n}\n\nmodule.exports = {\n  hasProperty: hasProperty,\n  getPathInfo: getPathInfo,\n  getPathValue: getPathValue,\n  setPathValue: setPathValue,\n};\n\n},{}],39:[function(require,module,exports){\n(function (global, factory) {\n\ttypeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :\n\ttypeof define === 'function' && define.amd ? define(factory) :\n\t(global.typeDetect = factory());\n}(this, (function () { 'use strict';",
     "ctx": {
       "type": "function",
@@ -19686,8 +19686,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10602,
-    "codeStart": 10607,
+    "line": 10605,
+    "codeStart": 10610,
     "code": "var promiseExists = typeof Promise === 'function';",
     "ctx": {
       "type": "declaration",
@@ -19708,8 +19708,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10609,
-    "codeStart": 10610,
+    "line": 10612,
+    "codeStart": 10613,
     "code": "var globalObject = typeof self === 'object' ? self : global; // eslint-disable-line id-blacklist\n\nvar symbolExists = typeof Symbol !== 'undefined';\nvar mapExists = typeof Map !== 'undefined';\nvar setExists = typeof Set !== 'undefined';\nvar weakMapExists = typeof WeakMap !== 'undefined';\nvar weakSetExists = typeof WeakSet !== 'undefined';\nvar dataViewExists = typeof DataView !== 'undefined';\nvar symbolIteratorExists = symbolExists && typeof Symbol.iterator !== 'undefined';\nvar symbolToStringTagExists = symbolExists && typeof Symbol.toStringTag !== 'undefined';\nvar setEntriesExists = setExists && typeof Set.prototype.entries === 'function';\nvar mapEntriesExists = mapExists && typeof Map.prototype.entries === 'function';\nvar setIteratorPrototype = setEntriesExists && Object.getPrototypeOf(new Set().entries());\nvar mapIteratorPrototype = mapEntriesExists && Object.getPrototypeOf(new Map().entries());\nvar arrayIteratorExists = symbolIteratorExists && typeof Array.prototype[Symbol.iterator] === 'function';\nvar arrayIteratorPrototype = arrayIteratorExists && Object.getPrototypeOf([][Symbol.iterator]());\nvar stringIteratorExists = symbolIteratorExists && typeof String.prototype[Symbol.iterator] === 'function';\nvar stringIteratorPrototype = stringIteratorExists && Object.getPrototypeOf(''[Symbol.iterator]());\nvar toStringLeftSliceLength = 8;\nvar toStringRightSliceLength = -1;",
     "ctx": {
       "type": "declaration",
@@ -19763,8 +19763,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10630,
-    "codeStart": 10640,
+    "line": 10633,
+    "codeStart": 10643,
     "code": "function typeDetect(obj) {",
     "ctx": {
       "type": "function",
@@ -19784,8 +19784,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10641,
-    "codeStart": 10655,
+    "line": 10644,
+    "codeStart": 10658,
     "code": "var typeofObj = typeof obj;\nif (typeofObj !== 'object') {\n  return typeofObj;\n}",
     "ctx": {
       "type": "declaration",
@@ -19806,8 +19806,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10660,
-    "codeStart": 10666,
+    "line": 10663,
+    "codeStart": 10669,
     "code": "if (obj === null) {\n  return 'null';\n}",
     "ctx": {
       "type": "method",
@@ -19827,8 +19827,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10670,
-    "codeStart": 10686,
+    "line": 10673,
+    "codeStart": 10689,
     "code": "if (obj === globalObject) {\n  return 'global';\n}",
     "ctx": {
       "type": "method",
@@ -19848,8 +19848,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10690,
-    "codeStart": 10696,
+    "line": 10693,
+    "codeStart": 10699,
     "code": "if (\n  Array.isArray(obj) &&\n  (symbolToStringTagExists === false || !(Symbol.toStringTag in obj))\n) {\n  return 'Array';\n}\n\n// Not caching existence of `window` and related properties due to potential\n// for `window` to be unset before tests in quasi-browser environments.\nif (typeof window === 'object' && window !== null) {",
     "ctx": {
       "type": "method",
@@ -19869,8 +19869,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10706,
-    "codeStart": 10713,
+    "line": 10709,
+    "codeStart": 10716,
     "code": "if (typeof window.location === 'object' && obj === window.location) {\n  return 'Location';\n}",
     "ctx": {
       "type": "method",
@@ -19890,8 +19890,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10717,
-    "codeStart": 10736,
+    "line": 10720,
+    "codeStart": 10739,
     "code": "if (typeof window.document === 'object' && obj === window.document) {\n  return 'Document';\n}\n\nif (typeof window.navigator === 'object') {",
     "ctx": {
       "type": "method",
@@ -19911,8 +19911,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10741,
-    "codeStart": 10747,
+    "line": 10744,
+    "codeStart": 10750,
     "code": "if (typeof window.navigator.mimeTypes === 'object' &&\n    obj === window.navigator.mimeTypes) {\n  return 'MimeTypeArray';\n}",
     "ctx": {
       "type": "method",
@@ -19932,8 +19932,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10752,
-    "codeStart": 10758,
+    "line": 10755,
+    "codeStart": 10761,
     "code": "if (typeof window.navigator.plugins === 'object' &&\n    obj === window.navigator.plugins) {\n  return 'PluginArray';\n}\n    }\n\n    if ((typeof window.HTMLElement === 'function' ||\n  typeof window.HTMLElement === 'object') &&\n  obj instanceof window.HTMLElement) {",
     "ctx": {
       "type": "method",
@@ -19953,8 +19953,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10767,
-    "codeStart": 10773,
+    "line": 10770,
+    "codeStart": 10776,
     "code": "if (obj.tagName === 'BLOCKQUOTE') {\n  return 'HTMLQuoteElement';\n}",
     "ctx": {
       "type": "method",
@@ -19974,8 +19974,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10777,
-    "codeStart": 10789,
+    "line": 10780,
+    "codeStart": 10792,
     "code": "if (obj.tagName === 'TD') {\n  return 'HTMLTableDataCellElement';\n}",
     "ctx": {
       "type": "method",
@@ -19995,8 +19995,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10793,
-    "codeStart": 10805,
+    "line": 10796,
+    "codeStart": 10808,
     "code": "if (obj.tagName === 'TH') {\n  return 'HTMLTableHeaderCellElement';\n}\n    }\n  }",
     "ctx": {
       "type": "method",
@@ -20016,8 +20016,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10811,
-    "codeStart": 10833,
+    "line": 10814,
+    "codeStart": 10836,
     "code": "var stringTag = (symbolToStringTagExists && obj[Symbol.toStringTag]);\nif (typeof stringTag === 'string') {\n  return stringTag;\n}\n\nvar objPrototype = Object.getPrototypeOf(obj);",
     "ctx": {
       "type": "declaration",
@@ -20038,8 +20038,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10839,
-    "codeStart": 10847,
+    "line": 10842,
+    "codeStart": 10850,
     "code": "if (objPrototype === RegExp.prototype) {\n  return 'RegExp';\n}",
     "ctx": {
       "type": "method",
@@ -20059,8 +20059,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10851,
-    "codeStart": 10857,
+    "line": 10854,
+    "codeStart": 10860,
     "code": "if (objPrototype === Date.prototype) {\n  return 'Date';\n}",
     "ctx": {
       "type": "method",
@@ -20080,8 +20080,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10861,
-    "codeStart": 10870,
+    "line": 10864,
+    "codeStart": 10873,
     "code": "if (promiseExists && objPrototype === Promise.prototype) {\n  return 'Promise';\n}",
     "ctx": {
       "type": "method",
@@ -20101,8 +20101,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10874,
-    "codeStart": 10880,
+    "line": 10877,
+    "codeStart": 10883,
     "code": "if (setExists && objPrototype === Set.prototype) {\n  return 'Set';\n}",
     "ctx": {
       "type": "method",
@@ -20122,8 +20122,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10884,
-    "codeStart": 10890,
+    "line": 10887,
+    "codeStart": 10893,
     "code": "if (mapExists && objPrototype === Map.prototype) {\n  return 'Map';\n}",
     "ctx": {
       "type": "method",
@@ -20143,8 +20143,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10894,
-    "codeStart": 10900,
+    "line": 10897,
+    "codeStart": 10903,
     "code": "if (weakSetExists && objPrototype === WeakSet.prototype) {\n  return 'WeakSet';\n}",
     "ctx": {
       "type": "method",
@@ -20164,8 +20164,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10904,
-    "codeStart": 10910,
+    "line": 10907,
+    "codeStart": 10913,
     "code": "if (weakMapExists && objPrototype === WeakMap.prototype) {\n  return 'WeakMap';\n}",
     "ctx": {
       "type": "method",
@@ -20185,8 +20185,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10914,
-    "codeStart": 10920,
+    "line": 10917,
+    "codeStart": 10923,
     "code": "if (dataViewExists && objPrototype === DataView.prototype) {\n  return 'DataView';\n}",
     "ctx": {
       "type": "method",
@@ -20206,8 +20206,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10924,
-    "codeStart": 10930,
+    "line": 10927,
+    "codeStart": 10933,
     "code": "if (mapExists && objPrototype === mapIteratorPrototype) {\n  return 'Map Iterator';\n}",
     "ctx": {
       "type": "method",
@@ -20227,8 +20227,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10934,
-    "codeStart": 10940,
+    "line": 10937,
+    "codeStart": 10943,
     "code": "if (setExists && objPrototype === setIteratorPrototype) {\n  return 'Set Iterator';\n}",
     "ctx": {
       "type": "method",
@@ -20248,8 +20248,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10944,
-    "codeStart": 10950,
+    "line": 10947,
+    "codeStart": 10953,
     "code": "if (arrayIteratorExists && objPrototype === arrayIteratorPrototype) {\n  return 'Array Iterator';\n}",
     "ctx": {
       "type": "method",
@@ -20269,8 +20269,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10954,
-    "codeStart": 10960,
+    "line": 10957,
+    "codeStart": 10963,
     "code": "if (stringIteratorExists && objPrototype === stringIteratorPrototype) {\n  return 'String Iterator';\n}",
     "ctx": {
       "type": "method",
@@ -20290,8 +20290,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10964,
-    "codeStart": 10970,
+    "line": 10967,
+    "codeStart": 10973,
     "code": "if (objPrototype === null) {\n  return 'Object';\n}\n\nreturn Object\n  .prototype\n  .toString\n  .call(obj)\n  .slice(toStringLeftSliceLength, toStringRightSliceLength);\n}\n\nreturn typeDetect;\n\n})));\n\n},{}]},{},[1])(1)\n});",
     "ctx": {
       "type": "method",

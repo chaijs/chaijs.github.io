@@ -148,6 +148,9 @@
   "crontab": [
     "crontab"
   ],
+  "css": [
+    "css"
+  ],
   "cucumber": [
     "cucumber"
   ],

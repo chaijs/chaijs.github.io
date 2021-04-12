@@ -184,6 +184,9 @@
   "each": [
     "each"
   ],
+  "emitter": [
+    "emitter"
+  ],
   "enzyme": [
     "enzyme"
   ],
@@ -201,6 +204,9 @@
   ],
   "es6": [
     "es6"
+  ],
+  "event": [
+    "event"
   ],
   "eventemitter": [
     "eventemitter"

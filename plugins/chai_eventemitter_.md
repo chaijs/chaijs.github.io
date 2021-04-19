@@ -10,7 +10,7 @@ This is a [chai](chaijs.com) plugin for testing node-style
 
 ## Compatibility
 
-- Node.js 14.5+
+- ECMAScript 2020 (Node.js 14+)
 
 ## Installation
 
@@ -34,7 +34,7 @@ This is a [chai](chaijs.com) plugin for testing node-style
 	const chai = require('chai');
 	const eventemitter2 = require('chai-eventemitter2');
 
-	chai.use(eventemitter2);
+	chai.use(eventemitter2());
 	```
 
 ## Usage
@@ -96,7 +96,7 @@ Registers an expected event.
 		This is the default comparison method.
 
 	If `withArgs` option is omitted or is not an array, this option is ignored.
-- `options.withArgs: any[]|(any) => boolean`
+- `options.withArgs: any[]|(...any) => boolean`
 	Used to validate the event arguments.
 	If you pass an array, the plugin will expect the event arguments to match
 	the values of the array.
@@ -113,18 +113,16 @@ See an example in the [usage](#usage) section.
 
 ## Known Issues
 
-- ⚠️ It's unable to validate event arguments with `withArgs` option if the
-arguments have circular refereneces.
+- ⚠️ It doesn't handle circular references in the `withArgs`.
+	The test might break if your event arguments have circular references.
 - ⚠️ It doesn't work with the "not" flag (`.not`).
 	You can work around this issue using the `count` option.
-	(i.e. set the `count` of events you don't want to be emitted to `0`)
+	(i.e. assert that an event is emitted `0` times)
 - ⚠️ Not tested for asynchrony.
 
 ## Disclaimer
 
 Inspired by [fengb/chai-eventemitter](https://github.com/fengb/chai-eventemitter).
-
-I made this package because `fengb/chai-eventemitter` doesn't have features I needed for myself.
 
 ## License
 

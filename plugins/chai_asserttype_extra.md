@@ -7,7 +7,7 @@ pluginName: chai-asserttype-extra
 
 # chai-asserttype
 
-    a chai plugin for type assertions
+    a chai plugin for type assertions, support typescript
 
 ---
 
@@ -56,7 +56,9 @@ chai.use(ChaiPluginAssertType);
 
 ## Usage
 
-this usage copy from [GaneshSPatil/chai-asserttype](https://github.com/GaneshSPatil/chai-asserttype)
+> this usage copy from [GaneshSPatil/chai-asserttype](https://github.com/GaneshSPatil/chai-asserttype)
+
+support both of `.xxx()` and `.xxx`
 
 ### ChaiPluginAssertType.list()
 
@@ -87,18 +89,26 @@ expect(0).to.be.number();
 expect(-1).to.be.number();
 expect(63465789908753).to.be.number();
 expect(27.11).to.be.number();
+
+expect(1).to.be.number;
+expect(0).to.be.number;
+expect(-1).to.be.number;
+expect(63465789908753).to.be.number;
+expect(27.11).to.be.number;
 ```
 
 #### integer
 
 ```ts
 expect(27).to.be.integer();
+expect(27).to.be.integer;
 ```
 
 #### float
 
 ```ts
 expect(27.11).to.be.float();
+expect(27.11).to.be.float;
 ```
 
 ### String

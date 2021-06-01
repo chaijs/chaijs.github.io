@@ -4,6 +4,10 @@ permalink: plugins/chai-subset-in-order/
 pluginName: chai-subset-in-order
 ---
 
+[![MIT License](https://img.shields.io/badge/license-mit-green.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.com/oprogramador/chai-subset-in-order.svg?branch=master)](https://travis-ci.com/oprogramador/chai-subset-in-order)
+
+
 [![NPM status](https://nodei.co/npm/chai-subset-in-order.png?downloads=true&stars=true)](https://npmjs.org/package/chai-subset-in-order)
 
 "containSubsetInOrder" object properties matcher for [Chai](http://chaijs.com/) assertion library

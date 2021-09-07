@@ -3,6 +3,7 @@ module.exports = [
    // Personal forks
   '@cypress/sinon-chai',
   '@slightlytyler/sinon-chai',
+  'chai-sinon',
 
   'chai-51st-state', // Banned for profane language
   'chai2.0-webdriver-promised', // Fork with poor metadata

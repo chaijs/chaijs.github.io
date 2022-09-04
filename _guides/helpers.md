@@ -247,7 +247,7 @@ function assertModelAge (n) {
   // do our comparison
   this.assert(
       age === n
-    , "expected #{this} to have have #{exp} but got #{act}"
+    , "expected #{this} to have age #{exp} but got #{act}"
     , "expected #{this} to not have age #{act}"
     , n
     , age

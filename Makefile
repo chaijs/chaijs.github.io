@@ -16,7 +16,7 @@ generated_data: plugins releases api-docs chaijs
 api-docs: clean-api-docs
 	@mkdir -p _data
 	@npm install chai@latest
-	@./node_modules/.bin/dox --raw < ./node_modules/chai/chai.js > _data/chai.json
+	@node ./node_modules/dox/bin/dox --raw < ./node_modules/chai/chai.js > _data/chai.json
 
 #
 # Generate the api docs
@@ -40,7 +40,7 @@ releases: clean-releases
 
 plugins: clean-plugins
 	@mkdir -p _data/plugins
-	@./node_modules/.bin/npm-plugin-fetcher -b _scripts/banned_plugins.js -o _data/plugins chai-plugin
+	@node ./node_modules/npm-plugin-fetcher/index.js -b _scripts/banned_plugins.js -o _data/plugins chai-plugin
 	@xargs -n1 -I! sh -c 'echo ! && curl -s "https://registry.npmjs.com/!" > _data/plugins/!.json' < _legacy_plugins
 	@node _scripts/build-plugin-tags.js
 	@node _scripts/build-plugin-pages.js

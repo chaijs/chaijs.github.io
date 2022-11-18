@@ -8,9 +8,9 @@ pluginName: chai-quantifiers
 
 Array quantifier assertions for [Chai](http://chaijs.com/) assertion library.
 
-[![Build Status](https://travis-ci.org/frankthelen/chai-quantifiers.svg?branch=master)](https://travis-ci.org/frankthelen/chai-quantifiers)
-[![Coverage Status](https://coveralls.io/repos/github/frankthelen/chai-quantifiers/badge.svg?branch=master)](https://coveralls.io/github/frankthelen/chai-quantifiers?branch=master)
-[![Maintainability](https://api.codeclimate.com/v1/badges/44fb4c780c3f36b0d04f/maintainability)](https://codeclimate.com/github/frankthelen/chai-quantifiers/maintainability)
+![main workflow](https://github.com/funny-bytes/chai-quantifiers/actions/workflows/main.yml/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/funny-bytes/chai-quantifiers/badge.svg?branch=master)](https://coveralls.io/github/funny-bytes/chai-quantifiers?branch=master)
+[![Maintainability](https://api.codeclimate.com/v1/badges/44fb4c780c3f36b0d04f/maintainability)](https://codeclimate.com/github/funny-bytes/chai-quantifiers/maintainability)
 [![node](https://img.shields.io/node/v/chai-quantifiers.svg)]()
 [![code style](https://img.shields.io/badge/code_style-airbnb-brightgreen.svg)](https://github.com/airbnb/javascript)
 [![Types](https://img.shields.io/npm/types/chai-quantifiers.svg)](https://www.npmjs.com/package/chai-quantifiers)

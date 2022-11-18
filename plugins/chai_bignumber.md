@@ -5,7 +5,8 @@ pluginName: chai-bignumber
 ---
 
 # chai-bignumber
-[![Build Status](https://travis-ci.org/asmarques/chai-bignumber.svg)](https://travis-ci.org/asmarques/chai-bignumber)
+
+![Build Status](https://github.com/asmarques/chai-bignumber/workflows/CI/badge.svg)
 
 Chai assertions for comparing arbitrary-precision decimals using the [bignumber.js](https://github.com/MikeMcl/bignumber.js) library.
 
@@ -34,9 +35,9 @@ builtin assertions if the `bignumber` property is explicitly set as part of
 the assertion chain:
 - equal/equals/eq
 - above/gt/greaterThan
-- least/gte
+- least/gte/greaterThanOrEqual
 - below/lt/lessThan
-- most/lte
+- most/lte/lessThanOrEqual
 
 The above methods have the following signature: `(value, dp, rm)`.
 Where `dp` is an optional argument which specifies the number of decimal places

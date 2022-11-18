@@ -291,7 +291,7 @@
     "ignore": true,
     "line": 91,
     "codeStart": 95,
-    "code": "var assert = require('./chai/interface/assert');\nexports.use(assert);\n\n},{\"./chai/assertion\":3,\"./chai/config\":4,\"./chai/core/assertions\":5,\"./chai/interface/assert\":6,\"./chai/interface/expect\":7,\"./chai/interface/should\":8,\"./chai/utils\":23,\"assertion-error\":34}],3:[function(require,module,exports){",
+    "code": "var assert = require('./chai/interface/assert');\nexports.use(assert);\n\n},{\"./chai/assertion\":3,\"./chai/config\":4,\"./chai/core/assertions\":5,\"./chai/interface/assert\":6,\"./chai/interface/expect\":7,\"./chai/interface/should\":8,\"./chai/utils\":22,\"assertion-error\":33}],3:[function(require,module,exports){",
     "ctx": {
       "type": "declaration",
       "name": "assert",
@@ -2000,7 +2000,7 @@
     "ignore": false,
     "line": 1898,
     "codeStart": 1941,
-    "code": "Assertion.addMethod('within', function (start, finish, msg) {\n  if (msg) flag(this, 'message', msg);\n  var obj = flag(this, 'object')\n    , doLength = flag(this, 'doLength')\n    , flagMsg = flag(this, 'message')\n    , msgPrefix = ((flagMsg) ? flagMsg + ': ' : '')\n    , ssfi = flag(this, 'ssfi')\n    , objType = _.type(obj).toLowerCase()\n    , startType = _.type(start).toLowerCase()\n    , finishType = _.type(finish).toLowerCase()\n    , errorMessage\n    , shouldThrow = true\n    , range = (startType === 'date' && finishType === 'date')\n        ? start.toUTCString() + '..' + finish.toUTCString()\n        : start + '..' + finish;\n\n  if (doLength && objType !== 'map' && objType !== 'set') {\n    new Assertion(obj, flagMsg, ssfi, true).to.have.property('length');\n  }\n\n  if (!doLength && (objType === 'date' && (startType !== 'date' || finishType !== 'date'))) {\n    errorMessage = msgPrefix + 'the arguments to within must be dates';\n  } else if ((startType !== 'number' || finishType !== 'number') && (doLength || objType === 'number')) {\n    errorMessage = msgPrefix + 'the arguments to within must be numbers';\n  } else if (!doLength && (objType !== 'date' && objType !== 'number')) {\n    var printObj = (objType === 'string') ? \"'\" + obj + \"'\" : obj;\n    errorMessage = msgPrefix + 'expected ' + printObj + ' to be a number or a date';\n  } else {\n    shouldThrow = false;\n  }\n\n  if (shouldThrow) {\n    throw new AssertionError(errorMessage, undefined, ssfi);\n  }\n\n  if (doLength) {\n    var descriptor = 'length'\n      , itemsCount;\n    if (objType === 'map' || objType === 'set') {\n      descriptor = 'size';\n      itemsCount = obj.size;\n    } else {\n      itemsCount = obj.length;\n    }\n    this.assert(\n        itemsCount >= start && itemsCount <= finish\n      , 'expected #{this} to have a ' + descriptor + ' within ' + range\n      , 'expected #{this} to not have a ' + descriptor + ' within ' + range\n    );\n  } else {\n    this.assert(\n        obj >= start && obj <= finish\n      , 'expected #{this} to be within ' + range\n      , 'expected #{this} to not be within ' + range\n    );\n  }\n});",
+    "code": "Assertion.addMethod('within', function (start, finish, msg) {\n  if (msg) flag(this, 'message', msg);\n  var obj = flag(this, 'object')\n    , doLength = flag(this, 'doLength')\n    , flagMsg = flag(this, 'message')\n    , msgPrefix = ((flagMsg) ? flagMsg + ': ' : '')\n    , ssfi = flag(this, 'ssfi')\n    , objType = _.type(obj).toLowerCase()\n    , startType = _.type(start).toLowerCase()\n    , finishType = _.type(finish).toLowerCase()\n    , errorMessage\n    , shouldThrow = true\n    , range = (startType === 'date' && finishType === 'date')\n        ? start.toISOString() + '..' + finish.toISOString()\n        : start + '..' + finish;\n\n  if (doLength && objType !== 'map' && objType !== 'set') {\n    new Assertion(obj, flagMsg, ssfi, true).to.have.property('length');\n  }\n\n  if (!doLength && (objType === 'date' && (startType !== 'date' || finishType !== 'date'))) {\n    errorMessage = msgPrefix + 'the arguments to within must be dates';\n  } else if ((startType !== 'number' || finishType !== 'number') && (doLength || objType === 'number')) {\n    errorMessage = msgPrefix + 'the arguments to within must be numbers';\n  } else if (!doLength && (objType !== 'date' && objType !== 'number')) {\n    var printObj = (objType === 'string') ? \"'\" + obj + \"'\" : obj;\n    errorMessage = msgPrefix + 'expected ' + printObj + ' to be a number or a date';\n  } else {\n    shouldThrow = false;\n  }\n\n  if (shouldThrow) {\n    throw new AssertionError(errorMessage, undefined, ssfi);\n  }\n\n  if (doLength) {\n    var descriptor = 'length'\n      , itemsCount;\n    if (objType === 'map' || objType === 'set') {\n      descriptor = 'size';\n      itemsCount = obj.size;\n    } else {\n      itemsCount = obj.length;\n    }\n    this.assert(\n        itemsCount >= start && itemsCount <= finish\n      , 'expected #{this} to have a ' + descriptor + ' within ' + range\n      , 'expected #{this} to not have a ' + descriptor + ' within ' + range\n    );\n  } else {\n    this.assert(\n        obj >= start && obj <= finish\n      , 'expected #{this} to be within ' + range\n      , 'expected #{this} to not be within ' + range\n    );\n  }\n});",
     "ctx": false
   },
   {
@@ -14465,7 +14465,7 @@
     "ignore": false,
     "line": 7655,
     "codeStart": 7684,
-    "code": "module.exports = function addChainableMethod(ctx, name, method, chainingBehavior) {\n  if (typeof chainingBehavior !== 'function') {\n    chainingBehavior = function () { };\n  }\n\n  var chainableBehavior = {\n      method: method\n    , chainingBehavior: chainingBehavior\n  };\n\n  // save the methods so we can overwrite them later, if we need to.\n  if (!ctx.__methods) {\n    ctx.__methods = {};\n  }\n  ctx.__methods[name] = chainableBehavior;\n\n  Object.defineProperty(ctx, name,\n    { get: function chainableMethodGetter() {\n        chainableBehavior.chainingBehavior.call(this);\n\n        var chainableMethodWrapper = function () {\n          // Setting the `ssfi` flag to `chainableMethodWrapper` causes this\n          // function to be the starting point for removing implementation\n          // frames from the stack trace of a failed assertion.\n          //\n          // However, we only want to use this function as the starting point if\n          // the `lockSsfi` flag isn't set.\n          //\n          // If the `lockSsfi` flag is set, then this assertion is being\n          // invoked from inside of another assertion. In this case, the `ssfi`\n          // flag has already been set by the outer assertion.\n          //\n          // Note that overwriting a chainable method merely replaces the saved\n          // methods in `ctx.__methods` instead of completely replacing the\n          // overwritten assertion. Therefore, an overwriting assertion won't\n          // set the `ssfi` or `lockSsfi` flags.\n          if (!flag(this, 'lockSsfi')) {\n            flag(this, 'ssfi', chainableMethodWrapper);\n          }\n\n          var result = chainableBehavior.method.apply(this, arguments);\n          if (result !== undefined) {\n            return result;\n          }\n\n          var newAssertion = new chai.Assertion();\n          transferFlags(this, newAssertion);\n          return newAssertion;\n        };\n\n        addLengthGuard(chainableMethodWrapper, name, true);\n\n        // Use `Object.setPrototypeOf` if available\n        if (canSetPrototype) {\n          // Inherit all properties from the object by replacing the `Function` prototype\n          var prototype = Object.create(this);\n          // Restore the `call` and `apply` methods from `Function`\n          prototype.call = call;\n          prototype.apply = apply;\n          Object.setPrototypeOf(chainableMethodWrapper, prototype);\n        }\n        // Otherwise, redefine all properties (slow!)\n        else {\n          var asserterNames = Object.getOwnPropertyNames(ctx);\n          asserterNames.forEach(function (asserterName) {\n            if (excludeNames.indexOf(asserterName) !== -1) {\n              return;\n            }\n\n            var pd = Object.getOwnPropertyDescriptor(ctx, asserterName);\n            Object.defineProperty(chainableMethodWrapper, asserterName, pd);\n          });\n        }\n\n        transferFlags(this, chainableMethodWrapper);\n        return proxify(chainableMethodWrapper);\n      }\n    , configurable: true\n  });\n};\n\n},{\"../../chai\":2,\"./addLengthGuard\":10,\"./flag\":15,\"./proxify\":31,\"./transferFlags\":33}],10:[function(require,module,exports){\nvar fnLengthDesc = Object.getOwnPropertyDescriptor(function () {}, 'length');",
+    "code": "module.exports = function addChainableMethod(ctx, name, method, chainingBehavior) {\n  if (typeof chainingBehavior !== 'function') {\n    chainingBehavior = function () { };\n  }\n\n  var chainableBehavior = {\n      method: method\n    , chainingBehavior: chainingBehavior\n  };\n\n  // save the methods so we can overwrite them later, if we need to.\n  if (!ctx.__methods) {\n    ctx.__methods = {};\n  }\n  ctx.__methods[name] = chainableBehavior;\n\n  Object.defineProperty(ctx, name,\n    { get: function chainableMethodGetter() {\n        chainableBehavior.chainingBehavior.call(this);\n\n        var chainableMethodWrapper = function () {\n          // Setting the `ssfi` flag to `chainableMethodWrapper` causes this\n          // function to be the starting point for removing implementation\n          // frames from the stack trace of a failed assertion.\n          //\n          // However, we only want to use this function as the starting point if\n          // the `lockSsfi` flag isn't set.\n          //\n          // If the `lockSsfi` flag is set, then this assertion is being\n          // invoked from inside of another assertion. In this case, the `ssfi`\n          // flag has already been set by the outer assertion.\n          //\n          // Note that overwriting a chainable method merely replaces the saved\n          // methods in `ctx.__methods` instead of completely replacing the\n          // overwritten assertion. Therefore, an overwriting assertion won't\n          // set the `ssfi` or `lockSsfi` flags.\n          if (!flag(this, 'lockSsfi')) {\n            flag(this, 'ssfi', chainableMethodWrapper);\n          }\n\n          var result = chainableBehavior.method.apply(this, arguments);\n          if (result !== undefined) {\n            return result;\n          }\n\n          var newAssertion = new chai.Assertion();\n          transferFlags(this, newAssertion);\n          return newAssertion;\n        };\n\n        addLengthGuard(chainableMethodWrapper, name, true);\n\n        // Use `Object.setPrototypeOf` if available\n        if (canSetPrototype) {\n          // Inherit all properties from the object by replacing the `Function` prototype\n          var prototype = Object.create(this);\n          // Restore the `call` and `apply` methods from `Function`\n          prototype.call = call;\n          prototype.apply = apply;\n          Object.setPrototypeOf(chainableMethodWrapper, prototype);\n        }\n        // Otherwise, redefine all properties (slow!)\n        else {\n          var asserterNames = Object.getOwnPropertyNames(ctx);\n          asserterNames.forEach(function (asserterName) {\n            if (excludeNames.indexOf(asserterName) !== -1) {\n              return;\n            }\n\n            var pd = Object.getOwnPropertyDescriptor(ctx, asserterName);\n            Object.defineProperty(chainableMethodWrapper, asserterName, pd);\n          });\n        }\n\n        transferFlags(this, chainableMethodWrapper);\n        return proxify(chainableMethodWrapper);\n      }\n    , configurable: true\n  });\n};\n\n},{\"../../chai\":2,\"./addLengthGuard\":10,\"./flag\":15,\"./proxify\":30,\"./transferFlags\":32}],10:[function(require,module,exports){\nvar fnLengthDesc = Object.getOwnPropertyDescriptor(function () {}, 'length');",
     "ctx": {
       "type": "method",
       "receiver": "module",
@@ -14653,7 +14653,7 @@
     "ignore": false,
     "line": 7840,
     "codeStart": 7866,
-    "code": "module.exports = function addMethod(ctx, name, method) {\n  var methodWrapper = function () {\n    // Setting the `ssfi` flag to `methodWrapper` causes this function to be the\n    // starting point for removing implementation frames from the stack trace of\n    // a failed assertion.\n    //\n    // However, we only want to use this function as the starting point if the\n    // `lockSsfi` flag isn't set.\n    //\n    // If the `lockSsfi` flag is set, then either this assertion has been\n    // overwritten by another assertion, or this assertion is being invoked from\n    // inside of another assertion. In the first case, the `ssfi` flag has\n    // already been set by the overwriting assertion. In the second case, the\n    // `ssfi` flag has already been set by the outer assertion.\n    if (!flag(this, 'lockSsfi')) {\n      flag(this, 'ssfi', methodWrapper);\n    }\n\n    var result = method.apply(this, arguments);\n    if (result !== undefined)\n      return result;\n\n    var newAssertion = new chai.Assertion();\n    transferFlags(this, newAssertion);\n    return newAssertion;\n  };\n\n  addLengthGuard(methodWrapper, name, false);\n  ctx[name] = proxify(methodWrapper, name);\n};\n\n},{\"../../chai\":2,\"./addLengthGuard\":10,\"./flag\":15,\"./proxify\":31,\"./transferFlags\":33}],12:[function(require,module,exports){",
+    "code": "module.exports = function addMethod(ctx, name, method) {\n  var methodWrapper = function () {\n    // Setting the `ssfi` flag to `methodWrapper` causes this function to be the\n    // starting point for removing implementation frames from the stack trace of\n    // a failed assertion.\n    //\n    // However, we only want to use this function as the starting point if the\n    // `lockSsfi` flag isn't set.\n    //\n    // If the `lockSsfi` flag is set, then either this assertion has been\n    // overwritten by another assertion, or this assertion is being invoked from\n    // inside of another assertion. In the first case, the `ssfi` flag has\n    // already been set by the overwriting assertion. In the second case, the\n    // `ssfi` flag has already been set by the outer assertion.\n    if (!flag(this, 'lockSsfi')) {\n      flag(this, 'ssfi', methodWrapper);\n    }\n\n    var result = method.apply(this, arguments);\n    if (result !== undefined)\n      return result;\n\n    var newAssertion = new chai.Assertion();\n    transferFlags(this, newAssertion);\n    return newAssertion;\n  };\n\n  addLengthGuard(methodWrapper, name, false);\n  ctx[name] = proxify(methodWrapper, name);\n};\n\n},{\"../../chai\":2,\"./addLengthGuard\":10,\"./flag\":15,\"./proxify\":30,\"./transferFlags\":32}],12:[function(require,module,exports){",
     "ctx": {
       "type": "method",
       "receiver": "module",
@@ -14753,7 +14753,7 @@
     "ignore": false,
     "line": 7909,
     "codeStart": 7935,
-    "code": "module.exports = function addProperty(ctx, name, getter) {\n  getter = getter === undefined ? function () {} : getter;\n\n  Object.defineProperty(ctx, name,\n    { get: function propertyGetter() {\n        // Setting the `ssfi` flag to `propertyGetter` causes this function to\n        // be the starting point for removing implementation frames from the\n        // stack trace of a failed assertion.\n        //\n        // However, we only want to use this function as the starting point if\n        // the `lockSsfi` flag isn't set and proxy protection is disabled.\n        //\n        // If the `lockSsfi` flag is set, then either this assertion has been\n        // overwritten by another assertion, or this assertion is being invoked\n        // from inside of another assertion. In the first case, the `ssfi` flag\n        // has already been set by the overwriting assertion. In the second\n        // case, the `ssfi` flag has already been set by the outer assertion.\n        //\n        // If proxy protection is enabled, then the `ssfi` flag has already been\n        // set by the proxy getter.\n        if (!isProxyEnabled() && !flag(this, 'lockSsfi')) {\n          flag(this, 'ssfi', propertyGetter);\n        }\n\n        var result = getter.call(this);\n        if (result !== undefined)\n          return result;\n\n        var newAssertion = new chai.Assertion();\n        transferFlags(this, newAssertion);\n        return newAssertion;\n      }\n    , configurable: true\n  });\n};\n\n},{\"../../chai\":2,\"./flag\":15,\"./isProxyEnabled\":26,\"./transferFlags\":33}],13:[function(require,module,exports){",
+    "code": "module.exports = function addProperty(ctx, name, getter) {\n  getter = getter === undefined ? function () {} : getter;\n\n  Object.defineProperty(ctx, name,\n    { get: function propertyGetter() {\n        // Setting the `ssfi` flag to `propertyGetter` causes this function to\n        // be the starting point for removing implementation frames from the\n        // stack trace of a failed assertion.\n        //\n        // However, we only want to use this function as the starting point if\n        // the `lockSsfi` flag isn't set and proxy protection is disabled.\n        //\n        // If the `lockSsfi` flag is set, then either this assertion has been\n        // overwritten by another assertion, or this assertion is being invoked\n        // from inside of another assertion. In the first case, the `ssfi` flag\n        // has already been set by the overwriting assertion. In the second\n        // case, the `ssfi` flag has already been set by the outer assertion.\n        //\n        // If proxy protection is enabled, then the `ssfi` flag has already been\n        // set by the proxy getter.\n        if (!isProxyEnabled() && !flag(this, 'lockSsfi')) {\n          flag(this, 'ssfi', propertyGetter);\n        }\n\n        var result = getter.call(this);\n        if (result !== undefined)\n          return result;\n\n        var newAssertion = new chai.Assertion();\n        transferFlags(this, newAssertion);\n        return newAssertion;\n      }\n    , configurable: true\n  });\n};\n\n},{\"../../chai\":2,\"./flag\":15,\"./isProxyEnabled\":25,\"./transferFlags\":32}],13:[function(require,module,exports){",
     "ctx": {
       "type": "method",
       "receiver": "module",
@@ -14867,7 +14867,7 @@
     "ignore": false,
     "line": 7984,
     "codeStart": 8000,
-    "code": "module.exports = function compareByInspect(a, b) {\n  return inspect(a) < inspect(b) ? -1 : 1;\n};\n\n},{\"./inspect\":24}],14:[function(require,module,exports){",
+    "code": "module.exports = function compareByInspect(a, b) {\n  return inspect(a) < inspect(b) ? -1 : 1;\n};\n\n},{\"./inspect\":23}],14:[function(require,module,exports){",
     "ctx": {
       "type": "method",
       "receiver": "module",
@@ -14946,7 +14946,7 @@
     "ignore": false,
     "line": 8011,
     "codeStart": 8025,
-    "code": "var AssertionError = require('assertion-error');\nvar flag = require('./flag');\nvar type = require('type-detect');\n\nmodule.exports = function expectTypes(obj, types) {\n  var flagMsg = flag(obj, 'message');\n  var ssfi = flag(obj, 'ssfi');\n\n  flagMsg = flagMsg ? flagMsg + ': ' : '';\n\n  obj = flag(obj, 'object');\n  types = types.map(function (t) { return t.toLowerCase(); });\n  types.sort();\n\n  // Transforms ['lorem', 'ipsum'] into 'a lorem, or an ipsum'\n  var str = types.map(function (t, index) {\n    var art = ~[ 'a', 'e', 'i', 'o', 'u' ].indexOf(t.charAt(0)) ? 'an' : 'a';\n    var or = types.length > 1 && index === types.length - 1 ? 'or ' : '';\n    return or + art + ' ' + t;\n  }).join(', ');\n\n  var objType = type(obj).toLowerCase();\n\n  if (!types.some(function (expected) { return objType === expected; })) {\n    throw new AssertionError(\n      flagMsg + 'object tested must be ' + str + ', but ' + objType + ' given',\n      undefined,\n      ssfi\n    );\n  }\n};\n\n},{\"./flag\":15,\"assertion-error\":34,\"type-detect\":39}],15:[function(require,module,exports){",
+    "code": "var AssertionError = require('assertion-error');\nvar flag = require('./flag');\nvar type = require('type-detect');\n\nmodule.exports = function expectTypes(obj, types) {\n  var flagMsg = flag(obj, 'message');\n  var ssfi = flag(obj, 'ssfi');\n\n  flagMsg = flagMsg ? flagMsg + ': ' : '';\n\n  obj = flag(obj, 'object');\n  types = types.map(function (t) { return t.toLowerCase(); });\n  types.sort();\n\n  // Transforms ['lorem', 'ipsum'] into 'a lorem, or an ipsum'\n  var str = types.map(function (t, index) {\n    var art = ~[ 'a', 'e', 'i', 'o', 'u' ].indexOf(t.charAt(0)) ? 'an' : 'a';\n    var or = types.length > 1 && index === types.length - 1 ? 'or ' : '';\n    return or + art + ' ' + t;\n  }).join(', ');\n\n  var objType = type(obj).toLowerCase();\n\n  if (!types.some(function (expected) { return objType === expected; })) {\n    throw new AssertionError(\n      flagMsg + 'object tested must be ' + str + ', but ' + objType + ' given',\n      undefined,\n      ssfi\n    );\n  }\n};\n\n},{\"./flag\":15,\"assertion-error\":33,\"type-detect\":39}],15:[function(require,module,exports){",
     "ctx": {
       "type": "declaration",
       "name": "AssertionError",
@@ -15124,84 +15124,6 @@
   {
     "tags": [],
     "description": {
-      "full": "Chai - getEnumerableProperties utility\nCopyright(c) 2012-2014 Jake Luer <jake@alogicalparadox.com>\nMIT Licensed",
-      "summary": "Chai - getEnumerableProperties utility\nCopyright(c) 2012-2014 Jake Luer <jake@alogicalparadox.com>\nMIT Licensed",
-      "body": ""
-    },
-    "isPrivate": false,
-    "isConstructor": false,
-    "isClass": false,
-    "isEvent": false,
-    "ignore": true,
-    "line": 8115,
-    "codeStart": 8120
-  },
-  {
-    "tags": [
-      {
-        "type": "param",
-        "string": "{Object} object",
-        "name": "object",
-        "description": "",
-        "types": [
-          "Object"
-        ],
-        "typesDescription": "<code>Object</code>",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
-        "variable": false
-      },
-      {
-        "type": "returns",
-        "string": "{Array}",
-        "types": [
-          "Array"
-        ],
-        "typesDescription": "<code>Array</code>",
-        "optional": false,
-        "nullable": false,
-        "nonNullable": false,
-        "variable": false,
-        "description": ""
-      },
-      {
-        "type": "namespace",
-        "string": "Utils"
-      },
-      {
-        "type": "name",
-        "string": "getEnumerableProperties"
-      },
-      {
-        "type": "api",
-        "string": "public",
-        "visibility": "public"
-      }
-    ],
-    "description": {
-      "full": "### .getEnumerableProperties(object)\n\nThis allows the retrieval of enumerable property names of an object,\ninherited or not.",
-      "summary": "### .getEnumerableProperties(object)",
-      "body": "This allows the retrieval of enumerable property names of an object,\ninherited or not."
-    },
-    "isPrivate": false,
-    "isConstructor": false,
-    "isClass": false,
-    "isEvent": false,
-    "ignore": false,
-    "line": 8121,
-    "codeStart": 8134,
-    "code": "module.exports = function getEnumerableProperties(object) {\n  var result = [];\n  for (var name in object) {\n    result.push(name);\n  }\n  return result;\n};\n\n},{}],18:[function(require,module,exports){",
-    "ctx": {
-      "type": "method",
-      "receiver": "module",
-      "name": "exports",
-      "string": "module.exports()"
-    }
-  },
-  {
-    "tags": [],
-    "description": {
       "full": "Chai - message composition utility\nCopyright(c) 2012-2014 Jake Luer <jake@alogicalparadox.com>\nMIT Licensed",
       "summary": "Chai - message composition utility\nCopyright(c) 2012-2014 Jake Luer <jake@alogicalparadox.com>\nMIT Licensed",
       "body": ""
@@ -15211,8 +15133,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8143,
-    "codeStart": 8148
+    "line": 8115,
+    "codeStart": 8120
   },
   {
     "tags": [],
@@ -15226,8 +15148,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8149,
-    "codeStart": 8153,
+    "line": 8121,
+    "codeStart": 8125,
     "code": "var flag = require('./flag')\n  , getActual = require('./getActual')\n  , objDisplay = require('./objDisplay');",
     "ctx": {
       "type": "declaration",
@@ -15290,9 +15212,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 8157,
-    "codeStart": 8176,
-    "code": "module.exports = function getMessage(obj, args) {\n  var negate = flag(obj, 'negate')\n    , val = flag(obj, 'object')\n    , expected = args[3]\n    , actual = getActual(obj, args)\n    , msg = negate ? args[2] : args[1]\n    , flagMsg = flag(obj, 'message');\n\n  if(typeof msg === \"function\") msg = msg();\n  msg = msg || '';\n  msg = msg\n    .replace(/#\\{this\\}/g, function () { return objDisplay(val); })\n    .replace(/#\\{act\\}/g, function () { return objDisplay(actual); })\n    .replace(/#\\{exp\\}/g, function () { return objDisplay(expected); });\n\n  return flagMsg ? flagMsg + ': ' + msg : msg;\n};\n\n},{\"./flag\":15,\"./getActual\":16,\"./objDisplay\":27}],19:[function(require,module,exports){\nvar type = require('type-detect');\n\nvar flag = require('./flag');\n\nfunction isObjectType(obj) {\n  var objectType = type(obj);\n  var objectTypes = ['Array', 'Object', 'function'];\n\n  return objectTypes.indexOf(objectType) !== -1;\n}",
+    "line": 8129,
+    "codeStart": 8148,
+    "code": "module.exports = function getMessage(obj, args) {\n  var negate = flag(obj, 'negate')\n    , val = flag(obj, 'object')\n    , expected = args[3]\n    , actual = getActual(obj, args)\n    , msg = negate ? args[2] : args[1]\n    , flagMsg = flag(obj, 'message');\n\n  if(typeof msg === \"function\") msg = msg();\n  msg = msg || '';\n  msg = msg\n    .replace(/#\\{this\\}/g, function () { return objDisplay(val); })\n    .replace(/#\\{act\\}/g, function () { return objDisplay(actual); })\n    .replace(/#\\{exp\\}/g, function () { return objDisplay(expected); });\n\n  return flagMsg ? flagMsg + ': ' + msg : msg;\n};\n\n},{\"./flag\":15,\"./getActual\":16,\"./objDisplay\":26}],18:[function(require,module,exports){\nvar type = require('type-detect');\n\nvar flag = require('./flag');\n\nfunction isObjectType(obj) {\n  var objectType = type(obj);\n  var objectTypes = ['Array', 'Object', 'function'];\n\n  return objectTypes.indexOf(objectType) !== -1;\n}",
     "ctx": {
       "type": "method",
       "receiver": "module",
@@ -15354,9 +15276,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 8206,
-    "codeStart": 8222,
-    "code": "module.exports = function getOperator(obj, args) {\n  var operator = flag(obj, 'operator');\n  var negate = flag(obj, 'negate');\n  var expected = args[3];\n  var msg = negate ? args[2] : args[1];\n\n  if (operator) {\n    return operator;\n  }\n\n  if (typeof msg === 'function') msg = msg();\n\n  msg = msg || '';\n  if (!msg) {\n    return undefined;\n  }\n\n  if (/\\shave\\s/.test(msg)) {\n    return undefined;\n  }\n\n  var isObject = isObjectType(expected);\n  if (/\\snot\\s/.test(msg)) {\n    return isObject ? 'notDeepStrictEqual' : 'notStrictEqual';\n  }\n\n  return isObject ? 'deepStrictEqual' : 'strictEqual';\n};\n\n},{\"./flag\":15,\"type-detect\":39}],20:[function(require,module,exports){",
+    "line": 8178,
+    "codeStart": 8194,
+    "code": "module.exports = function getOperator(obj, args) {\n  var operator = flag(obj, 'operator');\n  var negate = flag(obj, 'negate');\n  var expected = args[3];\n  var msg = negate ? args[2] : args[1];\n\n  if (operator) {\n    return operator;\n  }\n\n  if (typeof msg === 'function') msg = msg();\n\n  msg = msg || '';\n  if (!msg) {\n    return undefined;\n  }\n\n  if (/\\shave\\s/.test(msg)) {\n    return undefined;\n  }\n\n  var isObject = isObjectType(expected);\n  if (/\\snot\\s/.test(msg)) {\n    return isObject ? 'notDeepStrictEqual' : 'notStrictEqual';\n  }\n\n  return isObject ? 'deepStrictEqual' : 'strictEqual';\n};\n\n},{\"./flag\":15,\"type-detect\":39}],19:[function(require,module,exports){",
     "ctx": {
       "type": "method",
       "receiver": "module",
@@ -15376,8 +15298,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8252,
-    "codeStart": 8257
+    "line": 8224,
+    "codeStart": 8229
   },
   {
     "tags": [],
@@ -15391,8 +15313,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8258,
-    "codeStart": 8262,
+    "line": 8230,
+    "codeStart": 8234,
     "code": "var getOwnEnumerablePropertySymbols = require('./getOwnEnumerablePropertySymbols');",
     "ctx": {
       "type": "declaration",
@@ -15454,9 +15376,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 8264,
-    "codeStart": 8278,
-    "code": "module.exports = function getOwnEnumerableProperties(obj) {\n  return Object.keys(obj).concat(getOwnEnumerablePropertySymbols(obj));\n};\n\n},{\"./getOwnEnumerablePropertySymbols\":21}],21:[function(require,module,exports){",
+    "line": 8236,
+    "codeStart": 8250,
+    "code": "module.exports = function getOwnEnumerableProperties(obj) {\n  return Object.keys(obj).concat(getOwnEnumerablePropertySymbols(obj));\n};\n\n},{\"./getOwnEnumerablePropertySymbols\":20}],20:[function(require,module,exports){",
     "ctx": {
       "type": "method",
       "receiver": "module",
@@ -15476,8 +15398,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8283,
-    "codeStart": 8288
+    "line": 8255,
+    "codeStart": 8260
   },
   {
     "tags": [
@@ -15532,9 +15454,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 8289,
-    "codeStart": 8303,
-    "code": "module.exports = function getOwnEnumerablePropertySymbols(obj) {\n  if (typeof Object.getOwnPropertySymbols !== 'function') return [];\n\n  return Object.getOwnPropertySymbols(obj).filter(function (sym) {\n    return Object.getOwnPropertyDescriptor(obj, sym).enumerable;\n  });\n};\n\n},{}],22:[function(require,module,exports){",
+    "line": 8261,
+    "codeStart": 8275,
+    "code": "module.exports = function getOwnEnumerablePropertySymbols(obj) {\n  if (typeof Object.getOwnPropertySymbols !== 'function') return [];\n\n  return Object.getOwnPropertySymbols(obj).filter(function (sym) {\n    return Object.getOwnPropertyDescriptor(obj, sym).enumerable;\n  });\n};\n\n},{}],21:[function(require,module,exports){",
     "ctx": {
       "type": "method",
       "receiver": "module",
@@ -15554,8 +15476,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8312,
-    "codeStart": 8317
+    "line": 8284,
+    "codeStart": 8289
   },
   {
     "tags": [
@@ -15610,9 +15532,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 8318,
-    "codeStart": 8331,
-    "code": "module.exports = function getProperties(object) {\n  var result = Object.getOwnPropertyNames(object);\n\n  function addProperty(property) {\n    if (result.indexOf(property) === -1) {\n      result.push(property);\n    }\n  }\n\n  var proto = Object.getPrototypeOf(object);\n  while (proto !== null) {\n    Object.getOwnPropertyNames(proto).forEach(addProperty);\n    proto = Object.getPrototypeOf(proto);\n  }\n\n  return result;\n};\n\n},{}],23:[function(require,module,exports){",
+    "line": 8290,
+    "codeStart": 8303,
+    "code": "module.exports = function getProperties(object) {\n  var result = Object.getOwnPropertyNames(object);\n\n  function addProperty(property) {\n    if (result.indexOf(property) === -1) {\n      result.push(property);\n    }\n  }\n\n  var proto = Object.getPrototypeOf(object);\n  while (proto !== null) {\n    Object.getOwnPropertyNames(proto).forEach(addProperty);\n    proto = Object.getPrototypeOf(proto);\n  }\n\n  return result;\n};\n\n},{}],22:[function(require,module,exports){",
     "ctx": {
       "type": "method",
       "receiver": "module",
@@ -15632,8 +15554,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8350,
-    "codeStart": 8355
+    "line": 8322,
+    "codeStart": 8327
   },
   {
     "tags": [],
@@ -15647,8 +15569,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8356,
-    "codeStart": 8360,
+    "line": 8328,
+    "codeStart": 8332,
     "code": "var pathval = require('pathval');",
     "ctx": {
       "type": "declaration",
@@ -15669,8 +15591,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8362,
-    "codeStart": 8366,
+    "line": 8334,
+    "codeStart": 8338,
     "code": "exports.test = require('./test');",
     "ctx": {
       "type": "property",
@@ -15692,8 +15614,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8368,
-    "codeStart": 8372,
+    "line": 8340,
+    "codeStart": 8344,
     "code": "exports.type = require('type-detect');",
     "ctx": {
       "type": "property",
@@ -15715,8 +15637,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8374,
-    "codeStart": 8377,
+    "line": 8346,
+    "codeStart": 8349,
     "code": "exports.expectTypes = require('./expectTypes');",
     "ctx": {
       "type": "property",
@@ -15738,8 +15660,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8379,
-    "codeStart": 8383,
+    "line": 8351,
+    "codeStart": 8355,
     "code": "exports.getMessage = require('./getMessage');",
     "ctx": {
       "type": "property",
@@ -15761,8 +15683,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8385,
-    "codeStart": 8389,
+    "line": 8357,
+    "codeStart": 8361,
     "code": "exports.getActual = require('./getActual');",
     "ctx": {
       "type": "property",
@@ -15784,8 +15706,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8391,
-    "codeStart": 8395,
+    "line": 8363,
+    "codeStart": 8367,
     "code": "exports.inspect = require('./inspect');",
     "ctx": {
       "type": "property",
@@ -15807,8 +15729,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8397,
-    "codeStart": 8401,
+    "line": 8369,
+    "codeStart": 8373,
     "code": "exports.objDisplay = require('./objDisplay');",
     "ctx": {
       "type": "property",
@@ -15830,8 +15752,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8403,
-    "codeStart": 8407,
+    "line": 8375,
+    "codeStart": 8379,
     "code": "exports.flag = require('./flag');",
     "ctx": {
       "type": "property",
@@ -15853,8 +15775,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8409,
-    "codeStart": 8413,
+    "line": 8381,
+    "codeStart": 8385,
     "code": "exports.transferFlags = require('./transferFlags');",
     "ctx": {
       "type": "property",
@@ -15876,8 +15798,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8415,
-    "codeStart": 8419,
+    "line": 8387,
+    "codeStart": 8391,
     "code": "exports.eql = require('deep-eql');",
     "ctx": {
       "type": "property",
@@ -15899,8 +15821,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8421,
-    "codeStart": 8425,
+    "line": 8393,
+    "codeStart": 8397,
     "code": "exports.getPathInfo = pathval.getPathInfo;",
     "ctx": {
       "type": "property",
@@ -15922,8 +15844,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8427,
-    "codeStart": 8431,
+    "line": 8399,
+    "codeStart": 8403,
     "code": "exports.hasProperty = pathval.hasProperty;",
     "ctx": {
       "type": "property",
@@ -15945,8 +15867,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8433,
-    "codeStart": 8437,
+    "line": 8405,
+    "codeStart": 8409,
     "code": "exports.getName = require('get-func-name');",
     "ctx": {
       "type": "property",
@@ -15968,8 +15890,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8439,
-    "codeStart": 8443,
+    "line": 8411,
+    "codeStart": 8415,
     "code": "exports.addProperty = require('./addProperty');",
     "ctx": {
       "type": "property",
@@ -15991,8 +15913,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8445,
-    "codeStart": 8449,
+    "line": 8417,
+    "codeStart": 8421,
     "code": "exports.addMethod = require('./addMethod');",
     "ctx": {
       "type": "property",
@@ -16014,8 +15936,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8451,
-    "codeStart": 8455,
+    "line": 8423,
+    "codeStart": 8427,
     "code": "exports.overwriteProperty = require('./overwriteProperty');",
     "ctx": {
       "type": "property",
@@ -16037,8 +15959,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8457,
-    "codeStart": 8461,
+    "line": 8429,
+    "codeStart": 8433,
     "code": "exports.overwriteMethod = require('./overwriteMethod');",
     "ctx": {
       "type": "property",
@@ -16060,8 +15982,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8463,
-    "codeStart": 8467,
+    "line": 8435,
+    "codeStart": 8439,
     "code": "exports.addChainableMethod = require('./addChainableMethod');",
     "ctx": {
       "type": "property",
@@ -16083,8 +16005,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8469,
-    "codeStart": 8473,
+    "line": 8441,
+    "codeStart": 8445,
     "code": "exports.overwriteChainableMethod = require('./overwriteChainableMethod');",
     "ctx": {
       "type": "property",
@@ -16106,8 +16028,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8475,
-    "codeStart": 8479,
+    "line": 8447,
+    "codeStart": 8451,
     "code": "exports.compareByInspect = require('./compareByInspect');",
     "ctx": {
       "type": "property",
@@ -16129,8 +16051,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8481,
-    "codeStart": 8485,
+    "line": 8453,
+    "codeStart": 8457,
     "code": "exports.getOwnEnumerablePropertySymbols = require('./getOwnEnumerablePropertySymbols');",
     "ctx": {
       "type": "property",
@@ -16152,8 +16074,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8487,
-    "codeStart": 8491,
+    "line": 8459,
+    "codeStart": 8463,
     "code": "exports.getOwnEnumerableProperties = require('./getOwnEnumerableProperties');",
     "ctx": {
       "type": "property",
@@ -16175,8 +16097,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8493,
-    "codeStart": 8497,
+    "line": 8465,
+    "codeStart": 8469,
     "code": "exports.checkError = require('check-error');",
     "ctx": {
       "type": "property",
@@ -16198,8 +16120,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8499,
-    "codeStart": 8503,
+    "line": 8471,
+    "codeStart": 8475,
     "code": "exports.proxify = require('./proxify');",
     "ctx": {
       "type": "property",
@@ -16221,8 +16143,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8505,
-    "codeStart": 8509,
+    "line": 8477,
+    "codeStart": 8481,
     "code": "exports.addLengthGuard = require('./addLengthGuard');",
     "ctx": {
       "type": "property",
@@ -16244,8 +16166,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8511,
-    "codeStart": 8515,
+    "line": 8483,
+    "codeStart": 8487,
     "code": "exports.isProxyEnabled = require('./isProxyEnabled');",
     "ctx": {
       "type": "property",
@@ -16267,8 +16189,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8517,
-    "codeStart": 8521,
+    "line": 8489,
+    "codeStart": 8493,
     "code": "exports.isNaN = require('./isNaN');",
     "ctx": {
       "type": "property",
@@ -16290,9 +16212,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8523,
-    "codeStart": 8527,
-    "code": "exports.getOperator = require('./getOperator');\n},{\"./addChainableMethod\":9,\"./addLengthGuard\":10,\"./addMethod\":11,\"./addProperty\":12,\"./compareByInspect\":13,\"./expectTypes\":14,\"./flag\":15,\"./getActual\":16,\"./getMessage\":18,\"./getOperator\":19,\"./getOwnEnumerableProperties\":20,\"./getOwnEnumerablePropertySymbols\":21,\"./inspect\":24,\"./isNaN\":25,\"./isProxyEnabled\":26,\"./objDisplay\":27,\"./overwriteChainableMethod\":28,\"./overwriteMethod\":29,\"./overwriteProperty\":30,\"./proxify\":31,\"./test\":32,\"./transferFlags\":33,\"check-error\":35,\"deep-eql\":36,\"get-func-name\":37,\"pathval\":38,\"type-detect\":39}],24:[function(require,module,exports){\n// This is (almost) directly from Node.js utils\n// https://github.com/joyent/node/blob/f8c335d0caf47f16d31413f89aa28eda3878e3aa/lib/util.js\n\nvar getName = require('get-func-name');\nvar getProperties = require('./getProperties');\nvar getEnumerableProperties = require('./getEnumerableProperties');\nvar config = require('../config');\n\nmodule.exports = inspect;",
+    "line": 8495,
+    "codeStart": 8499,
+    "code": "exports.getOperator = require('./getOperator');\n},{\"./addChainableMethod\":9,\"./addLengthGuard\":10,\"./addMethod\":11,\"./addProperty\":12,\"./compareByInspect\":13,\"./expectTypes\":14,\"./flag\":15,\"./getActual\":16,\"./getMessage\":17,\"./getOperator\":18,\"./getOwnEnumerableProperties\":19,\"./getOwnEnumerablePropertySymbols\":20,\"./inspect\":23,\"./isNaN\":24,\"./isProxyEnabled\":25,\"./objDisplay\":26,\"./overwriteChainableMethod\":27,\"./overwriteMethod\":28,\"./overwriteProperty\":29,\"./proxify\":30,\"./test\":31,\"./transferFlags\":32,\"check-error\":34,\"deep-eql\":35,\"get-func-name\":36,\"pathval\":38,\"type-detect\":39}],23:[function(require,module,exports){\n// This is (almost) directly from Node.js utils\n// https://github.com/joyent/node/blob/f8c335d0caf47f16d31413f89aa28eda3878e3aa/lib/util.js\n\nvar getName = require('get-func-name');\nvar loupe = require('loupe');\nvar config = require('../config');\n\nmodule.exports = inspect;",
     "ctx": {
       "type": "property",
       "receiver": "exports",
@@ -16378,9 +16300,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 8539,
-    "codeStart": 8554,
-    "code": "function inspect(obj, showHidden, depth, colors) {\n  var ctx = {\n    showHidden: showHidden,\n    seen: [],\n    stylize: function (str) { return str; }\n  };\n  return formatValue(ctx, obj, (typeof depth === 'undefined' ? 2 : depth));\n}\n\n// Returns true if object is a DOM element.\nvar isDOMElement = function (object) {\n  if (typeof HTMLElement === 'object') {\n    return object instanceof HTMLElement;\n  } else {\n    return object &&\n      typeof object === 'object' &&\n      'nodeType' in object &&\n      object.nodeType === 1 &&\n      typeof object.nodeName === 'string';\n  }\n};\n\nfunction formatValue(ctx, value, recurseTimes) {\n  // Provide a hook for user-specified inspect functions.\n  // Check that value is an object with an inspect function on it\n  if (value && typeof value.inspect === 'function' &&\n      // Filter out the util module, it's inspect function is special\n      value.inspect !== exports.inspect &&\n      // Also filter out any prototype objects using the circular check.\n      !(value.constructor && value.constructor.prototype === value)) {\n    var ret = value.inspect(recurseTimes, ctx);\n    if (typeof ret !== 'string') {\n      ret = formatValue(ctx, ret, recurseTimes);\n    }\n    return ret;\n  }\n\n  // Primitive types cannot have properties\n  var primitive = formatPrimitive(ctx, value);\n  if (primitive) {\n    return primitive;\n  }\n\n  // If this is a DOM element, try to get the outer HTML.\n  if (isDOMElement(value)) {\n    if ('outerHTML' in value) {\n      return value.outerHTML;\n      // This value does not have an outerHTML attribute,\n      //   it could still be an XML element\n    } else {\n      // Attempt to serialize it\n      try {\n        if (document.xmlVersion) {\n          var xmlSerializer = new XMLSerializer();\n          return xmlSerializer.serializeToString(value);\n        } else {\n          // Firefox 11- do not support outerHTML\n          //   It does, however, support innerHTML\n          //   Use the following to render the element\n          var ns = \"http://www.w3.org/1999/xhtml\";\n          var container = document.createElementNS(ns, '_');\n\n          container.appendChild(value.cloneNode(false));\n          var html = container.innerHTML\n            .replace('><', '>' + value.innerHTML + '<');\n          container.innerHTML = '';\n          return html;\n        }\n      } catch (err) {\n        // This could be a non-native DOM implementation,\n        //   continue with the normal flow:\n        //   printing the element as if it is an object.\n      }\n    }\n  }\n\n  // Look up the keys of the object.\n  var visibleKeys = getEnumerableProperties(value);\n  var keys = ctx.showHidden ? getProperties(value) : visibleKeys;\n\n  var name, nameSuffix;\n\n  // Some type of object without properties can be shortcut.\n  // In IE, errors have a single `stack` property, or if they are vanilla `Error`,\n  // a `stack` plus `description` property; ignore those for consistency.\n  if (keys.length === 0 || (isError(value) && (\n      (keys.length === 1 && keys[0] === 'stack') ||\n      (keys.length === 2 && keys[0] === 'description' && keys[1] === 'stack')\n     ))) {\n    if (typeof value === 'function') {\n      name = getName(value);\n      nameSuffix = name ? ': ' + name : '';\n      return ctx.stylize('[Function' + nameSuffix + ']', 'special');\n    }\n    if (isRegExp(value)) {\n      return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');\n    }\n    if (isDate(value)) {\n      return ctx.stylize(Date.prototype.toUTCString.call(value), 'date');\n    }\n    if (isError(value)) {\n      return formatError(value);\n    }\n  }\n\n  var base = ''\n    , array = false\n    , typedArray = false\n    , braces = ['{', '}'];\n\n  if (isTypedArray(value)) {\n    typedArray = true;\n    braces = ['[', ']'];\n  }\n\n  // Make Array say that they are Array\n  if (isArray(value)) {\n    array = true;\n    braces = ['[', ']'];\n  }\n\n  // Make functions say that they are functions\n  if (typeof value === 'function') {\n    name = getName(value);\n    nameSuffix = name ? ': ' + name : '';\n    base = ' [Function' + nameSuffix + ']';\n  }\n\n  // Make RegExps say that they are RegExps\n  if (isRegExp(value)) {\n    base = ' ' + RegExp.prototype.toString.call(value);\n  }\n\n  // Make dates with properties first say the date\n  if (isDate(value)) {\n    base = ' ' + Date.prototype.toUTCString.call(value);\n  }\n\n  // Make error with message first say the error\n  if (isError(value)) {\n    return formatError(value);\n  }\n\n  if (keys.length === 0 && (!array || value.length == 0)) {\n    return braces[0] + base + braces[1];\n  }\n\n  if (recurseTimes < 0) {\n    if (isRegExp(value)) {\n      return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');\n    } else {\n      return ctx.stylize('[Object]', 'special');\n    }\n  }\n\n  ctx.seen.push(value);\n\n  var output;\n  if (array) {\n    output = formatArray(ctx, value, recurseTimes, visibleKeys, keys);\n  } else if (typedArray) {\n    return formatTypedArray(value);\n  } else {\n    output = keys.map(function(key) {\n      return formatProperty(ctx, value, recurseTimes, visibleKeys, key, array);\n    });\n  }\n\n  ctx.seen.pop();\n\n  return reduceToSingleString(output, base, braces);\n}\n\nfunction formatPrimitive(ctx, value) {\n  switch (typeof value) {\n    case 'undefined':\n      return ctx.stylize('undefined', 'undefined');\n\n    case 'string':\n      var simple = '\\'' + JSON.stringify(value).replace(/^\"|\"$/g, '')\n                                               .replace(/'/g, \"\\\\'\")\n                                               .replace(/\\\\\"/g, '\"') + '\\'';\n      return ctx.stylize(simple, 'string');\n\n    case 'number':\n      if (value === 0 && (1/value) === -Infinity) {\n        return ctx.stylize('-0', 'number');\n      }\n      return ctx.stylize('' + value, 'number');\n\n    case 'boolean':\n      return ctx.stylize('' + value, 'boolean');\n\n    case 'symbol':\n      return ctx.stylize(value.toString(), 'symbol');\n\n    case 'bigint':\n      return ctx.stylize(value.toString() + 'n', 'bigint');\n  }\n  // For some reason typeof null is \"object\", so special case here.\n  if (value === null) {\n    return ctx.stylize('null', 'null');\n  }\n}\n\nfunction formatError(value) {\n  return '[' + Error.prototype.toString.call(value) + ']';\n}\n\nfunction formatArray(ctx, value, recurseTimes, visibleKeys, keys) {\n  var output = [];\n  for (var i = 0, l = value.length; i < l; ++i) {\n    if (Object.prototype.hasOwnProperty.call(value, String(i))) {\n      output.push(formatProperty(ctx, value, recurseTimes, visibleKeys,\n          String(i), true));\n    } else {\n      output.push('');\n    }\n  }\n\n  keys.forEach(function(key) {\n    if (!key.match(/^\\d+$/)) {\n      output.push(formatProperty(ctx, value, recurseTimes, visibleKeys,\n          key, true));\n    }\n  });\n  return output;\n}\n\nfunction formatTypedArray(value) {\n  var str = '[ ';\n\n  for (var i = 0; i < value.length; ++i) {\n    if (str.length >= config.truncateThreshold - 7) {\n      str += '...';\n      break;\n    }\n    str += value[i] + ', ';\n  }\n  str += ' ]';\n\n  // Removing trailing `, ` if the array was not truncated\n  if (str.indexOf(',  ]') !== -1) {\n    str = str.replace(',  ]', ' ]');\n  }\n\n  return str;\n}\n\nfunction formatProperty(ctx, value, recurseTimes, visibleKeys, key, array) {\n  var name;\n  var propDescriptor = Object.getOwnPropertyDescriptor(value, key);\n  var str;\n\n  if (propDescriptor) {\n    if (propDescriptor.get) {\n      if (propDescriptor.set) {\n        str = ctx.stylize('[Getter/Setter]', 'special');\n      } else {\n        str = ctx.stylize('[Getter]', 'special');\n      }\n    } else {\n      if (propDescriptor.set) {\n        str = ctx.stylize('[Setter]', 'special');\n      }\n    }\n  }\n  if (visibleKeys.indexOf(key) < 0) {\n    name = '[' + key + ']';\n  }\n  if (!str) {\n    if (ctx.seen.indexOf(value[key]) < 0) {\n      if (recurseTimes === null) {\n        str = formatValue(ctx, value[key], null);\n      } else {\n        str = formatValue(ctx, value[key], recurseTimes - 1);\n      }\n      if (str.indexOf('\\n') > -1) {\n        if (array) {\n          str = str.split('\\n').map(function(line) {\n            return '  ' + line;\n          }).join('\\n').substr(2);\n        } else {\n          str = '\\n' + str.split('\\n').map(function(line) {\n            return '   ' + line;\n          }).join('\\n');\n        }\n      }\n    } else {\n      str = ctx.stylize('[Circular]', 'special');\n    }\n  }\n  if (typeof name === 'undefined') {\n    if (array && key.match(/^\\d+$/)) {\n      return str;\n    }\n    name = JSON.stringify('' + key);\n    if (name.match(/^\"([a-zA-Z_][a-zA-Z_0-9]*)\"$/)) {\n      name = name.substr(1, name.length - 2);\n      name = ctx.stylize(name, 'name');\n    } else {\n      name = name.replace(/'/g, \"\\\\'\")\n                 .replace(/\\\\\"/g, '\"')\n                 .replace(/(^\"|\"$)/g, \"'\");\n      name = ctx.stylize(name, 'string');\n    }\n  }\n\n  return name + ': ' + str;\n}\n\nfunction reduceToSingleString(output, base, braces) {\n  var length = output.reduce(function(prev, cur) {\n    return prev + cur.length + 1;\n  }, 0);\n\n  if (length > 60) {\n    return braces[0] +\n           (base === '' ? '' : base + '\\n ') +\n           ' ' +\n           output.join(',\\n  ') +\n           ' ' +\n           braces[1];\n  }\n\n  return braces[0] + base + ' ' + output.join(', ') + ' ' + braces[1];\n}\n\nfunction isTypedArray(ar) {\n  // Unfortunately there's no way to check if an object is a TypedArray\n  // We have to check if it's one of these types\n  return (typeof ar === 'object' && /\\w+Array]$/.test(objectToString(ar)));\n}\n\nfunction isArray(ar) {\n  return Array.isArray(ar) ||\n         (typeof ar === 'object' && objectToString(ar) === '[object Array]');\n}\n\nfunction isRegExp(re) {\n  return typeof re === 'object' && objectToString(re) === '[object RegExp]';\n}\n\nfunction isDate(d) {\n  return typeof d === 'object' && objectToString(d) === '[object Date]';\n}\n\nfunction isError(e) {\n  return typeof e === 'object' && objectToString(e) === '[object Error]';\n}\n\nfunction objectToString(o) {\n  return Object.prototype.toString.call(o);\n}\n\n},{\"../config\":4,\"./getEnumerableProperties\":17,\"./getProperties\":22,\"get-func-name\":37}],25:[function(require,module,exports){",
+    "line": 8510,
+    "codeStart": 8525,
+    "code": "function inspect(obj, showHidden, depth, colors) {\n  var options = {\n    colors: colors,\n    depth: (typeof depth === 'undefined' ? 2 : depth),\n    showHidden: showHidden,\n    truncate: config.truncateThreshold ? config.truncateThreshold : Infinity,\n  };\n  return loupe.inspect(obj, options);\n}\n\n},{\"../config\":4,\"get-func-name\":36,\"loupe\":37}],24:[function(require,module,exports){",
     "ctx": {
       "type": "function",
       "name": "inspect",
@@ -16399,8 +16321,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8910,
-    "codeStart": 8915
+    "line": 8536,
+    "codeStart": 8541
   },
   {
     "tags": [
@@ -16438,9 +16360,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 8916,
-    "codeStart": 8928,
-    "code": "function isNaN(value) {\n  // Refer http://www.ecma-international.org/ecma-262/6.0/#sec-isnan-number\n  // section's NOTE.\n  return value !== value;\n}\n\n// If ECMAScript 6's Number.isNaN is present, prefer that.\nmodule.exports = Number.isNaN || isNaN;\n\n},{}],26:[function(require,module,exports){\nvar config = require('../config');",
+    "line": 8542,
+    "codeStart": 8554,
+    "code": "function isNaN(value) {\n  // Refer http://www.ecma-international.org/ecma-262/6.0/#sec-isnan-number\n  // section's NOTE.\n  return value !== value;\n}\n\n// If ECMAScript 6's Number.isNaN is present, prefer that.\nmodule.exports = Number.isNaN || isNaN;\n\n},{}],25:[function(require,module,exports){\nvar config = require('../config');",
     "ctx": {
       "type": "function",
       "name": "isNaN",
@@ -16459,8 +16381,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8940,
-    "codeStart": 8945
+    "line": 8566,
+    "codeStart": 8571
   },
   {
     "tags": [
@@ -16483,9 +16405,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 8946,
-    "codeStart": 8957,
-    "code": "module.exports = function isProxyEnabled() {\n  return config.useProxy &&\n    typeof Proxy !== 'undefined' &&\n    typeof Reflect !== 'undefined';\n};\n\n},{\"../config\":4}],27:[function(require,module,exports){",
+    "line": 8572,
+    "codeStart": 8583,
+    "code": "module.exports = function isProxyEnabled() {\n  return config.useProxy &&\n    typeof Proxy !== 'undefined' &&\n    typeof Reflect !== 'undefined';\n};\n\n},{\"../config\":4}],26:[function(require,module,exports){",
     "ctx": {
       "type": "method",
       "receiver": "module",
@@ -16505,8 +16427,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8964,
-    "codeStart": 8969
+    "line": 8590,
+    "codeStart": 8595
   },
   {
     "tags": [],
@@ -16520,8 +16442,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 8970,
-    "codeStart": 8974,
+    "line": 8596,
+    "codeStart": 8600,
     "code": "var inspect = require('./inspect');\nvar config = require('../config');",
     "ctx": {
       "type": "declaration",
@@ -16570,9 +16492,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 8977,
-    "codeStart": 8990,
-    "code": "module.exports = function objDisplay(obj) {\n  var str = inspect(obj)\n    , type = Object.prototype.toString.call(obj);\n\n  if (config.truncateThreshold && str.length >= config.truncateThreshold) {\n    if (type === '[object Function]') {\n      return !obj.name || obj.name === ''\n        ? '[Function]'\n        : '[Function: ' + obj.name + ']';\n    } else if (type === '[object Array]') {\n      return '[ Array(' + obj.length + ') ]';\n    } else if (type === '[object Object]') {\n      var keys = Object.keys(obj)\n        , kstr = keys.length > 2\n          ? keys.splice(0, 2).join(', ') + ', ...'\n          : keys.join(', ');\n      return '{ Object (' + kstr + ') }';\n    } else {\n      return str;\n    }\n  } else {\n    return str;\n  }\n};\n\n},{\"../config\":4,\"./inspect\":24}],28:[function(require,module,exports){",
+    "line": 8603,
+    "codeStart": 8616,
+    "code": "module.exports = function objDisplay(obj) {\n  var str = inspect(obj)\n    , type = Object.prototype.toString.call(obj);\n\n  if (config.truncateThreshold && str.length >= config.truncateThreshold) {\n    if (type === '[object Function]') {\n      return !obj.name || obj.name === ''\n        ? '[Function]'\n        : '[Function: ' + obj.name + ']';\n    } else if (type === '[object Array]') {\n      return '[ Array(' + obj.length + ') ]';\n    } else if (type === '[object Object]') {\n      var keys = Object.keys(obj)\n        , kstr = keys.length > 2\n          ? keys.splice(0, 2).join(', ') + ', ...'\n          : keys.join(', ');\n      return '{ Object (' + kstr + ') }';\n    } else {\n      return str;\n    }\n  } else {\n    return str;\n  }\n};\n\n},{\"../config\":4,\"./inspect\":23}],27:[function(require,module,exports){",
     "ctx": {
       "type": "method",
       "receiver": "module",
@@ -16592,8 +16514,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9016,
-    "codeStart": 9022,
+    "line": 8642,
+    "codeStart": 8648,
     "code": "var chai = require('../../chai');\nvar transferFlags = require('./transferFlags');",
     "ctx": {
       "type": "declaration",
@@ -16684,9 +16606,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9025,
-    "codeStart": 9058,
-    "code": "module.exports = function overwriteChainableMethod(ctx, name, method, chainingBehavior) {\n  var chainableBehavior = ctx.__methods[name];\n\n  var _chainingBehavior = chainableBehavior.chainingBehavior;\n  chainableBehavior.chainingBehavior = function overwritingChainableMethodGetter() {\n    var result = chainingBehavior(_chainingBehavior).call(this);\n    if (result !== undefined) {\n      return result;\n    }\n\n    var newAssertion = new chai.Assertion();\n    transferFlags(this, newAssertion);\n    return newAssertion;\n  };\n\n  var _method = chainableBehavior.method;\n  chainableBehavior.method = function overwritingChainableMethodWrapper() {\n    var result = method(_method).apply(this, arguments);\n    if (result !== undefined) {\n      return result;\n    }\n\n    var newAssertion = new chai.Assertion();\n    transferFlags(this, newAssertion);\n    return newAssertion;\n  };\n};\n\n},{\"../../chai\":2,\"./transferFlags\":33}],29:[function(require,module,exports){",
+    "line": 8651,
+    "codeStart": 8684,
+    "code": "module.exports = function overwriteChainableMethod(ctx, name, method, chainingBehavior) {\n  var chainableBehavior = ctx.__methods[name];\n\n  var _chainingBehavior = chainableBehavior.chainingBehavior;\n  chainableBehavior.chainingBehavior = function overwritingChainableMethodGetter() {\n    var result = chainingBehavior(_chainingBehavior).call(this);\n    if (result !== undefined) {\n      return result;\n    }\n\n    var newAssertion = new chai.Assertion();\n    transferFlags(this, newAssertion);\n    return newAssertion;\n  };\n\n  var _method = chainableBehavior.method;\n  chainableBehavior.method = function overwritingChainableMethodWrapper() {\n    var result = method(_method).apply(this, arguments);\n    if (result !== undefined) {\n      return result;\n    }\n\n    var newAssertion = new chai.Assertion();\n    transferFlags(this, newAssertion);\n    return newAssertion;\n  };\n};\n\n},{\"../../chai\":2,\"./transferFlags\":32}],28:[function(require,module,exports){",
     "ctx": {
       "type": "method",
       "receiver": "module",
@@ -16706,8 +16628,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9087,
-    "codeStart": 9093,
+    "line": 8713,
+    "codeStart": 8719,
     "code": "var addLengthGuard = require('./addLengthGuard');\nvar chai = require('../../chai');\nvar flag = require('./flag');\nvar proxify = require('./proxify');\nvar transferFlags = require('./transferFlags');",
     "ctx": {
       "type": "declaration",
@@ -16784,9 +16706,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9099,
-    "codeStart": 9133,
-    "code": "module.exports = function overwriteMethod(ctx, name, method) {\n  var _method = ctx[name]\n    , _super = function () {\n      throw new Error(name + ' is not a function');\n    };\n\n  if (_method && 'function' === typeof _method)\n    _super = _method;\n\n  var overwritingMethodWrapper = function () {\n    // Setting the `ssfi` flag to `overwritingMethodWrapper` causes this\n    // function to be the starting point for removing implementation frames from\n    // the stack trace of a failed assertion.\n    //\n    // However, we only want to use this function as the starting point if the\n    // `lockSsfi` flag isn't set.\n    //\n    // If the `lockSsfi` flag is set, then either this assertion has been\n    // overwritten by another assertion, or this assertion is being invoked from\n    // inside of another assertion. In the first case, the `ssfi` flag has\n    // already been set by the overwriting assertion. In the second case, the\n    // `ssfi` flag has already been set by the outer assertion.\n    if (!flag(this, 'lockSsfi')) {\n      flag(this, 'ssfi', overwritingMethodWrapper);\n    }\n\n    // Setting the `lockSsfi` flag to `true` prevents the overwritten assertion\n    // from changing the `ssfi` flag. By this point, the `ssfi` flag is already\n    // set to the correct starting point for this assertion.\n    var origLockSsfi = flag(this, 'lockSsfi');\n    flag(this, 'lockSsfi', true);\n    var result = method(_super).apply(this, arguments);\n    flag(this, 'lockSsfi', origLockSsfi);\n\n    if (result !== undefined) {\n      return result;\n    }\n\n    var newAssertion = new chai.Assertion();\n    transferFlags(this, newAssertion);\n    return newAssertion;\n  }\n\n  addLengthGuard(overwritingMethodWrapper, name, false);\n  ctx[name] = proxify(overwritingMethodWrapper, name);\n};\n\n},{\"../../chai\":2,\"./addLengthGuard\":10,\"./flag\":15,\"./proxify\":31,\"./transferFlags\":33}],30:[function(require,module,exports){",
+    "line": 8725,
+    "codeStart": 8759,
+    "code": "module.exports = function overwriteMethod(ctx, name, method) {\n  var _method = ctx[name]\n    , _super = function () {\n      throw new Error(name + ' is not a function');\n    };\n\n  if (_method && 'function' === typeof _method)\n    _super = _method;\n\n  var overwritingMethodWrapper = function () {\n    // Setting the `ssfi` flag to `overwritingMethodWrapper` causes this\n    // function to be the starting point for removing implementation frames from\n    // the stack trace of a failed assertion.\n    //\n    // However, we only want to use this function as the starting point if the\n    // `lockSsfi` flag isn't set.\n    //\n    // If the `lockSsfi` flag is set, then either this assertion has been\n    // overwritten by another assertion, or this assertion is being invoked from\n    // inside of another assertion. In the first case, the `ssfi` flag has\n    // already been set by the overwriting assertion. In the second case, the\n    // `ssfi` flag has already been set by the outer assertion.\n    if (!flag(this, 'lockSsfi')) {\n      flag(this, 'ssfi', overwritingMethodWrapper);\n    }\n\n    // Setting the `lockSsfi` flag to `true` prevents the overwritten assertion\n    // from changing the `ssfi` flag. By this point, the `ssfi` flag is already\n    // set to the correct starting point for this assertion.\n    var origLockSsfi = flag(this, 'lockSsfi');\n    flag(this, 'lockSsfi', true);\n    var result = method(_super).apply(this, arguments);\n    flag(this, 'lockSsfi', origLockSsfi);\n\n    if (result !== undefined) {\n      return result;\n    }\n\n    var newAssertion = new chai.Assertion();\n    transferFlags(this, newAssertion);\n    return newAssertion;\n  }\n\n  addLengthGuard(overwritingMethodWrapper, name, false);\n  ctx[name] = proxify(overwritingMethodWrapper, name);\n};\n\n},{\"../../chai\":2,\"./addLengthGuard\":10,\"./flag\":15,\"./proxify\":30,\"./transferFlags\":32}],29:[function(require,module,exports){",
     "ctx": {
       "type": "method",
       "receiver": "module",
@@ -16806,8 +16728,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9181,
-    "codeStart": 9187,
+    "line": 8807,
+    "codeStart": 8813,
     "code": "var chai = require('../../chai');\nvar flag = require('./flag');\nvar isProxyEnabled = require('./isProxyEnabled');\nvar transferFlags = require('./transferFlags');",
     "ctx": {
       "type": "declaration",
@@ -16884,9 +16806,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9192,
-    "codeStart": 9226,
-    "code": "module.exports = function overwriteProperty(ctx, name, getter) {\n  var _get = Object.getOwnPropertyDescriptor(ctx, name)\n    , _super = function () {};\n\n  if (_get && 'function' === typeof _get.get)\n    _super = _get.get\n\n  Object.defineProperty(ctx, name,\n    { get: function overwritingPropertyGetter() {\n        // Setting the `ssfi` flag to `overwritingPropertyGetter` causes this\n        // function to be the starting point for removing implementation frames\n        // from the stack trace of a failed assertion.\n        //\n        // However, we only want to use this function as the starting point if\n        // the `lockSsfi` flag isn't set and proxy protection is disabled.\n        //\n        // If the `lockSsfi` flag is set, then either this assertion has been\n        // overwritten by another assertion, or this assertion is being invoked\n        // from inside of another assertion. In the first case, the `ssfi` flag\n        // has already been set by the overwriting assertion. In the second\n        // case, the `ssfi` flag has already been set by the outer assertion.\n        //\n        // If proxy protection is enabled, then the `ssfi` flag has already been\n        // set by the proxy getter.\n        if (!isProxyEnabled() && !flag(this, 'lockSsfi')) {\n          flag(this, 'ssfi', overwritingPropertyGetter);\n        }\n\n        // Setting the `lockSsfi` flag to `true` prevents the overwritten\n        // assertion from changing the `ssfi` flag. By this point, the `ssfi`\n        // flag is already set to the correct starting point for this assertion.\n        var origLockSsfi = flag(this, 'lockSsfi');\n        flag(this, 'lockSsfi', true);\n        var result = getter(_super).call(this);\n        flag(this, 'lockSsfi', origLockSsfi);\n\n        if (result !== undefined) {\n          return result;\n        }\n\n        var newAssertion = new chai.Assertion();\n        transferFlags(this, newAssertion);\n        return newAssertion;\n      }\n    , configurable: true\n  });\n};\n\n},{\"../../chai\":2,\"./flag\":15,\"./isProxyEnabled\":26,\"./transferFlags\":33}],31:[function(require,module,exports){\nvar config = require('../config');\nvar flag = require('./flag');\nvar getProperties = require('./getProperties');\nvar isProxyEnabled = require('./isProxyEnabled');",
+    "line": 8818,
+    "codeStart": 8852,
+    "code": "module.exports = function overwriteProperty(ctx, name, getter) {\n  var _get = Object.getOwnPropertyDescriptor(ctx, name)\n    , _super = function () {};\n\n  if (_get && 'function' === typeof _get.get)\n    _super = _get.get\n\n  Object.defineProperty(ctx, name,\n    { get: function overwritingPropertyGetter() {\n        // Setting the `ssfi` flag to `overwritingPropertyGetter` causes this\n        // function to be the starting point for removing implementation frames\n        // from the stack trace of a failed assertion.\n        //\n        // However, we only want to use this function as the starting point if\n        // the `lockSsfi` flag isn't set and proxy protection is disabled.\n        //\n        // If the `lockSsfi` flag is set, then either this assertion has been\n        // overwritten by another assertion, or this assertion is being invoked\n        // from inside of another assertion. In the first case, the `ssfi` flag\n        // has already been set by the overwriting assertion. In the second\n        // case, the `ssfi` flag has already been set by the outer assertion.\n        //\n        // If proxy protection is enabled, then the `ssfi` flag has already been\n        // set by the proxy getter.\n        if (!isProxyEnabled() && !flag(this, 'lockSsfi')) {\n          flag(this, 'ssfi', overwritingPropertyGetter);\n        }\n\n        // Setting the `lockSsfi` flag to `true` prevents the overwritten\n        // assertion from changing the `ssfi` flag. By this point, the `ssfi`\n        // flag is already set to the correct starting point for this assertion.\n        var origLockSsfi = flag(this, 'lockSsfi');\n        flag(this, 'lockSsfi', true);\n        var result = getter(_super).call(this);\n        flag(this, 'lockSsfi', origLockSsfi);\n\n        if (result !== undefined) {\n          return result;\n        }\n\n        var newAssertion = new chai.Assertion();\n        transferFlags(this, newAssertion);\n        return newAssertion;\n      }\n    , configurable: true\n  });\n};\n\n},{\"../../chai\":2,\"./flag\":15,\"./isProxyEnabled\":25,\"./transferFlags\":32}],30:[function(require,module,exports){\nvar config = require('../config');\nvar flag = require('./flag');\nvar getProperties = require('./getProperties');\nvar isProxyEnabled = require('./isProxyEnabled');",
     "ctx": {
       "type": "method",
       "receiver": "module",
@@ -16906,8 +16828,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9280,
-    "codeStart": 9285
+    "line": 8906,
+    "codeStart": 8911
   },
   {
     "tags": [
@@ -16958,8 +16880,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9286,
-    "codeStart": 9305,
+    "line": 8912,
+    "codeStart": 8931,
     "code": "var builtins = ['__flags', '__methods', '_obj', 'assert'];\n\nmodule.exports = function proxify(obj, nonChainableMethodName) {\n  if (!isProxyEnabled()) return obj;\n\n  return new Proxy(obj, {\n    get: function proxyGetter(target, property) {\n      // This check is here because we should not throw errors on Symbol properties\n      // such as `Symbol.toStringTag`.\n      // The values for which an error should be thrown can be configured using\n      // the `config.proxyExcludedKeys` setting.\n      if (typeof property === 'string' &&\n          config.proxyExcludedKeys.indexOf(property) === -1 &&\n          !Reflect.has(target, property)) {\n        // Special message for invalid property access of non-chainable methods.\n        if (nonChainableMethodName) {\n          throw Error('Invalid Chai property: ' + nonChainableMethodName + '.' +\n            property + '. See docs for proper usage of \"' +\n            nonChainableMethodName + '\".');\n        }\n\n        // If the property is reasonably close to an existing Chai property,\n        // suggest that property to the user. Only suggest properties with a\n        // distance less than 4.\n        var suggestion = null;\n        var suggestionDistance = 4;\n        getProperties(target).forEach(function(prop) {\n          if (\n            !Object.prototype.hasOwnProperty(prop) &&\n            builtins.indexOf(prop) === -1\n          ) {\n            var dist = stringDistanceCapped(\n              property,\n              prop,\n              suggestionDistance\n            );\n            if (dist < suggestionDistance) {\n              suggestion = prop;\n              suggestionDistance = dist;\n            }\n          }\n        });\n\n        if (suggestion !== null) {\n          throw Error('Invalid Chai property: ' + property +\n            '. Did you mean \"' + suggestion + '\"?');\n        } else {\n          throw Error('Invalid Chai property: ' + property);\n        }\n      }\n\n      // Use this proxy getter as the starting point for removing implementation\n      // frames from the stack trace of a failed assertion. For property\n      // assertions, this prevents the proxy getter from showing up in the stack\n      // trace since it's invoked before the property getter. For method and\n      // chainable method assertions, this flag will end up getting changed to\n      // the method wrapper, which is good since this frame will no longer be in\n      // the stack once the method is invoked. Note that Chai builtin assertion\n      // properties such as `__flags` are skipped since this is only meant to\n      // capture the starting point of an assertion. This step is also skipped\n      // if the `lockSsfi` flag is set, thus indicating that this assertion is\n      // being called from within another assertion. In that case, the `ssfi`\n      // flag is already set to the outer assertion's starting point.\n      if (builtins.indexOf(property) === -1 && !flag(target, 'lockSsfi')) {\n        flag(target, 'ssfi', proxyGetter);\n      }\n\n      return Reflect.get(target, property);\n    }\n  });\n};",
     "ctx": {
       "type": "declaration",
@@ -17041,9 +16963,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9377,
-    "codeStart": 9387,
-    "code": "function stringDistanceCapped(strA, strB, cap) {\n  if (Math.abs(strA.length - strB.length) >= cap) {\n    return cap;\n  }\n\n  var memo = [];\n  // `memo` is a two-dimensional array containing distances.\n  // memo[i][j] is the distance between strA.slice(0, i) and\n  // strB.slice(0, j).\n  for (var i = 0; i <= strA.length; i++) {\n    memo[i] = Array(strB.length + 1).fill(0);\n    memo[i][0] = i;\n  }\n  for (var j = 0; j < strB.length; j++) {\n    memo[0][j] = j;\n  }\n\n  for (var i = 1; i <= strA.length; i++) {\n    var ch = strA.charCodeAt(i - 1);\n    for (var j = 1; j <= strB.length; j++) {\n      if (Math.abs(i - j) >= cap) {\n        memo[i][j] = cap;\n        continue;\n      }\n      memo[i][j] = Math.min(\n        memo[i - 1][j] + 1,\n        memo[i][j - 1] + 1,\n        memo[i - 1][j - 1] +\n          (ch === strB.charCodeAt(j - 1) ? 0 : 1)\n      );\n    }\n  }\n\n  return memo[strA.length][strB.length];\n}\n\n},{\"../config\":4,\"./flag\":15,\"./getProperties\":22,\"./isProxyEnabled\":26}],32:[function(require,module,exports){",
+    "line": 9003,
+    "codeStart": 9013,
+    "code": "function stringDistanceCapped(strA, strB, cap) {\n  if (Math.abs(strA.length - strB.length) >= cap) {\n    return cap;\n  }\n\n  var memo = [];\n  // `memo` is a two-dimensional array containing distances.\n  // memo[i][j] is the distance between strA.slice(0, i) and\n  // strB.slice(0, j).\n  for (var i = 0; i <= strA.length; i++) {\n    memo[i] = Array(strB.length + 1).fill(0);\n    memo[i][0] = i;\n  }\n  for (var j = 0; j < strB.length; j++) {\n    memo[0][j] = j;\n  }\n\n  for (var i = 1; i <= strA.length; i++) {\n    var ch = strA.charCodeAt(i - 1);\n    for (var j = 1; j <= strB.length; j++) {\n      if (Math.abs(i - j) >= cap) {\n        memo[i][j] = cap;\n        continue;\n      }\n      memo[i][j] = Math.min(\n        memo[i - 1][j] + 1,\n        memo[i][j - 1] + 1,\n        memo[i - 1][j - 1] +\n          (ch === strB.charCodeAt(j - 1) ? 0 : 1)\n      );\n    }\n  }\n\n  return memo[strA.length][strB.length];\n}\n\n},{\"../config\":4,\"./flag\":15,\"./getProperties\":21,\"./isProxyEnabled\":25}],31:[function(require,module,exports){",
     "ctx": {
       "type": "function",
       "name": "stringDistanceCapped",
@@ -17062,8 +16984,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9424,
-    "codeStart": 9429
+    "line": 9050,
+    "codeStart": 9055
   },
   {
     "tags": [],
@@ -17077,8 +16999,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9430,
-    "codeStart": 9434,
+    "line": 9056,
+    "codeStart": 9060,
     "code": "var flag = require('./flag');",
     "ctx": {
       "type": "declaration",
@@ -17136,9 +17058,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9436,
-    "codeStart": 9447,
-    "code": "module.exports = function test(obj, args) {\n  var negate = flag(obj, 'negate')\n    , expr = args[0];\n  return negate ? !expr : expr;\n};\n\n},{\"./flag\":15}],33:[function(require,module,exports){",
+    "line": 9062,
+    "codeStart": 9073,
+    "code": "module.exports = function test(obj, args) {\n  var negate = flag(obj, 'negate')\n    , expr = args[0];\n  return negate ? !expr : expr;\n};\n\n},{\"./flag\":15}],32:[function(require,module,exports){",
     "ctx": {
       "type": "method",
       "receiver": "module",
@@ -17158,8 +17080,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9454,
-    "codeStart": 9459
+    "line": 9080,
+    "codeStart": 9085
   },
   {
     "tags": [
@@ -17229,9 +17151,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9460,
-    "codeStart": 9483,
-    "code": "module.exports = function transferFlags(assertion, object, includeAll) {\n  var flags = assertion.__flags || (assertion.__flags = Object.create(null));\n\n  if (!object.__flags) {\n    object.__flags = Object.create(null);\n  }\n\n  includeAll = arguments.length === 3 ? includeAll : true;\n\n  for (var flag in flags) {\n    if (includeAll ||\n        (flag !== 'object' && flag !== 'ssfi' && flag !== 'lockSsfi' && flag != 'message')) {\n      object.__flags[flag] = flags[flag];\n    }\n  }\n};\n\n},{}],34:[function(require,module,exports){",
+    "line": 9086,
+    "codeStart": 9109,
+    "code": "module.exports = function transferFlags(assertion, object, includeAll) {\n  var flags = assertion.__flags || (assertion.__flags = Object.create(null));\n\n  if (!object.__flags) {\n    object.__flags = Object.create(null);\n  }\n\n  includeAll = arguments.length === 3 ? includeAll : true;\n\n  for (var flag in flags) {\n    if (includeAll ||\n        (flag !== 'object' && flag !== 'ssfi' && flag !== 'lockSsfi' && flag != 'message')) {\n      object.__flags[flag] = flags[flag];\n    }\n  }\n};\n\n},{}],33:[function(require,module,exports){",
     "ctx": {
       "type": "method",
       "receiver": "module",
@@ -17251,8 +17173,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9501,
-    "codeStart": 9506
+    "line": 9127,
+    "codeStart": 9132
   },
   {
     "tags": [
@@ -17294,8 +17216,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9507,
-    "codeStart": 9516,
+    "line": 9133,
+    "codeStart": 9142,
     "code": "function exclude () {\n  var excludes = [].slice.call(arguments);\n\n  function excludeProps (res, obj) {\n    Object.keys(obj).forEach(function (key) {\n      if (!~excludes.indexOf(key)) res[key] = obj[key];\n    });\n  }\n\n  return function extendExclude () {\n    var args = [].slice.call(arguments)\n      , i = 0\n      , res = {};\n\n    for (; i < args.length; i++) {\n      excludeProps(res, args[i]);\n    }\n\n    return res;\n  };\n};",
     "ctx": {
       "type": "function",
@@ -17315,8 +17237,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9538,
-    "codeStart": 9542,
+    "line": 9164,
+    "codeStart": 9168,
     "code": "module.exports = AssertionError;",
     "ctx": {
       "type": "property",
@@ -17381,8 +17303,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9544,
-    "codeStart": 9555,
+    "line": 9170,
+    "codeStart": 9181,
     "code": "function AssertionError (message, _props, ssf) {\n  var extend = exclude('name', 'message', 'stack', 'constructor', 'toJSON')\n    , props = extend(_props || {});\n\n  // default values\n  this.message = message || 'Unspecified AssertionError';\n  this.showDiff = false;\n\n  // copy from properties\n  for (var key in props) {\n    this[key] = props[key];\n  }\n\n  // capture stack trace\n  ssf = ssf || AssertionError;\n  if (Error.captureStackTrace) {\n    Error.captureStackTrace(this, ssf);\n  } else {\n    try {\n      throw new Error();\n    } catch(e) {\n      this.stack = e.stack;\n    }\n  }\n}",
     "ctx": {
       "type": "function",
@@ -17402,8 +17324,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9581,
-    "codeStart": 9585,
+    "line": 9207,
+    "codeStart": 9211,
     "code": "AssertionError.prototype = Object.create(Error.prototype);",
     "ctx": {
       "type": "property",
@@ -17425,8 +17347,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9587,
-    "codeStart": 9591,
+    "line": 9213,
+    "codeStart": 9217,
     "code": "AssertionError.prototype.name = 'AssertionError';",
     "ctx": {
       "type": "property",
@@ -17449,8 +17371,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9593,
-    "codeStart": 9597,
+    "line": 9219,
+    "codeStart": 9223,
     "code": "AssertionError.prototype.constructor = AssertionError;",
     "ctx": {
       "type": "property",
@@ -17501,9 +17423,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9599,
-    "codeStart": 9606,
-    "code": "AssertionError.prototype.toJSON = function (stack) {\n  var extend = exclude('constructor', 'toJSON', 'stack')\n    , props = extend({ name: this.name }, this);\n\n  // include stack if exists and not turned off\n  if (false !== stack && this.stack) {\n    props.stack = this.stack;\n  }\n\n  return props;\n};\n\n},{}],35:[function(require,module,exports){\n'use strict';",
+    "line": 9225,
+    "codeStart": 9232,
+    "code": "AssertionError.prototype.toJSON = function (stack) {\n  var extend = exclude('constructor', 'toJSON', 'stack')\n    , props = extend({ name: this.name }, this);\n\n  // include stack if exists and not turned off\n  if (false !== stack && this.stack) {\n    props.stack = this.stack;\n  }\n\n  return props;\n};\n\n},{}],34:[function(require,module,exports){\n'use strict';",
     "ctx": {
       "type": "method",
       "constructor": "AssertionError",
@@ -17524,8 +17446,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9621,
-    "codeStart": 9626
+    "line": 9247,
+    "codeStart": 9252
   },
   {
     "tags": [
@@ -17545,8 +17467,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9627,
-    "codeStart": 9634
+    "line": 9253,
+    "codeStart": 9260
   },
   {
     "tags": [
@@ -17603,8 +17525,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9635,
-    "codeStart": 9649,
+    "line": 9261,
+    "codeStart": 9275,
     "code": "function compatibleInstance(thrown, errorLike) {\n  return errorLike instanceof Error && thrown === errorLike;\n}",
     "ctx": {
       "type": "function",
@@ -17667,8 +17589,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9653,
-    "codeStart": 9669,
+    "line": 9279,
+    "codeStart": 9295,
     "code": "function compatibleConstructor(thrown, errorLike) {\n  if (errorLike instanceof Error) {\n    // If `errorLike` is an instance of any error we compare their constructors\n    return thrown.constructor === errorLike.constructor || thrown instanceof errorLike.constructor;\n  } else if (errorLike.prototype instanceof Error || errorLike === Error) {\n    // If `errorLike` is a constructor that inherits from Error, we compare `thrown` to `errorLike` directly\n    return thrown.constructor === errorLike || thrown instanceof errorLike;\n  }\n\n  return false;\n}",
     "ctx": {
       "type": "function",
@@ -17731,8 +17653,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9681,
-    "codeStart": 9695,
+    "line": 9307,
+    "codeStart": 9321,
     "code": "function compatibleMessage(thrown, errMatcher) {\n  var comparisonString = typeof thrown === 'string' ? thrown : thrown.message;\n  if (errMatcher instanceof RegExp) {\n    return errMatcher.test(comparisonString);\n  } else if (typeof errMatcher === 'string') {\n    return comparisonString.indexOf(errMatcher) !== -1; // eslint-disable-line no-magic-numbers\n  }\n\n  return false;\n}",
     "ctx": {
       "type": "function",
@@ -17780,8 +17702,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9706,
-    "codeStart": 9718,
+    "line": 9332,
+    "codeStart": 9344,
     "code": "var functionNameMatch = /\\s*function(?:\\s|\\s*\\/\\*[^(?:*\\/)]+\\*\\/\\s*)*([^\\(\\/]+)/;\nfunction getFunctionName(constructorFn) {\n  var name = '';\n  if (typeof constructorFn.name === 'undefined') {\n    // Here we run a polyfill if constructorFn.name is not defined\n    var match = String(constructorFn).match(functionNameMatch);\n    if (match) {\n      name = match[1];\n    }\n  } else {\n    name = constructorFn.name;\n  }\n\n  return name;\n}",
     "ctx": {
       "type": "declaration",
@@ -17831,8 +17753,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9734,
-    "codeStart": 9745,
+    "line": 9360,
+    "codeStart": 9371,
     "code": "function getConstructorName(errorLike) {\n  var constructorName = errorLike;\n  if (errorLike instanceof Error) {\n    constructorName = getFunctionName(errorLike.constructor);\n  } else if (typeof errorLike === 'function') {\n    // If `err` is not an instance of Error it is an error constructor itself or another function.\n    // If we've got a common function we get its name, otherwise we may need to create a new instance\n    // of the error just in case it's a poorly-constructed error. Please see chaijs/chai/issues/45 to know more.\n    constructorName = getFunctionName(errorLike).trim() ||\n        getFunctionName(new errorLike()); // eslint-disable-line new-cap\n  }\n\n  return constructorName;\n}",
     "ctx": {
       "type": "function",
@@ -17881,9 +17803,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9760,
-    "codeStart": 9773,
-    "code": "function getMessage(errorLike) {\n  var msg = '';\n  if (errorLike && errorLike.message) {\n    msg = errorLike.message;\n  } else if (typeof errorLike === 'string') {\n    msg = errorLike;\n  }\n\n  return msg;\n}\n\nmodule.exports = {\n  compatibleInstance: compatibleInstance,\n  compatibleConstructor: compatibleConstructor,\n  compatibleMessage: compatibleMessage,\n  getMessage: getMessage,\n  getConstructorName: getConstructorName,\n};\n\n},{}],36:[function(require,module,exports){\n'use strict';",
+    "line": 9386,
+    "codeStart": 9399,
+    "code": "function getMessage(errorLike) {\n  var msg = '';\n  if (errorLike && errorLike.message) {\n    msg = errorLike.message;\n  } else if (typeof errorLike === 'string') {\n    msg = errorLike;\n  }\n\n  return msg;\n}\n\nmodule.exports = {\n  compatibleInstance: compatibleInstance,\n  compatibleConstructor: compatibleConstructor,\n  compatibleMessage: compatibleMessage,\n  getMessage: getMessage,\n  getConstructorName: getConstructorName,\n};\n\n},{}],35:[function(require,module,exports){\n'use strict';",
     "ctx": {
       "type": "function",
       "name": "getMessage",
@@ -17902,8 +17824,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9794,
-    "codeStart": 9795
+    "line": 9420,
+    "codeStart": 9421
   },
   {
     "tags": [],
@@ -17917,9 +17839,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9795,
-    "codeStart": 9801,
-    "code": "var type = require('type-detect');\nfunction FakeMap() {\n  this._key = 'chai/deep-eql__' + Math.random() + Date.now();\n}\n\nFakeMap.prototype = {\n  get: function getMap(key) {\n    return key[this._key];\n  },\n  set: function setMap(key, value) {\n    if (Object.isExtensible(key)) {\n      Object.defineProperty(key, this._key, {\n        value: value,\n        configurable: true,\n      });\n    }\n  },\n};\n\nvar MemoizeMap = typeof WeakMap === 'function' ? WeakMap : FakeMap;",
+    "line": 9421,
+    "codeStart": 9427,
+    "code": "var type = require('type-detect');\nfunction FakeMap() {\n  this._key = 'chai/deep-eql__' + Math.random() + Date.now();\n}\n\nFakeMap.prototype = {\n  get: function get(key) {\n    return key[this._key];\n  },\n  set: function set(key, value) {\n    if (Object.isExtensible(key)) {\n      Object.defineProperty(key, this._key, {\n        value: value,\n        configurable: true,\n      });\n    }\n  },\n};\n\nvar MemoizeMap = typeof WeakMap === 'function' ? WeakMap : FakeMap;",
     "ctx": {
       "type": "declaration",
       "name": "type",
@@ -17995,8 +17917,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9821,
-    "codeStart": 9829,
+    "line": 9447,
+    "codeStart": 9455,
     "code": "function memoizeCompare(leftHandOperand, rightHandOperand, memoizeMap) {\n  // Technically, WeakMap keys can *only* be objects, not primitives.\n  if (!memoizeMap || isPrimitive(leftHandOperand) || isPrimitive(rightHandOperand)) {\n    return null;\n  }\n  var leftHandMap = memoizeMap.get(leftHandOperand);\n  if (leftHandMap) {\n    var result = leftHandMap.get(rightHandOperand);\n    if (typeof result === 'boolean') {\n      return result;\n    }\n  }\n  return null;\n}",
     "ctx": {
       "type": "function",
@@ -18073,8 +17995,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9844,
-    "codeStart": 9852,
+    "line": 9470,
+    "codeStart": 9478,
     "code": "function memoizeSet(leftHandOperand, rightHandOperand, memoizeMap, result) {\n  // Technically, WeakMap keys can *only* be objects, not primitives.\n  if (!memoizeMap || isPrimitive(leftHandOperand) || isPrimitive(rightHandOperand)) {\n    return;\n  }\n  var leftHandMap = memoizeMap.get(leftHandOperand);\n  if (leftHandMap) {\n    leftHandMap.set(rightHandOperand, result);\n  } else {\n    leftHandMap = new MemoizeMap();\n    leftHandMap.set(rightHandOperand, result);\n    memoizeMap.set(leftHandOperand, leftHandMap);\n  }\n}",
     "ctx": {
       "type": "function",
@@ -18094,8 +18016,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9867,
-    "codeStart": 9871,
+    "line": 9493,
+    "codeStart": 9497,
     "code": "module.exports = deepEqual;\nmodule.exports.MemoizeMap = MemoizeMap;",
     "ctx": {
       "type": "property",
@@ -18201,8 +18123,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9874,
-    "codeStart": 9886,
+    "line": 9500,
+    "codeStart": 9512,
     "code": "function deepEqual(leftHandOperand, rightHandOperand, options) {\n  // If we have a comparator, we can't assume anything; so bail to its check first.\n  if (options && options.comparator) {\n    return extensiveDeepEqual(leftHandOperand, rightHandOperand, options);\n  }\n\n  var simpleResult = simpleEqual(leftHandOperand, rightHandOperand);\n  if (simpleResult !== null) {\n    return simpleResult;\n  }\n\n  // Deeper comparisons are pushed through to a larger function\n  return extensiveDeepEqual(leftHandOperand, rightHandOperand, options);\n}",
     "ctx": {
       "type": "function",
@@ -18264,8 +18186,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 9901,
-    "codeStart": 9907,
+    "line": 9527,
+    "codeStart": 9533,
     "code": "function simpleEqual(leftHandOperand, rightHandOperand) {\n  // Equal references (except for Numbers) can be returned early\n  if (leftHandOperand === rightHandOperand) {\n    // Handle +-0 cases\n    return leftHandOperand !== 0 || 1 / leftHandOperand === 1 / rightHandOperand;\n  }\n\n  // handle NaN cases\n  if (\n    leftHandOperand !== leftHandOperand && // eslint-disable-line no-self-compare\n    rightHandOperand !== rightHandOperand // eslint-disable-line no-self-compare\n  ) {\n    return true;\n  }\n\n  // Anything that is not an 'object', i.e. symbols, functions, booleans, numbers,\n  // strings, and undefined, can be compared by reference.\n  if (isPrimitive(leftHandOperand) || isPrimitive(rightHandOperand)) {\n    // Easy out b/c it would have passed the first equality check\n    return false;\n  }\n  return null;\n}",
     "ctx": {
       "type": "function",
@@ -18369,9 +18291,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 9931,
-    "codeStart": 9943,
-    "code": "function extensiveDeepEqual(leftHandOperand, rightHandOperand, options) {\n  options = options || {};\n  options.memoize = options.memoize === false ? false : options.memoize || new MemoizeMap();\n  var comparator = options && options.comparator;\n\n  // Check if a memoized result exists.\n  var memoizeResultLeft = memoizeCompare(leftHandOperand, rightHandOperand, options.memoize);\n  if (memoizeResultLeft !== null) {\n    return memoizeResultLeft;\n  }\n  var memoizeResultRight = memoizeCompare(rightHandOperand, leftHandOperand, options.memoize);\n  if (memoizeResultRight !== null) {\n    return memoizeResultRight;\n  }\n\n  // If a comparator is present, use it.\n  if (comparator) {\n    var comparatorResult = comparator(leftHandOperand, rightHandOperand);\n    // Comparators may return null, in which case we want to go back to default behavior.\n    if (comparatorResult === false || comparatorResult === true) {\n      memoizeSet(leftHandOperand, rightHandOperand, options.memoize, comparatorResult);\n      return comparatorResult;\n    }\n    // To allow comparators to override *any* behavior, we ran them first. Since it didn't decide\n    // what to do, we need to make sure to return the basic tests first before we move on.\n    var simpleResult = simpleEqual(leftHandOperand, rightHandOperand);\n    if (simpleResult !== null) {\n      // Don't memoize this, it takes longer to set/retrieve than to just compare.\n      return simpleResult;\n    }\n  }\n\n  var leftHandType = type(leftHandOperand);\n  if (leftHandType !== type(rightHandOperand)) {\n    memoizeSet(leftHandOperand, rightHandOperand, options.memoize, false);\n    return false;\n  }\n\n  // Temporarily set the operands in the memoize object to prevent blowing the stack\n  memoizeSet(leftHandOperand, rightHandOperand, options.memoize, true);\n\n  var result = extensiveDeepEqualByType(leftHandOperand, rightHandOperand, leftHandType, options);\n  memoizeSet(leftHandOperand, rightHandOperand, options.memoize, result);\n  return result;\n}\n\nfunction extensiveDeepEqualByType(leftHandOperand, rightHandOperand, leftHandType, options) {\n  switch (leftHandType) {\n    case 'String':\n    case 'Number':\n    case 'Boolean':\n    case 'Date':\n      // If these types are their instance types (e.g. `new Number`) then re-deepEqual against their values\n      return deepEqual(leftHandOperand.valueOf(), rightHandOperand.valueOf());\n    case 'Promise':\n    case 'Symbol':\n    case 'function':\n    case 'WeakMap':\n    case 'WeakSet':\n    case 'Error':\n      return leftHandOperand === rightHandOperand;\n    case 'Arguments':\n    case 'Int8Array':\n    case 'Uint8Array':\n    case 'Uint8ClampedArray':\n    case 'Int16Array':\n    case 'Uint16Array':\n    case 'Int32Array':\n    case 'Uint32Array':\n    case 'Float32Array':\n    case 'Float64Array':\n    case 'Array':\n      return iterableEqual(leftHandOperand, rightHandOperand, options);\n    case 'RegExp':\n      return regexpEqual(leftHandOperand, rightHandOperand);\n    case 'Generator':\n      return generatorEqual(leftHandOperand, rightHandOperand, options);\n    case 'DataView':\n      return iterableEqual(new Uint8Array(leftHandOperand.buffer), new Uint8Array(rightHandOperand.buffer), options);\n    case 'ArrayBuffer':\n      return iterableEqual(new Uint8Array(leftHandOperand), new Uint8Array(rightHandOperand), options);\n    case 'Set':\n      return entriesEqual(leftHandOperand, rightHandOperand, options);\n    case 'Map':\n      return entriesEqual(leftHandOperand, rightHandOperand, options);\n    default:\n      return objectEqual(leftHandOperand, rightHandOperand, options);\n  }\n}",
+    "line": 9557,
+    "codeStart": 9569,
+    "code": "function extensiveDeepEqual(leftHandOperand, rightHandOperand, options) {\n  options = options || {};\n  options.memoize = options.memoize === false ? false : options.memoize || new MemoizeMap();\n  var comparator = options && options.comparator;\n\n  // Check if a memoized result exists.\n  var memoizeResultLeft = memoizeCompare(leftHandOperand, rightHandOperand, options.memoize);\n  if (memoizeResultLeft !== null) {\n    return memoizeResultLeft;\n  }\n  var memoizeResultRight = memoizeCompare(rightHandOperand, leftHandOperand, options.memoize);\n  if (memoizeResultRight !== null) {\n    return memoizeResultRight;\n  }\n\n  // If a comparator is present, use it.\n  if (comparator) {\n    var comparatorResult = comparator(leftHandOperand, rightHandOperand);\n    // Comparators may return null, in which case we want to go back to default behavior.\n    if (comparatorResult === false || comparatorResult === true) {\n      memoizeSet(leftHandOperand, rightHandOperand, options.memoize, comparatorResult);\n      return comparatorResult;\n    }\n    // To allow comparators to override *any* behavior, we ran them first. Since it didn't decide\n    // what to do, we need to make sure to return the basic tests first before we move on.\n    var simpleResult = simpleEqual(leftHandOperand, rightHandOperand);\n    if (simpleResult !== null) {\n      // Don't memoize this, it takes longer to set/retrieve than to just compare.\n      return simpleResult;\n    }\n  }\n\n  var leftHandType = type(leftHandOperand);\n  if (leftHandType !== type(rightHandOperand)) {\n    memoizeSet(leftHandOperand, rightHandOperand, options.memoize, false);\n    return false;\n  }\n\n  // Temporarily set the operands in the memoize object to prevent blowing the stack\n  memoizeSet(leftHandOperand, rightHandOperand, options.memoize, true);\n\n  var result = extensiveDeepEqualByType(leftHandOperand, rightHandOperand, leftHandType, options);\n  memoizeSet(leftHandOperand, rightHandOperand, options.memoize, result);\n  return result;\n}\n\nfunction extensiveDeepEqualByType(leftHandOperand, rightHandOperand, leftHandType, options) {\n  switch (leftHandType) {\n    case 'String':\n    case 'Number':\n    case 'Boolean':\n    case 'Date':\n      // If these types are their instance types (e.g. `new Number`) then re-deepEqual against their values\n      return deepEqual(leftHandOperand.valueOf(), rightHandOperand.valueOf());\n    case 'Promise':\n    case 'Symbol':\n    case 'function':\n    case 'WeakMap':\n    case 'WeakSet':\n      return leftHandOperand === rightHandOperand;\n    case 'Error':\n      return keysEqual(leftHandOperand, rightHandOperand, [ 'name', 'message', 'code' ], options);\n    case 'Arguments':\n    case 'Int8Array':\n    case 'Uint8Array':\n    case 'Uint8ClampedArray':\n    case 'Int16Array':\n    case 'Uint16Array':\n    case 'Int32Array':\n    case 'Uint32Array':\n    case 'Float32Array':\n    case 'Float64Array':\n    case 'Array':\n      return iterableEqual(leftHandOperand, rightHandOperand, options);\n    case 'RegExp':\n      return regexpEqual(leftHandOperand, rightHandOperand);\n    case 'Generator':\n      return generatorEqual(leftHandOperand, rightHandOperand, options);\n    case 'DataView':\n      return iterableEqual(new Uint8Array(leftHandOperand.buffer), new Uint8Array(rightHandOperand.buffer), options);\n    case 'ArrayBuffer':\n      return iterableEqual(new Uint8Array(leftHandOperand), new Uint8Array(rightHandOperand), options);\n    case 'Set':\n      return entriesEqual(leftHandOperand, rightHandOperand, options);\n    case 'Map':\n      return entriesEqual(leftHandOperand, rightHandOperand, options);\n    case 'Temporal.PlainDate':\n    case 'Temporal.PlainTime':\n    case 'Temporal.PlainDateTime':\n    case 'Temporal.Instant':\n    case 'Temporal.ZonedDateTime':\n    case 'Temporal.PlainYearMonth':\n    case 'Temporal.PlainMonthDay':\n      return leftHandOperand.equals(rightHandOperand);\n    case 'Temporal.Duration':\n      return leftHandOperand.total('nanoseconds') === rightHandOperand.total('nanoseconds');\n    case 'Temporal.TimeZone':\n    case 'Temporal.Calendar':\n      return leftHandOperand.toString() === rightHandOperand.toString();\n    default:\n      return objectEqual(leftHandOperand, rightHandOperand, options);\n  }\n}",
     "ctx": {
       "type": "function",
       "name": "extensiveDeepEqual",
@@ -18432,8 +18354,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 10033,
-    "codeStart": 10041,
+    "line": 9673,
+    "codeStart": 9681,
     "code": "function regexpEqual(leftHandOperand, rightHandOperand) {\n  return leftHandOperand.toString() === rightHandOperand.toString();\n}",
     "ctx": {
       "type": "function",
@@ -18509,8 +18431,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 10045,
-    "codeStart": 10054,
+    "line": 9685,
+    "codeStart": 9694,
     "code": "function entriesEqual(leftHandOperand, rightHandOperand, options) {\n  // IE11 doesn't support Set#entries or Set#@@iterator, so we need manually populate using Set#forEach\n  if (leftHandOperand.size !== rightHandOperand.size) {\n    return false;\n  }\n  if (leftHandOperand.size === 0) {\n    return true;\n  }\n  var leftHandItems = [];\n  var rightHandItems = [];\n  leftHandOperand.forEach(function gatherEntries(key, value) {\n    leftHandItems.push([ key, value ]);\n  });\n  rightHandOperand.forEach(function gatherEntries(key, value) {\n    rightHandItems.push([ key, value ]);\n  });\n  return iterableEqual(leftHandItems.sort(), rightHandItems.sort(), options);\n}",
     "ctx": {
       "type": "function",
@@ -18586,8 +18508,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 10073,
-    "codeStart": 10082,
+    "line": 9713,
+    "codeStart": 9722,
     "code": "function iterableEqual(leftHandOperand, rightHandOperand, options) {\n  var length = leftHandOperand.length;\n  if (length !== rightHandOperand.length) {\n    return false;\n  }\n  if (length === 0) {\n    return true;\n  }\n  var index = -1;\n  while (++index < length) {\n    if (deepEqual(leftHandOperand[index], rightHandOperand[index], options) === false) {\n      return false;\n    }\n  }\n  return true;\n}",
     "ctx": {
       "type": "function",
@@ -18663,8 +18585,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 10099,
-    "codeStart": 10108,
+    "line": 9739,
+    "codeStart": 9748,
     "code": "function generatorEqual(leftHandOperand, rightHandOperand, options) {\n  return iterableEqual(getGeneratorEntries(leftHandOperand), getGeneratorEntries(rightHandOperand), options);\n}",
     "ctx": {
       "type": "function",
@@ -18712,8 +18634,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 10112,
-    "codeStart": 10118,
+    "line": 9752,
+    "codeStart": 9758,
     "code": "function hasIteratorFunction(target) {\n  return typeof Symbol !== 'undefined' &&\n    typeof target === 'object' &&\n    typeof Symbol.iterator !== 'undefined' &&\n    typeof target[Symbol.iterator] === 'function';\n}",
     "ctx": {
       "type": "function",
@@ -18761,8 +18683,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 10125,
-    "codeStart": 10132,
+    "line": 9765,
+    "codeStart": 9772,
     "code": "function getIteratorEntries(target) {\n  if (hasIteratorFunction(target)) {\n    try {\n      return getGeneratorEntries(target[Symbol.iterator]());\n    } catch (iteratorError) {\n      return [];\n    }\n  }\n  return [];\n}",
     "ctx": {
       "type": "function",
@@ -18810,8 +18732,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 10143,
-    "codeStart": 10149,
+    "line": 9783,
+    "codeStart": 9789,
     "code": "function getGeneratorEntries(generator) {\n  var generatorResult = generator.next();\n  var accumulator = [ generatorResult.value ];\n  while (generatorResult.done === false) {\n    generatorResult = generator.next();\n    accumulator.push(generatorResult.value);\n  }\n  return accumulator;\n}",
     "ctx": {
       "type": "function",
@@ -18859,9 +18781,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 10159,
-    "codeStart": 10165,
-    "code": "function getEnumerableKeys(target) {\n  var keys = [];\n  for (var key in target) {\n    keys.push(key);\n  }\n  return keys;\n}",
+    "line": 9799,
+    "codeStart": 9805,
+    "code": "function getEnumerableKeys(target) {\n  var keys = [];\n  for (var key in target) {\n    keys.push(key);\n  }\n  return keys;\n}\n\nfunction getNonEnumerableSymbols(target) {\n  var keys = Object.getOwnPropertySymbols(target);\n  return keys;\n}",
     "ctx": {
       "type": "function",
       "name": "getEnumerableKeys",
@@ -18950,8 +18872,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 10173,
-    "codeStart": 10183,
+    "line": 9818,
+    "codeStart": 9828,
     "code": "function keysEqual(leftHandOperand, rightHandOperand, keys, options) {\n  var length = keys.length;\n  if (length === 0) {\n    return true;\n  }\n  for (var i = 0; i < length; i += 1) {\n    if (deepEqual(leftHandOperand[keys[i]], rightHandOperand[keys[i]], options) === false) {\n      return false;\n    }\n  }\n  return true;\n}",
     "ctx": {
       "type": "function",
@@ -19027,9 +18949,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 10196,
-    "codeStart": 10206,
-    "code": "function objectEqual(leftHandOperand, rightHandOperand, options) {\n  var leftHandKeys = getEnumerableKeys(leftHandOperand);\n  var rightHandKeys = getEnumerableKeys(rightHandOperand);\n  if (leftHandKeys.length && leftHandKeys.length === rightHandKeys.length) {\n    leftHandKeys.sort();\n    rightHandKeys.sort();\n    if (iterableEqual(leftHandKeys, rightHandKeys) === false) {\n      return false;\n    }\n    return keysEqual(leftHandOperand, rightHandOperand, leftHandKeys, options);\n  }\n\n  var leftHandEntries = getIteratorEntries(leftHandOperand);\n  var rightHandEntries = getIteratorEntries(rightHandOperand);\n  if (leftHandEntries.length && leftHandEntries.length === rightHandEntries.length) {\n    leftHandEntries.sort();\n    rightHandEntries.sort();\n    return iterableEqual(leftHandEntries, rightHandEntries, options);\n  }\n\n  if (leftHandKeys.length === 0 &&\n      leftHandEntries.length === 0 &&\n      rightHandKeys.length === 0 &&\n      rightHandEntries.length === 0) {\n    return true;\n  }\n\n  return false;\n}",
+    "line": 9841,
+    "codeStart": 9850,
+    "code": "function objectEqual(leftHandOperand, rightHandOperand, options) {\n  var leftHandKeys = getEnumerableKeys(leftHandOperand);\n  var rightHandKeys = getEnumerableKeys(rightHandOperand);\n  var leftHandSymbols = getNonEnumerableSymbols(leftHandOperand);\n  var rightHandSymbols = getNonEnumerableSymbols(rightHandOperand);\n  leftHandKeys = leftHandKeys.concat(leftHandSymbols);\n  rightHandKeys = rightHandKeys.concat(rightHandSymbols);\n\n  if (leftHandKeys.length && leftHandKeys.length === rightHandKeys.length) {\n    if (iterableEqual(mapSymbols(leftHandKeys).sort(), mapSymbols(rightHandKeys).sort()) === false) {\n      return false;\n    }\n    return keysEqual(leftHandOperand, rightHandOperand, leftHandKeys, options);\n  }\n\n  var leftHandEntries = getIteratorEntries(leftHandOperand);\n  var rightHandEntries = getIteratorEntries(rightHandOperand);\n  if (leftHandEntries.length && leftHandEntries.length === rightHandEntries.length) {\n    leftHandEntries.sort();\n    rightHandEntries.sort();\n    return iterableEqual(leftHandEntries, rightHandEntries, options);\n  }\n\n  if (leftHandKeys.length === 0 &&\n      leftHandEntries.length === 0 &&\n      rightHandKeys.length === 0 &&\n      rightHandEntries.length === 0) {\n    return true;\n  }\n\n  return false;\n}",
     "ctx": {
       "type": "function",
       "name": "objectEqual",
@@ -19076,9 +18998,9 @@
     "isClass": false,
     "isEvent": false,
     "ignore": true,
-    "line": 10236,
-    "codeStart": 10245,
-    "code": "function isPrimitive(value) {\n  return value === null || typeof value !== 'object';\n}\n\n},{\"type-detect\":39}],37:[function(require,module,exports){\n'use strict';",
+    "line": 9883,
+    "codeStart": 9892,
+    "code": "function isPrimitive(value) {\n  return value === null || typeof value !== 'object';\n}\n\nfunction mapSymbols(arr) {\n  return arr.map(function mapSymbol(entry) {\n    if (typeof entry === 'symbol') {\n      return entry.toString();\n    }\n\n    return entry;\n  });\n}\n\n},{\"type-detect\":39}],36:[function(require,module,exports){\n'use strict';",
     "ctx": {
       "type": "function",
       "name": "isPrimitive",
@@ -19097,8 +19019,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10252,
-    "codeStart": 10257
+    "line": 9909,
+    "codeStart": 9914
   },
   {
     "tags": [
@@ -19140,15 +19062,97 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10258,
-    "codeStart": 10271,
-    "code": "var toString = Function.prototype.toString;\nvar functionNameMatch = /\\s*function(?:\\s|\\s*\\/\\*[^(?:*\\/)]+\\*\\/\\s*)*([^\\s\\(\\/]+)/;\nfunction getFuncName(aFunc) {\n  if (typeof aFunc !== 'function') {\n    return null;\n  }\n\n  var name = '';\n  if (typeof Function.prototype.name === 'undefined' && typeof aFunc.name === 'undefined') {\n    // Here we run a polyfill if Function does not support the `name` property and if aFunc.name is not defined\n    var match = toString.call(aFunc).match(functionNameMatch);\n    if (match) {\n      name = match[1];\n    }\n  } else {\n    // If we've got a `name` property we just use it\n    name = aFunc.name;\n  }\n\n  return name;\n}\n\nmodule.exports = getFuncName;\n\n},{}],38:[function(require,module,exports){\n'use strict';",
+    "line": 9915,
+    "codeStart": 9928,
+    "code": "var toString = Function.prototype.toString;\nvar functionNameMatch = /\\s*function(?:\\s|\\s*\\/\\*[^(?:*\\/)]+\\*\\/\\s*)*([^\\s\\(\\/]+)/;\nfunction getFuncName(aFunc) {\n  if (typeof aFunc !== 'function') {\n    return null;\n  }\n\n  var name = '';\n  if (typeof Function.prototype.name === 'undefined' && typeof aFunc.name === 'undefined') {\n    // Here we run a polyfill if Function does not support the `name` property and if aFunc.name is not defined\n    var match = toString.call(aFunc).match(functionNameMatch);\n    if (match) {\n      name = match[1];\n    }\n  } else {\n    // If we've got a `name` property we just use it\n    name = aFunc.name;\n  }\n\n  return name;\n}\n\nmodule.exports = getFuncName;\n\n},{}],37:[function(require,module,exports){\n(function (global, factory) {\n  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :\n  typeof define === 'function' && define.amd ? define(['exports'], factory) :\n  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.loupe = {}));\n}(this, (function (exports) { 'use strict';\n\n  function _typeof(obj) {\n    \"@babel/helpers - typeof\";\n\n    if (typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\") {\n      _typeof = function (obj) {\n        return typeof obj;\n      };\n    } else {\n      _typeof = function (obj) {\n        return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj;\n      };\n    }\n\n    return _typeof(obj);\n  }\n\n  function _slicedToArray(arr, i) {\n    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();\n  }\n\n  function _arrayWithHoles(arr) {\n    if (Array.isArray(arr)) return arr;\n  }\n\n  function _iterableToArrayLimit(arr, i) {\n    if (typeof Symbol === \"undefined\" || !(Symbol.iterator in Object(arr))) return;\n    var _arr = [];\n    var _n = true;\n    var _d = false;\n    var _e = undefined;\n\n    try {\n      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {\n        _arr.push(_s.value);\n\n        if (i && _arr.length === i) break;\n      }\n    } catch (err) {\n      _d = true;\n      _e = err;\n    } finally {\n      try {\n        if (!_n && _i[\"return\"] != null) _i[\"return\"]();\n      } finally {\n        if (_d) throw _e;\n      }\n    }\n\n    return _arr;\n  }\n\n  function _unsupportedIterableToArray(o, minLen) {\n    if (!o) return;\n    if (typeof o === \"string\") return _arrayLikeToArray(o, minLen);\n    var n = Object.prototype.toString.call(o).slice(8, -1);\n    if (n === \"Object\" && o.constructor) n = o.constructor.name;\n    if (n === \"Map\" || n === \"Set\") return Array.from(o);\n    if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);\n  }\n\n  function _arrayLikeToArray(arr, len) {\n    if (len == null || len > arr.length) len = arr.length;\n\n    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];\n\n    return arr2;\n  }\n\n  function _nonIterableRest() {\n    throw new TypeError(\"Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\");\n  }\n\n  var ansiColors = {\n    bold: ['1', '22'],\n    dim: ['2', '22'],\n    italic: ['3', '23'],\n    underline: ['4', '24'],\n    // 5 & 6 are blinking\n    inverse: ['7', '27'],\n    hidden: ['8', '28'],\n    strike: ['9', '29'],\n    // 10-20 are fonts\n    // 21-29 are resets for 1-9\n    black: ['30', '39'],\n    red: ['31', '39'],\n    green: ['32', '39'],\n    yellow: ['33', '39'],\n    blue: ['34', '39'],\n    magenta: ['35', '39'],\n    cyan: ['36', '39'],\n    white: ['37', '39'],\n    brightblack: ['30;1', '39'],\n    brightred: ['31;1', '39'],\n    brightgreen: ['32;1', '39'],\n    brightyellow: ['33;1', '39'],\n    brightblue: ['34;1', '39'],\n    brightmagenta: ['35;1', '39'],\n    brightcyan: ['36;1', '39'],\n    brightwhite: ['37;1', '39'],\n    grey: ['90', '39']\n  };\n  var styles = {\n    special: 'cyan',\n    number: 'yellow',\n    bigint: 'yellow',\n    boolean: 'yellow',\n    undefined: 'grey',\n    null: 'bold',\n    string: 'green',\n    symbol: 'green',\n    date: 'magenta',\n    regexp: 'red'\n  };\n  var truncator = '…';\n\n  function colorise(value, styleType) {\n    var color = ansiColors[styles[styleType]] || ansiColors[styleType];\n\n    if (!color) {\n      return String(value);\n    }\n\n    return \"\\x1B[\".concat(color[0], \"m\").concat(String(value), \"\\x1B[\").concat(color[1], \"m\");\n  }\n\n  function normaliseOptions() {\n    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},\n        _ref$showHidden = _ref.showHidden,\n        showHidden = _ref$showHidden === void 0 ? false : _ref$showHidden,\n        _ref$depth = _ref.depth,\n        depth = _ref$depth === void 0 ? 2 : _ref$depth,\n        _ref$colors = _ref.colors,\n        colors = _ref$colors === void 0 ? false : _ref$colors,\n        _ref$customInspect = _ref.customInspect,\n        customInspect = _ref$customInspect === void 0 ? true : _ref$customInspect,\n        _ref$showProxy = _ref.showProxy,\n        showProxy = _ref$showProxy === void 0 ? false : _ref$showProxy,\n        _ref$maxArrayLength = _ref.maxArrayLength,\n        maxArrayLength = _ref$maxArrayLength === void 0 ? Infinity : _ref$maxArrayLength,\n        _ref$breakLength = _ref.breakLength,\n        breakLength = _ref$breakLength === void 0 ? Infinity : _ref$breakLength,\n        _ref$seen = _ref.seen,\n        seen = _ref$seen === void 0 ? [] : _ref$seen,\n        _ref$truncate = _ref.truncate,\n        truncate = _ref$truncate === void 0 ? Infinity : _ref$truncate,\n        _ref$stylize = _ref.stylize,\n        stylize = _ref$stylize === void 0 ? String : _ref$stylize;\n\n    var options = {\n      showHidden: Boolean(showHidden),\n      depth: Number(depth),\n      colors: Boolean(colors),\n      customInspect: Boolean(customInspect),\n      showProxy: Boolean(showProxy),\n      maxArrayLength: Number(maxArrayLength),\n      breakLength: Number(breakLength),\n      truncate: Number(truncate),\n      seen: seen,\n      stylize: stylize\n    };\n\n    if (options.colors) {\n      options.stylize = colorise;\n    }\n\n    return options;\n  }\n  function truncate(string, length) {\n    var tail = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : truncator;\n    string = String(string);\n    var tailLength = tail.length;\n    var stringLength = string.length;\n\n    if (tailLength > length && stringLength > tailLength) {\n      return tail;\n    }\n\n    if (stringLength > length && stringLength > tailLength) {\n      return \"\".concat(string.slice(0, length - tailLength)).concat(tail);\n    }\n\n    return string;\n  } // eslint-disable-next-line complexity\n\n  function inspectList(list, options, inspectItem) {\n    var separator = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : ', ';\n    inspectItem = inspectItem || options.inspect;\n    var size = list.length;\n    if (size === 0) return '';\n    var originalLength = options.truncate;\n    var output = '';\n    var peek = '';\n    var truncated = '';\n\n    for (var i = 0; i < size; i += 1) {\n      var last = i + 1 === list.length;\n      var secondToLast = i + 2 === list.length;\n      truncated = \"\".concat(truncator, \"(\").concat(list.length - i, \")\");\n      var value = list[i]; // If there is more than one remaining we need to account for a separator of `, `\n\n      options.truncate = originalLength - output.length - (last ? 0 : separator.length);\n      var string = peek || inspectItem(value, options) + (last ? '' : separator);\n      var nextLength = output.length + string.length;\n      var truncatedLength = nextLength + truncated.length; // If this is the last element, and adding it would\n      // take us over length, but adding the truncator wouldn't - then break now\n\n      if (last && nextLength > originalLength && output.length + truncated.length <= originalLength) {\n        break;\n      } // If this isn't the last or second to last element to scan,\n      // but the string is already over length then break here\n\n\n      if (!last && !secondToLast && truncatedLength > originalLength) {\n        break;\n      } // Peek at the next string to determine if we should\n      // break early before adding this item to the output\n\n\n      peek = last ? '' : inspectItem(list[i + 1], options) + (secondToLast ? '' : separator); // If we have one element left, but this element and\n      // the next takes over length, the break early\n\n      if (!last && secondToLast && truncatedLength > originalLength && nextLength + peek.length > originalLength) {\n        break;\n      }\n\n      output += string; // If the next element takes us to length -\n      // but there are more after that, then we should truncate now\n\n      if (!last && !secondToLast && nextLength + peek.length >= originalLength) {\n        truncated = \"\".concat(truncator, \"(\").concat(list.length - i - 1, \")\");\n        break;\n      }\n\n      truncated = '';\n    }\n\n    return \"\".concat(output).concat(truncated);\n  }\n\n  function quoteComplexKey(key) {\n    if (key.match(/^[a-zA-Z_][a-zA-Z_0-9]*$/)) {\n      return key;\n    }\n\n    return JSON.stringify(key).replace(/'/g, \"\\\\'\").replace(/\\\\\"/g, '\"').replace(/(^\"|\"$)/g, \"'\");\n  }\n\n  function inspectProperty(_ref2, options) {\n    var _ref3 = _slicedToArray(_ref2, 2),\n        key = _ref3[0],\n        value = _ref3[1];\n\n    options.truncate -= 2;\n\n    if (typeof key === 'string') {\n      key = quoteComplexKey(key);\n    } else if (typeof key !== 'number') {\n      key = \"[\".concat(options.inspect(key, options), \"]\");\n    }\n\n    options.truncate -= key.length;\n    value = options.inspect(value, options);\n    return \"\".concat(key, \": \").concat(value);\n  }\n\n  function inspectArray(array, options) {\n    // Object.keys will always output the Array indices first, so we can slice by\n    // `array.length` to get non-index properties\n    var nonIndexProperties = Object.keys(array).slice(array.length);\n    if (!array.length && !nonIndexProperties.length) return '[]';\n    options.truncate -= 4;\n    var listContents = inspectList(array, options);\n    options.truncate -= listContents.length;\n    var propertyContents = '';\n\n    if (nonIndexProperties.length) {\n      propertyContents = inspectList(nonIndexProperties.map(function (key) {\n        return [key, array[key]];\n      }), options, inspectProperty);\n    }\n\n    return \"[ \".concat(listContents).concat(propertyContents ? \", \".concat(propertyContents) : '', \" ]\");\n  }",
     "ctx": {
       "type": "declaration",
       "name": "toString",
       "value": "Function.prototype.toString",
       "string": "toString"
     }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "!\nChai - getFuncName utility\nCopyright(c) 2012-2016 Jake Luer <jake@alogicalparadox.com>\nMIT Licensed",
+      "summary": "!\nChai - getFuncName utility\nCopyright(c) 2012-2016 Jake Luer <jake@alogicalparadox.com>\nMIT Licensed",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 10243,
+    "codeStart": 10248
+  },
+  {
+    "tags": [
+      {
+        "type": "name",
+        "string": "getFuncName"
+      },
+      {
+        "type": "param",
+        "string": "{Function} funct",
+        "name": "funct",
+        "description": "",
+        "types": [
+          "Function"
+        ],
+        "typesDescription": "<code>Function</code>",
+        "optional": false,
+        "nullable": false,
+        "nonNullable": false,
+        "variable": false
+      },
+      {
+        "type": "namespace",
+        "string": "Utils"
+      },
+      {
+        "type": "api",
+        "string": "public",
+        "visibility": "public"
+      }
+    ],
+    "description": {
+      "full": "### .getFuncName(constructorFn)\n\nReturns the name of a function.\nWhen a non-function instance is passed, returns `null`.\nThis also includes a polyfill function if `aFunc.name` is not defined.",
+      "summary": "### .getFuncName(constructorFn)",
+      "body": "Returns the name of a function.\nWhen a non-function instance is passed, returns `null`.\nThis also includes a polyfill function if `aFunc.name` is not defined."
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 10249,
+    "codeStart": 10262,
+    "code": "var toString = Function.prototype.toString;\nvar functionNameMatch = /\\s*function(?:\\s|\\s*\\/\\*[^(?:*\\/)]+\\*\\/\\s*)*([^\\s\\(\\/]+)/;\nfunction getFuncName(aFunc) {\n  if (typeof aFunc !== 'function') {\n    return null;\n  }\n\n  var name = '';\n  if (typeof Function.prototype.name === 'undefined' && typeof aFunc.name === 'undefined') {\n    // Here we run a polyfill if Function does not support the `name` property and if aFunc.name is not defined\n    var match = toString.call(aFunc).match(functionNameMatch);\n    if (match) {\n      name = match[1];\n    }\n  } else {\n    // If we've got a `name` property we just use it\n    name = aFunc.name;\n  }\n\n  return name;\n}\n\nvar getFuncName_1 = getFuncName;\n\nvar getArrayName = function getArrayName(array) {\n  // We need to special case Node.js' Buffers, which report to be Uint8Array\n  if (typeof Buffer === 'function' && array instanceof Buffer) {\n    return 'Buffer';\n  }\n\n  if (array[Symbol.toStringTag]) {\n    return array[Symbol.toStringTag];\n  }\n\n  return getFuncName_1(array.constructor);\n};\n\nfunction inspectTypedArray(array, options) {\n  var name = getArrayName(array);\n  options.truncate -= name.length + 4; // Object.keys will always output the Array indices first, so we can slice by\n  // `array.length` to get non-index properties\n\n  var nonIndexProperties = Object.keys(array).slice(array.length);\n  if (!array.length && !nonIndexProperties.length) return \"\".concat(name, \"[]\"); // As we know TypedArrays only contain Unsigned Integers, we can skip inspecting each one and simply\n  // stylise the toString() value of them\n\n  var output = '';\n\n  for (var i = 0; i < array.length; i++) {\n    var string = \"\".concat(options.stylize(truncate(array[i], options.truncate), 'number')).concat(i === array.length - 1 ? '' : ', ');\n    options.truncate -= string.length;\n\n    if (array[i] !== array.length && options.truncate <= 3) {\n      output += \"\".concat(truncator, \"(\").concat(array.length - array[i] + 1, \")\");\n      break;\n    }\n\n    output += string;\n  }\n\n  var propertyContents = '';\n\n  if (nonIndexProperties.length) {\n    propertyContents = inspectList(nonIndexProperties.map(function (key) {\n      return [key, array[key]];\n    }), options, inspectProperty);\n  }\n\n  return \"\".concat(name, \"[ \").concat(output).concat(propertyContents ? \", \".concat(propertyContents) : '', \" ]\");\n}\n\nfunction inspectDate(dateObject, options) {\n  // If we need to - truncate the time portion, but never the date\n  var split = dateObject.toJSON().split('T');\n  var date = split[0];\n  return options.stylize(\"\".concat(date, \"T\").concat(truncate(split[1], options.truncate - date.length - 1)), 'date');\n}\n\nfunction inspectFunction(func, options) {\n  var name = getFuncName_1(func);\n\n  if (!name) {\n    return options.stylize('[Function]', 'special');\n  }\n\n  return options.stylize(\"[Function \".concat(truncate(name, options.truncate - 11), \"]\"), 'special');\n}\n\nfunction inspectMapEntry(_ref, options) {\n  var _ref2 = _slicedToArray(_ref, 2),\n      key = _ref2[0],\n      value = _ref2[1];\n\n  options.truncate -= 4;\n  key = options.inspect(key, options);\n  options.truncate -= key.length;\n  value = options.inspect(value, options);\n  return \"\".concat(key, \" => \").concat(value);\n} // IE11 doesn't support `map.entries()`\n\n\nfunction mapToEntries(map) {\n  var entries = [];\n  map.forEach(function (value, key) {\n    entries.push([key, value]);\n  });\n  return entries;\n}\n\nfunction inspectMap(map, options) {\n  var size = map.size - 1;\n\n  if (size <= 0) {\n    return 'Map{}';\n  }\n\n  options.truncate -= 7;\n  return \"Map{ \".concat(inspectList(mapToEntries(map), options, inspectMapEntry), \" }\");\n}\n\nvar isNaN = Number.isNaN || function (i) {\n  return i !== i;\n}; // eslint-disable-line no-self-compare\n\n\nfunction inspectNumber(number, options) {\n  if (isNaN(number)) {\n    return options.stylize('NaN', 'number');\n  }\n\n  if (number === Infinity) {\n    return options.stylize('Infinity', 'number');\n  }\n\n  if (number === -Infinity) {\n    return options.stylize('-Infinity', 'number');\n  }\n\n  if (number === 0) {\n    return options.stylize(1 / number === Infinity ? '+0' : '-0', 'number');\n  }\n\n  return options.stylize(truncate(number, options.truncate), 'number');\n}\n\nfunction inspectBigInt(number, options) {\n  var nums = truncate(number.toString(), options.truncate - 1);\n  if (nums !== truncator) nums += 'n';\n  return options.stylize(nums, 'bigint');\n}\n\nfunction inspectRegExp(value, options) {\n  var flags = value.toString().split('/')[2];\n  var sourceLength = options.truncate - (2 + flags.length);\n  var source = value.source;\n  return options.stylize(\"/\".concat(truncate(source, sourceLength), \"/\").concat(flags), 'regexp');\n}\n\nfunction arrayFromSet(set) {\n  var values = [];\n  set.forEach(function (value) {\n    values.push(value);\n  });\n  return values;\n}\n\nfunction inspectSet(set, options) {\n  if (set.size === 0) return 'Set{}';\n  options.truncate -= 7;\n  return \"Set{ \".concat(inspectList(arrayFromSet(set), options), \" }\");\n}\n\nvar stringEscapeChars = new RegExp(\"['\\\\u0000-\\\\u001f\\\\u007f-\\\\u009f\\\\u00ad\\\\u0600-\\\\u0604\\\\u070f\\\\u17b4\\\\u17b5\" + \"\\\\u200c-\\\\u200f\\\\u2028-\\\\u202f\\\\u2060-\\\\u206f\\\\ufeff\\\\ufff0-\\\\uffff]\", 'g');\nvar escapeCharacters = {\n  '\\b': '\\\\b',\n  '\\t': '\\\\t',\n  '\\n': '\\\\n',\n  '\\f': '\\\\f',\n  '\\r': '\\\\r',\n  \"'\": \"\\\\'\",\n  '\\\\': '\\\\\\\\'\n};\nvar hex = 16;\nvar unicodeLength = 4;\n\nfunction escape(char) {\n  return escapeCharacters[char] || \"\\\\u\".concat(\"0000\".concat(char.charCodeAt(0).toString(hex)).slice(-unicodeLength));\n}\n\nfunction inspectString(string, options) {\n  if (stringEscapeChars.test(string)) {\n    string = string.replace(stringEscapeChars, escape);\n  }\n\n  return options.stylize(\"'\".concat(truncate(string, options.truncate - 2), \"'\"), 'string');\n}\n\nfunction inspectSymbol(value) {\n  if ('description' in Symbol.prototype) {\n    return value.description ? \"Symbol(\".concat(value.description, \")\") : 'Symbol()';\n  }\n\n  return value.toString();\n}\n\nvar getPromiseValue = function getPromiseValue() {\n  return 'Promise{…}';\n};\n\ntry {\n  var _process$binding = process.binding('util'),\n      getPromiseDetails = _process$binding.getPromiseDetails,\n      kPending = _process$binding.kPending,\n      kRejected = _process$binding.kRejected;\n\n  if (Array.isArray(getPromiseDetails(Promise.resolve()))) {\n    getPromiseValue = function getPromiseValue(value, options) {\n      var _getPromiseDetails = getPromiseDetails(value),\n          _getPromiseDetails2 = _slicedToArray(_getPromiseDetails, 2),\n          state = _getPromiseDetails2[0],\n          innerValue = _getPromiseDetails2[1];\n\n      if (state === kPending) {\n        return 'Promise{<pending>}';\n      }\n\n      return \"Promise\".concat(state === kRejected ? '!' : '', \"{\").concat(options.inspect(innerValue, options), \"}\");\n    };\n  }\n} catch (notNode) {",
+    "ctx": {
+      "type": "declaration",
+      "name": "toString",
+      "value": "Function.prototype.toString",
+      "string": "toString"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "ignore",
+      "summary": "ignore",
+      "body": ""
+    },
+    "isPrivate": false,
+    "isConstructor": false,
+    "isClass": false,
+    "isEvent": false,
+    "ignore": false,
+    "line": 10492,
+    "codeStart": 10493,
+    "code": "}\n\nvar inspectPromise = getPromiseValue;\n\nfunction inspectObject(object, options) {\n  var properties = Object.getOwnPropertyNames(object);\n  var symbols = Object.getOwnPropertySymbols ? Object.getOwnPropertySymbols(object) : [];\n\n  if (properties.length === 0 && symbols.length === 0) {\n    return '{}';\n  }\n\n  options.truncate -= 4;\n  options.seen = options.seen || [];\n\n  if (options.seen.indexOf(object) >= 0) {\n    return '[Circular]';\n  }\n\n  options.seen.push(object);\n  var propertyContents = inspectList(properties.map(function (key) {\n    return [key, object[key]];\n  }), options, inspectProperty);\n  var symbolContents = inspectList(symbols.map(function (key) {\n    return [key, object[key]];\n  }), options, inspectProperty);\n  options.seen.pop();\n  var sep = '';\n\n  if (propertyContents && symbolContents) {\n    sep = ', ';\n  }\n\n  return \"{ \".concat(propertyContents).concat(sep).concat(symbolContents, \" }\");\n}\n\nvar toStringTag = typeof Symbol !== 'undefined' && Symbol.toStringTag ? Symbol.toStringTag : false;\nfunction inspectClass(value, options) {\n  var name = '';\n\n  if (toStringTag && toStringTag in value) {\n    name = value[toStringTag];\n  }\n\n  name = name || getFuncName_1(value.constructor); // Babel transforms anonymous classes to the name `_class`\n\n  if (!name || name === '_class') {\n    name = '<Anonymous Class>';\n  }\n\n  options.truncate -= name.length;\n  return \"\".concat(name).concat(inspectObject(value, options));\n}\n\nfunction inspectArguments(args, options) {\n  if (args.length === 0) return 'Arguments[]';\n  options.truncate -= 13;\n  return \"Arguments[ \".concat(inspectList(args, options), \" ]\");\n}\n\nvar errorKeys = ['stack', 'line', 'column', 'name', 'message', 'fileName', 'lineNumber', 'columnNumber', 'number', 'description'];\nfunction inspectObject$1(error, options) {\n  var properties = Object.getOwnPropertyNames(error).filter(function (key) {\n    return errorKeys.indexOf(key) === -1;\n  });\n  var name = error.name;\n  options.truncate -= name.length;\n  var message = '';\n\n  if (typeof error.message === 'string') {\n    message = truncate(error.message, options.truncate);\n  } else {\n    properties.unshift('message');\n  }\n\n  message = message ? \": \".concat(message) : '';\n  options.truncate -= message.length + 5;\n  var propertyContents = inspectList(properties.map(function (key) {\n    return [key, error[key]];\n  }), options, inspectProperty);\n  return \"\".concat(name).concat(message).concat(propertyContents ? \" { \".concat(propertyContents, \" }\") : '');\n}\n\nfunction inspectAttribute(_ref, options) {\n  var _ref2 = _slicedToArray(_ref, 2),\n      key = _ref2[0],\n      value = _ref2[1];\n\n  options.truncate -= 3;\n\n  if (!value) {\n    return \"\".concat(options.stylize(key, 'yellow'));\n  }\n\n  return \"\".concat(options.stylize(key, 'yellow'), \"=\").concat(options.stylize(\"\\\"\".concat(value, \"\\\"\"), 'string'));\n}\nfunction inspectHTMLCollection(collection, options) {\n  // eslint-disable-next-line no-use-before-define\n  return inspectList(collection, options, inspectHTML, '\\n');\n}\nfunction inspectHTML(element, options) {\n  var properties = element.getAttributeNames();\n  var name = element.tagName.toLowerCase();\n  var head = options.stylize(\"<\".concat(name), 'special');\n  var headClose = options.stylize(\">\", 'special');\n  var tail = options.stylize(\"</\".concat(name, \">\"), 'special');\n  options.truncate -= name.length * 2 + 5;\n  var propertyContents = '';\n\n  if (properties.length > 0) {\n    propertyContents += ' ';\n    propertyContents += inspectList(properties.map(function (key) {\n      return [key, element.getAttribute(key)];\n    }), options, inspectAttribute, ' ');\n  }\n\n  options.truncate -= propertyContents.length;\n  var truncate = options.truncate;\n  var children = inspectHTMLCollection(element.children, options);\n\n  if (children && children.length > truncate) {\n    children = \"\".concat(truncator, \"(\").concat(element.children.length, \")\");\n  }\n\n  return \"\".concat(head).concat(propertyContents).concat(headClose).concat(children).concat(tail);\n}\n\nvar symbolsSupported = typeof Symbol === 'function' && typeof Symbol.for === 'function';\nvar chaiInspect = symbolsSupported ? Symbol.for('chai/inspect') : '@@chai/inspect';\nvar nodeInspect = false;\n\ntry {\n  // eslint-disable-next-line global-require\n  var nodeUtil = require('util');\n\n  nodeInspect = nodeUtil.inspect ? nodeUtil.inspect.custom : false;\n} catch (noNodeInspect) {\n  nodeInspect = false;\n}\n\nvar constructorMap = new WeakMap();\nvar stringTagMap = {};\nvar baseTypesMap = {\n  undefined: function undefined$1(value, options) {\n    return options.stylize('undefined', 'undefined');\n  },\n  null: function _null(value, options) {\n    return options.stylize(null, 'null');\n  },\n  boolean: function boolean(value, options) {\n    return options.stylize(value, 'boolean');\n  },\n  Boolean: function Boolean(value, options) {\n    return options.stylize(value, 'boolean');\n  },\n  number: inspectNumber,\n  Number: inspectNumber,\n  bigint: inspectBigInt,\n  BigInt: inspectBigInt,\n  string: inspectString,\n  String: inspectString,\n  function: inspectFunction,\n  Function: inspectFunction,\n  symbol: inspectSymbol,\n  // A Symbol polyfill will return `Symbol` not `symbol` from typedetect\n  Symbol: inspectSymbol,\n  Array: inspectArray,\n  Date: inspectDate,\n  Map: inspectMap,\n  Set: inspectSet,\n  RegExp: inspectRegExp,\n  Promise: inspectPromise,\n  // WeakSet, WeakMap are totally opaque to us\n  WeakSet: function WeakSet(value, options) {\n    return options.stylize('WeakSet{…}', 'special');\n  },\n  WeakMap: function WeakMap(value, options) {\n    return options.stylize('WeakMap{…}', 'special');\n  },\n  Arguments: inspectArguments,\n  Int8Array: inspectTypedArray,\n  Uint8Array: inspectTypedArray,\n  Uint8ClampedArray: inspectTypedArray,\n  Int16Array: inspectTypedArray,\n  Uint16Array: inspectTypedArray,\n  Int32Array: inspectTypedArray,\n  Uint32Array: inspectTypedArray,\n  Float32Array: inspectTypedArray,\n  Float64Array: inspectTypedArray,\n  Generator: function Generator() {\n    return '';\n  },\n  DataView: function DataView() {\n    return '';\n  },\n  ArrayBuffer: function ArrayBuffer() {\n    return '';\n  },\n  Error: inspectObject$1,\n  HTMLCollection: inspectHTMLCollection,\n  NodeList: inspectHTMLCollection\n}; // eslint-disable-next-line complexity\n\nvar inspectCustom = function inspectCustom(value, options, type) {\n  if (chaiInspect in value && typeof value[chaiInspect] === 'function') {\n    return value[chaiInspect](options);\n  }\n\n  if (nodeInspect && nodeInspect in value && typeof value[nodeInspect] === 'function') {\n    return value[nodeInspect](options.depth, options);\n  }\n\n  if ('inspect' in value && typeof value.inspect === 'function') {\n    return value.inspect(options.depth, options);\n  }\n\n  if ('constructor' in value && constructorMap.has(value.constructor)) {\n    return constructorMap.get(value.constructor)(value, options);\n  }\n\n  if (stringTagMap[type]) {\n    return stringTagMap[type](value, options);\n  }\n\n  return '';\n};\n\nvar toString$1 = Object.prototype.toString; // eslint-disable-next-line complexity\n\nfunction inspect(value, options) {\n  options = normaliseOptions(options);\n  options.inspect = inspect;\n  var _options = options,\n      customInspect = _options.customInspect;\n  var type = value === null ? 'null' : _typeof(value);\n\n  if (type === 'object') {\n    type = toString$1.call(value).slice(8, -1);\n  } // If it is a base value that we already support, then use Loupe's inspector\n\n\n  if (baseTypesMap[type]) {\n    return baseTypesMap[type](value, options);\n  } // If `options.customInspect` is set to true then try to use the custom inspector\n\n\n  if (customInspect && value) {\n    var output = inspectCustom(value, options, type);\n\n    if (output) {\n      if (typeof output === 'string') return output;\n      return inspect(output, options);\n    }\n  }\n\n  var proto = value ? Object.getPrototypeOf(value) : false; // If it's a plain Object then use Loupe's inspector\n\n  if (proto === Object.prototype || proto === null) {\n    return inspectObject(value, options);\n  } // Specifically account for HTMLElements\n  // eslint-disable-next-line no-undef\n\n\n  if (value && typeof HTMLElement === 'function' && value instanceof HTMLElement) {\n    return inspectHTML(value, options);\n  }\n\n  if ('constructor' in value) {\n    // If it is a class, inspect it like an object but add the constructor name\n    if (value.constructor !== Object) {\n      return inspectClass(value, options);\n    } // If it is an object with an anonymous prototype, display it as an object.\n\n\n    return inspectObject(value, options);\n  } // We have run out of options! Just stringify the value\n\n\n  return options.stylize(String(value), type);\n}\nfunction registerConstructor(constructor, inspector) {\n  if (constructorMap.has(constructor)) {\n    return false;\n  }\n\n  constructorMap.add(constructor, inspector);\n  return true;\n}\nfunction registerStringTag(stringTag, inspector) {\n  if (stringTag in stringTagMap) {\n    return false;\n  }\n\n  stringTagMap[stringTag] = inspector;\n  return true;\n}\nvar custom = chaiInspect;\n\nexports.custom = custom;\nexports.default = inspect;\nexports.inspect = inspect;\nexports.registerConstructor = registerConstructor;\nexports.registerStringTag = registerStringTag;\n\nObject.defineProperty(exports, '__esModule', { value: true });\n\n})));\n\n},{\"util\":undefined}],38:[function(require,module,exports){\n'use strict';",
+    "ctx": false
   },
   {
     "tags": [
@@ -19169,8 +19173,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10298,
-    "codeStart": 10304
+    "line": 10804,
+    "codeStart": 10810
   },
   {
     "tags": [
@@ -19240,8 +19244,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10305,
-    "codeStart": 10342,
+    "line": 10811,
+    "codeStart": 10848,
     "code": "function hasProperty(obj, name) {\n  if (typeof obj === 'undefined' || obj === null) {\n    return false;\n  }\n\n  // The `in` operator does not work with primitives.\n  return name in Object(obj);\n}",
     "ctx": {
       "type": "function",
@@ -19294,8 +19298,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10351,
-    "codeStart": 10370,
+    "line": 10857,
+    "codeStart": 10876,
     "code": "function parsePath(path) {\n  var str = path.replace(/([^\\\\])\\[/g, '$1.[');\n  var parts = str.match(/(\\\\\\.|[^.]+?)+/g);\n  return parts.map(function mapMatches(value) {\n    if (\n      value === 'constructor' ||\n      value === '__proto__' ||\n      value === 'prototype'\n    ) {\n      return {};\n    }\n    var regexp = /^\\[(\\d+)\\]$/;\n    var mArr = regexp.exec(value);\n    var parsed = null;\n    if (mArr) {\n      parsed = { i: parseFloat(mArr[1]) };\n    } else {\n      parsed = { p: value.replace(/\\\\([.[\\]])/g, '$1') };\n    }\n\n    return parsed;\n  });\n}",
     "ctx": {
       "type": "function",
@@ -19377,8 +19381,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10394,
-    "codeStart": 10409,
+    "line": 10900,
+    "codeStart": 10915,
     "code": "function internalGetPathValue(obj, parsed, pathDepth) {\n  var temporaryValue = obj;\n  var res = null;\n  pathDepth = typeof pathDepth === 'undefined' ? parsed.length : pathDepth;\n\n  for (var i = 0; i < pathDepth; i++) {\n    var part = parsed[i];\n    if (temporaryValue) {\n      if (typeof part.p === 'undefined') {\n        temporaryValue = temporaryValue[part.i];\n      } else {\n        temporaryValue = temporaryValue[part.p];\n      }\n\n      if (i === pathDepth - 1) {\n        res = temporaryValue;\n      }\n    }\n  }\n\n  return res;\n}",
     "ctx": {
       "type": "function",
@@ -19444,8 +19448,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10432,
-    "codeStart": 10446,
+    "line": 10938,
+    "codeStart": 10952,
     "code": "function internalSetPathValue(obj, val, parsed) {\n  var tempObj = obj;\n  var pathDepth = parsed.length;\n  var part = null;\n  // Here we iterate through every part of the path\n  for (var i = 0; i < pathDepth; i++) {\n    var propName = null;\n    var propVal = null;\n    part = parsed[i];\n\n    // If it's the last part of the path, we set the 'propName' value with the property name\n    if (i === pathDepth - 1) {\n      propName = typeof part.p === 'undefined' ? part.i : part.p;\n      // Now we set the property with the name held by 'propName' on object with the desired val\n      tempObj[propName] = val;\n    } else if (typeof part.p !== 'undefined' && tempObj[part.p]) {\n      tempObj = tempObj[part.p];\n    } else if (typeof part.i !== 'undefined' && tempObj[part.i]) {\n      tempObj = tempObj[part.i];\n    } else {\n      // If the obj doesn't have the property we create one with that name to define it\n      var next = parsed[i + 1];\n      // Here we set the name of the property which will be defined\n      propName = typeof part.p === 'undefined' ? part.i : part.p;\n      // Here we decide if this property will be an array or a new object\n      propVal = typeof next.p === 'undefined' ? [] : {};\n      tempObj[propName] = propVal;\n      tempObj = tempObj[propName];\n    }\n  }\n}",
     "ctx": {
       "type": "function",
@@ -19520,8 +19524,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10478,
-    "codeStart": 10500,
+    "line": 10984,
+    "codeStart": 11006,
     "code": "function getPathInfo(obj, path) {\n  var parsed = parsePath(path);\n  var last = parsed[parsed.length - 1];\n  var info = {\n    parent:\n      parsed.length > 1 ?\n        internalGetPathValue(obj, parsed, parsed.length - 1) :\n        obj,\n    name: last.p || last.i,\n    value: internalGetPathValue(obj, parsed),\n  };\n  info.exists = hasProperty(info.parent, info.name);\n\n  return info;\n}",
     "ctx": {
       "type": "function",
@@ -19596,8 +19600,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10516,
-    "codeStart": 10547,
+    "line": 11022,
+    "codeStart": 11053,
     "code": "function getPathValue(obj, path) {\n  var info = getPathInfo(obj, path);\n  return info.value;\n}",
     "ctx": {
       "type": "function",
@@ -19665,8 +19669,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10552,
-    "codeStart": 10585,
+    "line": 11058,
+    "codeStart": 11091,
     "code": "function setPathValue(obj, path, val) {\n  var parsed = parsePath(path);\n  internalSetPathValue(obj, val, parsed);\n  return obj;\n}\n\nmodule.exports = {\n  hasProperty: hasProperty,\n  getPathInfo: getPathInfo,\n  getPathValue: getPathValue,\n  setPathValue: setPathValue,\n};\n\n},{}],39:[function(require,module,exports){\n(function (global, factory) {\n\ttypeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :\n\ttypeof define === 'function' && define.amd ? define(factory) :\n\t(global.typeDetect = factory());\n}(this, (function () { 'use strict';",
     "ctx": {
       "type": "function",
@@ -19686,8 +19690,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10605,
-    "codeStart": 10610,
+    "line": 11111,
+    "codeStart": 11116,
     "code": "var promiseExists = typeof Promise === 'function';",
     "ctx": {
       "type": "declaration",
@@ -19708,8 +19712,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10612,
-    "codeStart": 10613,
+    "line": 11118,
+    "codeStart": 11119,
     "code": "var globalObject = typeof self === 'object' ? self : global; // eslint-disable-line id-blacklist\n\nvar symbolExists = typeof Symbol !== 'undefined';\nvar mapExists = typeof Map !== 'undefined';\nvar setExists = typeof Set !== 'undefined';\nvar weakMapExists = typeof WeakMap !== 'undefined';\nvar weakSetExists = typeof WeakSet !== 'undefined';\nvar dataViewExists = typeof DataView !== 'undefined';\nvar symbolIteratorExists = symbolExists && typeof Symbol.iterator !== 'undefined';\nvar symbolToStringTagExists = symbolExists && typeof Symbol.toStringTag !== 'undefined';\nvar setEntriesExists = setExists && typeof Set.prototype.entries === 'function';\nvar mapEntriesExists = mapExists && typeof Map.prototype.entries === 'function';\nvar setIteratorPrototype = setEntriesExists && Object.getPrototypeOf(new Set().entries());\nvar mapIteratorPrototype = mapEntriesExists && Object.getPrototypeOf(new Map().entries());\nvar arrayIteratorExists = symbolIteratorExists && typeof Array.prototype[Symbol.iterator] === 'function';\nvar arrayIteratorPrototype = arrayIteratorExists && Object.getPrototypeOf([][Symbol.iterator]());\nvar stringIteratorExists = symbolIteratorExists && typeof String.prototype[Symbol.iterator] === 'function';\nvar stringIteratorPrototype = stringIteratorExists && Object.getPrototypeOf(''[Symbol.iterator]());\nvar toStringLeftSliceLength = 8;\nvar toStringRightSliceLength = -1;",
     "ctx": {
       "type": "declaration",
@@ -19763,8 +19767,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10633,
-    "codeStart": 10643,
+    "line": 11139,
+    "codeStart": 11149,
     "code": "function typeDetect(obj) {",
     "ctx": {
       "type": "function",
@@ -19784,8 +19788,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10644,
-    "codeStart": 10658,
+    "line": 11150,
+    "codeStart": 11164,
     "code": "var typeofObj = typeof obj;\nif (typeofObj !== 'object') {\n  return typeofObj;\n}",
     "ctx": {
       "type": "declaration",
@@ -19806,8 +19810,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10663,
-    "codeStart": 10669,
+    "line": 11169,
+    "codeStart": 11175,
     "code": "if (obj === null) {\n  return 'null';\n}",
     "ctx": {
       "type": "method",
@@ -19827,8 +19831,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10673,
-    "codeStart": 10689,
+    "line": 11179,
+    "codeStart": 11195,
     "code": "if (obj === globalObject) {\n  return 'global';\n}",
     "ctx": {
       "type": "method",
@@ -19848,8 +19852,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10693,
-    "codeStart": 10699,
+    "line": 11199,
+    "codeStart": 11205,
     "code": "if (\n  Array.isArray(obj) &&\n  (symbolToStringTagExists === false || !(Symbol.toStringTag in obj))\n) {\n  return 'Array';\n}\n\n// Not caching existence of `window` and related properties due to potential\n// for `window` to be unset before tests in quasi-browser environments.\nif (typeof window === 'object' && window !== null) {",
     "ctx": {
       "type": "method",
@@ -19869,8 +19873,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10709,
-    "codeStart": 10716,
+    "line": 11215,
+    "codeStart": 11222,
     "code": "if (typeof window.location === 'object' && obj === window.location) {\n  return 'Location';\n}",
     "ctx": {
       "type": "method",
@@ -19890,8 +19894,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10720,
-    "codeStart": 10739,
+    "line": 11226,
+    "codeStart": 11245,
     "code": "if (typeof window.document === 'object' && obj === window.document) {\n  return 'Document';\n}\n\nif (typeof window.navigator === 'object') {",
     "ctx": {
       "type": "method",
@@ -19911,8 +19915,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10744,
-    "codeStart": 10750,
+    "line": 11250,
+    "codeStart": 11256,
     "code": "if (typeof window.navigator.mimeTypes === 'object' &&\n    obj === window.navigator.mimeTypes) {\n  return 'MimeTypeArray';\n}",
     "ctx": {
       "type": "method",
@@ -19932,8 +19936,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10755,
-    "codeStart": 10761,
+    "line": 11261,
+    "codeStart": 11267,
     "code": "if (typeof window.navigator.plugins === 'object' &&\n    obj === window.navigator.plugins) {\n  return 'PluginArray';\n}\n    }\n\n    if ((typeof window.HTMLElement === 'function' ||\n  typeof window.HTMLElement === 'object') &&\n  obj instanceof window.HTMLElement) {",
     "ctx": {
       "type": "method",
@@ -19953,8 +19957,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10770,
-    "codeStart": 10776,
+    "line": 11276,
+    "codeStart": 11282,
     "code": "if (obj.tagName === 'BLOCKQUOTE') {\n  return 'HTMLQuoteElement';\n}",
     "ctx": {
       "type": "method",
@@ -19974,8 +19978,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10780,
-    "codeStart": 10792,
+    "line": 11286,
+    "codeStart": 11298,
     "code": "if (obj.tagName === 'TD') {\n  return 'HTMLTableDataCellElement';\n}",
     "ctx": {
       "type": "method",
@@ -19995,8 +19999,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10796,
-    "codeStart": 10808,
+    "line": 11302,
+    "codeStart": 11314,
     "code": "if (obj.tagName === 'TH') {\n  return 'HTMLTableHeaderCellElement';\n}\n    }\n  }",
     "ctx": {
       "type": "method",
@@ -20016,8 +20020,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10814,
-    "codeStart": 10836,
+    "line": 11320,
+    "codeStart": 11342,
     "code": "var stringTag = (symbolToStringTagExists && obj[Symbol.toStringTag]);\nif (typeof stringTag === 'string') {\n  return stringTag;\n}\n\nvar objPrototype = Object.getPrototypeOf(obj);",
     "ctx": {
       "type": "declaration",
@@ -20038,8 +20042,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10842,
-    "codeStart": 10850,
+    "line": 11348,
+    "codeStart": 11356,
     "code": "if (objPrototype === RegExp.prototype) {\n  return 'RegExp';\n}",
     "ctx": {
       "type": "method",
@@ -20059,8 +20063,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10854,
-    "codeStart": 10860,
+    "line": 11360,
+    "codeStart": 11366,
     "code": "if (objPrototype === Date.prototype) {\n  return 'Date';\n}",
     "ctx": {
       "type": "method",
@@ -20080,8 +20084,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10864,
-    "codeStart": 10873,
+    "line": 11370,
+    "codeStart": 11379,
     "code": "if (promiseExists && objPrototype === Promise.prototype) {\n  return 'Promise';\n}",
     "ctx": {
       "type": "method",
@@ -20101,8 +20105,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10877,
-    "codeStart": 10883,
+    "line": 11383,
+    "codeStart": 11389,
     "code": "if (setExists && objPrototype === Set.prototype) {\n  return 'Set';\n}",
     "ctx": {
       "type": "method",
@@ -20122,8 +20126,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10887,
-    "codeStart": 10893,
+    "line": 11393,
+    "codeStart": 11399,
     "code": "if (mapExists && objPrototype === Map.prototype) {\n  return 'Map';\n}",
     "ctx": {
       "type": "method",
@@ -20143,8 +20147,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10897,
-    "codeStart": 10903,
+    "line": 11403,
+    "codeStart": 11409,
     "code": "if (weakSetExists && objPrototype === WeakSet.prototype) {\n  return 'WeakSet';\n}",
     "ctx": {
       "type": "method",
@@ -20164,8 +20168,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10907,
-    "codeStart": 10913,
+    "line": 11413,
+    "codeStart": 11419,
     "code": "if (weakMapExists && objPrototype === WeakMap.prototype) {\n  return 'WeakMap';\n}",
     "ctx": {
       "type": "method",
@@ -20185,8 +20189,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10917,
-    "codeStart": 10923,
+    "line": 11423,
+    "codeStart": 11429,
     "code": "if (dataViewExists && objPrototype === DataView.prototype) {\n  return 'DataView';\n}",
     "ctx": {
       "type": "method",
@@ -20206,8 +20210,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10927,
-    "codeStart": 10933,
+    "line": 11433,
+    "codeStart": 11439,
     "code": "if (mapExists && objPrototype === mapIteratorPrototype) {\n  return 'Map Iterator';\n}",
     "ctx": {
       "type": "method",
@@ -20227,8 +20231,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10937,
-    "codeStart": 10943,
+    "line": 11443,
+    "codeStart": 11449,
     "code": "if (setExists && objPrototype === setIteratorPrototype) {\n  return 'Set Iterator';\n}",
     "ctx": {
       "type": "method",
@@ -20248,8 +20252,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10947,
-    "codeStart": 10953,
+    "line": 11453,
+    "codeStart": 11459,
     "code": "if (arrayIteratorExists && objPrototype === arrayIteratorPrototype) {\n  return 'Array Iterator';\n}",
     "ctx": {
       "type": "method",
@@ -20269,8 +20273,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10957,
-    "codeStart": 10963,
+    "line": 11463,
+    "codeStart": 11469,
     "code": "if (stringIteratorExists && objPrototype === stringIteratorPrototype) {\n  return 'String Iterator';\n}",
     "ctx": {
       "type": "method",
@@ -20290,8 +20294,8 @@
     "isClass": false,
     "isEvent": false,
     "ignore": false,
-    "line": 10967,
-    "codeStart": 10973,
+    "line": 11473,
+    "codeStart": 11479,
     "code": "if (objPrototype === null) {\n  return 'Object';\n}\n\nreturn Object\n  .prototype\n  .toString\n  .call(obj)\n  .slice(toStringLeftSliceLength, toStringRightSliceLength);\n}\n\nreturn typeDetect;\n\n})));\n\n},{}]},{},[1])(1)\n});",
     "ctx": {
       "type": "method",

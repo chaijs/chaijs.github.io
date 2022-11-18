@@ -35,6 +35,13 @@ document.getElementsByName('bar').should.have.class('foo')
 expect(document.querySelector('main article')).to.have.class('foo')
 ```
 
+Also accepts regex as argument.
+
+```js
+document.getElementsByName('bar').should.have.class(/foo/)
+expect(document.querySelector('main article')).to.have.class(/foo/)
+```
+
 ### `id(id)`
 Assert that the [HTMLElement][] has the given id.
 
@@ -188,6 +195,24 @@ Assert that the [HTMLElement][] has the given style prop name value equal to a g
 ```js
 document.querySelector('.container').should.have.style('color', 'rgb(55, 66, 77)')
 expect(document.querySelector('.container')).not.to.have.style('borderWidth', '3px')
+```
+
+### `focus`
+
+Assert that the [HTMLElement][] has set focus.
+
+```js
+document.querySelector('input').should.have.focus
+expect(document.querySelector('.container')).not.to.have.focus
+```
+
+### `checked`
+
+Assert that the [HTMLElement][] is an [HTMLInputElement][] with `type` of "checkbox" or "radio", and that its `checked` state is true or false.
+
+```js
+document.querySelector('input').should.be.checked
+expect(document.querySelector('.checkbox')).not.to.be.checked
 ```
 
 ## Installation

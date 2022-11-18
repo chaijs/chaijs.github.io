@@ -139,6 +139,12 @@
   "counting": [
     "counting"
   ],
+  "create-by-tsdx": [
+    "create-by-tsdx"
+  ],
+  "create-by-yarn-tool": [
+    "create-by-yarn-tool"
+  ],
   "cron": [
     "cron"
   ],
@@ -159,6 +165,9 @@
   ],
   "decimal": [
     "decimal"
+  ],
+  "decimal.js": [
+    "decimal.js"
   ],
   "deep": [
     "deep"
@@ -314,6 +323,9 @@
   ],
   "interceptor": [
     "interceptor"
+  ],
+  "ip": [
+    "ip"
   ],
   "isMatch": [
     "isMatch"

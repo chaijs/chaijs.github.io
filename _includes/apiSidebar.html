@@ -19,6 +19,7 @@
         <div class="box">
             <div class="antiscroll-inner" style="height: 338px; width: 225px;">
                 <div class="box-inner">
+                  {% assign items = "" %}
                   {% for method in site.data.chai %}
                     {% assign render = false %}
                     {% assign name = false %}
@@ -31,8 +32,12 @@
                       {% endif %}
                     {% endfor %}
                     {% if render %}
-                      <a href="#method_{{ name | slugify }}" class="scroll item">{{ name }}</a>
+                      {% capture items %}{{ items | append: ", " | append: name }}{% endcapture %}
                     {% endif %}
+                  {% endfor %}
+                  {% assign items = items | remove_first: ", " | split: ", " | sort_natural %}
+                  {% for name in items %}
+                    <a href="#method_{{ name | slugify }}" class="scroll item">{{ name }}</a>
                   {% endfor %}
                 </div>
             </div>

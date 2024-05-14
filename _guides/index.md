@@ -67,6 +67,36 @@ export default function myPlugin(chai, utils) {
 }
 ```
 
+### Guard against multiple calls to `use(..)`
+
+In certain situations the `use(..)` function  could be called multiple times with your plugin. For a lot of plugins this won't be a issue but it's considered best practise to check if the plugin has been applied already.
+
+Here's a contrived example of how you might implement a check in your plugin but the actual implementation is left up to the plugin author.
+
+```js
+import * as chai from 'chai';
+
+let overwritten = false;
+
+function somePlugin(base) {
+  if (!overwritten) {
+    base.util.overwriteMethod(base.Assertion.prototype, "equal", function (_super) {
+      return function(...args) {
+        console.log("Called!"); // log something out
+
+        return _super.call(this, ...args);
+      };
+    });
+    overwritten = true;
+  }
+}
+
+chai.use(somePlugin);
+chai.use(somePlugin);
+
+chai.expect(123).to.equal(123); // Logs `Called!` only once
+```
+
 By following these guidelines, you can create Chai plugins that are easy to use and maintain.
 
 - [Core Plugin Concepts]({{site.github.url}}/guide/plugins/) covers the basics of using the Chai Plugin API.

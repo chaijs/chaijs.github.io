@@ -33,7 +33,7 @@ When creating a Chai plugin, it's possible to expose globals that can be used ac
 
 #### Good Practice
 
-Expose any global returned in the `chai.use()` in the module record as well, so it can be imported directly:
+Prefer exporting any global in the module record so it can be imported directly instead of adding it as a property in the chai object:
 
 ```javascript
 // An example of a good plugin:
@@ -41,7 +41,6 @@ Expose any global returned in the `chai.use()` in the module record as well, so 
 export const myGlobal = {...};
 
 export default function myPlugin(chai, utils) {
-  chai.myGlobal = myGlobal;
 }
 ```
 

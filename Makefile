@@ -15,7 +15,7 @@ generated_data: plugins releases api-docs chaijs
 
 api-docs: clean-api-docs
 	@mkdir -p _data
-	@npm install chai@latest
+	@npm install chai@4
 	@node ./node_modules/dox/bin/dox --raw < ./node_modules/chai/chai.js > _data/chai.json
 
 #

@@ -32,6 +32,8 @@ var chai = require('chai')
 chai.use(chaiHttp);
 ```
 
+To use Chai HTTP with import, cf. [this guide](https://www.chaijs.com/guide/using-chai-with-esm-and-plugins/).
+
 To use Chai HTTP on a web page, just include the [`dist/chai-http.js`](dist/chai-http.js) file:
 
 ```html

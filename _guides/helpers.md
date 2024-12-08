@@ -74,7 +74,7 @@ Hopefully our `Model` class is self explanatory, but as an example,
 here we construct a person object.
 
 ```javascript
-var arthur = new Model('person');
+const arthur = new Model('person');
 arthur.set('name', 'Arthur Dent');
 arthur.set('occupation', 'traveller');
 console.log(arthur.get('name')); // Arthur Dent
@@ -97,7 +97,7 @@ implementation throughout.
 For this example, we want the following test case to pass:
 
 ```javascript
-var arthur = new Model('person');
+const arthur = new Model('person');
 expect(arthur).to.be.a.model;
 ```
 
@@ -141,7 +141,7 @@ expect(arthur).to.be.a.model('person');
 
 // language chain method
 Assertion.addMethod('model', function (type) {
-  var obj = this._obj;
+  const obj = this._obj;
 
   // first, our instanceof check, shortcut
   new Assertion(this._obj).to.be.instanceof(Model);
@@ -176,8 +176,8 @@ To understand when to best use chainable methods we will examine a chainable met
 core.
 
 ```javascript
-var arr = [ 1, 2, 3 ]
-  , obj = { a: 1, b: 2 };
+const arr = [ 1, 2, 3 ];
+const obj = { a: 1, b: 2 };
 
 expect(arr).to.contain(2);
 expect(obj).to.contain.key('a');
@@ -241,7 +241,7 @@ function assertModelAge (n) {
   new Assertion(this._obj).to.be.instanceof(Model);
 
   // make sure we have an age and its a number
-  var age = this._obj.get('age');
+  const age = this._obj.get('age');
   new Assertion(age).to.be.a('number');
 
   // do our comparison
@@ -301,7 +301,7 @@ Let's start out with the basic overwrite utility and a basic assertion.
 ```javascript
 chai.overwriteProperty('ok', function (_super) {
   return function checkModel () {
-    var obj = this._obj;
+    const obj = this._obj;
     if (obj && obj instanceof Model) {
       new Assertion(obj).to.have.deep.property('_attrs.id').a('number');
     } else {
@@ -324,7 +324,7 @@ will serve as the actual assertion.
 With this in place, we can write positive assertions.
 
 ```javascript
-var arthur = new Model('person');
+const arthur = new Model('person');
 arthur.set('id', 42);
 expect(arthur).to.be.ok;
 expect(true).to.be.ok;
@@ -336,7 +336,7 @@ revert to the original behavior. We will, however, run into a bit of
 trouble if we try to negate an `ok` assertion on a model.
 
 ```javascript
-var arthur = new Model('person');
+const arthur = new Model('person');
 arthur.set('id', 'dont panic');
 expect(arthur).to.not.be.ok;
 ```
@@ -355,10 +355,10 @@ property overwrite would look like this.
 ```javascript
 chai.overwriteProperty('ok', function (_super) {
   return function checkModel () {
-    var obj = this._obj;
+    const obj = this._obj;
     if (obj && obj instanceof Model) {
       new Assertion(obj).to.have.deep.property('_attrs.id'); // we always want this
-      var assertId = new Assertion(obj._attrs.id);
+      const assertId = new Assertion(obj._attrs.id);
       utils.transferFlags(this, assertId, false); // false means don't transfer `object` flag
       assertId.is.a('number');
     } else {
@@ -380,7 +380,7 @@ for the wrong type of id attribute, we would get an error message that states
 test suite, so we will provide it with a bit more information.
 
 ```javascript
-var assertId = new Assertion(obj._attrs.id, 'model assert ok id type');
+const assertId = new Assertion(obj._attrs.id, 'model assert ok id type');
 ```
 
 This will change our error message to be a more informative `model assert ok id type:
@@ -393,7 +393,7 @@ For this example we will be returning to our example of asserting Arthur's
 age to be above a minimum threshold.
 
 ```javascript
-var arthur = new Model('person');
+const arthur = new Model('person');
 arthur.set('age', 27);
 expect(arthur).to.have.age.above(17);
 ```
@@ -405,7 +405,7 @@ so all we have to do is check if that exists.
 Assertion.overwriteMethod('above', function (_super) {
   return function assertAge (n) {
     if (utils.flag(this, 'model.age')) {
-      var obj = this._obj;
+      const obj = this._obj;
 
       // first we assert we are actually working with a model
       new Assertion(obj).instanceof(Model);
@@ -414,7 +414,7 @@ Assertion.overwriteMethod('above', function (_super) {
       new Assertion(obj).to.have.deep.property('_attrs.age').a('number');
 
       // now we compare
-      var age = obj.get('age');
+      const age = obj.get('age');
       this.assert(
           age > n
         , "expected #{this} to have an age above #{exp} but got #{act}"

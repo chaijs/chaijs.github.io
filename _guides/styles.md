@@ -28,9 +28,10 @@ node.js. This assert module, however, provides several additional
 tests and is browser compatible.
 
 ```js
-var assert = require('chai').assert
-  , foo = 'bar'
-  , beverages = { tea: [ 'chai', 'matcha', 'oolong' ] };
+import {assert} from 'chai';
+
+const foo = 'bar';
+const beverages = { tea: [ 'chai', 'matcha', 'oolong' ] };
 
 assert.typeOf(foo, 'string'); // without optional message
 assert.typeOf(foo, 'string', 'foo is a string'); // with optional message
@@ -59,9 +60,10 @@ The BDD style is exposed through `expect` or `should` interfaces. In both
 scenarios, you chain together natural language assertions.
 
 ```js
-var expect = require('chai').expect
-  , foo = 'bar'
-  , beverages = { tea: [ 'chai', 'matcha', 'oolong' ] };
+import {expect} from 'chai';
+
+const foo = 'bar';
+const beverages = { tea: [ 'chai', 'matcha', 'oolong' ] };
 
 expect(foo).to.be.a('string');
 expect(foo).to.equal('bar');
@@ -73,7 +75,7 @@ Expect also allows you to include arbitrary messages to prepend to any failed
 assertions that might occur.
 
 ```js
-var answer = 43;
+const answer = 43;
 
 // AssertionError: expected 43 to equal 42.
 expect(answer).to.equal(42);
@@ -94,9 +96,12 @@ property to start your chain. This style has some issues when used with Internet
 Explorer, so be aware of browser compatibility.
 
 ```js
-var should = require('chai').should() //actually call the function
-  , foo = 'bar'
-  , beverages = { tea: [ 'chai', 'matcha', 'oolong' ] };
+import {should} from 'chai';
+
+should(); //actually call the function
+
+const foo = 'bar';
+const beverages = { tea: [ 'chai', 'matcha', 'oolong' ] };
 
 foo.should.be.a('string');
 foo.should.equal('bar');
@@ -111,9 +116,10 @@ First of all, notice that the `expect` require is just a reference to the
 being executed.
 
 ```js
-var chai = require('chai')
-  , expect = chai.expect
-  , should = chai.should();
+import * as chai from 'chai';
+
+const {expect} = chai;
+const should = chai.should();
 ```
 
 The `expect` interface provides a function as a starting point for chaining
@@ -143,7 +149,10 @@ with a `should` chain starter. As such, the appropriate few assertions
 for this scenario are as follows:
 
 ```js
-var should = require('chai').should();
+import {should as loadShould} from 'chai';
+
+const should = loadShould();
+
 db.get(1234, function (err, doc) {
   should.not.exist(err);
   should.exist(doc);
@@ -168,7 +177,7 @@ statement – it has to go on its own line, which looks a little
 verbose:
 
 ```js
-import chai from 'chai';
+import * as chai from 'chai';
 chai.should();
 ```
 

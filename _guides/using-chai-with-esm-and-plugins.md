@@ -27,8 +27,8 @@ import { expect } from 'chai';
 Chai plugins can extend Chai's capabilities. To use a plugin, you first need to install it, then use the `use` method to load it. Here's how to use the `chai-http` plugin as an example:
 
 ```javascript
-import chai from 'chai';
-import { request }, chaiHttp from 'chai-http';
+import * as chai from 'chai';
+import { request, default as chaiHttp } from 'chai-http';
 
 chai.use(chaiHttp);
 
@@ -40,8 +40,10 @@ chai.use(chaiHttp);
 Here's an example of using `chai-http` to test an HTTP GET request:
 
 ```javascript
-import chai, { expect } from 'chai';
-import { request }, chaiHttp from 'chai-http';
+import * as chai from 'chai';
+import { request, default as chaiHttp } from 'chai-http';
+
+const {expect} = chai;
 
 chai.use(chaiHttp);
 

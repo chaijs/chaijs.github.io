@@ -7,7 +7,6 @@
   headings:
     - Node.js
     - Browser
-    - Other Platforms
 ---
 
 # Installation

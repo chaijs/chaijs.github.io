@@ -5,9 +5,9 @@
 all: generated_data docs-server
 
 #
-# Generate the docs
+# Generate the docs (plugin data is committed; refresh it with `make plugins`)
 #
-generated_data: plugins releases api-docs chaijs
+generated_data: releases api-docs chaijs
 
 #
 # Generate the api docs
@@ -74,7 +74,7 @@ install:
 # Clean
 #
 
-clean: clean-plugins clean-api-docs clean-releases
+clean: clean-api-docs clean-releases
 
 #
 # Clean the plugins

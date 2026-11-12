@@ -66,12 +66,12 @@ var keywords = files.filter(function (file) {
   return hiddenKeywords.indexOf(value) === -1 && total.indexOf(value) === index;
 }).sort().reduce(function (total, keyword) {
   var addition = keyword.trim();
-  if (keywordMap[keyword]) {
+  if (Object.hasOwn(keywordMap, keyword)) {
     keyword = keywordMap[keyword];
   }
   total[keyword] = (total[keyword] || []).concat(addition);
   return total;
-}, {});
+}, Object.create(null));
 
 console.log(keywords);
 

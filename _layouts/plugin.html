@@ -7,14 +7,14 @@ bodyClass: plugin
   <div class="banner grid_4">
     <div class="wrap">
       <div class="title">
-        <h2 class="plain">{{ plugin.name }}</h2>
+        <h2 class="plain">{{ plugin.name | escape }}</h2>
       </div>
-      <div class="desc">{{ plugin.description }}</div>
+      <div class="desc">{{ plugin.description | escape }}</div>
       <h3 class="link">
         {% if plugin.repository.url contains "github.com" %}
-        <a href="https://{{ plugin.repository.url | replace: 'git@github.com', 'github.com' | replace: 'git+ssh://', '' | replace: 'git+https://', '' | replace: 'git://', '' | replace: 'http://', '' | replace: 'https://', '' | replace: 'github.com:', 'github.com/' }}">
+        <a href="https://{{ plugin.repository.url | replace: 'git@github.com', 'github.com' | replace: 'git+ssh://', '' | replace: 'git+https://', '' | replace: 'git://', '' | replace: 'http://', '' | replace: 'https://', '' | replace: 'github.com:', 'github.com/' | escape }}">
           View the Project on GitHub
-          <span>{{ plugin.repository.url | split: 'github.com:' | last | split: 'github.com/' | last | replace: '.git', '' }}</span>
+          <span>{{ plugin.repository.url | split: 'github.com:' | last | split: 'github.com/' | last | replace: '.git', '' | escape }}</span>
         </a>
         {% endif %}
       </h3>
@@ -22,7 +22,7 @@ bodyClass: plugin
       <div class="platform supported">
         <div class="icon">✓</div>
         node.js supported
-        <pre><code>npm install {{ plugin.name }}</code></pre>
+        <pre><code>npm install {{ plugin.name | escape }}</code></pre>
       </div>
       {% endunless %}
       {% if plugin.keywords contains 'browser' %}
@@ -32,7 +32,7 @@ bodyClass: plugin
       </div>
       {% endif %}
       <div class="people">
-        <div class="author">Project maintained by {{ plugin.author.name }}</div>
+        <div class="author">Project maintained by {{ plugin.author.name | escape }}</div>
       </div>
     </div>
   </div>

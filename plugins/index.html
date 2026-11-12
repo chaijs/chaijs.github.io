@@ -8,7 +8,7 @@ bodyClass: plugins
   <div class="line"></div>
   {% for keyword in site.data.plugin_keywords %}
     <div class="tag">
-      <div class="which" data-keywords="{{ keyword[1] | jsonify | escape }}">{{ keyword[0] }}</div><span class="reset">×</span>
+      <div class="which" data-keywords="{{ keyword[1] | jsonify | escape }}">{{ keyword[0] | escape }}</div><span class="reset">×</span>
     </div>
   {% endfor %}
 
@@ -18,11 +18,11 @@ bodyClass: plugins
   <div class="plug_list_scratch rowInside" style="height: 3000px;">
     {% for plugin_hash in site.data.plugins %}
     {% assign plugin = plugin_hash[1] %}
-    <article id="{{ plugin.name }}" class="grid_3 contrast plugin-box_s" data-keywords="{{ plugin.keywords | jsonify | escape }}">
-      <a href="{{ site.github.url }}/plugins/{{ plugin.name }}/" class="ablock">
+    <article id="{{ plugin.name | escape }}" class="grid_3 contrast plugin-box_s" data-keywords="{{ plugin.keywords | jsonify | escape }}">
+      <a href="{{ site.github.url }}/plugins/{{ plugin.name | escape }}/" class="ablock">
         <div class="wrap">
-          <h3 class="fancy">{{ plugin.name }}</h3>
-          <p>{{ plugin.description }}</p>
+          <h3 class="fancy">{{ plugin.name | escape }}</h3>
+          <p>{{ plugin.description | escape }}</p>
         </div>
       </a>
     </article>

@@ -17,4 +17,5 @@ npm-debug.log
 *.swp
 
 _site
+.chai
 .sass-cache

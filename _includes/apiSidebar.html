@@ -19,20 +19,9 @@
         <div class="box">
             <div class="antiscroll-inner" style="height: 338px; width: 225px;">
                 <div class="box-inner">
-                  {% for method in site.data.chai %}
-                    {% assign render = false %}
-                    {% assign name = false %}
-                    {% for tag in method.tags %}
-                      {% if tag.type == "namespace" and tag.string == page.api_namespace %}
-                        {% assign render = true %}
-                      {% endif %}
-                      {% if tag.type == "name" %}
-                        {% capture name %}{{ tag.string }}{% endcapture %}
-                      {% endif %}
-                    {% endfor %}
-                    {% if render %}
-                      <a href="#method_{{ name | slugify }}" class="scroll item">{{ name }}</a>
-                    {% endif %}
+                  {% assign methods = site.data.chai | where: "category", page.api_namespace %}
+                  {% for method in methods %}
+                    <a href="#method_{{ method.name | slugify }}" class="scroll item">{{ method.name }}</a>
                   {% endfor %}
                 </div>
             </div>

@@ -16,7 +16,7 @@ generated_data: plugins releases api-docs chaijs
 # checkout instead, e.g. `make api-docs CHAI_DIR=../chai`.
 #
 
-CHAI_REF ?= v6.3.0
+CHAI_REF ?= v4.3.7
 CHAI_CLONE = .chai
 CHAI_DIR ?= $(CHAI_CLONE)
 
@@ -74,7 +74,7 @@ clean: clean-plugins clean-api-docs clean-releases
 #
 
 clean-plugins:
-	@rm -rf _data/plugins/ _data/plugin_keywords.json
+	@rm -rf _data/plugins/ _data/plugin_keywords.json plugins/*.md
 
 #
 # Clean the api- docs

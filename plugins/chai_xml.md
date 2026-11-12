@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-xml/
-pluginName: chai-xml
+permalink: "plugins/chai-xml/"
+pluginName: chai_xml
 ---
 
 chai-xml
@@ -64,6 +64,7 @@ describe('assert some xml', function(){
 Any contribution is welcome! Please check the [issues](https://github.com/krampstudio/chai-xml/issues). Do some unit tests as far as possible.
 
 ## Release History
+ * _0.4.1_ dependency update
  * _0.3.0_ adding `deep` comparison. Thanks to [PR #2](https://github.com/krampstudio/chai-xml/pull/2)
    * _0.3.1_ change package.json keywords
    * _0.3.2_ Add eslint, fix parsing error when invalid, add package-lock.json
@@ -71,5 +72,5 @@ Any contribution is welcome! Please check the [issues](https://github.com/kramps
 
 
 ## License
-Copyright (c) 2014-2018 Bertrand Chevrier  
+Copyright (c) 2014-2023 Bertrand Chevrier  
 Licensed under the MIT license.

@@ -1,65 +1,46 @@
 ---
 layout: plugin
-permalink: plugins/chai-exclude/
-pluginName: chai-exclude
+permalink: "plugins/chai-exclude/"
+pluginName: chai_exclude
 ---
 
 # chai-exclude
 
 [![npm](https://img.shields.io/npm/v/chai-exclude.svg)](https://www.npmjs.com/package/chai-exclude)
 [![npm](https://img.shields.io/npm/dw/chai-exclude.svg)](https://www.npmjs.com/package/chai-exclude)
-[![Build Status](https://travis-ci.org/mesaugat/chai-exclude.svg?branch=master)](https://travis-ci.org/mesaugat/chai-exclude)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![CI Status](https://github.com/mesaugat/chai-exclude/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/mesaugat/chai-exclude/actions/workflows/test.yml)
 
 Exclude keys to compare from a deep equal operation with chai [expect](http://chaijs.com/api/bdd/) or [assert](http://chaijs.com/api/assert/).
 
 ## Why?
 
-Sometimes you'll need to exclude object properties that generate unique values while doing a deep equal operation. This plugin makes it easier to remove those properties from comparison.
-
-https://github.com/chaijs/chai/issues/885
+Sometimes you'll need to exclude object properties that generate unique values while doing an assertion. This plugin makes it easier to remove those properties from comparison.
 
 Works with both objects and array of objects with or without circular references.
 
 ## Installation
 
+`chai-exclude` is an ESM package targeting Chai v5 and above.
+
 ```bash
 npm install chai-exclude --save-dev
 ```
 
+If you are using Chai v4, you can use the CommonJS version of the package.
+
 ```bash
-yarn add chai-exclude --dev
+npm install chai-exclude@2.1.1 --save-dev
 ```
 
 ## Usage
 
-### Require
-
 ```js
-const chai = require('chai');
-const chaiExclude = require('chai-exclude');
+import { use } from 'chai'
+import chaiExclude from 'chai-exclude'
 
-chai.use(chaiExclude);
-```
-
-### ES6 Import
-
-```js
-import chai from 'chai';
-import chaiExclude from 'chai-exclude';
-
-chai.use(chaiExclude);
-```
-
-### TypeScript
-
-```js
-import * as chai from 'chai';
-import chaiExclude from 'chai-exclude';
-
-chai.use(chaiExclude);
-
-// The typings for chai-exclude are included with the package itself.
+// If you are using TypeScript, the typings for chai-exclude are included in the package
+use(chaiExclude)
 ```
 
 ## Examples

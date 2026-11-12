@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/jest-kefir/
-pluginName: jest-kefir
+permalink: "plugins/jest-kefir/"
+pluginName: jest_kefir
 ---
 
 # jest-kefir

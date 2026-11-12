@@ -3,7 +3,8 @@
 
   {% include head.html %}
 
-  <body{% if page.bodyClass %} class="{{ page.bodyClass }}"{% endif %}>
+  {% assign bodyClass = page.bodyClass | default: layout.bodyClass %}
+  <body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
 
     {% include header.html %}
 

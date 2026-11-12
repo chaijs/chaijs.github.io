@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-doge/
-pluginName: chai-doge
+permalink: "plugins/chai-doge/"
+pluginName: chai_doge
 ---
 
 # chai-doge

@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-json-equal/
-pluginName: chai-json-equal
+permalink: "plugins/chai-json-equal/"
+pluginName: chai_json_equal
 ---
 
 chai-json-equal

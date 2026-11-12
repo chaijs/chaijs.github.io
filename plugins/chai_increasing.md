@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-increasing/
-pluginName: chai-increasing
+permalink: "plugins/chai-increasing/"
+pluginName: chai_increasing
 ---
 
 # chai-increasing

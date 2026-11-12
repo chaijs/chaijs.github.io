@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-sorted/
-pluginName: chai-sorted
+permalink: "plugins/chai-sorted/"
+pluginName: chai_sorted
 ---
 
 [![npm Version](https://img.shields.io/npm/v/chai-sorted.svg)](https://npmjs.org/package/chai-sorted)

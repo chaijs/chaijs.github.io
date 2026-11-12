@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-json-pattern/
-pluginName: chai-json-pattern
+permalink: "plugins/chai-json-pattern/"
+pluginName: chai_json_pattern
 ---
 
 # Chai JSON Pattern

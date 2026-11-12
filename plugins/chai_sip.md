@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-sip/
-pluginName: chai-sip
+permalink: "plugins/chai-sip/"
+pluginName: chai_sip
 ---
 
 # chai-sip

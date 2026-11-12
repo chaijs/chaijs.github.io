@@ -1,12 +1,12 @@
-var fs = require('fs');
-var files = fs.readdirSync('_data/plugins');
+const fs = require('fs');
+const files = fs.readdirSync('_data/plugins');
 files.filter(function (file) {
   return file.slice(-5) === '.json';
 }).forEach(function (file) {
   try {
-    var name = file.slice(0, -5);
-    var pluginJson = JSON.parse(fs.readFileSync('_data/plugins/' + file, 'utf8'));
-    var contents = '---\nlayout: plugin\npermalink: plugins/' + encodeURIComponent(pluginJson.name) + '/\npluginName: ' + encodeURIComponent(pluginJson.name) + '\n---\n\n' + pluginJson.readme;
+    const name = file.slice(0, -5);
+    const pluginJson = JSON.parse(fs.readFileSync('_data/plugins/' + file, 'utf8'));
+    const contents = '---\nlayout: plugin\npermalink: ' + JSON.stringify('plugins/' + pluginJson.name + '/') + '\npluginName: ' + name + '\n---\n\n' + pluginJson.readme;
     fs.writeFileSync(__dirname + '/../plugins/' + name + '.md', contents, 'utf8');
     console.log('Wrote', 'plugins/' + name + '.md')
   } catch(e) {

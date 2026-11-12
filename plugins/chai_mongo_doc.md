@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-mongo-doc/
-pluginName: chai-mongo-doc
+permalink: "plugins/chai-mongo-doc/"
+pluginName: chai_mongo_doc
 ---
 
 chaiMongoDoc

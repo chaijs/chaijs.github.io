@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-eventemitter/
-pluginName: chai-eventemitter
+permalink: "plugins/chai-eventemitter/"
+pluginName: chai_eventemitter
 ---
 
 # chai-eventemitter [![NPM Version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]

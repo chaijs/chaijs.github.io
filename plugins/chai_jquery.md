@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-jquery/
-pluginName: chai-jquery
+permalink: "plugins/chai-jquery/"
+pluginName: chai_jquery
 ---
 
 # chai-jquery

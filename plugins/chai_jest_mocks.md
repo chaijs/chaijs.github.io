@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-jest-mocks/
-pluginName: chai-jest-mocks
+permalink: "plugins/chai-jest-mocks/"
+pluginName: chai_jest_mocks
 ---
 
 # chai-jest-mocks

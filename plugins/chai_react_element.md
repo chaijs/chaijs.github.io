@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-react-element/
-pluginName: chai-react-element
+permalink: "plugins/chai-react-element/"
+pluginName: chai_react_element
 ---
 
 # chai-react-element

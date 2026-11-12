@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/maybe-chai/
-pluginName: maybe-chai
+permalink: "plugins/maybe-chai/"
+pluginName: maybe_chai
 ---
 
 [![Build Status](https://travis-ci.org/kwirke/maybe-chai.svg?branch=master)](https://travis-ci.org/kwirke/maybe-chai)

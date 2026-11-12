@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-parentheses/
-pluginName: chai-parentheses
+permalink: "plugins/chai-parentheses/"
+pluginName: chai_parentheses
 ---
 
 chai-parentheses

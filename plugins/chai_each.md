@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-each/
-pluginName: chai-each
+permalink: "plugins/chai-each/"
+pluginName: chai_each
 ---
 
 # Chai Each

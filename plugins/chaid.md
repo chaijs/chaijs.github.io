@@ -1,6 +1,6 @@
 ---
 layout: plugin
-permalink: plugins/chaid/
+permalink: "plugins/chaid/"
 pluginName: chaid
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-flux/
-pluginName: chai-flux
+permalink: "plugins/chai-flux/"
+pluginName: chai_flux
 ---
 
 # chai-flux

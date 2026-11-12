@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-subset-in-order/
-pluginName: chai-subset-in-order
+permalink: "plugins/chai-subset-in-order/"
+pluginName: chai_subset_in_order
 ---
 
 [![MIT License](https://img.shields.io/badge/license-mit-green.svg?style=flat-square)](https://opensource.org/licenses/MIT)

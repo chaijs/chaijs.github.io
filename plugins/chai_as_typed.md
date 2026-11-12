@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-as-typed/
-pluginName: chai-as-typed
+permalink: "plugins/chai-as-typed/"
+pluginName: chai_as_typed
 ---
 
 # chai-as-typed

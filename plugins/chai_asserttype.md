@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-asserttype/
-pluginName: chai-asserttype
+permalink: "plugins/chai-asserttype/"
+pluginName: chai_asserttype
 ---
 
 # chai-asserttype

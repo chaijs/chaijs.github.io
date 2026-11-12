@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-checkmark/
-pluginName: chai-checkmark
+permalink: "plugins/chai-checkmark/"
+pluginName: chai_checkmark
 ---
 
 # Chai Checkmark [![][ci-develop]][travis-ci] [![][downloads]][npm]

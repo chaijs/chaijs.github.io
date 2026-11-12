@@ -1,12 +1,12 @@
 ---
 layout: plugin
-permalink: plugins/chai-bites/
-pluginName: chai-bites
+permalink: "plugins/chai-bites/"
+pluginName: chai_bites
 ---
 
-# Chai Assertions for Byte Arrays Equality
+Fork of [chai-bytes](https://www.npmjs.com/package/chai-bytes) published as ESM with relaxed input types.
 
-Fork of [chai-bytes](https://www.npmjs.com/package/chai-bytes) with relaxed input types.
+# Chai Assertions for Byte Arrays Equality
 
 [![Build status][workflow-image]][workflow-url]
 [![Code coverage][coveralls-image]][coveralls-url]
@@ -22,14 +22,14 @@ Fork of [chai-bytes](https://www.npmjs.com/package/chai-bytes) with relaxed inpu
 [license-image]: https://img.shields.io/github/license/slowli/chai-bytes.svg
 [license-url]: https://opensource.org/licenses/Apache-2.0
 
-**chai-bites** extends [Chai][chai] with a `equalBytes` function,
+**chai-bytes** extends [Chai][chai] with a `equalBytes` function,
 which can be used to test equality of byte arrays (i.e., `Uint8Array` instances).
 
 ## Basic Usage
 
 ```javascript
 const { expect, assert } = require('chai')
-  .use(require('chai-bites'));
+  .use(require('chai-bytes'));
 
 const buffer = new Uint8Array([ 1, 2, 3, 4, 5 ]);
 expect(buffer).to.equalBytes('0102030405');
@@ -50,13 +50,13 @@ a `TypeError` is thrown.
 
 ## Developer Notes
 
-**chai-bites** uses combined code coverage from the tested browser environments
+**chai-bytes** uses combined code coverage from the tested browser environments
 (Firefox and PhantomJS). This is because PhantomJS is a typical old environment
 that may have problems with `Uint8Array`s (e.g., it misses a substantial parts
 of their methods).
 
 ## License
 
-**chai-bites** is available under [Apache-2.0 license](LICENSE).
+**chai-bytes** is available under [Apache-2.0 license](LICENSE).
 
 [chai]: https://chaijs.com/

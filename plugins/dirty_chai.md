@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/dirty-chai/
-pluginName: dirty-chai
+permalink: "plugins/dirty-chai/"
+pluginName: dirty_chai
 ---
 
 dirty-chai
@@ -51,7 +51,7 @@ The following built-in assertions are modified by this plugin to now use the fun
 
 ## Caveats
 
-**Always terminate with a function**
+### Always terminate with a function
 
 These forms can also be mixed, but the chain must always be terminated in the function form or assertions up to that point in the chain will not execute.
 
@@ -60,7 +60,7 @@ expect(true).to.be.true.and.not.false();
 expect(true).to.be.true().and.not.false();
 ```
 
-**Chaining length/arguments**
+### Chaining length/argument
 
 This breaks both the `length` and `arguments` asserts when they are in the chain following any other assertion. To work around this limitation, do the `length` or `arguments` asserts first in the chain or just do multiple assertion statements.
 
@@ -72,7 +72,7 @@ myArray.should.exist();
 myArray.should.have.length(3);
 ```
 
-** use with chai-as-promised **
+### use with chai-as-promised
 
 If you're using chai-as-promised, you should `.use` chai-as-promised before dirty-chai:
 

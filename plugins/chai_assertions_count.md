@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-assertions-count/
-pluginName: chai-assertions-count
+permalink: "plugins/chai-assertions-count/"
+pluginName: chai_assertions_count
 ---
 
 # Chai Assertions Count

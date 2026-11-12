@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-kekka/
-pluginName: chai-kekka
+permalink: "plugins/chai-kekka/"
+pluginName: chai_kekka
 ---
 
 # Chai-Kekka

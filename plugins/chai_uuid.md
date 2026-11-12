@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-uuid/
-pluginName: chai-uuid
+permalink: "plugins/chai-uuid/"
+pluginName: chai_uuid
 ---
 
 # chai-uuid

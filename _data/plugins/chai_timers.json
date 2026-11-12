@@ -1,0 +1,13 @@
+{
+  "name": "chai-timers",
+  "description": "Allows the Chai Assertion library to create and measure timers.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chaijs/chai-timers.git"
+  },
+  "author": {
+    "name": "Jake Luer",
+    "email": "jake@alogicalparadox.com"
+  },
+  "readme": "chai-timers\n==========="
+}

@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-like/
-pluginName: chai-like
+permalink: "plugins/chai-like/"
+pluginName: chai_like
 ---
 
 [![Build status](https://img.shields.io/travis/zation/chai-like.svg?label=travis)](https://travis-ci.org/zation/chai-like)
@@ -164,14 +164,14 @@ If some strings require fuzzy matching we can do this with a plugin as follows:
 var chai = require('chai');
 var like = require('chai-like');
 
-var regexPlugin = like.extend({
+var regexPlugin = {
   match: function(object, expected) {
     return typeof object === 'string' && expected instanceof RegExp;
   },
   assert: function(object, expected) {
     return expected.test(object);
   }
-});
+};
 
 like.extend(regexPlugin);
 

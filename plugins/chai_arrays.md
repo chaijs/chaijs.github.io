@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-arrays/
-pluginName: chai-arrays
+permalink: "plugins/chai-arrays/"
+pluginName: chai_arrays
 ---
 
 # chai-arrays  ![Continuous Integration](https://github.com/GaneshSPatil/chai-arrays/workflows/Continuous%20Integration/badge.svg)

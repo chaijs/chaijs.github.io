@@ -12,11 +12,21 @@ generated_data: plugins releases api-docs chaijs
 #
 # Generate the api docs
 #
+# The chai release to document. Override CHAI_DIR to build from a local
+# checkout instead, e.g. `make api-docs CHAI_DIR=../chai`.
+#
+
+CHAI_REF ?= v6.3.0
+CHAI_CLONE = .chai
+CHAI_DIR ?= $(CHAI_CLONE)
 
 api-docs: clean-api-docs
 	@mkdir -p _data
-	@npm install chai@4
-	@node ./node_modules/dox/bin/dox --raw < ./node_modules/chai/chai.js > _data/chai.json
+	@if [ "$(CHAI_DIR)" = "$(CHAI_CLONE)" ]; then \
+		rm -rf $(CHAI_CLONE); \
+		git -c advice.detachedHead=false clone -q --depth 1 --branch $(CHAI_REF) https://github.com/chaijs/chai.git $(CHAI_CLONE); \
+	fi
+	@node _scripts/build-api-docs.js $(CHAI_DIR)/lib > _data/chai.json
 
 #
 # Generate the api docs

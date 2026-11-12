@@ -1,7 +1,13 @@
-// Usage: node _scripts/review-plugins.js
+// Usage: node _scripts/review-plugins.js [--min-downloads <monthly>]
 
 const fs = require('fs');
 const readline = require('readline/promises');
+const {parseArgs} = require('util');
+
+const {values: args} = parseArgs({
+  options: {'min-downloads': {type: 'string', default: '0'}}
+});
+const minDownloads = Number(args['min-downloads']);
 
 const SEARCH_URL = 'https://registry.npmjs.org/-/v1/search?text=keywords:chai-plugin';
 const PAGE_SIZE = 250;
@@ -27,23 +33,26 @@ const save = (list) => {
 const main = async () => {
   const list = JSON.parse(fs.readFileSync(LIST_FILE, 'utf8'));
   const known = new Set([...list.accepted, ...list.rejected]);
-  const pending = (await search())
-    .filter((result) => !known.has(result.package.name))
-    .sort((a, b) => b.downloads.weekly - a.downloads.weekly);
+  const unreviewed = (await search()).filter((result) => !known.has(result.package.name));
+  const pending = unreviewed
+    .filter((result) => result.downloads.monthly >= minDownloads)
+    .sort((a, b) => b.downloads.monthly - a.downloads.monthly);
+  const hidden = unreviewed.length - pending.length;
+  const hiddenNote = hidden ? ` (${hidden} below ${minDownloads} monthly downloads hidden)` : '';
 
   if (!pending.length) {
-    console.log('No new plugins to review.');
+    console.log(`No new plugins to review${hiddenNote}.`);
     return;
   }
 
   const rl = readline.createInterface({input: process.stdin, output: process.stdout});
-  console.log(`${pending.length} plugins to review.\n`);
+  console.log(`${pending.length} plugins to review${hiddenNote}.\n`);
 
   try {
     for (const [i, {package: pkg, downloads}] of pending.entries()) {
       console.log(`[${i + 1}/${pending.length}] ${pkg.name}@${pkg.version}`);
       if (pkg.description) console.log(`  ${pkg.description}`);
-      console.log(`  ${downloads.weekly.toLocaleString()} weekly downloads, last published ${pkg.date.slice(0, 10)}`);
+      console.log(`  ${downloads.monthly.toLocaleString()} monthly downloads, last published ${pkg.date.slice(0, 10)}`);
       console.log(`  ${pkg.links.repository || pkg.links.npm}`);
 
       let answer;

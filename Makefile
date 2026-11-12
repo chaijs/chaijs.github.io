@@ -57,8 +57,10 @@ plugins: clean-plugins
 # Accept or reject newly published plugins (run manually, then open a PR)
 #
 
+MIN_DOWNLOADS ?= 0
+
 review-plugins:
-	@node _scripts/review-plugins.js
+	@node _scripts/review-plugins.js --min-downloads $(MIN_DOWNLOADS)
 
 #
 # Install all dependencies

@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/deep-equal-in-any-order/
-pluginName: deep-equal-in-any-order
+permalink: "plugins/deep-equal-in-any-order/"
+pluginName: deep_equal_in_any_order
 ---
 
 # deep-equal-in-any-order

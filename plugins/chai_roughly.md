@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-roughly/
-pluginName: chai-roughly
+permalink: "plugins/chai-roughly/"
+pluginName: chai_roughly
 ---
 
 

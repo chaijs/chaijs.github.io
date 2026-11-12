@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-events/
-pluginName: chai-events
+permalink: "plugins/chai-events/"
+pluginName: chai_events
 ---
 
 # Chai Events

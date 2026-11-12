@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-postman/
-pluginName: chai-postman
+permalink: "plugins/chai-postman/"
+pluginName: chai_postman
 ---
 
 # chai-postman [![Build Status](https://travis-ci.com/postmanlabs/chai-postman.svg?branch=develop)](https://travis-ci.com/postmanlabs/chai-postman) [![codecov](https://codecov.io/gh/postmanlabs/chai-postman/branch/develop/graph/badge.svg)](https://codecov.io/gh/postmanlabs/chai-postman)

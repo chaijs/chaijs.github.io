@@ -1,0 +1,28 @@
+{
+  "name": "@thiscode/chai-subset",
+  "description": "Object properties matcher for Chai",
+  "keywords": [
+    "chai",
+    "chai-plugin",
+    "objects",
+    "subset",
+    "contains",
+    "plugin",
+    "containSubset",
+    "deep",
+    "like",
+    "match",
+    "similar",
+    "includes",
+    "superset"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thiscode/chai-subset.git"
+  },
+  "author": {
+    "name": "Andrii Shumada",
+    "email": "eagleeyes91@gmail.com"
+  },
+  "readme": "Fork Information\n================\n\nI was searching for an subset test which can handle arrays in any order. `chai-subset` was the one that worked. But the messages are meaningless. Like this one:\n\n```text\nexpected { Object (key1, key2, ...) } to contain subset { Object (key1) }\n```\n\nIt would be better to show what exactky the difference is. I have tried some other libraries, but no one was suitable for me:\n\n- chai-deep-match, chai-samsam: Cannot check array of objects in any order and no detailed diff (just like chai-subset saying something like that an object expecting another object, no different values shown)\n- chai-better-shallow-deep-equal: Cannot check array of objects in any order and very messy assertion error message\n- chai-match-pattern: Could work, but cannot use patterns with partial notation \"...\" to reach my goal\n- chai-shallow-deep-equal: Cannot check array of objects in any order, but very nice assertion error which display only the (first) relevant difference\n\nSo I tried to take on the coding pattern from \"chai-shallow-deep-equal\" and integrate it into \"chai-subset\".\n\nNow the assertion messages should be better readable like:\n\n```text\nExpected to have \"some_value\" but got \"other_value\" at path \"/key1/key2\"\n```\n\n@thiscode/chai-subset\n=====================\n\n\"containSubset\" object properties matcher for [Chai](http://chaijs.com/) assertion library\n\nInstallation\n===========\n\n`npm install --save-dev @thiscode/chai-subset`\n\nUsage\n=====\n\ncommon.js\n```js\nvar chai = require('chai');\nvar chaiSubset = require('@thiscode/chai-subset');\nchai.use(chaiSubset);\n```\n\nin your spec.js\n```js\nvar obj = {\n\ta: 'b',\n\tc: 'd',\n\te: {\n\t\tfoo: 'bar',\n\t\tbaz: {\n\t\t\tqux: 'quux'\n\t\t}\n\t}\n};\n\t\nexpect(obj).to.containSubset({\n\ta: 'b',\n\te: {\n\t\tbaz: {\n\t\t\tqux: 'quux'\n\t\t}\n\t}\n});\n\n// or using a compare function\nexpect(obj).containSubset({\n\ta: (expectedValue) => expectedValue,\n\tc: (expectedValue) => expectedValue === 'd'\n})\n\n// or with 'not'\nexpect(obj).to.not.containSubset({\n\tg: 'whatever'\n});\n```\n\nAlso works good with arrays and `should` interface\n```js\nvar list = [{a: 'a', b: 'b'}, {v: 'f', d: {z: 'g'}}];\n\nlist.should.containSubset([{a:'a'}]); //Assertion error is not thrown\nlist.should.containSubset([{a:'a',  b: 'b'}]); //Assertion error is not thrown\n\nlist.should.containSubset([{a:'a', b: 'bd'}]); \n/*throws\nAssertionError: expected\n[\n    {\n        \"a\": \"a\",\n        \"b\": \"b\"\n    },\n    {\n        \"v\": \"f\",\n        \"d\": {\n            \"z\": \"g\"\n        }\n    }\n]\nto contain subset \n[ { a: 'a', b: 'bd' } ]\n*/\n```\n\nand with `assert` interface\n```js\nassert.containSubset({a: 1, b: 2}, {a: 1});\n```\n"
+}

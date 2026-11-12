@@ -1,10 +1,10 @@
 ---
 layout: plugin
-permalink: plugins/chai-http/
-pluginName: chai-http
+permalink: "plugins/chai-http/"
+pluginName: chai_http
 ---
 
-# Chai HTTP [![Build Status](https://travis-ci.org/chaijs/chai-http.svg?branch=master)](https://travis-ci.org/chaijs/chai-http)
+# Chai HTTP  [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release) [![NPM version](https://img.shields.io/npm/v/chai-http.svg)](https://img.shields.io/npm/v/chai-http.svg)
 
 > HTTP integration testing with Chai assertions.
 
@@ -17,7 +17,7 @@ pluginName: chai-http
 
 #### Installation
 
-This is a addon plugin for the [Chai Assertion Library](http://chaijs.com). Install via [npm](http://npmjs.org).
+This is an addon plugin for the [Chai Assertion Library](https://www.chaijs.com/). Install via [npm](https://www.npmjs.com/).
 
     npm install chai-http
 
@@ -26,26 +26,27 @@ This is a addon plugin for the [Chai Assertion Library](http://chaijs.com). Inst
 Use this plugin as you would all other Chai plugins.
 
 ```js
-var chai = require('chai')
-  , chaiHttp = require('chai-http');
+import * as chai from "chai";
+import chaiHttp from "chai-http";
 
 chai.use(chaiHttp);
+
+// if you need to access `request`
+import {default as chaiHttp, request} from "chai-http";
+chai.use(chaiHttp);
+
+request.get(...).send(...);
+
+// or setting up an app
+request.execute(app);
 ```
 
-To use Chai HTTP on a web page, just include the [`dist/chai-http.js`](dist/chai-http.js) file:
-
-```html
-<script src="chai.js"></script>
-<script src="chai-http.js"></script>
-<script>
-  chai.use(chaiHttp);
-</script>
-```
+To use Chai HTTP on a web page, please use the latest v4 version for now.
 
 ## Integration Testing
 
 Chai HTTP provides an interface for live integration
-testing via [superagent](https://github.com/visionmedia/superagent).
+testing via [superagent](https://github.com/ladjs/superagent).
 To do this, you must first
 construct a request to an application or url.
 
@@ -63,24 +64,28 @@ port to listen on for a given test.
 __Note:__ This feature is only supported on Node.js, not in web browsers.
 
 ```js
-chai.request(app)
+import {request} from 'chai-http';
+
+request.execute(app)
   .get('/')
 ```
 
-When passing an `app` to `request`; it will automatically open the server for
+When passing an `app` to `request.execute()`, it will automatically open the server for
 incoming requests (by calling `listen()`) and, once a request has been made
 the server will automatically shut down (by calling `.close()`). If you want to
 keep the server open, perhaps if you're making multiple requests, you must call
 `.keepOpen()` after `.request()`, and manually close the server down:
 
 ```js
-var requester = chai.request(app).keepOpen()
+import {request} from 'chai-http';
+
+const requester = request.Request(app).keepOpen()
 
 Promise.all([
   requester.get('/a'),
   requester.get('/b'),
 ])
-.then(responses => ....)
+.then(responses => { /* ... */ })
 .then(() => requester.close())
 ```
 
@@ -90,26 +95,54 @@ Promise.all([
 You may also use a base url as the foundation of your request.
 
 ```js
-chai.request('http://localhost:8080')
+import {request} from 'chai-http';
+
+request.execute('http://localhost:8080')
   .get('/')
 ```
 
 #### Setting up requests
 
-Once a request is created with a given VERB, it can have headers, form data,
-json, or even file attachments added to it, all with a simple API:
+Once a request is created with a given VERB (get, post, etc), you chain on these additional methods to create your request:
 
+| Method  | Purpose  |
+|---|---|
+| `.set(key, value)` | Set request headers  |
+| `.send(data)` |  Set request data (default type is JSON) |
+| `.type(dataType)` | Change the type of the data sent from the `.send()` method (xml, form, etc) |
+| `.attach(field, file, attachment)` | Attach a file |
+| `.auth(username, password)` | Add auth headers for Basic Authentication |
+| `.query(parmasObject)` |  Chain on some GET parameters |
+
+Examples:
+
+`.set()`
 ```js
-// Send some JSON
-chai.request(app)
+import {request} from 'chai-http';
+
+// Set a request header
+request.execute(app)
   .put('/user/me')
-  .set('X-API-Key', 'foobar')
+  .set('Content-Type', 'application/json')
   .send({ password: '123', confirmPassword: '123' })
 ```
 
+`.send()`
 ```js
+import {request} from 'chai-http';
+
+// Send some JSON
+request.execute(app)
+  .put('/user/me')
+  .send({ password: '123', confirmPassword: '123' })
+```
+
+`.type()`
+```js
+import {request} from 'chai-http';
+
 // Send some Form Data
-chai.request(app)
+request.execute(app)
   .post('/user/me')
   .type('form')
   .send({
@@ -119,23 +152,38 @@ chai.request(app)
   })
 ```
 
+`.attach()`
 ```js
+import {request} from 'chai-http';
+
 // Attach a file
-chai.request(app)
+request.execute(app)
   .post('/user/avatar')
   .attach('imageField', fs.readFileSync('avatar.png'), 'avatar.png')
 ```
 
+`.auth()`
 ```js
+import {request} from 'chai-http';
+
 // Authenticate with Basic authentication
-chai.request(app)
+request.execute(app)
   .get('/protected')
   .auth('user', 'pass')
+
+// Authenticate with Bearer Token
+request.execute(app)
+  .get('/protected')
+  .auth(accessToken, { type: 'bearer' })
+
 ```
 
+`.query()`
 ```js
+import {request} from 'chai-http';
+
 // Chain some GET query parameters
-chai.request(app)
+request.execute(app)
   .get('/search')
   .query({name: 'foo', limit: 10}) // /search?name=foo&limit=10
 ```
@@ -145,16 +193,18 @@ chai.request(app)
 In the following examples we use Chai's Expect assertion library:
 
 ```js
-var expect = chai.expect;
+const { expect } = chai;
 ```
 
 To make the request and assert on its response, the `end` method can be used:
 
 ```js
-chai.request(app)
+import {request} from 'chai-http';
+
+request.execute(app)
   .put('/user/me')
   .send({ password: '123', confirmPassword: '123' })
-  .end(function (err, res) {
+  .end((err, res) => {
      expect(err).to.be.null;
      expect(res).to.have.status(200);
   });
@@ -167,67 +217,53 @@ asynchronously. Therefore, a mechanism must be used to notify the testing
 framework that the callback has completed. Otherwise, the test will pass before
 the assertions are checked.
 
-For example, in the [Mocha test framework](http://mochajs.org/), this is
+For example, in the [Mocha test framework](https://mochajs.org//), this is
 accomplished using the
 [`done` callback](https://mochajs.org/#asynchronous-code), which signal that the
 callback has completed, and the assertions can be verified:
 
 ```js
+import {request} from 'chai-http';
+
 it('fails, as expected', function(done) { // <= Pass in done callback
-  chai.request('http://localhost:8080')
+  request.execute('http://localhost:8080')
   .get('/')
-  .end(function(err, res) {
+  .end((err, res) => {
     expect(res).to.have.status(123);
     done();                               // <= Call done to signal callback end
   });
 });
 
-it('succeeds silently!', function() {   // <= No done callback
-  chai.request('http://localhost:8080')
+it('succeeds silently!', () => {   // <= No done callback
+  request.execute('http://localhost:8080')
   .get('/')
-  .end(function(err, res) {
+  .end((err, res) => {
     expect(res).to.have.status(123);    // <= Test completes before this runs
   });
 });
 ```
 
 When `done` is passed in, Mocha will wait until the call to `done()`, or until
-the [timeout](http://mochajs.org/#timeouts) expires. `done` also accepts an
+the [timeout](https://mochajs.org/#timeouts) expires. `done` also accepts an
 error parameter when signaling completion.
 
 #### Dealing with the response - Promises
 
-If `Promise` is available, `request()` becomes a Promise capable library -
+If `Promise` is available, `request` becomes a Promise capable library -
 and chaining of `then`s becomes possible:
 
 ```js
-chai.request(app)
+import {request} from 'chai-http';
+
+request.execute(app)
   .put('/user/me')
   .send({ password: '123', confirmPassword: '123' })
-  .then(function (res) {
+  .then((res) => {
      expect(res).to.have.status(200);
   })
-  .catch(function (err) {
+  .catch((err) => {
      throw err;
   });
-```
-
-__Note:__ Node.js version 0.10.x and some older web browsers do not have
-native promise support. You can use any spec compliant library, such as:
- - [kriskowal/q](https://github.com/kriskowal/q)
- - [stefanpenner/es6-promise](https://github.com/stefanpenner/es6-promise)
- - [petkaantonov/bluebird](https://github.com/petkaantonov/bluebird)
- - [then/promise](https://github.com/then/promise)
-You will need to set the library you use to `global.Promise`, before
-requiring in chai-http. For example:
-
-```js
-// Add promise support if this does not exist natively.
-if (!global.Promise) {
-  global.Promise = require('q');
-}
-var chai = require('chai');
-chai.use(require('chai-http'));
 ```
 
 #### Retaining cookies with each request
@@ -236,23 +272,25 @@ Sometimes you need to keep cookies from one request, and send them with the
 next (for example, when you want to login with the first request, then access an authenticated-only resource later). For this, `.request.agent()` is available:
 
 ```js
+import {request} from 'chai-http';
+
 // Log in
-var agent = chai.request.agent(app)
+const agent = request.agent(app)
 agent
   .post('/session')
   .send({ username: 'me', password: '123' })
-  .then(function (res) {
+  .then((res) => {
     expect(res).to.have.cookie('sessionid');
     // The `agent` now has the sessionid cookie saved, and will send it
     // back to the server in the next request:
     return agent.get('/user/me')
-      .then(function (res) {
+      .then((res) => {
          expect(res).to.have.status(200);
       });
   });
 ```
 
-Note: The server started by `chai.request.agent(app)` will not automatically close following the test(s). You should call `agent.close()` after your tests to ensure your program exits.
+Note: The server started by `request.agent(app)` will not automatically close following the test(s). You should call `agent.close()` after your tests to ensure your program exits.
 
 ## Assertions
 
@@ -279,9 +317,9 @@ If a value is provided, equality to value will be asserted.
 You may also pass a regular expression to check.
 
 __Note:__ When running in a web browser, the
-[same-origin policy](https://tools.ietf.org/html/rfc6454#section-3)
+[same-origin policy](https://datatracker.ietf.org/doc/html/rfc6454#section-3)
 only allows Chai HTTP to read
-[certain headers](https://www.w3.org/TR/cors/#simple-response-header),
+[certain headers](https://fetch.spec.whatwg.org/#http-responses),
 which can cause assertions to fail.
 
 ```js
@@ -296,9 +334,9 @@ expect(req).to.have.header('content-type', /^text/);
 Assert that a `Response` or `Request` object has headers.
 
 __Note:__ When running in a web browser, the
-[same-origin policy](https://tools.ietf.org/html/rfc6454#section-3)
+[same-origin policy](https://datatracker.ietf.org/doc/html/rfc6454#section-3)
 only allows Chai HTTP to read
-[certain headers](https://www.w3.org/TR/cors/#simple-response-header),
+[certain headers](https://fetch.spec.whatwg.org/#http-responses),
 which can cause assertions to fail.
 
 ```js
@@ -324,6 +362,16 @@ Assert that a `Response` or `Request` object has a given content-type.
 expect(req).to.be.json;
 expect(req).to.be.html;
 expect(req).to.be.text;
+```
+
+### .charset
+
+
+
+Assert that a `Response` or `Request` object has a given charset.
+
+```js
+expect(req).to.have.charset('utf-8');
 ```
 
 ### .redirect
@@ -377,6 +425,16 @@ expect(res).to.have.cookie('session_id');
 expect(res).to.have.cookie('session_id', '1234');
 expect(res).to.not.have.cookie('PHPSESSID');
 ```
+
+## Releasing
+
+`chai-http` is released with [`semantic-release`](https://github.com/semantic-release/semantic-release) using the plugins:
+- [`commit-analyzer`](https://github.com/semantic-release/commit-analyzer) to determine the next version from commit messages.
+- [`release-notes-generator`](https://github.com/semantic-release/release-notes-generator) to summarize release in
+- [`changelog`](https://github.com/semantic-release/changelog) to update the CHANGELOG.md file.
+- [`github`](https://github.com/semantic-release/github) to publish a [GitHub release](https://github.com/chaijs/chai-http/releases).
+- [`git`](https://github.com/semantic-release/git) to commit release assets.
+- [`npm`](https://github.com/semantic-release/npm) to publish to [npm](https://www.npmjs.com/package/chai-http).
 
 ## License
 

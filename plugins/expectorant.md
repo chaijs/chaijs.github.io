@@ -1,6 +1,6 @@
 ---
 layout: plugin
-permalink: plugins/expectorant/
+permalink: "plugins/expectorant/"
 pluginName: expectorant
 ---
 

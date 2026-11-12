@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-quantifiers/
-pluginName: chai-quantifiers
+permalink: "plugins/chai-quantifiers/"
+pluginName: chai_quantifiers
 ---
 
 # chai-quantifiers

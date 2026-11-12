@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-nock/
-pluginName: chai-nock
+permalink: "plugins/chai-nock/"
+pluginName: chai_nock
 ---
 
 # Chai Assertions for Nock

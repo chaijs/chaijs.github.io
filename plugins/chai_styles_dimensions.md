@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-styles-dimensions/
-pluginName: chai-styles-dimensions
+permalink: "plugins/chai-styles-dimensions/"
+pluginName: chai_styles_dimensions
 ---
 
 # chai-styles-dimensions

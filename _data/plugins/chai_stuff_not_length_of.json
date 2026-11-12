@@ -1,0 +1,27 @@
+{
+  "name": "@chai-stuff/not-length-of",
+  "description": "Check that an object does not have a length or size property with the expected value.",
+  "keywords": [
+    "chai-stuff",
+    "chai",
+    "plugin",
+    "chai-plugin",
+    "lengthOf",
+    "notLengthOf",
+    "length-of",
+    "not-length-of",
+    "object",
+    "array",
+    "map",
+    "set"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chai-stuff/chai-stuff.git"
+  },
+  "author": {
+    "name": "ScottRudiger",
+    "url": "https://github.com/ScottRudiger"
+  },
+  "readme": "# `@chai-stuff/not-length-of`\n\nCheck that an object does not have a length or size property with the expected value.\n"
+}

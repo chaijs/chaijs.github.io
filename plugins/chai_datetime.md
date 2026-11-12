@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-datetime/
-pluginName: chai-datetime
+permalink: "plugins/chai-datetime/"
+pluginName: chai_datetime
 ---
 
 # chai-datetime

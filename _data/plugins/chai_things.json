@@ -1,0 +1,14 @@
+{
+  "name": "chai-things",
+  "description": "Chai Things adds support to [Chai](http://chaijs.com/) for assertions on array elements.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RubenVerborgh/Chai-Things.git"
+  },
+  "author": {
+    "name": "Ruben Verborgh",
+    "email": "ruben.verborgh@gmail.com",
+    "url": "http://ruben.verborgh.org/"
+  },
+  "readme": "# Chai Things\nChai Things adds support to [Chai](http://chaijs.com/) for assertions on array elements.\n\n## Example\n```javascript\n// Although they are equal, two different { a: 1 } objects are not the same\n[{ a: 1 }, { b: 2 }].should.not.include({ a: 1 })\n// However, Chai Things allows us to test what we want\n[{ a: 1 }, { b: 2 }].should.include.something.that.deep.equals({ b: 2 })\n// If the test fails, we get a descriptive message\n[{ a: 1 }, { b: 2 }].should.include.something.that.deep.equals({ c: 3 })\n/* expected an element of [ { a: 1 }, { b: 2 } ] to deeply equal { c: 3 } */\n```\n\n## Installation and usage\n```bash\n$ npm install chai-things\n```\n\n```javascript\nvar chai = require(\"chai\");\nchai.should();\nchai.use(require('chai-things'));\n```\n"
+}

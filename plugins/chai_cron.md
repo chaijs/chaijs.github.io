@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-cron/
-pluginName: chai-cron
+permalink: "plugins/chai-cron/"
+pluginName: chai_cron
 ---
 
 # chai-cron

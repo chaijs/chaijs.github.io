@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-image/
-pluginName: chai-image
+permalink: "plugins/chai-image/"
+pluginName: chai_image
 ---
 
 # chai-image

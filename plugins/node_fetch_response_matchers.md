@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/node-fetch-response-matchers/
-pluginName: node-fetch-response-matchers
+permalink: "plugins/node-fetch-response-matchers/"
+pluginName: node_fetch_response_matchers
 ---
 
 # node-fetch-response-matchers

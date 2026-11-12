@@ -1,0 +1,20 @@
+{
+  "name": "chai-bookshelf",
+  "description": "Chai assertions for bookshelf-based models",
+  "keywords": [
+    "chai",
+    "bookshelf",
+    "testing",
+    "tests",
+    "assertions",
+    "assert"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/elliotf/chai-bookshelf.git"
+  },
+  "author": {
+    "name": "Elliot Foster"
+  },
+  "readme": "# chai-bookshelf\n\nMake assertions on your [bookshelf.js](http://bookshelfjs.org) models.\n\n[![Build Status](https://travis-ci.org/elliotf/chai-bookshelf.png)](https://travis-ci.org/elliotf/chai-bookshelf)\n\n## Install\n\nInstall via npm: `npm install chai-bookshelf`\n\nNote that it's handy to use the shortcut --save-dev: `npm install --save-dev chai-bookshelf`\n\n## Using\n\n    var chai = require('chai');\n    chai.use(require('chai-bookshelf'));\n\n## Assertions\n\nRight now, only basic assertions on relationships are supported.\n\n### Relationships\n\nRemove boiler plate from your code by making straightforward assertions\n\nSupported Relationships include:\n\n* hasOne `expect(ClassA).to.haveOne(ClassB)`\n* hasMany `expect(ClassA).to.haveMany(ClassB)`\n* belongsTo `expect(ClassA).to.belongTo(ClassB)`\n* belongsToMany `expect(ClassA).to.belongToMany(ClassB)`\n\n#### Basic Example\n\nA basic example showing a test of a relationship\n\n    describe('User model', function() {\n      var User\n        , Thing\n      ;\n\n      beforeEach(function() {\n        Thing = db.Model.extend({\n          tableName: 'things'\n        });\n\n        User = db.Model.extend({\n          things: function() {\n            return this.hasMany(Thing);\n          }\n        });\n      });\n\n      describe('Relationships', function() {\n        it('has many things', function() {\n          expect(User).to.haveMany(Thing);\n        })\n      });\n    });\n\n#### Specifying the attribute name example\n\nBy default, the assertion will use the singular form of the tablename.  If the attribute is named something other than the target model's class (for example, to be plural) you will need to specify the name of the attribute that represents the relationship.\n\n    describe('User model', function() {\n      var User\n        , Thing\n      ;\n\n      beforeEach(function() {\n        User = db.Model.extend({});\n\n        Thing = db.Model.extend({\n          owner: function() {\n            this.belongsTo(User);\n          }\n        });\n      });\n\n      describe('Relationships', function() {\n        it('has many things', function() {\n          expect(Thing).to.belongTo(User, 'owner');\n        })\n      });\n    });\n"
+}

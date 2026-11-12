@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-dynamodb/
-pluginName: chai-dynamodb
+permalink: "plugins/chai-dynamodb/"
+pluginName: chai_dynamodb
 ---
 
 # chai-dynamodb

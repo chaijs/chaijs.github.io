@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/zombied-chai/
-pluginName: zombied-chai
+permalink: "plugins/zombied-chai/"
+pluginName: zombied_chai
 ---
 
 [![npm version](https://badge.fury.io/js/zombied-chai.svg)](https://badge.fury.io/js/zombied-chai)

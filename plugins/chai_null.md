@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-null/
-pluginName: chai-null
+permalink: "plugins/chai-null/"
+pluginName: chai_null
 ---
 
 # Chai Null
@@ -68,7 +68,7 @@ var nullobject = chai.Null(obj).create();
 
 ## Tests
 
-Tests are written using [mocha](https://github.com/mochajs/mocha).
+Tests are written using [mocha](http://github.com/visionmedia/mocha).
 Node tests can be executed using `make test`. Browser tests can be seen by opening `test/browser/index.html`.
 
 ## License

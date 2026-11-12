@@ -1,0 +1,28 @@
+{
+  "name": "@iotcomms.io/chai-json-pattern",
+  "description": "Chai JSON pattern assertions",
+  "keywords": [
+    "array",
+    "chai",
+    "chai-plugin",
+    "chai-json",
+    "chai-deep-match",
+    "cucumber",
+    "deep",
+    "deep-eql",
+    "deep-match",
+    "integration",
+    "JSON",
+    "matching",
+    "mocha",
+    "test"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/damian-brainhub/chai-json-pattern.git"
+  },
+  "author": {
+    "name": "Damian Szulc"
+  },
+  "readme": "# Chai JSON Pattern\n> Deep matching objects with clear, JSON-like syntax.\n\n[![CircleCI](https://circleci.com/gh/damian-brainhub/chai-json-pattern/tree/master.svg?style=svg)](https://circleci.com/gh/damian-brainhub/chai-json-pattern/tree/master)\n\n# Introduction\nChai JSON pattern allows you to create *blueprints* for JavaScript objects to ensure *validation* of key information. It enables you to use JSON syntax extend with easy to use validators. It came up mostly for testing API with cucumber-js, but can be used in any application. Additionaly you can extend base functionality with custom validators. For more information see API reference.\n# API\nSee the detailed [API Reference](https://github.com/damian-brainhub/chai-json-pattern/blob/master/API.md).\n\n# Example\n\n```js\n\nconst pattern = `\n    {\n        \"username\": String AND alphanum AND minLength(3) AND maxLength(30),\n        \"password\": String AND regex(\"/^[0-9a-zA-Z]{5,30}$/\"),\n        \"access_token\"?: String AND Number,\n        \"birthyear\": Integer AND range(1900, 2017),\n        \"email\": String,\n        ...\n    }\n`;\n\nexpect(user).to.matchPattern(pattern);\n```\nThe above pattern require `user` to be an object with keys that satisfy following conditions:\n* `username`\n    * required string\n    * contain only alphanumeric characters\n    * must have at least 3 characters, and maximum 30\n* `password`\n    * required string\n    * must satisfy the custom regex\n* `access_token`\n    * optional string or number\n* `birthyear`\n    * required Integer between 1900 and 2017\n* `email`\n    * required string\n* allow another keys (e.g. createdAt, updateAt, etc.)\n\nIf `user` will not satisfy pattern, test will not pass, and you will see error with diff between `user` and pattern.\n\n# Usage\nUsage is a two steps process. First, you have to install `chai-json-pattern` package.\n```\nnpm install --save-dev chai-json-pattern\n```\nThen import `chaiJsonPattern` and use `matchPattern`:\n```js\nimport chai, { expect } from 'chai';\nimport chaiJsonPattern from 'chai-json-pattern';\n\nchai.use(chaiJsonPattern);\n\nexpect({ a: 2 }).to.matchPattern(`{\n    \"a\": Number AND range(0, 5),\n}`);\n```\n"
+}

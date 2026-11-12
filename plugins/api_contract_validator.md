@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/api-contract-validator/
-pluginName: api-contract-validator
+permalink: "plugins/api-contract-validator/"
+pluginName: api_contract_validator
 ---
 
 [![npm](https://img.shields.io/npm/v/api-contract-validator.svg)](https://www.npmjs.com/package/api-contract-validator)

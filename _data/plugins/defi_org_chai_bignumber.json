@@ -1,0 +1,27 @@
+{
+  "name": "@defi.org/chai-bignumber",
+  "description": "Chai assertions for comparing arbitrary-precision decimals using the bignumber.js library",
+  "keywords": [
+    "chai",
+    "chai-plugin",
+    "math",
+    "browser",
+    "test",
+    "arbitrary",
+    "precision",
+    "arithmetic",
+    "big",
+    "number",
+    "decimal",
+    "float",
+    "bignumber"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/defi-org-code/chai-bignumber.git"
+  },
+  "author": {
+    "name": "danielz@orbs.com"
+  },
+  "readme": "# chai-bignumber\n\n![Build Status](https://github.com/asmarques/chai-bignumber/workflows/CI/badge.svg)\n\nChai assertions for comparing arbitrary-precision decimals using the [bignumber.js](https://github.com/MikeMcl/bignumber.js) library.\n\n## Installation\n\n```bash\nnpm install --save-dev chai-bignumber\n```\n\n## Usage\n\n```javascript\nvar chai = require('chai');\n\n//use default BigNumber\nchai.use(require('chai-bignumber')());\n\n//use custom BigNumber\nchai.use(require('chai-bignumber')(BigNumber));\n```\n\n## Assertions\n\nThe following assertion methods are provided and will override the existing\nbuiltin assertions if the `bignumber` property is explicitly set as part of\nthe assertion chain:\n- equal/equals/eq\n- above/gt/greaterThan\n- least/gte\n- below/lt/lessThan\n- most/lte\n\nThe above methods have the following signature: `(value, dp, rm)`.\nWhere `dp` is an optional argument which specifies the number of decimal places\nto round each side of the comparison to (values are not rounded by default),\nwhile `rm` is an optional argument which specifies the\n[rounding mode](https://mikemcl.github.io/bignumber.js/#constructor-properties)\nas supported by `bignumber.js` (defaults to `BigNumber.ROUND_HALF_UP`).\n\nA set of additional assertion properties is also provided:\n- finite\n- integer\n- negative\n- zero\n\nValues can be instances of `number`, `BigNumber` or `string` which can be\nconverted into a valid number. Only BDD style (`expect` or `should`) assertions\nare supported.\n\n## Examples\n\nMethods:\n\n```javascript\nvar result = new BigNumber('100000000000000000').plus(1);\nvar expected = '100000000000000001';\nresult.should.be.bignumber.equal(expected);\nexpect(result).to.be.bignumber.at.most(expected);\n'1000'.should.be.bignumber.lessThan(2000);\n```\n\nMethods with rounding:\n\n```javascript\nvar BigNumber = require('bignumber.js');\n(100.343).should.be.bignumber.equal(100.341, 2);\n(100.349).should.be.bignumber.equal(100.341, 2, BigNumber.ROUND_DOWN);\n```\n\nProperties:\n\n```javascript\n(100 / 0).should.not.be.finite;\nexpect(10).to.be.integer;\n(-100).should.be.negative;\nexpect(1 - 1).to.be.zero;\n```\n\n## License\n\n[MIT](LICENSE)\n"
+}

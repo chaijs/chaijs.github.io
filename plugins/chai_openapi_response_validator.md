@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-openapi-response-validator/
-pluginName: chai-openapi-response-validator
+permalink: "plugins/chai-openapi-response-validator/"
+pluginName: chai_openapi_response_validator
 ---
 
 # Chai OpenAPI Response Validator

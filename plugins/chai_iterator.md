@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-iterator/
-pluginName: chai-iterator
+permalink: "plugins/chai-iterator/"
+pluginName: chai_iterator
 ---
 
 

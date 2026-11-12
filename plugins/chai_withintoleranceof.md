@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-withintoleranceof/
-pluginName: chai-withintoleranceof
+permalink: "plugins/chai-withintoleranceof/"
+pluginName: chai_withintoleranceof
 ---
 
 

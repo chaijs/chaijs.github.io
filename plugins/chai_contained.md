@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-contained/
-pluginName: chai-contained
+permalink: "plugins/chai-contained/"
+pluginName: chai_contained
 ---
 
 # chai-contained

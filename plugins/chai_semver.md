@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-semver/
-pluginName: chai-semver
+permalink: "plugins/chai-semver/"
+pluginName: chai_semver
 ---
 
 # chai-semver

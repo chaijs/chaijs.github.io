@@ -111,9 +111,6 @@
   "clojure.spec": [
     "clojure.spec"
   ],
-  "codemod": [
-    "codemod"
-  ],
   "Colors": [
     "color",
     "colors"
@@ -354,9 +351,6 @@
   ],
   "js.spec": [
     "js.spec"
-  ],
-  "jscodeshift": [
-    "jscodeshift"
   ],
   "jsdoc": [
     "jsdoc"

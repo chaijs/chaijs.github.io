@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-luxon/
-pluginName: chai-luxon
+permalink: "plugins/chai-luxon/"
+pluginName: chai_luxon
 ---
 
 # chai-luxon

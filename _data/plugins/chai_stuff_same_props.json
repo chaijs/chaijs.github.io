@@ -1,0 +1,38 @@
+{
+  "name": "@chai-stuff/same-props",
+  "description": "Check that two objects have all the same properties (keys and values) but don't check that the objects' constructors are the same.",
+  "keywords": [
+    "chai-stuff",
+    "chai",
+    "plugin",
+    "chai-plugin",
+    "same-props",
+    "sameProps",
+    "same",
+    "props",
+    "type",
+    "typeof",
+    "constructor",
+    "constructors",
+    "class",
+    "classes",
+    "object",
+    "objects",
+    "array",
+    "arrays",
+    "properties",
+    "sameKeysAndValues",
+    "keys",
+    "and",
+    "values"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chai-stuff/chai-stuff.git"
+  },
+  "author": {
+    "name": "ScottRudiger",
+    "url": "https://github.com/ScottRudiger"
+  },
+  "readme": "# `@chai-stuff/same-props`\n\nCheck that two objects have all the same properties (keys and values) but don't check that the objects' constructors are the same.\n"
+}

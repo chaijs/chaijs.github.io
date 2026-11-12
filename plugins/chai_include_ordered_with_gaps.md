@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-include-ordered-with-gaps/
-pluginName: chai-include-ordered-with-gaps
+permalink: "plugins/chai-include-ordered-with-gaps/"
+pluginName: chai_include_ordered_with_gaps
 ---
 
 # chai-include-ordered-with-gaps

@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-url/
-pluginName: chai-url
+permalink: "plugins/chai-url/"
+pluginName: chai_url
 ---
 
 # chai-url

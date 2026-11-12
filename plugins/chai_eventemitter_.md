@@ -1,7 +1,7 @@
 ---
 layout: plugin
-permalink: plugins/chai-eventemitter2/
-pluginName: chai-eventemitter2
+permalink: "plugins/chai-eventemitter2/"
+pluginName: chai_eventemitter_
 ---
 
 # chai-eventemitter2

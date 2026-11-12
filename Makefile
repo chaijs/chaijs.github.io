@@ -45,15 +45,20 @@ releases: clean-releases
 	@curl -s $(shell [ -n "${GH_TOKEN}" ] && echo "-H \"Authorization: token ${GH_TOKEN}\"") "https://api.github.com/repos/chaijs/chai/releases" > _data/releases.json
 
 #
-# Generate plugins
+# Generate plugins from the accepted list in _plugins.json
 #
 
 plugins: clean-plugins
-	@mkdir -p _data/plugins
-	@node ./node_modules/npm-plugin-fetcher/index.js -b _scripts/banned_plugins.js -o _data/plugins chai-plugin
-	@xargs -n1 -I! sh -c 'echo ! && curl -s "https://registry.npmjs.com/!" > _data/plugins/!.json' < _legacy_plugins
+	@node _scripts/fetch-plugins.js
 	@node _scripts/build-plugin-tags.js
 	@node _scripts/build-plugin-pages.js
+
+#
+# Accept or reject newly published plugins (run manually, then open a PR)
+#
+
+review-plugins:
+	@node _scripts/review-plugins.js
 
 #
 # Install all dependencies
@@ -124,4 +129,4 @@ pages: install clean generated_data
 	fi
 endif
 
-.PHONY: all api-docs releases plugins install clean-plugins clean-api-docs docs-server nightly chaijs
+.PHONY: all api-docs releases plugins review-plugins install clean-plugins clean-api-docs docs-server nightly chaijs

@@ -16,7 +16,7 @@ generated_data: releases api-docs chaijs
 # checkout instead, e.g. `make api-docs CHAI_DIR=../chai`.
 #
 
-CHAI_REF ?= v4.3.7
+CHAI_REF ?= v6.3.0
 CHAI_CLONE = .chai
 CHAI_DIR ?= $(CHAI_CLONE)
 

@@ -67,17 +67,17 @@
     "name": "a",
     "category": "BDD",
     "summary": "### .a(type[, msg])",
-    "body": "Asserts that the target's type is equal to the given string `type`. Types\nare case insensitive. See the `type-detect` project page for info on the\ntype detection algorithm: https://github.com/chaijs/type-detect.\n\n    expect('foo').to.be.a('string');\n    expect({a: 1}).to.be.an('object');\n    expect(null).to.be.a('null');\n    expect(undefined).to.be.an('undefined');\n    expect(new Error).to.be.an('error');\n    expect(Promise.resolve()).to.be.a('promise');\n    expect(new Float32Array).to.be.a('float32array');\n    expect(Symbol()).to.be.a('symbol');\n\n`.a` supports objects that have a custom type set via `Symbol.toStringTag`.\n\n    var myObj = {\n      [Symbol.toStringTag]: 'myCustomType'\n    };\n\n    expect(myObj).to.be.a('myCustomType').but.not.an('object');\n\nIt's often best to use `.a` to check a target's type before making more\nassertions on the same target. That way, you avoid unexpected behavior from\nany assertion that does different things based on the target's type.\n\n    expect([1, 2, 3]).to.be.an('array').that.includes(2);\n    expect([]).to.be.an('array').that.is.empty;\n\nAdd `.not` earlier in the chain to negate `.a`. However, it's often best to\nassert that the target is the expected type, rather than asserting that it\nisn't one of many unexpected types.\n\n    expect('foo').to.be.a('string'); // Recommended\n    expect('foo').to.not.be.an('array'); // Not recommended\n\n`.a` accepts an optional `msg` argument which is a custom error message to\nshow when the assertion fails. The message can also be given as the second\nargument to `expect`.\n\n    expect(1).to.be.a('string', 'nooo why fail??');\n    expect(1, 'nooo why fail??').to.be.a('string');\n\n`.a` can also be used as a language chain to improve the readability of\nyour assertions.\n\n    expect({b: 2}).to.have.a.property('b');\n\nThe alias `.an` can be used interchangeably with `.a`.",
+    "body": "Asserts that the target's type is equal to the given string `type`. Types\nare case insensitive. See the utility file `./type-detect.js` for info on the\ntype detection algorithm.\n\n    expect('foo').to.be.a('string');\n    expect({a: 1}).to.be.an('object');\n    expect(null).to.be.a('null');\n    expect(undefined).to.be.an('undefined');\n    expect(new Error).to.be.an('error');\n    expect(Promise.resolve()).to.be.a('promise');\n    expect(new Float32Array).to.be.a('float32array');\n    expect(Symbol()).to.be.a('symbol');\n\n`.a` supports objects that have a custom type set via `Symbol.toStringTag`.\n\n    var myObj = {\n        [Symbol.toStringTag]: 'myCustomType'\n    };\n\n    expect(myObj).to.be.a('myCustomType').but.not.an('object');\n\nIt's often best to use `.a` to check a target's type before making more\nassertions on the same target. That way, you avoid unexpected behavior from\nany assertion that does different things based on the target's type.\n\n    expect([1, 2, 3]).to.be.an('array').that.includes(2);\n    expect([]).to.be.an('array').that.is.empty;\n\nAdd `.not` earlier in the chain to negate `.a`. However, it's often best to\nassert that the target is the expected type, rather than asserting that it\nisn't one of many unexpected types.\n\n    expect('foo').to.be.a('string'); // Recommended\n    expect('foo').to.not.be.an('array'); // Not recommended\n\n`.a` accepts an optional `msg` argument which is a custom error message to\nshow when the assertion fails. The message can also be given as the second\nargument to `expect`.\n\n    expect(1).to.be.a('string', 'nooo why fail??');\n    expect(1, 'nooo why fail??').to.be.a('string');\n\n`.a` can also be used as a language chain to improve the readability of\nyour assertions.\n\n    expect({b: 2}).to.have.a.property('b');\n\nThe alias `.an` can be used interchangeably with `.a`.",
     "params": [
       {
         "name": "type",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": ""
       },
       {
         "name": "msg",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -92,13 +92,13 @@
     "params": [
       {
         "name": "val",
-        "type": "Mixed",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "msg",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -118,6 +118,14 @@
     "category": "BDD",
     "summary": "### .true",
     "body": "Asserts that the target is strictly (`===`) equal to `true`.\n\n    expect(true).to.be.true;\n\nAdd `.not` earlier in the chain to negate `.true`. However, it's often best\nto assert that the target is equal to its expected value, rather than not\nequal to `true`.\n\n    expect(false).to.be.false; // Recommended\n    expect(false).to.not.be.true; // Not recommended\n\n    expect(1).to.equal(1); // Recommended\n    expect(1).to.not.be.true; // Not recommended\n\nA custom error message can be given as the second argument to `expect`.\n\n    expect(false, 'nooo why fail??').to.be.true;",
+    "params": [],
+    "see": []
+  },
+  {
+    "name": "callable",
+    "category": "BDD",
+    "summary": "### .callable",
+    "body": "Asserts that the target a callable function.\n\n    expect(console.log).to.be.callable;\n\nA custom error message can be given as the second argument to `expect`.\n\n    expect('not a function', 'nooo why fail??').to.be.callable;",
     "params": [],
     "see": []
   },
@@ -173,7 +181,7 @@
     "name": "arguments",
     "category": "BDD",
     "summary": "### .arguments",
-    "body": "Asserts that the target is an `arguments` object.\n\n    function test () {\n      expect(arguments).to.be.arguments;\n    }\n\n    test();\n\nAdd `.not` earlier in the chain to negate `.arguments`. However, it's often\nbest to assert which type the target is expected to be, rather than\nasserting that it’s not an `arguments` object.\n\n    expect('foo').to.be.a('string'); // Recommended\n    expect('foo').to.not.be.arguments; // Not recommended\n\nA custom error message can be given as the second argument to `expect`.\n\n    expect({}, 'nooo why fail??').to.be.arguments;\n\nThe alias `.Arguments` can be used interchangeably with `.arguments`.",
+    "body": "Asserts that the target is an `arguments` object.\n\n    function test () {\n        expect(arguments).to.be.arguments;\n    }\n\n    test();\n\nAdd `.not` earlier in the chain to negate `.arguments`. However, it's often\nbest to assert which type the target is expected to be, rather than\nasserting that it’s not an `arguments` object.\n\n    expect('foo').to.be.a('string'); // Recommended\n    expect('foo').to.not.be.arguments; // Not recommended\n\nA custom error message can be given as the second argument to `expect`.\n\n    expect({}, 'nooo why fail??').to.be.arguments;\n\nThe alias `.Arguments` can be used interchangeably with `.arguments`.",
     "params": [],
     "see": []
   },
@@ -185,13 +193,13 @@
     "params": [
       {
         "name": "val",
-        "type": "Mixed",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "msg",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -206,13 +214,13 @@
     "params": [
       {
         "name": "obj",
-        "type": "Mixed",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "msg",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -227,13 +235,13 @@
     "params": [
       {
         "name": "n",
-        "type": "Number",
+        "type": "number",
         "optional": false,
         "description": ""
       },
       {
         "name": "msg",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -248,13 +256,13 @@
     "params": [
       {
         "name": "n",
-        "type": "Number",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "msg",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -269,13 +277,13 @@
     "params": [
       {
         "name": "n",
-        "type": "Number",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "msg",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -290,13 +298,13 @@
     "params": [
       {
         "name": "n",
-        "type": "Number",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "msg",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -311,19 +319,19 @@
     "params": [
       {
         "name": "start",
-        "type": "Number",
+        "type": "unknown",
         "optional": false,
         "description": "lower bound inclusive"
       },
       {
         "name": "finish",
-        "type": "Number",
+        "type": "unknown",
         "optional": false,
         "description": "upper bound inclusive"
       },
       {
         "name": "msg",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -338,13 +346,13 @@
     "params": [
       {
         "name": "constructor",
-        "type": "Constructor",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "msg",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -359,19 +367,19 @@
     "params": [
       {
         "name": "name",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": ""
       },
       {
         "name": "val",
-        "type": "Mixed",
+        "type": "unknown",
         "optional": false,
         "description": "(optional)"
       },
       {
         "name": "msg",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -382,23 +390,23 @@
     "name": "ownPropertyDescriptor",
     "category": "BDD",
     "summary": "### .ownPropertyDescriptor(name[, descriptor[, msg]])",
-    "body": "Asserts that the target has its own property descriptor with the given key\n`name`. Enumerable and non-enumerable properties are included in the\nsearch.\n\n    expect({a: 1}).to.have.ownPropertyDescriptor('a');\n\nWhen `descriptor` is provided, `.ownPropertyDescriptor` also asserts that\nthe property's descriptor is deeply equal to the given `descriptor`. See\nthe `deep-eql` project page for info on the deep equality algorithm:\nhttps://github.com/chaijs/deep-eql.\n\n    expect({a: 1}).to.have.ownPropertyDescriptor('a', {\n      configurable: true,\n      enumerable: true,\n      writable: true,\n      value: 1,\n    });\n\nAdd `.not` earlier in the chain to negate `.ownPropertyDescriptor`.\n\n    expect({a: 1}).to.not.have.ownPropertyDescriptor('b');\n\nHowever, it's dangerous to negate `.ownPropertyDescriptor` when providing\na `descriptor`. The problem is that it creates uncertain expectations by\nasserting that the target either doesn't have a property descriptor with\nthe given key `name`, or that it does have a property descriptor with the\ngiven key `name` but it’s not deeply equal to the given `descriptor`. It's\noften best to identify the exact output that's expected, and then write an\nassertion that only accepts that exact output.\n\nWhen the target isn't expected to have a property descriptor with the given\nkey `name`, it's often best to assert exactly that.\n\n    // Recommended\n    expect({b: 2}).to.not.have.ownPropertyDescriptor('a');\n\n    // Not recommended\n    expect({b: 2}).to.not.have.ownPropertyDescriptor('a', {\n      configurable: true,\n      enumerable: true,\n      writable: true,\n      value: 1,\n    });\n\nWhen the target is expected to have a property descriptor with the given\nkey `name`, it's often best to assert that the property has its expected\ndescriptor, rather than asserting that it doesn't have one of many\nunexpected descriptors.\n\n    // Recommended\n    expect({a: 3}).to.have.ownPropertyDescriptor('a', {\n      configurable: true,\n      enumerable: true,\n      writable: true,\n      value: 3,\n    });\n\n    // Not recommended\n    expect({a: 3}).to.not.have.ownPropertyDescriptor('a', {\n      configurable: true,\n      enumerable: true,\n      writable: true,\n      value: 1,\n    });\n\n`.ownPropertyDescriptor` changes the target of any assertions that follow\nin the chain to be the value of the property descriptor from the original\ntarget object.\n\n    expect({a: 1}).to.have.ownPropertyDescriptor('a')\n      .that.has.property('enumerable', true);\n\n`.ownPropertyDescriptor` accepts an optional `msg` argument which is a\ncustom error message to show when the assertion fails. The message can also\nbe given as the second argument to `expect`. When not providing\n`descriptor`, only use the second form.\n\n    // Recommended\n    expect({a: 1}).to.have.ownPropertyDescriptor('a', {\n      configurable: true,\n      enumerable: true,\n      writable: true,\n      value: 2,\n    }, 'nooo why fail??');\n\n    // Recommended\n    expect({a: 1}, 'nooo why fail??').to.have.ownPropertyDescriptor('a', {\n      configurable: true,\n      enumerable: true,\n      writable: true,\n      value: 2,\n    });\n\n    // Recommended\n    expect({a: 1}, 'nooo why fail??').to.have.ownPropertyDescriptor('b');\n\n    // Not recommended\n    expect({a: 1})\n      .to.have.ownPropertyDescriptor('b', undefined, 'nooo why fail??');\n\nThe above assertion isn't the same thing as not providing `descriptor`.\nInstead, it's asserting that the target object has a `b` property\ndescriptor that's deeply equal to `undefined`.\n\nThe alias `.haveOwnPropertyDescriptor` can be used interchangeably with\n`.ownPropertyDescriptor`.",
+    "body": "Asserts that the target has its own property descriptor with the given key\n`name`. Enumerable and non-enumerable properties are included in the\nsearch.\n\n    expect({a: 1}).to.have.ownPropertyDescriptor('a');\n\nWhen `descriptor` is provided, `.ownPropertyDescriptor` also asserts that\nthe property's descriptor is deeply equal to the given `descriptor`. See\nthe `deep-eql` project page for info on the deep equality algorithm:\nhttps://github.com/chaijs/deep-eql.\n\n    expect({a: 1}).to.have.ownPropertyDescriptor('a', {\n        configurable: true,\n        enumerable: true,\n        writable: true,\n        value: 1,\n    });\n\nAdd `.not` earlier in the chain to negate `.ownPropertyDescriptor`.\n\n    expect({a: 1}).to.not.have.ownPropertyDescriptor('b');\n\nHowever, it's dangerous to negate `.ownPropertyDescriptor` when providing\na `descriptor`. The problem is that it creates uncertain expectations by\nasserting that the target either doesn't have a property descriptor with\nthe given key `name`, or that it does have a property descriptor with the\ngiven key `name` but it’s not deeply equal to the given `descriptor`. It's\noften best to identify the exact output that's expected, and then write an\nassertion that only accepts that exact output.\n\nWhen the target isn't expected to have a property descriptor with the given\nkey `name`, it's often best to assert exactly that.\n\n    // Recommended\n    expect({b: 2}).to.not.have.ownPropertyDescriptor('a');\n\n    // Not recommended\n    expect({b: 2}).to.not.have.ownPropertyDescriptor('a', {\n        configurable: true,\n        enumerable: true,\n        writable: true,\n        value: 1,\n    });\n\nWhen the target is expected to have a property descriptor with the given\nkey `name`, it's often best to assert that the property has its expected\ndescriptor, rather than asserting that it doesn't have one of many\nunexpected descriptors.\n\n    // Recommended\n    expect({a: 3}).to.have.ownPropertyDescriptor('a', {\n        configurable: true,\n        enumerable: true,\n        writable: true,\n        value: 3,\n    });\n\n    // Not recommended\n    expect({a: 3}).to.not.have.ownPropertyDescriptor('a', {\n        configurable: true,\n        enumerable: true,\n        writable: true,\n        value: 1,\n    });\n\n`.ownPropertyDescriptor` changes the target of any assertions that follow\nin the chain to be the value of the property descriptor from the original\ntarget object.\n\n    expect({a: 1}).to.have.ownPropertyDescriptor('a')\n      .that.has.property('enumerable', true);\n\n`.ownPropertyDescriptor` accepts an optional `msg` argument which is a\ncustom error message to show when the assertion fails. The message can also\nbe given as the second argument to `expect`. When not providing\n`descriptor`, only use the second form.\n\n    // Recommended\n    expect({a: 1}).to.have.ownPropertyDescriptor('a', {\n        configurable: true,\n        enumerable: true,\n        writable: true,\n        value: 2,\n    }, 'nooo why fail??');\n\n    // Recommended\n    expect({a: 1}, 'nooo why fail??').to.have.ownPropertyDescriptor('a', {\n        configurable: true,\n        enumerable: true,\n        writable: true,\n        value: 2,\n    });\n\n    // Recommended\n    expect({a: 1}, 'nooo why fail??').to.have.ownPropertyDescriptor('b');\n\n    // Not recommended\n    expect({a: 1})\n      .to.have.ownPropertyDescriptor('b', undefined, 'nooo why fail??');\n\nThe above assertion isn't the same thing as not providing `descriptor`.\nInstead, it's asserting that the target object has a `b` property\ndescriptor that's deeply equal to `undefined`.\n\nThe alias `.haveOwnPropertyDescriptor` can be used interchangeably with\n`.ownPropertyDescriptor`.",
     "params": [
       {
         "name": "name",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": ""
       },
       {
         "name": "descriptor",
-        "type": "Object",
+        "type": "object",
         "optional": false,
         "description": "_optional_"
       },
       {
         "name": "msg",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -413,13 +421,13 @@
     "params": [
       {
         "name": "n",
-        "type": "Number",
+        "type": "number",
         "optional": false,
         "description": ""
       },
       {
         "name": "msg",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -440,7 +448,7 @@
       },
       {
         "name": "msg",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -455,13 +463,13 @@
     "params": [
       {
         "name": "str",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": ""
       },
       {
         "name": "msg",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -476,7 +484,7 @@
     "params": [
       {
         "name": "keys",
-        "type": "...String|Array|Object",
+        "type": "...string | Array | object",
         "optional": false,
         "description": ""
       }
@@ -487,23 +495,23 @@
     "name": "throw",
     "category": "BDD",
     "summary": "### .throw([errorLike], [errMsgMatcher], [msg])",
-    "body": "When no arguments are provided, `.throw` invokes the target function and\nasserts that an error is thrown.\n\n    var badFn = function () { throw new TypeError('Illegal salmon!'); };\n\n    expect(badFn).to.throw();\n\nWhen one argument is provided, and it's an error constructor, `.throw`\ninvokes the target function and asserts that an error is thrown that's an\ninstance of that error constructor.\n\n    var badFn = function () { throw new TypeError('Illegal salmon!'); };\n\n    expect(badFn).to.throw(TypeError);\n\nWhen one argument is provided, and it's an error instance, `.throw` invokes\nthe target function and asserts that an error is thrown that's strictly\n(`===`) equal to that error instance.\n\n    var err = new TypeError('Illegal salmon!');\n    var badFn = function () { throw err; };\n\n    expect(badFn).to.throw(err);\n\nWhen one argument is provided, and it's a string, `.throw` invokes the\ntarget function and asserts that an error is thrown with a message that\ncontains that string.\n\n    var badFn = function () { throw new TypeError('Illegal salmon!'); };\n\n    expect(badFn).to.throw('salmon');\n\nWhen one argument is provided, and it's a regular expression, `.throw`\ninvokes the target function and asserts that an error is thrown with a\nmessage that matches that regular expression.\n\n    var badFn = function () { throw new TypeError('Illegal salmon!'); };\n\n    expect(badFn).to.throw(/salmon/);\n\nWhen two arguments are provided, and the first is an error instance or\nconstructor, and the second is a string or regular expression, `.throw`\ninvokes the function and asserts that an error is thrown that fulfills both\nconditions as described above.\n\n    var err = new TypeError('Illegal salmon!');\n    var badFn = function () { throw err; };\n\n    expect(badFn).to.throw(TypeError, 'salmon');\n    expect(badFn).to.throw(TypeError, /salmon/);\n    expect(badFn).to.throw(err, 'salmon');\n    expect(badFn).to.throw(err, /salmon/);\n\nAdd `.not` earlier in the chain to negate `.throw`.\n\n    var goodFn = function () {};\n\n    expect(goodFn).to.not.throw();\n\nHowever, it's dangerous to negate `.throw` when providing any arguments.\nThe problem is that it creates uncertain expectations by asserting that the\ntarget either doesn't throw an error, or that it throws an error but of a\ndifferent type than the given type, or that it throws an error of the given\ntype but with a message that doesn't include the given string. It's often\nbest to identify the exact output that's expected, and then write an\nassertion that only accepts that exact output.\n\nWhen the target isn't expected to throw an error, it's often best to assert\nexactly that.\n\n    var goodFn = function () {};\n\n    expect(goodFn).to.not.throw(); // Recommended\n    expect(goodFn).to.not.throw(ReferenceError, 'x'); // Not recommended\n\nWhen the target is expected to throw an error, it's often best to assert\nthat the error is of its expected type, and has a message that includes an\nexpected string, rather than asserting that it doesn't have one of many\nunexpected types, and doesn't have a message that includes some string.\n\n    var badFn = function () { throw new TypeError('Illegal salmon!'); };\n\n    expect(badFn).to.throw(TypeError, 'salmon'); // Recommended\n    expect(badFn).to.not.throw(ReferenceError, 'x'); // Not recommended\n\n`.throw` changes the target of any assertions that follow in the chain to\nbe the error object that's thrown.\n\n    var err = new TypeError('Illegal salmon!');\n    err.code = 42;\n    var badFn = function () { throw err; };\n\n    expect(badFn).to.throw(TypeError).with.property('code', 42);\n\n`.throw` accepts an optional `msg` argument which is a custom error message\nto show when the assertion fails. The message can also be given as the\nsecond argument to `expect`. When not providing two arguments, always use\nthe second form.\n\n    var goodFn = function () {};\n\n    expect(goodFn).to.throw(TypeError, 'x', 'nooo why fail??');\n    expect(goodFn, 'nooo why fail??').to.throw();\n\nDue to limitations in ES5, `.throw` may not always work as expected when\nusing a transpiler such as Babel or TypeScript. In particular, it may\nproduce unexpected results when subclassing the built-in `Error` object and\nthen passing the subclassed constructor to `.throw`. See your transpiler's\ndocs for details:\n\n- ([Babel](https://babeljs.io/docs/usage/caveats/#classes))\n- ([TypeScript](https://github.com/Microsoft/TypeScript/wiki/Breaking-Changes#extending-built-ins-like-error-array-and-map-may-no-longer-work))\n\nBeware of some common mistakes when using the `throw` assertion. One common\nmistake is to accidentally invoke the function yourself instead of letting\nthe `throw` assertion invoke the function for you. For example, when\ntesting if a function named `fn` throws, provide `fn` instead of `fn()` as\nthe target for the assertion.\n\n    expect(fn).to.throw();     // Good! Tests `fn` as desired\n    expect(fn()).to.throw();   // Bad! Tests result of `fn()`, not `fn`\n\nIf you need to assert that your function `fn` throws when passed certain\narguments, then wrap a call to `fn` inside of another function.\n\n    expect(function () { fn(42); }).to.throw();  // Function expression\n    expect(() => fn(42)).to.throw();             // ES6 arrow function\n\nAnother common mistake is to provide an object method (or any stand-alone\nfunction that relies on `this`) as the target of the assertion. Doing so is\nproblematic because the `this` context will be lost when the function is\ninvoked by `.throw`; there's no way for it to know what `this` is supposed\nto be. There are two ways around this problem. One solution is to wrap the\nmethod or function call inside of another function. Another solution is to\nuse `bind`.\n\n    expect(function () { cat.meow(); }).to.throw();  // Function expression\n    expect(() => cat.meow()).to.throw();             // ES6 arrow function\n    expect(cat.meow.bind(cat)).to.throw();           // Bind\n\nFinally, it's worth mentioning that it's a best practice in JavaScript to\nonly throw `Error` and derivatives of `Error` such as `ReferenceError`,\n`TypeError`, and user-defined objects that extend `Error`. No other type of\nvalue will generate a stack trace when initialized. With that said, the\n`throw` assertion does technically support any type of value being thrown,\nnot just `Error` and its derivatives.\n\nThe aliases `.throws` and `.Throw` can be used interchangeably with\n`.throw`.",
+    "body": "When no arguments are provided, `.throw` invokes the target function and\nasserts that an error is thrown.\n\n    var badFn = function () { throw new TypeError('Illegal salmon!'); };\n    expect(badFn).to.throw();\n\nWhen one argument is provided, and it's an error constructor, `.throw`\ninvokes the target function and asserts that an error is thrown that's an\ninstance of that error constructor.\n\n    var badFn = function () { throw new TypeError('Illegal salmon!'); };\n    expect(badFn).to.throw(TypeError);\n\nWhen one argument is provided, and it's an error instance, `.throw` invokes\nthe target function and asserts that an error is thrown that's strictly\n(`===`) equal to that error instance.\n\n    var err = new TypeError('Illegal salmon!');\n    var badFn = function () { throw err; };\n\n    expect(badFn).to.throw(err);\n\nWhen one argument is provided, and it's a string, `.throw` invokes the\ntarget function and asserts that an error is thrown with a message that\ncontains that string.\n\n    var badFn = function () { throw new TypeError('Illegal salmon!'); };\n    expect(badFn).to.throw('salmon');\n\nWhen one argument is provided, and it's a regular expression, `.throw`\ninvokes the target function and asserts that an error is thrown with a\nmessage that matches that regular expression.\n\n    var badFn = function () { throw new TypeError('Illegal salmon!'); };\n    expect(badFn).to.throw(/salmon/);\n\nWhen two arguments are provided, and the first is an error instance or\nconstructor, and the second is a string or regular expression, `.throw`\ninvokes the function and asserts that an error is thrown that fulfills both\nconditions as described above.\n\n    var err = new TypeError('Illegal salmon!');\n    var badFn = function () { throw err; };\n\n    expect(badFn).to.throw(TypeError, 'salmon');\n    expect(badFn).to.throw(TypeError, /salmon/);\n    expect(badFn).to.throw(err, 'salmon');\n    expect(badFn).to.throw(err, /salmon/);\n\nAdd `.not` earlier in the chain to negate `.throw`.\n\n    var goodFn = function () {};\n    expect(goodFn).to.not.throw();\n\nHowever, it's dangerous to negate `.throw` when providing any arguments.\nThe problem is that it creates uncertain expectations by asserting that the\ntarget either doesn't throw an error, or that it throws an error but of a\ndifferent type than the given type, or that it throws an error of the given\ntype but with a message that doesn't include the given string. It's often\nbest to identify the exact output that's expected, and then write an\nassertion that only accepts that exact output.\n\nWhen the target isn't expected to throw an error, it's often best to assert\nexactly that.\n\n    var goodFn = function () {};\n\n    expect(goodFn).to.not.throw(); // Recommended\n    expect(goodFn).to.not.throw(ReferenceError, 'x'); // Not recommended\n\nWhen the target is expected to throw an error, it's often best to assert\nthat the error is of its expected type, and has a message that includes an\nexpected string, rather than asserting that it doesn't have one of many\nunexpected types, and doesn't have a message that includes some string.\n\n    var badFn = function () { throw new TypeError('Illegal salmon!'); };\n\n    expect(badFn).to.throw(TypeError, 'salmon'); // Recommended\n    expect(badFn).to.not.throw(ReferenceError, 'x'); // Not recommended\n\n`.throw` changes the target of any assertions that follow in the chain to\nbe the error object that's thrown.\n\n    var err = new TypeError('Illegal salmon!');\n    err.code = 42;\n    var badFn = function () { throw err; };\n\n    expect(badFn).to.throw(TypeError).with.property('code', 42);\n\n`.throw` accepts an optional `msg` argument which is a custom error message\nto show when the assertion fails. The message can also be given as the\nsecond argument to `expect`. When not providing two arguments, always use\nthe second form.\n\n    var goodFn = function () {};\n\n    expect(goodFn).to.throw(TypeError, 'x', 'nooo why fail??');\n    expect(goodFn, 'nooo why fail??').to.throw();\n\nDue to limitations in ES5, `.throw` may not always work as expected when\nusing a transpiler such as Babel or TypeScript. In particular, it may\nproduce unexpected results when subclassing the built-in `Error` object and\nthen passing the subclassed constructor to `.throw`. See your transpiler's\ndocs for details:\n\n- ([Babel](https://babeljs.io/docs/usage/caveats/#classes))\n- ([TypeScript](https://github.com/Microsoft/TypeScript/wiki/Breaking-Changes#extending-built-ins-like-error-array-and-map-may-no-longer-work))\n\nBeware of some common mistakes when using the `throw` assertion. One common\nmistake is to accidentally invoke the function yourself instead of letting\nthe `throw` assertion invoke the function for you. For example, when\ntesting if a function named `fn` throws, provide `fn` instead of `fn()` as\nthe target for the assertion.\n\n    expect(fn).to.throw();     // Good! Tests `fn` as desired\n    expect(fn()).to.throw();   // Bad! Tests result of `fn()`, not `fn`\n\nIf you need to assert that your function `fn` throws when passed certain\narguments, then wrap a call to `fn` inside of another function.\n\n    expect(function () { fn(42); }).to.throw();  // Function expression\n    expect(() => fn(42)).to.throw();             // ES6 arrow function\n\nAnother common mistake is to provide an object method (or any stand-alone\nfunction that relies on `this`) as the target of the assertion. Doing so is\nproblematic because the `this` context will be lost when the function is\ninvoked by `.throw`; there's no way for it to know what `this` is supposed\nto be. There are two ways around this problem. One solution is to wrap the\nmethod or function call inside of another function. Another solution is to\nuse `bind`.\n\n    expect(function () { cat.meow(); }).to.throw();  // Function expression\n    expect(() => cat.meow()).to.throw();             // ES6 arrow function\n    expect(cat.meow.bind(cat)).to.throw();           // Bind\n\nFinally, it's worth mentioning that it's a best practice in JavaScript to\nonly throw `Error` and derivatives of `Error` such as `ReferenceError`,\n`TypeError`, and user-defined objects that extend `Error`. No other type of\nvalue will generate a stack trace when initialized. With that said, the\n`throw` assertion does technically support any type of value being thrown,\nnot just `Error` and its derivatives.\n\nThe aliases `.throws` and `.Throw` can be used interchangeably with\n`.throw`.",
     "params": [
       {
         "name": "errorLike",
-        "type": "Error|ErrorConstructor",
+        "type": "Error",
         "optional": false,
         "description": ""
       },
       {
         "name": "errMsgMatcher",
-        "type": "String|RegExp",
+        "type": "string | RegExp",
         "optional": false,
         "description": "error message"
       },
       {
         "name": "msg",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -520,13 +528,13 @@
     "params": [
       {
         "name": "method",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": ""
       },
       {
         "name": "msg",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -545,7 +553,7 @@
     "name": "satisfy",
     "category": "BDD",
     "summary": "### .satisfy(matcher[, msg])",
-    "body": "Invokes the given `matcher` function with the target being passed as the\nfirst argument, and asserts that the value returned is truthy.\n\n    expect(1).to.satisfy(function(num) {\n      return num > 0;\n    });\n\nAdd `.not` earlier in the chain to negate `.satisfy`.\n\n    expect(1).to.not.satisfy(function(num) {\n      return num > 2;\n    });\n\n`.satisfy` accepts an optional `msg` argument which is a custom error\nmessage to show when the assertion fails. The message can also be given as\nthe second argument to `expect`.\n\n    expect(1).to.satisfy(function(num) {\n      return num > 2;\n    }, 'nooo why fail??');\n\n    expect(1, 'nooo why fail??').to.satisfy(function(num) {\n      return num > 2;\n    });\n\nThe alias `.satisfies` can be used interchangeably with `.satisfy`.",
+    "body": "Invokes the given `matcher` function with the target being passed as the\nfirst argument, and asserts that the value returned is truthy.\n\n    expect(1).to.satisfy(function(num) {\n        return num > 0;\n    });\n\nAdd `.not` earlier in the chain to negate `.satisfy`.\n\n    expect(1).to.not.satisfy(function(num) {\n        return num > 2;\n    });\n\n`.satisfy` accepts an optional `msg` argument which is a custom error\nmessage to show when the assertion fails. The message can also be given as\nthe second argument to `expect`.\n\n    expect(1).to.satisfy(function(num) {\n        return num > 2;\n    }, 'nooo why fail??');\n\n    expect(1, 'nooo why fail??').to.satisfy(function(num) {\n        return num > 2;\n    });\n\nThe alias `.satisfies` can be used interchangeably with `.satisfy`.",
     "params": [
       {
         "name": "matcher",
@@ -555,7 +563,7 @@
       },
       {
         "name": "msg",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -570,19 +578,19 @@
     "params": [
       {
         "name": "expected",
-        "type": "Number",
+        "type": "number",
         "optional": false,
         "description": ""
       },
       {
         "name": "delta",
-        "type": "Number",
+        "type": "number",
         "optional": false,
         "description": ""
       },
       {
         "name": "msg",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -603,11 +611,19 @@
       },
       {
         "name": "msg",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
     ],
+    "see": []
+  },
+  {
+    "name": "iterable",
+    "category": "BDD",
+    "summary": "### .iterable",
+    "body": "Asserts that the target is an iterable, which means that it has a iterator.\n\n    expect([1, 2]).to.be.iterable;\n    expect(\"foobar\").to.be.iterable;\n\nAdd `.not` earlier in the chain to negate `.iterable`.\n\n    expect(1).to.not.be.iterable;\n    expect(true).to.not.be.iterable;\n\nA custom error message can be given as the second argument to `expect`.\n\n    expect(1, 'nooo why fail??').to.be.iterable;",
+    "params": [],
     "see": []
   },
   {
@@ -624,7 +640,7 @@
       },
       {
         "name": "msg",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -635,24 +651,24 @@
     "name": "change",
     "category": "BDD",
     "summary": "### .change(subject[, prop[, msg]])",
-    "body": "When one argument is provided, `.change` asserts that the given function\n`subject` returns a different value when it's invoked before the target\nfunction compared to when it's invoked afterward. However, it's often best\nto assert that `subject` is equal to its expected value.\n\n    var dots = ''\n      , addDot = function () { dots += '.'; }\n      , getDots = function () { return dots; };\n\n    // Recommended\n    expect(getDots()).to.equal('');\n    addDot();\n    expect(getDots()).to.equal('.');\n\n    // Not recommended\n    expect(addDot).to.change(getDots);\n\nWhen two arguments are provided, `.change` asserts that the value of the\ngiven object `subject`'s `prop` property is different before invoking the\ntarget function compared to afterward.\n\n    var myObj = {dots: ''}\n      , addDot = function () { myObj.dots += '.'; };\n\n    // Recommended\n    expect(myObj).to.have.property('dots', '');\n    addDot();\n    expect(myObj).to.have.property('dots', '.');\n\n    // Not recommended\n    expect(addDot).to.change(myObj, 'dots');\n\nStrict (`===`) equality is used to compare before and after values.\n\nAdd `.not` earlier in the chain to negate `.change`.\n\n    var dots = ''\n      , noop = function () {}\n      , getDots = function () { return dots; };\n\n    expect(noop).to.not.change(getDots);\n\n    var myObj = {dots: ''}\n      , noop = function () {};\n\n    expect(noop).to.not.change(myObj, 'dots');\n\n`.change` accepts an optional `msg` argument which is a custom error\nmessage to show when the assertion fails. The message can also be given as\nthe second argument to `expect`. When not providing two arguments, always\nuse the second form.\n\n    var myObj = {dots: ''}\n      , addDot = function () { myObj.dots += '.'; };\n\n    expect(addDot).to.not.change(myObj, 'dots', 'nooo why fail??');\n\n    var dots = ''\n      , addDot = function () { dots += '.'; }\n      , getDots = function () { return dots; };\n\n    expect(addDot, 'nooo why fail??').to.not.change(getDots);\n\n`.change` also causes all `.by` assertions that follow in the chain to\nassert how much a numeric subject was increased or decreased by. However,\nit's dangerous to use `.change.by`. The problem is that it creates\nuncertain expectations by asserting that the subject either increases by\nthe given delta, or that it decreases by the given delta. It's often best\nto identify the exact output that's expected, and then write an assertion\nthat only accepts that exact output.\n\n    var myObj = {val: 1}\n      , addTwo = function () { myObj.val += 2; }\n      , subtractTwo = function () { myObj.val -= 2; };\n\n    expect(addTwo).to.increase(myObj, 'val').by(2); // Recommended\n    expect(addTwo).to.change(myObj, 'val').by(2); // Not recommended\n\n    expect(subtractTwo).to.decrease(myObj, 'val').by(2); // Recommended\n    expect(subtractTwo).to.change(myObj, 'val').by(2); // Not recommended\n\nThe alias `.changes` can be used interchangeably with `.change`.",
+    "body": "When one argument is provided, `.change` asserts that the given function\n`subject` returns a different value when it's invoked before the target\nfunction compared to when it's invoked afterward. However, it's often best\nto assert that `subject` is equal to its expected value.\n\n    var dots = ''\n    , addDot = function () { dots += '.'; }\n    , getDots = function () { return dots; };\n\n    // Recommended\n    expect(getDots()).to.equal('');\n    addDot();\n    expect(getDots()).to.equal('.');\n\n    // Not recommended\n    expect(addDot).to.change(getDots);\n\nWhen two arguments are provided, `.change` asserts that the value of the\ngiven object `subject`'s `prop` property is different before invoking the\ntarget function compared to afterward.\n\n    var myObj = {dots: ''}\n    , addDot = function () { myObj.dots += '.'; };\n\n    // Recommended\n    expect(myObj).to.have.property('dots', '');\n    addDot();\n    expect(myObj).to.have.property('dots', '.');\n\n    // Not recommended\n    expect(addDot).to.change(myObj, 'dots');\n\nStrict (`===`) equality is used to compare before and after values.\n\nAdd `.not` earlier in the chain to negate `.change`.\n\n    var dots = ''\n    , noop = function () {}\n    , getDots = function () { return dots; };\n\n    expect(noop).to.not.change(getDots);\n\n    var myObj = {dots: ''}\n    , noop = function () {};\n\n    expect(noop).to.not.change(myObj, 'dots');\n\n`.change` accepts an optional `msg` argument which is a custom error\nmessage to show when the assertion fails. The message can also be given as\nthe second argument to `expect`. When not providing two arguments, always\nuse the second form.\n\n    var myObj = {dots: ''}\n    , addDot = function () { myObj.dots += '.'; };\n\n    expect(addDot).to.not.change(myObj, 'dots', 'nooo why fail??');\n\n    var dots = ''\n    , addDot = function () { dots += '.'; }\n    , getDots = function () { return dots; };\n\n    expect(addDot, 'nooo why fail??').to.not.change(getDots);\n\n`.change` also causes all `.by` assertions that follow in the chain to\nassert how much a numeric subject was increased or decreased by. However,\nit's dangerous to use `.change.by`. The problem is that it creates\nuncertain expectations by asserting that the subject either increases by\nthe given delta, or that it decreases by the given delta. It's often best\nto identify the exact output that's expected, and then write an assertion\nthat only accepts that exact output.\n\n    var myObj = {val: 1}\n    , addTwo = function () { myObj.val += 2; }\n    , subtractTwo = function () { myObj.val -= 2; };\n\n    expect(addTwo).to.increase(myObj, 'val').by(2); // Recommended\n    expect(addTwo).to.change(myObj, 'val').by(2); // Not recommended\n\n    expect(subtractTwo).to.decrease(myObj, 'val').by(2); // Recommended\n    expect(subtractTwo).to.change(myObj, 'val').by(2); // Not recommended\n\nThe alias `.changes` can be used interchangeably with `.change`.",
     "params": [
       {
         "name": "subject",
-        "type": "String",
+        "type": "Record<PropertyKey, unknown> | (() => unknown)",
         "optional": false,
         "description": ""
       },
       {
         "name": "prop",
-        "type": "String",
-        "optional": false,
+        "type": "string",
+        "optional": true,
         "description": "name _optional_"
       },
       {
         "name": "msg",
-        "type": "String",
-        "optional": false,
+        "type": "string",
+        "optional": true,
         "description": "_optional_"
       }
     ],
@@ -662,24 +678,24 @@
     "name": "increase",
     "category": "BDD",
     "summary": "### .increase(subject[, prop[, msg]])",
-    "body": "When one argument is provided, `.increase` asserts that the given function\n`subject` returns a greater number when it's invoked after invoking the\ntarget function compared to when it's invoked beforehand. `.increase` also\ncauses all `.by` assertions that follow in the chain to assert how much\ngreater of a number is returned. It's often best to assert that the return\nvalue increased by the expected amount, rather than asserting it increased\nby any amount.\n\n    var val = 1\n      , addTwo = function () { val += 2; }\n      , getVal = function () { return val; };\n\n    expect(addTwo).to.increase(getVal).by(2); // Recommended\n    expect(addTwo).to.increase(getVal); // Not recommended\n\nWhen two arguments are provided, `.increase` asserts that the value of the\ngiven object `subject`'s `prop` property is greater after invoking the\ntarget function compared to beforehand.\n\n    var myObj = {val: 1}\n      , addTwo = function () { myObj.val += 2; };\n\n    expect(addTwo).to.increase(myObj, 'val').by(2); // Recommended\n    expect(addTwo).to.increase(myObj, 'val'); // Not recommended\n\nAdd `.not` earlier in the chain to negate `.increase`. However, it's\ndangerous to do so. The problem is that it creates uncertain expectations\nby asserting that the subject either decreases, or that it stays the same.\nIt's often best to identify the exact output that's expected, and then\nwrite an assertion that only accepts that exact output.\n\nWhen the subject is expected to decrease, it's often best to assert that it\ndecreased by the expected amount.\n\n    var myObj = {val: 1}\n      , subtractTwo = function () { myObj.val -= 2; };\n\n    expect(subtractTwo).to.decrease(myObj, 'val').by(2); // Recommended\n    expect(subtractTwo).to.not.increase(myObj, 'val'); // Not recommended\n\nWhen the subject is expected to stay the same, it's often best to assert\nexactly that.\n\n    var myObj = {val: 1}\n      , noop = function () {};\n\n    expect(noop).to.not.change(myObj, 'val'); // Recommended\n    expect(noop).to.not.increase(myObj, 'val'); // Not recommended\n\n`.increase` accepts an optional `msg` argument which is a custom error\nmessage to show when the assertion fails. The message can also be given as\nthe second argument to `expect`. When not providing two arguments, always\nuse the second form.\n\n    var myObj = {val: 1}\n      , noop = function () {};\n\n    expect(noop).to.increase(myObj, 'val', 'nooo why fail??');\n\n    var val = 1\n      , noop = function () {}\n      , getVal = function () { return val; };\n\n    expect(noop, 'nooo why fail??').to.increase(getVal);\n\nThe alias `.increases` can be used interchangeably with `.increase`.",
+    "body": "When one argument is provided, `.increase` asserts that the given function\n`subject` returns a greater number when it's invoked after invoking the\ntarget function compared to when it's invoked beforehand. `.increase` also\ncauses all `.by` assertions that follow in the chain to assert how much\ngreater of a number is returned. It's often best to assert that the return\nvalue increased by the expected amount, rather than asserting it increased\nby any amount.\n\n    var val = 1\n    , addTwo = function () { val += 2; }\n    , getVal = function () { return val; };\n\n    expect(addTwo).to.increase(getVal).by(2); // Recommended\n    expect(addTwo).to.increase(getVal); // Not recommended\n\nWhen two arguments are provided, `.increase` asserts that the value of the\ngiven object `subject`'s `prop` property is greater after invoking the\ntarget function compared to beforehand.\n\n    var myObj = {val: 1}\n    , addTwo = function () { myObj.val += 2; };\n\n    expect(addTwo).to.increase(myObj, 'val').by(2); // Recommended\n    expect(addTwo).to.increase(myObj, 'val'); // Not recommended\n\nAdd `.not` earlier in the chain to negate `.increase`. However, it's\ndangerous to do so. The problem is that it creates uncertain expectations\nby asserting that the subject either decreases, or that it stays the same.\nIt's often best to identify the exact output that's expected, and then\nwrite an assertion that only accepts that exact output.\n\nWhen the subject is expected to decrease, it's often best to assert that it\ndecreased by the expected amount.\n\n    var myObj = {val: 1}\n    , subtractTwo = function () { myObj.val -= 2; };\n\n    expect(subtractTwo).to.decrease(myObj, 'val').by(2); // Recommended\n    expect(subtractTwo).to.not.increase(myObj, 'val'); // Not recommended\n\nWhen the subject is expected to stay the same, it's often best to assert\nexactly that.\n\n    var myObj = {val: 1}\n    , noop = function () {};\n\n    expect(noop).to.not.change(myObj, 'val'); // Recommended\n    expect(noop).to.not.increase(myObj, 'val'); // Not recommended\n\n`.increase` accepts an optional `msg` argument which is a custom error\nmessage to show when the assertion fails. The message can also be given as\nthe second argument to `expect`. When not providing two arguments, always\nuse the second form.\n\n    var myObj = {val: 1}\n    , noop = function () {};\n\n    expect(noop).to.increase(myObj, 'val', 'nooo why fail??');\n\n    var val = 1\n    , noop = function () {}\n    , getVal = function () { return val; };\n\n    expect(noop, 'nooo why fail??').to.increase(getVal);\n\nThe alias `.increases` can be used interchangeably with `.increase`.",
     "params": [
       {
         "name": "subject",
-        "type": "String|Function",
+        "type": "Record<PropertyKey, unknown> | (() => number)",
         "optional": false,
         "description": ""
       },
       {
         "name": "prop",
-        "type": "String",
-        "optional": false,
+        "type": "string",
+        "optional": true,
         "description": "name _optional_"
       },
       {
         "name": "msg",
-        "type": "String",
-        "optional": false,
+        "type": "string",
+        "optional": true,
         "description": "_optional_"
       }
     ],
@@ -693,20 +709,20 @@
     "params": [
       {
         "name": "subject",
-        "type": "String|Function",
+        "type": "Record<PropertyKey, unknown> | (() => number)",
         "optional": false,
         "description": ""
       },
       {
         "name": "prop",
-        "type": "String",
-        "optional": false,
+        "type": "string",
+        "optional": true,
         "description": "name _optional_"
       },
       {
         "name": "msg",
-        "type": "String",
-        "optional": false,
+        "type": "string",
+        "optional": true,
         "description": "_optional_"
       }
     ],
@@ -720,13 +736,13 @@
     "params": [
       {
         "name": "delta",
-        "type": "Number",
+        "type": "number",
         "optional": false,
         "description": ""
       },
       {
         "name": "msg",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -737,7 +753,7 @@
     "name": "extensible",
     "category": "BDD",
     "summary": "### .extensible",
-    "body": "Asserts that the target is extensible, which means that new properties can\nbe added to it. Primitives are never extensible.\n\n    expect({a: 1}).to.be.extensible;\n\nAdd `.not` earlier in the chain to negate `.extensible`.\n\n    var nonExtensibleObject = Object.preventExtensions({})\n      , sealedObject = Object.seal({})\n      , frozenObject = Object.freeze({});\n\n    expect(nonExtensibleObject).to.not.be.extensible;\n    expect(sealedObject).to.not.be.extensible;\n    expect(frozenObject).to.not.be.extensible;\n    expect(1).to.not.be.extensible;\n\nA custom error message can be given as the second argument to `expect`.\n\n    expect(1, 'nooo why fail??').to.be.extensible;",
+    "body": "Asserts that the target is extensible, which means that new properties can\nbe added to it. Primitives are never extensible.\n\n    expect({a: 1}).to.be.extensible;\n\nAdd `.not` earlier in the chain to negate `.extensible`.\n\n    var nonExtensibleObject = Object.preventExtensions({})\n    , sealedObject = Object.seal({})\n    , frozenObject = Object.freeze({});\n\n    expect(nonExtensibleObject).to.not.be.extensible;\n    expect(sealedObject).to.not.be.extensible;\n    expect(frozenObject).to.not.be.extensible;\n    expect(1).to.not.be.extensible;\n\nA custom error message can be given as the second argument to `expect`.\n\n    expect(1, 'nooo why fail??').to.be.extensible;",
     "params": [],
     "see": []
   },
@@ -766,22 +782,43 @@
     "see": []
   },
   {
+    "name": "containSubset",
+    "category": "BDD",
+    "summary": "### .containSubset(subset[, msg])",
+    "body": "Asserts that the target object/array deeply contains all of the provided\n`subset`'s properties/elements at the same nested structure. This is useful\nfor partial matching of complex objects without needing to specify all fields.\n\nWhen the target is an object, `.containSubset` asserts that all of `subset`'s\nproperties exist in the target with the same values, at the same nested depth.\nThe target may have additional properties that are not in `subset`.\n\n    expect({name: {first: \"John\", last: \"Smith\"}, age: 30})\n      .to.containSubset({name: {first: \"John\"}});\n\n    expect({a: 1, b: 2, c: 3}).to.containSubset({a: 1, b: 2});\n\nWhen the target is an array, `.containSubset` asserts that for each element\nin the `subset` array, there exists at least one matching element in the\ntarget array. Order does not matter.\n\n    expect([{id: 1, name: \"Alice\"}, {id: 2, name: \"Bob\"}])\n      .to.containSubset([{name: \"Alice\"}]);\n\n    expect([1, 2, 3, 4]).to.containSubset([2, 4]);\n\nNested arrays and objects are compared recursively.\n\n    expect({\n      users: [\n        {name: \"Alice\", roles: [\"admin\", \"user\"]},\n        {name: \"Bob\", roles: [\"user\"]}\n      ]\n    }).to.containSubset({\n      users: [{name: \"Alice\"}]\n    });\n\nFunctions in the `subset` are treated as validators. The corresponding value\nin the target is passed to the function, and the assertion passes if the\nfunction returns a truthy value.\n\n    expect({age: 25}).to.containSubset({age: (val) => val > 18});\n    expect({name: \"Alice\"}).to.containSubset({name: (val) => val.startsWith(\"A\")});\n\nDate objects are compared by their timestamp values.\n\n    expect({createdAt: new Date('2024-01-15')})\n      .to.containSubset({createdAt: new Date('2024-01-15')});\n\nAdd `.not` earlier in the chain to negate `.containSubset`. However, it's\noften best to identify the exact output that's expected, and then write an\nassertion that only accepts that exact output.\n\n    expect({a: 1, b: 2}).to.not.containSubset({a: 3});\n    expect([1, 2, 3]).to.not.containSubset([4, 5]);\n\n`.containSubset` accepts an optional `msg` argument which is a custom error\nmessage to show when the assertion fails. The message can also be given as\nthe second argument to `expect`.\n\n    expect({a: 1}).to.containSubset({b: 2}, 'nooo why fail??');\n    expect({a: 1}, 'nooo why fail??').to.containSubset({b: 2});",
+    "params": [
+      {
+        "name": "subset",
+        "type": "unknown",
+        "optional": false,
+        "description": ""
+      },
+      {
+        "name": "msg",
+        "type": "string",
+        "optional": true,
+        "description": "_optional_"
+      }
+    ],
+    "see": []
+  },
+  {
     "name": "assert",
     "category": "Assert",
     "summary": "### assert(expression, message)",
     "body": "Write your own test expressions.\n\n    assert('foo' !== 'bar', 'foo is not bar');\n    assert(Array.isArray([]), 'empty arrays are arrays');",
     "params": [
       {
-        "name": "expression",
-        "type": "Mixed",
+        "name": "express",
+        "type": "unknown",
         "optional": false,
-        "description": "to test for truthiness"
+        "description": "- expression to test for truthiness"
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "errmsg",
+        "type": "string",
         "optional": false,
-        "description": "to display on error"
+        "description": "- message to display on error"
       }
     ],
     "see": []
@@ -794,25 +831,25 @@
     "params": [
       {
         "name": "actual",
-        "type": "Mixed",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "expected",
-        "type": "Mixed",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "message",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": ""
       },
       {
         "name": "operator",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -826,14 +863,14 @@
     "body": "Asserts that `object` is truthy.\n\n    assert.isOk('everything', 'everything is ok');\n    assert.isOk(false, 'this will fail');",
     "params": [
       {
-        "name": "object",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
-        "description": "to test"
+        "description": "object to test"
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -847,14 +884,14 @@
     "body": "Asserts that `object` is falsy.\n\n    assert.isNotOk('everything', 'this will fail');\n    assert.isNotOk(false, 'this will pass');",
     "params": [
       {
-        "name": "object",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
-        "description": "to test"
+        "description": "object to test"
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -868,20 +905,20 @@
     "body": "Asserts non-strict equality (`==`) of `actual` and `expected`.\n\n    assert.equal(3, '3', '== coerces values to strings');",
     "params": [
       {
-        "name": "actual",
-        "type": "Mixed",
+        "name": "act",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "expected",
-        "type": "Mixed",
+        "name": "exp",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -895,20 +932,20 @@
     "body": "Asserts non-strict inequality (`!=`) of `actual` and `expected`.\n\n    assert.notEqual(3, 4, 'these numbers are not equal');",
     "params": [
       {
-        "name": "actual",
-        "type": "Mixed",
+        "name": "act",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "expected",
-        "type": "Mixed",
+        "name": "exp",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -922,20 +959,20 @@
     "body": "Asserts strict equality (`===`) of `actual` and `expected`.\n\n    assert.strictEqual(true, true, 'these booleans are strictly equal');",
     "params": [
       {
-        "name": "actual",
-        "type": "Mixed",
+        "name": "act",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "expected",
-        "type": "Mixed",
+        "name": "exp",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -949,20 +986,20 @@
     "body": "Asserts strict inequality (`!==`) of `actual` and `expected`.\n\n    assert.notStrictEqual(3, '3', 'no coercion for strict equality');",
     "params": [
       {
-        "name": "actual",
-        "type": "Mixed",
+        "name": "act",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "expected",
-        "type": "Mixed",
+        "name": "exp",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -976,20 +1013,20 @@
     "body": "Asserts that `actual` is deeply equal to `expected`.\n\n    assert.deepEqual({ tea: 'green' }, { tea: 'green' });",
     "params": [
       {
-        "name": "actual",
-        "type": "Mixed",
+        "name": "act",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "expected",
-        "type": "Mixed",
+        "name": "exp",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1003,20 +1040,20 @@
     "body": "Assert that `actual` is not deeply equal to `expected`.\n\n    assert.notDeepEqual({ tea: 'green' }, { tea: 'jasmine' });",
     "params": [
       {
-        "name": "actual",
-        "type": "Mixed",
+        "name": "act",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "expected",
-        "type": "Mixed",
+        "name": "exp",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1030,20 +1067,20 @@
     "body": "Asserts `valueToCheck` is strictly greater than (>) `valueToBeAbove`.\n\n    assert.isAbove(5, 2, '5 is strictly greater than 2');",
     "params": [
       {
-        "name": "valueToCheck",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "valueToBeAbove",
-        "type": "Mixed",
+        "name": "abv",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1057,20 +1094,20 @@
     "body": "Asserts `valueToCheck` is greater than or equal to (>=) `valueToBeAtLeast`.\n\n    assert.isAtLeast(5, 2, '5 is greater or equal to 2');\n    assert.isAtLeast(3, 3, '3 is greater or equal to 3');",
     "params": [
       {
-        "name": "valueToCheck",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "valueToBeAtLeast",
-        "type": "Mixed",
+        "name": "atlst",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1084,20 +1121,20 @@
     "body": "Asserts `valueToCheck` is strictly less than (<) `valueToBeBelow`.\n\n    assert.isBelow(3, 6, '3 is strictly less than 6');",
     "params": [
       {
-        "name": "valueToCheck",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "valueToBeBelow",
-        "type": "Mixed",
+        "name": "blw",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1111,20 +1148,20 @@
     "body": "Asserts `valueToCheck` is less than or equal to (<=) `valueToBeAtMost`.\n\n    assert.isAtMost(3, 6, '3 is less than or equal to 6');\n    assert.isAtMost(4, 4, '4 is less than or equal to 4');",
     "params": [
       {
-        "name": "valueToCheck",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "valueToBeAtMost",
-        "type": "Mixed",
+        "name": "atmst",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1138,14 +1175,14 @@
     "body": "Asserts that `value` is true.\n\n    var teaServed = true;\n    assert.isTrue(teaServed, 'the tea has been served');",
     "params": [
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1159,14 +1196,14 @@
     "body": "Asserts that `value` is not true.\n\n    var tea = 'tasty chai';\n    assert.isNotTrue(tea, 'great, time for tea!');",
     "params": [
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1180,14 +1217,14 @@
     "body": "Asserts that `value` is false.\n\n    var teaServed = false;\n    assert.isFalse(teaServed, 'no tea yet? hmm...');",
     "params": [
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1201,14 +1238,14 @@
     "body": "Asserts that `value` is not false.\n\n    var tea = 'tasty chai';\n    assert.isNotFalse(tea, 'great, time for tea!');",
     "params": [
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1222,14 +1259,14 @@
     "body": "Asserts that `value` is null.\n\n    assert.isNull(err, 'there was no error');",
     "params": [
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1243,14 +1280,14 @@
     "body": "Asserts that `value` is not null.\n\n    var tea = 'tasty chai';\n    assert.isNotNull(tea, 'great, time for tea!');",
     "params": [
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1264,14 +1301,14 @@
     "body": "Asserts that value is NaN.\n\n    assert.isNaN(NaN, 'NaN is NaN');",
     "params": [
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1286,13 +1323,13 @@
     "params": [
       {
         "name": "value",
-        "type": "Mixed",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "message",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1303,17 +1340,17 @@
     "name": "exists",
     "category": "Assert",
     "summary": "### .exists",
-    "body": "Asserts that the target is neither `null` nor `undefined`.\n\n    var foo = 'hi';\n\n    assert.exists(foo, 'foo is neither `null` nor `undefined`');",
+    "body": "Asserts that the target is neither `null` nor `undefined`.\n\n    var foo = 'hi';\n    assert.exists(foo, 'foo is neither `null` nor `undefined`');",
     "params": [
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1324,17 +1361,17 @@
     "name": "notExists",
     "category": "Assert",
     "summary": "### .notExists",
-    "body": "Asserts that the target is either `null` or `undefined`.\n\n    var bar = null\n      , baz;\n\n    assert.notExists(bar);\n    assert.notExists(baz, 'baz is either null or undefined');",
+    "body": "Asserts that the target is either `null` or `undefined`.\n\n    var bar = null\n    , baz;\n\n    assert.notExists(bar);\n    assert.notExists(baz, 'baz is either null or undefined');",
     "params": [
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1348,14 +1385,14 @@
     "body": "Asserts that `value` is `undefined`.\n\n    var tea;\n    assert.isUndefined(tea, 'no tea defined');",
     "params": [
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1369,14 +1406,14 @@
     "body": "Asserts that `value` is not `undefined`.\n\n    var tea = 'cup of chai';\n    assert.isDefined(tea, 'tea has been defined');",
     "params": [
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1384,20 +1421,20 @@
     "see": []
   },
   {
-    "name": "isFunction",
+    "name": "isCallable",
     "category": "Assert",
-    "summary": "### .isFunction(value, [message])",
-    "body": "Asserts that `value` is a function.\n\n    function serveTea() { return 'cup of tea'; };\n    assert.isFunction(serveTea, 'great, we can have tea now');",
+    "summary": "### .isCallable(value, [message])",
+    "body": "Asserts that `value` is a callable function.\n\n    function serveTea() { return 'cup of tea'; };\n    assert.isCallable(serveTea, 'great, we can have tea now');",
     "params": [
       {
         "name": "value",
-        "type": "Mixed",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "message",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1405,20 +1442,20 @@
     "see": []
   },
   {
-    "name": "isNotFunction",
+    "name": "isNotCallable",
     "category": "Assert",
-    "summary": "### .isNotFunction(value, [message])",
-    "body": "Asserts that `value` is _not_ a function.\n\n    var serveTea = [ 'heat', 'pour', 'sip' ];\n    assert.isNotFunction(serveTea, 'great, we have listed the steps');",
+    "summary": "### .isNotCallable(value, [message])",
+    "body": "Asserts that `value` is _not_ a callable function.\n\n    var serveTea = [ 'heat', 'pour', 'sip' ];\n    assert.isNotCallable(serveTea, 'great, we have listed the steps');",
     "params": [
       {
         "name": "value",
-        "type": "Mixed",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "message",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1432,14 +1469,14 @@
     "body": "Asserts that `value` is an object of type 'Object' (as revealed by `Object.prototype.toString`).\n_The assertion does not match subclassed objects._\n\n    var selection = { name: 'Chai', serve: 'with spices' };\n    assert.isObject(selection, 'tea selection is an object');",
     "params": [
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1453,14 +1490,14 @@
     "body": "Asserts that `value` is _not_ an object of type 'Object' (as revealed by `Object.prototype.toString`).\n\n    var selection = 'chai'\n    assert.isNotObject(selection, 'tea selection is not an object');\n    assert.isNotObject(null, 'null is not an object');",
     "params": [
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1474,14 +1511,14 @@
     "body": "Asserts that `value` is an array.\n\n    var menu = [ 'green', 'chai', 'oolong' ];\n    assert.isArray(menu, 'what kind of tea do we want?');",
     "params": [
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1495,14 +1532,14 @@
     "body": "Asserts that `value` is _not_ an array.\n\n    var menu = 'green|chai|oolong';\n    assert.isNotArray(menu, 'what kind of tea do we want?');",
     "params": [
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1516,14 +1553,14 @@
     "body": "Asserts that `value` is a string.\n\n    var teaOrder = 'chai';\n    assert.isString(teaOrder, 'order placed');",
     "params": [
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1537,14 +1574,14 @@
     "body": "Asserts that `value` is _not_ a string.\n\n    var teaOrder = 4;\n    assert.isNotString(teaOrder, 'order placed');",
     "params": [
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1558,14 +1595,14 @@
     "body": "Asserts that `value` is a number.\n\n    var cups = 2;\n    assert.isNumber(cups, 'how many cups');",
     "params": [
       {
-        "name": "value",
-        "type": "Number",
+        "name": "val",
+        "type": "number",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1579,14 +1616,56 @@
     "body": "Asserts that `value` is _not_ a number.\n\n    var cups = '2 cups please';\n    assert.isNotNumber(cups, 'how many cups');",
     "params": [
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
+        "optional": false,
+        "description": ""
+      }
+    ],
+    "see": []
+  },
+  {
+    "name": "isNumeric",
+    "category": "Assert",
+    "summary": "### .isNumeric(value, [message])",
+    "body": "Asserts that `value` is a number or BigInt.\n\n    var cups = 2;\n    assert.isNumeric(cups, 'how many cups');\n\n    var cups = 10n;\n    assert.isNumeric(cups, 'how many cups');",
+    "params": [
+      {
+        "name": "val",
+        "type": "unknown",
+        "optional": false,
+        "description": ""
+      },
+      {
+        "name": "msg",
+        "type": "string",
+        "optional": false,
+        "description": ""
+      }
+    ],
+    "see": []
+  },
+  {
+    "name": "isNotNumeric",
+    "category": "Assert",
+    "summary": "### .isNotNumeric(value, [message])",
+    "body": "Asserts that `value` is _not_ a number or BigInt.\n\n    var cups = '2 cups please';\n    assert.isNotNumeric(cups, 'how many cups');",
+    "params": [
+      {
+        "name": "val",
+        "type": "unknown",
+        "optional": false,
+        "description": ""
+      },
+      {
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1597,17 +1676,17 @@
     "name": "isFinite",
     "category": "Assert",
     "summary": "### .isFinite(value, [message])",
-    "body": "Asserts that `value` is a finite number. Unlike `.isNumber`, this will fail for `NaN` and `Infinity`.\n\n    var cups = 2;\n    assert.isFinite(cups, 'how many cups');\n\n    assert.isFinite(NaN); // throws",
+    "body": "Asserts that `value` is a finite number. Unlike `.isNumber`, this will fail for `NaN` and `Infinity`.\n\n    var cups = 2;\n    assert.isFinite(cups, 'how many cups');\n    assert.isFinite(NaN); // throws",
     "params": [
       {
-        "name": "value",
-        "type": "Number",
+        "name": "val",
+        "type": "number",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1618,17 +1697,17 @@
     "name": "isBoolean",
     "category": "Assert",
     "summary": "### .isBoolean(value, [message])",
-    "body": "Asserts that `value` is a boolean.\n\n    var teaReady = true\n      , teaServed = false;\n\n    assert.isBoolean(teaReady, 'is the tea ready');\n    assert.isBoolean(teaServed, 'has tea been served');",
+    "body": "Asserts that `value` is a boolean.\n\n    var teaReady = true\n    , teaServed = false;\n\n    assert.isBoolean(teaReady, 'is the tea ready');\n    assert.isBoolean(teaServed, 'has tea been served');",
     "params": [
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1639,17 +1718,17 @@
     "name": "isNotBoolean",
     "category": "Assert",
     "summary": "### .isNotBoolean(value, [message])",
-    "body": "Asserts that `value` is _not_ a boolean.\n\n    var teaReady = 'yep'\n      , teaServed = 'nope';\n\n    assert.isNotBoolean(teaReady, 'is the tea ready');\n    assert.isNotBoolean(teaServed, 'has tea been served');",
+    "body": "Asserts that `value` is _not_ a boolean.\n\n    var teaReady = 'yep'\n    , teaServed = 'nope';\n\n    assert.isNotBoolean(teaReady, 'is the tea ready');\n    assert.isNotBoolean(teaServed, 'has tea been served');",
     "params": [
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1663,20 +1742,20 @@
     "body": "Asserts that `value`'s type is `name`, as determined by\n`Object.prototype.toString`.\n\n    assert.typeOf({ tea: 'chai' }, 'object', 'we have an object');\n    assert.typeOf(['chai', 'jasmine'], 'array', 'we have an array');\n    assert.typeOf('tea', 'string', 'we have a string');\n    assert.typeOf(/tea/, 'regexp', 'we have a regular expression');\n    assert.typeOf(null, 'null', 'we have a null');\n    assert.typeOf(undefined, 'undefined', 'we have an undefined');",
     "params": [
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "name",
-        "type": "String",
+        "name": "type",
+        "type": "string",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1691,19 +1770,19 @@
     "params": [
       {
         "name": "value",
-        "type": "Mixed",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "typeof",
-        "type": "String",
+        "name": "type",
+        "type": "string",
         "optional": false,
-        "description": "name"
+        "description": ""
       },
       {
         "name": "message",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1714,23 +1793,23 @@
     "name": "instanceOf",
     "category": "Assert",
     "summary": "### .instanceOf(object, constructor, [message])",
-    "body": "Asserts that `value` is an instance of `constructor`.\n\n    var Tea = function (name) { this.name = name; }\n      , chai = new Tea('chai');\n\n    assert.instanceOf(chai, Tea, 'chai is an instance of tea');",
+    "body": "Asserts that `value` is an instance of `constructor`.\n\n    var Tea = function (name) { this.name = name; }\n    , chai = new Tea('chai');\n\n    assert.instanceOf(chai, Tea, 'chai is an instance of tea');",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "val",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "constructor",
-        "type": "Constructor",
+        "name": "type",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1741,23 +1820,23 @@
     "name": "notInstanceOf",
     "category": "Assert",
     "summary": "### .notInstanceOf(object, constructor, [message])",
-    "body": "Asserts `value` is not an instance of `constructor`.\n\n    var Tea = function (name) { this.name = name; }\n      , chai = new String('chai');\n\n    assert.notInstanceOf(chai, Tea, 'chai is not an instance of tea');",
+    "body": "Asserts `value` is not an instance of `constructor`.\n\n    var Tea = function (name) { this.name = name; }\n    , chai = new String('chai');\n\n    assert.notInstanceOf(chai, Tea, 'chai is not an instance of tea');",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "val",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "constructor",
-        "type": "Constructor",
+        "name": "type",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1768,23 +1847,23 @@
     "name": "include",
     "category": "Assert",
     "summary": "### .include(haystack, needle, [message])",
-    "body": "Asserts that `haystack` includes `needle`. Can be used to assert the\ninclusion of a value in an array, a substring in a string, or a subset of\nproperties in an object.\n\n    assert.include([1,2,3], 2, 'array contains value');\n    assert.include('foobar', 'foo', 'string contains substring');\n    assert.include({ foo: 'bar', hello: 'universe' }, { foo: 'bar' }, 'object contains property');\n\nStrict equality (===) is used. When asserting the inclusion of a value in\nan array, the array is searched for an element that's strictly equal to the\ngiven value. When asserting a subset of properties in an object, the object\nis searched for the given property keys, checking that each one is present\nand strictly equal to the given property value. For instance:\n\n    var obj1 = {a: 1}\n      , obj2 = {b: 2};\n    assert.include([obj1, obj2], obj1);\n    assert.include({foo: obj1, bar: obj2}, {foo: obj1});\n    assert.include({foo: obj1, bar: obj2}, {foo: obj1, bar: obj2});",
+    "body": "Asserts that `haystack` includes `needle`. Can be used to assert the\ninclusion of a value in an array, a substring in a string, or a subset of\nproperties in an object.\n\n    assert.include([1,2,3], 2, 'array contains value');\n    assert.include('foobar', 'foo', 'string contains substring');\n    assert.include({ foo: 'bar', hello: 'universe' }, { foo: 'bar' }, 'object contains property');\n\nStrict equality (===) is used. When asserting the inclusion of a value in\nan array, the array is searched for an element that's strictly equal to the\ngiven value. When asserting a subset of properties in an object, the object\nis searched for the given property keys, checking that each one is present\nand strictly equal to the given property value. For instance:\n\n    var obj1 = {a: 1}\n    , obj2 = {b: 2};\n    assert.include([obj1, obj2], obj1);\n    assert.include({foo: obj1, bar: obj2}, {foo: obj1});\n    assert.include({foo: obj1, bar: obj2}, {foo: obj1, bar: obj2});",
     "params": [
       {
-        "name": "haystack",
-        "type": "Array|String",
+        "name": "exp",
+        "type": "Array | string",
         "optional": false,
         "description": ""
       },
       {
-        "name": "needle",
-        "type": "Mixed",
+        "name": "inc",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1795,23 +1874,23 @@
     "name": "notInclude",
     "category": "Assert",
     "summary": "### .notInclude(haystack, needle, [message])",
-    "body": "Asserts that `haystack` does not include `needle`. Can be used to assert\nthe absence of a value in an array, a substring in a string, or a subset of\nproperties in an object.\n\n    assert.notInclude([1,2,3], 4, \"array doesn't contain value\");\n    assert.notInclude('foobar', 'baz', \"string doesn't contain substring\");\n    assert.notInclude({ foo: 'bar', hello: 'universe' }, { foo: 'baz' }, 'object doesn't contain property');\n\nStrict equality (===) is used. When asserting the absence of a value in an\narray, the array is searched to confirm the absence of an element that's\nstrictly equal to the given value. When asserting a subset of properties in\nan object, the object is searched to confirm that at least one of the given\nproperty keys is either not present or not strictly equal to the given\nproperty value. For instance:\n\n    var obj1 = {a: 1}\n      , obj2 = {b: 2};\n    assert.notInclude([obj1, obj2], {a: 1});\n    assert.notInclude({foo: obj1, bar: obj2}, {foo: {a: 1}});\n    assert.notInclude({foo: obj1, bar: obj2}, {foo: obj1, bar: {b: 2}});",
+    "body": "Asserts that `haystack` does not include `needle`. Can be used to assert\nthe absence of a value in an array, a substring in a string, or a subset of\nproperties in an object.\n\n    assert.notInclude([1,2,3], 4, \"array doesn't contain value\");\n    assert.notInclude('foobar', 'baz', \"string doesn't contain substring\");\n    assert.notInclude({ foo: 'bar', hello: 'universe' }, { foo: 'baz' }, \"object doesn't contain property\");\n\nStrict equality (===) is used. When asserting the absence of a value in an\narray, the array is searched to confirm the absence of an element that's\nstrictly equal to the given value. When asserting a subset of properties in\nan object, the object is searched to confirm that at least one of the given\nproperty keys is either not present or not strictly equal to the given\nproperty value. For instance:\n\n    var obj1 = {a: 1}\n    , obj2 = {b: 2};\n    assert.notInclude([obj1, obj2], {a: 1});\n    assert.notInclude({foo: obj1, bar: obj2}, {foo: {a: 1}});\n    assert.notInclude({foo: obj1, bar: obj2}, {foo: obj1, bar: {b: 2}});",
     "params": [
       {
-        "name": "haystack",
-        "type": "Array|String",
+        "name": "exp",
+        "type": "Array | string",
         "optional": false,
         "description": ""
       },
       {
-        "name": "needle",
-        "type": "Mixed",
+        "name": "inc",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1822,23 +1901,23 @@
     "name": "deepInclude",
     "category": "Assert",
     "summary": "### .deepInclude(haystack, needle, [message])",
-    "body": "Asserts that `haystack` includes `needle`. Can be used to assert the\ninclusion of a value in an array or a subset of properties in an object.\nDeep equality is used.\n\n    var obj1 = {a: 1}\n      , obj2 = {b: 2};\n    assert.deepInclude([obj1, obj2], {a: 1});\n    assert.deepInclude({foo: obj1, bar: obj2}, {foo: {a: 1}});\n    assert.deepInclude({foo: obj1, bar: obj2}, {foo: {a: 1}, bar: {b: 2}});",
+    "body": "Asserts that `haystack` includes `needle`. Can be used to assert the\ninclusion of a value in an array or a subset of properties in an object.\nDeep equality is used.\n\n    var obj1 = {a: 1}\n    , obj2 = {b: 2};\n    assert.deepInclude([obj1, obj2], {a: 1});\n    assert.deepInclude({foo: obj1, bar: obj2}, {foo: {a: 1}});\n    assert.deepInclude({foo: obj1, bar: obj2}, {foo: {a: 1}, bar: {b: 2}});",
     "params": [
       {
-        "name": "haystack",
-        "type": "Array|String",
+        "name": "exp",
+        "type": "Array | string",
         "optional": false,
         "description": ""
       },
       {
-        "name": "needle",
-        "type": "Mixed",
+        "name": "inc",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1849,23 +1928,23 @@
     "name": "notDeepInclude",
     "category": "Assert",
     "summary": "### .notDeepInclude(haystack, needle, [message])",
-    "body": "Asserts that `haystack` does not include `needle`. Can be used to assert\nthe absence of a value in an array or a subset of properties in an object.\nDeep equality is used.\n\n    var obj1 = {a: 1}\n      , obj2 = {b: 2};\n    assert.notDeepInclude([obj1, obj2], {a: 9});\n    assert.notDeepInclude({foo: obj1, bar: obj2}, {foo: {a: 9}});\n    assert.notDeepInclude({foo: obj1, bar: obj2}, {foo: {a: 1}, bar: {b: 9}});",
+    "body": "Asserts that `haystack` does not include `needle`. Can be used to assert\nthe absence of a value in an array or a subset of properties in an object.\nDeep equality is used.\n\n    var obj1 = {a: 1}\n    , obj2 = {b: 2};\n    assert.notDeepInclude([obj1, obj2], {a: 9});\n    assert.notDeepInclude({foo: obj1, bar: obj2}, {foo: {a: 9}});\n    assert.notDeepInclude({foo: obj1, bar: obj2}, {foo: {a: 1}, bar: {b: 9}});",
     "params": [
       {
-        "name": "haystack",
-        "type": "Array|String",
+        "name": "exp",
+        "type": "Array | string",
         "optional": false,
         "description": ""
       },
       {
-        "name": "needle",
-        "type": "Mixed",
+        "name": "inc",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1879,20 +1958,20 @@
     "body": "Asserts that 'haystack' includes 'needle'.\nCan be used to assert the inclusion of a subset of properties in an\nobject.\nEnables the use of dot- and bracket-notation for referencing nested\nproperties.\n'[]' and '.' in property names can be escaped using double backslashes.\n\n    assert.nestedInclude({'.a': {'b': 'x'}}, {'\\\\.a.[b]': 'x'});\n    assert.nestedInclude({'a': {'[b]': 'x'}}, {'a.\\\\[b\\\\]': 'x'});",
     "params": [
       {
-        "name": "haystack",
-        "type": "Object",
+        "name": "exp",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "needle",
-        "type": "Object",
+        "name": "inc",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1906,20 +1985,20 @@
     "body": "Asserts that 'haystack' does not include 'needle'.\nCan be used to assert the absence of a subset of properties in an\nobject.\nEnables the use of dot- and bracket-notation for referencing nested\nproperties.\n'[]' and '.' in property names can be escaped using double backslashes.\n\n    assert.notNestedInclude({'.a': {'b': 'x'}}, {'\\\\.a.b': 'y'});\n    assert.notNestedInclude({'a': {'[b]': 'x'}}, {'a.\\\\[b\\\\]': 'y'});",
     "params": [
       {
-        "name": "haystack",
-        "type": "Object",
+        "name": "exp",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "needle",
-        "type": "Object",
+        "name": "inc",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1933,20 +2012,20 @@
     "body": "Asserts that 'haystack' includes 'needle'.\nCan be used to assert the inclusion of a subset of properties in an\nobject while checking for deep equality.\nEnables the use of dot- and bracket-notation for referencing nested\nproperties.\n'[]' and '.' in property names can be escaped using double backslashes.\n\n    assert.deepNestedInclude({a: {b: [{x: 1}]}}, {'a.b[0]': {x: 1}});\n    assert.deepNestedInclude({'.a': {'[b]': {x: 1}}}, {'\\\\.a.\\\\[b\\\\]': {x: 1}});",
     "params": [
       {
-        "name": "haystack",
-        "type": "Object",
+        "name": "exp",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "needle",
-        "type": "Object",
+        "name": "inc",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1960,20 +2039,20 @@
     "body": "Asserts that 'haystack' does not include 'needle'.\nCan be used to assert the absence of a subset of properties in an\nobject while checking for deep equality.\nEnables the use of dot- and bracket-notation for referencing nested\nproperties.\n'[]' and '.' in property names can be escaped using double backslashes.\n\n    assert.notDeepNestedInclude({a: {b: [{x: 1}]}}, {'a.b[0]': {y: 1}})\n    assert.notDeepNestedInclude({'.a': {'[b]': {x: 1}}}, {'\\\\.a.\\\\[b\\\\]': {y: 2}});",
     "params": [
       {
-        "name": "haystack",
-        "type": "Object",
+        "name": "exp",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "needle",
-        "type": "Object",
+        "name": "inc",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -1987,20 +2066,20 @@
     "body": "Asserts that 'haystack' includes 'needle'.\nCan be used to assert the inclusion of a subset of properties in an\nobject while ignoring inherited properties.\n\n    assert.ownInclude({ a: 1 }, { a: 1 });",
     "params": [
       {
-        "name": "haystack",
-        "type": "Object",
+        "name": "exp",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "needle",
-        "type": "Object",
+        "name": "inc",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2011,23 +2090,23 @@
     "name": "notOwnInclude",
     "category": "Assert",
     "summary": "### .notOwnInclude(haystack, needle, [message])",
-    "body": "Asserts that 'haystack' includes 'needle'.\nCan be used to assert the absence of a subset of properties in an\nobject while ignoring inherited properties.\n\n    Object.prototype.b = 2;\n\n    assert.notOwnInclude({ a: 1 }, { b: 2 });",
+    "body": "Asserts that 'haystack' does not include 'needle'.\nCan be used to assert the absence of a subset of properties in an\nobject while ignoring inherited properties.\n\n    Object.prototype.b = 2;\n    assert.notOwnInclude({ a: 1 }, { b: 2 });",
     "params": [
       {
-        "name": "haystack",
-        "type": "Object",
+        "name": "exp",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "needle",
-        "type": "Object",
+        "name": "inc",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2038,23 +2117,23 @@
     "name": "deepOwnInclude",
     "category": "Assert",
     "summary": "### .deepOwnInclude(haystack, needle, [message])",
-    "body": "Asserts that 'haystack' includes 'needle'.\nCan be used to assert the inclusion of a subset of properties in an\nobject while ignoring inherited properties and checking for deep equality.\n\n     assert.deepOwnInclude({a: {b: 2}}, {a: {b: 2}});",
+    "body": "Asserts that 'haystack' includes 'needle'.\nCan be used to assert the inclusion of a subset of properties in an\nobject while ignoring inherited properties and checking for deep equality.\n\n    assert.deepOwnInclude({a: {b: 2}}, {a: {b: 2}});",
     "params": [
       {
-        "name": "haystack",
-        "type": "Object",
+        "name": "exp",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "needle",
-        "type": "Object",
+        "name": "inc",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2065,23 +2144,23 @@
     "name": "notDeepOwnInclude",
     "category": "Assert",
     "summary": "### .notDeepOwnInclude(haystack, needle, [message])",
-    "body": "Asserts that 'haystack' includes 'needle'.\nCan be used to assert the absence of a subset of properties in an\nobject while ignoring inherited properties and checking for deep equality.\n\n     assert.notDeepOwnInclude({a: {b: 2}}, {a: {c: 3}});",
+    "body": "Asserts that 'haystack' includes 'needle'.\nCan be used to assert the absence of a subset of properties in an\nobject while ignoring inherited properties and checking for deep equality.\n\n    assert.notDeepOwnInclude({a: {b: 2}}, {a: {c: 3}});",
     "params": [
       {
-        "name": "haystack",
-        "type": "Object",
+        "name": "exp",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "needle",
-        "type": "Object",
+        "name": "inc",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2095,20 +2174,20 @@
     "body": "Asserts that `value` matches the regular expression `regexp`.\n\n    assert.match('foobar', /^foo/, 'regexp matches');",
     "params": [
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "exp",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "regexp",
+        "name": "re",
         "type": "RegExp",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2122,20 +2201,20 @@
     "body": "Asserts that `value` does not match the regular expression `regexp`.\n\n    assert.notMatch('foobar', /^foo/, 'regexp does not match');",
     "params": [
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "exp",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "regexp",
+        "name": "re",
         "type": "RegExp",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2149,20 +2228,20 @@
     "body": "Asserts that `object` has a direct or inherited property named by\n`property`.\n\n    assert.property({ tea: { green: 'matcha' }}, 'tea');\n    assert.property({ tea: { green: 'matcha' }}, 'toString');",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2176,20 +2255,20 @@
     "body": "Asserts that `object` does _not_ have a direct or inherited property named\nby `property`.\n\n    assert.notProperty({ tea: { green: 'matcha' }}, 'coffee');",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2203,26 +2282,26 @@
     "body": "Asserts that `object` has a direct or inherited property named by\n`property` with a value given by `value`. Uses a strict equality check\n(===).\n\n    assert.propertyVal({ tea: 'is good' }, 'tea', 'is good');",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
         "description": ""
       },
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2236,26 +2315,26 @@
     "body": "Asserts that `object` does _not_ have a direct or inherited property named\nby `property` with value given by `value`. Uses a strict equality check\n(===).\n\n    assert.notPropertyVal({ tea: 'is good' }, 'tea', 'is bad');\n    assert.notPropertyVal({ tea: 'is good' }, 'coffee', 'is good');",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
         "description": ""
       },
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2269,26 +2348,26 @@
     "body": "Asserts that `object` has a direct or inherited property named by\n`property` with a value given by `value`. Uses a deep equality check.\n\n    assert.deepPropertyVal({ tea: { green: 'matcha' } }, 'tea', { green: 'matcha' });",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
         "description": ""
       },
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2302,26 +2381,26 @@
     "body": "Asserts that `object` does _not_ have a direct or inherited property named\nby `property` with value given by `value`. Uses a deep equality check.\n\n    assert.notDeepPropertyVal({ tea: { green: 'matcha' } }, 'tea', { black: 'matcha' });\n    assert.notDeepPropertyVal({ tea: { green: 'matcha' } }, 'tea', { green: 'oolong' });\n    assert.notDeepPropertyVal({ tea: { green: 'matcha' } }, 'coffee', { green: 'matcha' });",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
         "description": ""
       },
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2335,20 +2414,20 @@
     "body": "Asserts that `object` has a direct or inherited property named by\n`property`, which can be a string using dot- and bracket-notation for\nnested reference.\n\n    assert.nestedProperty({ tea: { green: 'matcha' }}, 'tea.green');",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2362,20 +2441,20 @@
     "body": "Asserts that `object` does _not_ have a property named by `property`, which\ncan be a string using dot- and bracket-notation for nested reference. The\nproperty cannot exist on the object nor anywhere in its prototype chain.\n\n    assert.notNestedProperty({ tea: { green: 'matcha' }}, 'tea.oolong');",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2389,26 +2468,26 @@
     "body": "Asserts that `object` has a property named by `property` with value given\nby `value`. `property` can use dot- and bracket-notation for nested\nreference. Uses a strict equality check (===).\n\n    assert.nestedPropertyVal({ tea: { green: 'matcha' }}, 'tea.green', 'matcha');",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
         "description": ""
       },
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2422,26 +2501,26 @@
     "body": "Asserts that `object` does _not_ have a property named by `property` with\nvalue given by `value`. `property` can use dot- and bracket-notation for\nnested reference. Uses a strict equality check (===).\n\n    assert.notNestedPropertyVal({ tea: { green: 'matcha' }}, 'tea.green', 'konacha');\n    assert.notNestedPropertyVal({ tea: { green: 'matcha' }}, 'coffee.green', 'matcha');",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
         "description": ""
       },
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2455,26 +2534,26 @@
     "body": "Asserts that `object` has a property named by `property` with a value given\nby `value`. `property` can use dot- and bracket-notation for nested\nreference. Uses a deep equality check.\n\n    assert.deepNestedPropertyVal({ tea: { green: { matcha: 'yum' } } }, 'tea.green', { matcha: 'yum' });",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
         "description": ""
       },
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2488,26 +2567,26 @@
     "body": "Asserts that `object` does _not_ have a property named by `property` with\nvalue given by `value`. `property` can use dot- and bracket-notation for\nnested reference. Uses a deep equality check.\n\n    assert.notDeepNestedPropertyVal({ tea: { green: { matcha: 'yum' } } }, 'tea.green', { oolong: 'yum' });\n    assert.notDeepNestedPropertyVal({ tea: { green: { matcha: 'yum' } } }, 'tea.green', { matcha: 'yuck' });\n    assert.notDeepNestedPropertyVal({ tea: { green: { matcha: 'yum' } } }, 'tea.black', { matcha: 'yum' });",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
         "description": ""
       },
       {
-        "name": "value",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2521,20 +2600,20 @@
     "body": "Asserts that `object` has a `length` or `size` with the expected value.\n\n    assert.lengthOf([1,2,3], 3, 'array has length of 3');\n    assert.lengthOf('foobar', 6, 'string has length of 6');\n    assert.lengthOf(new Set([1,2,3]), 3, 'set has size of 3');\n    assert.lengthOf(new Map([['a',1],['b',2],['c',3]]), 3, 'map has size of 3');",
     "params": [
       {
-        "name": "object",
-        "type": "Mixed",
+        "name": "exp",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "length",
-        "type": "Number",
+        "name": "len",
+        "type": "number",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2548,20 +2627,20 @@
     "body": "Asserts that `object` has at least one of the `keys` provided.\nYou can also provide a single object instead of a `keys` array and its keys\nwill be used as the expected set of keys.\n\n    assert.hasAnyKeys({foo: 1, bar: 2, baz: 3}, ['foo', 'iDontExist', 'baz']);\n    assert.hasAnyKeys({foo: 1, bar: 2, baz: 3}, {foo: 30, iDontExist: 99, baz: 1337});\n    assert.hasAnyKeys(new Map([[{foo: 1}, 'bar'], ['key', 'value']]), [{foo: 1}, 'key']);\n    assert.hasAnyKeys(new Set([{foo: 'bar'}, 'anotherKey']), [{foo: 'bar'}, 'anotherKey']);",
     "params": [
       {
-        "name": "object",
-        "type": "Mixed",
+        "name": "obj",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "keys",
-        "type": "Array|Object",
+        "type": "Array | object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2572,23 +2651,23 @@
     "name": "hasAllKeys",
     "category": "Assert",
     "summary": "### .hasAllKeys(object, [keys], [message])",
-    "body": "Asserts that `object` has all and only all of the `keys` provided.\nYou can also provide a single object instead of a `keys` array and its keys\nwill be used as the expected set of keys.\n\n    assert.hasAllKeys({foo: 1, bar: 2, baz: 3}, ['foo', 'bar', 'baz']);\n    assert.hasAllKeys({foo: 1, bar: 2, baz: 3}, {foo: 30, bar: 99, baz: 1337]);\n    assert.hasAllKeys(new Map([[{foo: 1}, 'bar'], ['key', 'value']]), [{foo: 1}, 'key']);\n    assert.hasAllKeys(new Set([{foo: 'bar'}, 'anotherKey'], [{foo: 'bar'}, 'anotherKey']);",
+    "body": "Asserts that `object` has all and only all of the `keys` provided.\nYou can also provide a single object instead of a `keys` array and its keys\nwill be used as the expected set of keys.\n\n    assert.hasAllKeys({foo: 1, bar: 2, baz: 3}, ['foo', 'bar', 'baz']);\n    assert.hasAllKeys({foo: 1, bar: 2, baz: 3}, {foo: 30, bar: 99, baz: 1337});\n    assert.hasAllKeys(new Map([[{foo: 1}, 'bar'], ['key', 'value']]), [{foo: 1}, 'key']);\n    assert.hasAllKeys(new Set([{foo: 'bar'}, 'anotherKey']), [{foo: 'bar'}, 'anotherKey']);",
     "params": [
       {
-        "name": "object",
-        "type": "Mixed",
+        "name": "obj",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "keys",
-        "type": "String[]",
+        "type": "string[]",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2599,23 +2678,23 @@
     "name": "containsAllKeys",
     "category": "Assert",
     "summary": "### .containsAllKeys(object, [keys], [message])",
-    "body": "Asserts that `object` has all of the `keys` provided but may have more keys not listed.\nYou can also provide a single object instead of a `keys` array and its keys\nwill be used as the expected set of keys.\n\n    assert.containsAllKeys({foo: 1, bar: 2, baz: 3}, ['foo', 'baz']);\n    assert.containsAllKeys({foo: 1, bar: 2, baz: 3}, ['foo', 'bar', 'baz']);\n    assert.containsAllKeys({foo: 1, bar: 2, baz: 3}, {foo: 30, baz: 1337});\n    assert.containsAllKeys({foo: 1, bar: 2, baz: 3}, {foo: 30, bar: 99, baz: 1337});\n    assert.containsAllKeys(new Map([[{foo: 1}, 'bar'], ['key', 'value']]), [{foo: 1}]);\n    assert.containsAllKeys(new Map([[{foo: 1}, 'bar'], ['key', 'value']]), [{foo: 1}, 'key']);\n    assert.containsAllKeys(new Set([{foo: 'bar'}, 'anotherKey'], [{foo: 'bar'}]);\n    assert.containsAllKeys(new Set([{foo: 'bar'}, 'anotherKey'], [{foo: 'bar'}, 'anotherKey']);",
+    "body": "Asserts that `object` has all of the `keys` provided but may have more keys not listed.\nYou can also provide a single object instead of a `keys` array and its keys\nwill be used as the expected set of keys.\n\n    assert.containsAllKeys({foo: 1, bar: 2, baz: 3}, ['foo', 'baz']);\n    assert.containsAllKeys({foo: 1, bar: 2, baz: 3}, ['foo', 'bar', 'baz']);\n    assert.containsAllKeys({foo: 1, bar: 2, baz: 3}, {foo: 30, baz: 1337});\n    assert.containsAllKeys({foo: 1, bar: 2, baz: 3}, {foo: 30, bar: 99, baz: 1337});\n    assert.containsAllKeys(new Map([[{foo: 1}, 'bar'], ['key', 'value']]), [{foo: 1}]);\n    assert.containsAllKeys(new Map([[{foo: 1}, 'bar'], ['key', 'value']]), [{foo: 1}, 'key']);\n    assert.containsAllKeys(new Set([{foo: 'bar'}, 'anotherKey']), [{foo: 'bar'}]);\n    assert.containsAllKeys(new Set([{foo: 'bar'}, 'anotherKey']), [{foo: 'bar'}, 'anotherKey']);",
     "params": [
       {
-        "name": "object",
-        "type": "Mixed",
+        "name": "obj",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "keys",
-        "type": "String[]",
+        "type": "string[]",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2626,23 +2705,23 @@
     "name": "doesNotHaveAnyKeys",
     "category": "Assert",
     "summary": "### .doesNotHaveAnyKeys(object, [keys], [message])",
-    "body": "Asserts that `object` has none of the `keys` provided.\nYou can also provide a single object instead of a `keys` array and its keys\nwill be used as the expected set of keys.\n\n    assert.doesNotHaveAnyKeys({foo: 1, bar: 2, baz: 3}, ['one', 'two', 'example']);\n    assert.doesNotHaveAnyKeys({foo: 1, bar: 2, baz: 3}, {one: 1, two: 2, example: 'foo'});\n    assert.doesNotHaveAnyKeys(new Map([[{foo: 1}, 'bar'], ['key', 'value']]), [{one: 'two'}, 'example']);\n    assert.doesNotHaveAnyKeys(new Set([{foo: 'bar'}, 'anotherKey'], [{one: 'two'}, 'example']);",
+    "body": "Asserts that `object` has none of the `keys` provided.\nYou can also provide a single object instead of a `keys` array and its keys\nwill be used as the expected set of keys.\n\n    assert.doesNotHaveAnyKeys({foo: 1, bar: 2, baz: 3}, ['one', 'two', 'example']);\n    assert.doesNotHaveAnyKeys({foo: 1, bar: 2, baz: 3}, {one: 1, two: 2, example: 'foo'});\n    assert.doesNotHaveAnyKeys(new Map([[{foo: 1}, 'bar'], ['key', 'value']]), [{one: 'two'}, 'example']);\n    assert.doesNotHaveAnyKeys(new Set([{foo: 'bar'}, 'anotherKey']), [{one: 'two'}, 'example']);",
     "params": [
       {
-        "name": "object",
-        "type": "Mixed",
+        "name": "obj",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "keys",
-        "type": "String[]",
+        "type": "string[]",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2653,23 +2732,23 @@
     "name": "doesNotHaveAllKeys",
     "category": "Assert",
     "summary": "### .doesNotHaveAllKeys(object, [keys], [message])",
-    "body": "Asserts that `object` does not have at least one of the `keys` provided.\nYou can also provide a single object instead of a `keys` array and its keys\nwill be used as the expected set of keys.\n\n    assert.doesNotHaveAllKeys({foo: 1, bar: 2, baz: 3}, ['one', 'two', 'example']);\n    assert.doesNotHaveAllKeys({foo: 1, bar: 2, baz: 3}, {one: 1, two: 2, example: 'foo'});\n    assert.doesNotHaveAllKeys(new Map([[{foo: 1}, 'bar'], ['key', 'value']]), [{one: 'two'}, 'example']);\n    assert.doesNotHaveAllKeys(new Set([{foo: 'bar'}, 'anotherKey'], [{one: 'two'}, 'example']);",
+    "body": "Asserts that `object` does not have at least one of the `keys` provided.\nYou can also provide a single object instead of a `keys` array and its keys\nwill be used as the expected set of keys.\n\n    assert.doesNotHaveAllKeys({foo: 1, bar: 2, baz: 3}, ['one', 'two', 'example']);\n    assert.doesNotHaveAllKeys({foo: 1, bar: 2, baz: 3}, {one: 1, two: 2, example: 'foo'});\n    assert.doesNotHaveAllKeys(new Map([[{foo: 1}, 'bar'], ['key', 'value']]), [{one: 'two'}, 'example']);\n    assert.doesNotHaveAllKeys(new Set([{foo: 'bar'}, 'anotherKey']), [{one: 'two'}, 'example']);",
     "params": [
       {
-        "name": "object",
-        "type": "Mixed",
+        "name": "obj",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "keys",
-        "type": "String[]",
+        "type": "string[]",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2683,20 +2762,20 @@
     "body": "Asserts that `object` has at least one of the `keys` provided.\nSince Sets and Maps can have objects as keys you can use this assertion to perform\na deep comparison.\nYou can also provide a single object instead of a `keys` array and its keys\nwill be used as the expected set of keys.\n\n    assert.hasAnyDeepKeys(new Map([[{one: 'one'}, 'valueOne'], [1, 2]]), {one: 'one'});\n    assert.hasAnyDeepKeys(new Map([[{one: 'one'}, 'valueOne'], [1, 2]]), [{one: 'one'}, {two: 'two'}]);\n    assert.hasAnyDeepKeys(new Map([[{one: 'one'}, 'valueOne'], [{two: 'two'}, 'valueTwo']]), [{one: 'one'}, {two: 'two'}]);\n    assert.hasAnyDeepKeys(new Set([{one: 'one'}, {two: 'two'}]), {one: 'one'});\n    assert.hasAnyDeepKeys(new Set([{one: 'one'}, {two: 'two'}]), [{one: 'one'}, {three: 'three'}]);\n    assert.hasAnyDeepKeys(new Set([{one: 'one'}, {two: 'two'}]), [{one: 'one'}, {two: 'two'}]);",
     "params": [
       {
-        "name": "object",
-        "type": "Mixed",
+        "name": "obj",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "keys",
-        "type": "Array|Object",
+        "type": "Array | object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2710,20 +2789,20 @@
     "body": "Asserts that `object` has all and only all of the `keys` provided.\nSince Sets and Maps can have objects as keys you can use this assertion to perform\na deep comparison.\nYou can also provide a single object instead of a `keys` array and its keys\nwill be used as the expected set of keys.\n\n    assert.hasAllDeepKeys(new Map([[{one: 'one'}, 'valueOne']]), {one: 'one'});\n    assert.hasAllDeepKeys(new Map([[{one: 'one'}, 'valueOne'], [{two: 'two'}, 'valueTwo']]), [{one: 'one'}, {two: 'two'}]);\n    assert.hasAllDeepKeys(new Set([{one: 'one'}]), {one: 'one'});\n    assert.hasAllDeepKeys(new Set([{one: 'one'}, {two: 'two'}]), [{one: 'one'}, {two: 'two'}]);",
     "params": [
       {
-        "name": "object",
-        "type": "Mixed",
+        "name": "obj",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "keys",
-        "type": "Array|Object",
+        "type": "Array | object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2737,20 +2816,20 @@
     "body": "Asserts that `object` contains all of the `keys` provided.\nSince Sets and Maps can have objects as keys you can use this assertion to perform\na deep comparison.\nYou can also provide a single object instead of a `keys` array and its keys\nwill be used as the expected set of keys.\n\n    assert.containsAllDeepKeys(new Map([[{one: 'one'}, 'valueOne'], [1, 2]]), {one: 'one'});\n    assert.containsAllDeepKeys(new Map([[{one: 'one'}, 'valueOne'], [{two: 'two'}, 'valueTwo']]), [{one: 'one'}, {two: 'two'}]);\n    assert.containsAllDeepKeys(new Set([{one: 'one'}, {two: 'two'}]), {one: 'one'});\n    assert.containsAllDeepKeys(new Set([{one: 'one'}, {two: 'two'}]), [{one: 'one'}, {two: 'two'}]);",
     "params": [
       {
-        "name": "object",
-        "type": "Mixed",
+        "name": "obj",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "keys",
-        "type": "Array|Object",
+        "type": "Array | object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2764,20 +2843,20 @@
     "body": "Asserts that `object` has none of the `keys` provided.\nSince Sets and Maps can have objects as keys you can use this assertion to perform\na deep comparison.\nYou can also provide a single object instead of a `keys` array and its keys\nwill be used as the expected set of keys.\n\n    assert.doesNotHaveAnyDeepKeys(new Map([[{one: 'one'}, 'valueOne'], [1, 2]]), {thisDoesNot: 'exist'});\n    assert.doesNotHaveAnyDeepKeys(new Map([[{one: 'one'}, 'valueOne'], [{two: 'two'}, 'valueTwo']]), [{twenty: 'twenty'}, {fifty: 'fifty'}]);\n    assert.doesNotHaveAnyDeepKeys(new Set([{one: 'one'}, {two: 'two'}]), {twenty: 'twenty'});\n    assert.doesNotHaveAnyDeepKeys(new Set([{one: 'one'}, {two: 'two'}]), [{twenty: 'twenty'}, {fifty: 'fifty'}]);",
     "params": [
       {
-        "name": "object",
-        "type": "Mixed",
+        "name": "obj",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "keys",
-        "type": "Array|Object",
+        "type": "Array | object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2791,20 +2870,20 @@
     "body": "Asserts that `object` does not have at least one of the `keys` provided.\nSince Sets and Maps can have objects as keys you can use this assertion to perform\na deep comparison.\nYou can also provide a single object instead of a `keys` array and its keys\nwill be used as the expected set of keys.\n\n    assert.doesNotHaveAllDeepKeys(new Map([[{one: 'one'}, 'valueOne'], [1, 2]]), {thisDoesNot: 'exist'});\n    assert.doesNotHaveAllDeepKeys(new Map([[{one: 'one'}, 'valueOne'], [{two: 'two'}, 'valueTwo']]), [{twenty: 'twenty'}, {one: 'one'}]);\n    assert.doesNotHaveAllDeepKeys(new Set([{one: 'one'}, {two: 'two'}]), {twenty: 'twenty'});\n    assert.doesNotHaveAllDeepKeys(new Set([{one: 'one'}, {two: 'two'}]), [{one: 'one'}, {fifty: 'fifty'}]);",
     "params": [
       {
-        "name": "object",
-        "type": "Mixed",
+        "name": "obj",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "keys",
-        "type": "Array|Object",
+        "type": "Array | object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2825,19 +2904,19 @@
       },
       {
         "name": "errorLike",
-        "type": "ErrorConstructor|Error",
+        "type": "Error",
         "optional": false,
         "description": ""
       },
       {
         "name": "errMsgMatcher",
-        "type": "RegExp|String",
+        "type": "RegExp | string",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2860,19 +2939,19 @@
       },
       {
         "name": "errorLike",
-        "type": "ErrorConstructor",
+        "type": "Error",
         "optional": false,
         "description": ""
       },
       {
         "name": "errMsgMatcher",
-        "type": "RegExp|String",
+        "type": "RegExp | string",
         "optional": false,
         "description": ""
       },
       {
         "name": "message",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2888,26 +2967,26 @@
     "body": "Compares two values using `operator`.\n\n    assert.operator(1, '<', 2, 'everything is ok');\n    assert.operator(1, '>', 2, 'this will fail');",
     "params": [
       {
-        "name": "val1",
-        "type": "Mixed",
+        "name": "val",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "operator",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": ""
       },
       {
         "name": "val2",
-        "type": "Mixed",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2921,26 +3000,26 @@
     "body": "Asserts that the target is equal `expected`, to within a +/- `delta` range.\n\n    assert.closeTo(1.5, 1, 0.5, 'numbers are close');",
     "params": [
       {
-        "name": "actual",
-        "type": "Number",
+        "name": "act",
+        "type": "number",
         "optional": false,
         "description": ""
       },
       {
-        "name": "expected",
-        "type": "Number",
+        "name": "exp",
+        "type": "number",
         "optional": false,
         "description": ""
       },
       {
         "name": "delta",
-        "type": "Number",
+        "type": "number",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2954,26 +3033,26 @@
     "body": "Asserts that the target is equal `expected`, to within a +/- `delta` range.\n\n    assert.approximately(1.5, 1, 0.5, 'numbers are close');",
     "params": [
       {
-        "name": "actual",
-        "type": "Number",
+        "name": "act",
+        "type": "number",
         "optional": false,
         "description": ""
       },
       {
-        "name": "expected",
-        "type": "Number",
+        "name": "exp",
+        "type": "number",
         "optional": false,
         "description": ""
       },
       {
         "name": "delta",
-        "type": "Number",
+        "type": "number",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -2999,8 +3078,8 @@
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -3026,8 +3105,8 @@
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -3053,8 +3132,8 @@
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -3080,8 +3159,8 @@
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -3107,8 +3186,8 @@
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -3134,8 +3213,8 @@
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -3161,8 +3240,8 @@
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -3188,8 +3267,8 @@
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -3215,8 +3294,8 @@
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -3242,8 +3321,8 @@
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -3269,8 +3348,8 @@
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -3296,8 +3375,8 @@
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -3323,8 +3402,8 @@
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -3350,8 +3429,8 @@
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -3377,8 +3456,8 @@
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -3404,8 +3483,8 @@
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -3431,8 +3510,8 @@
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -3446,26 +3525,26 @@
     "body": "Asserts that a function changes the value of a property.\n\n    var obj = { val: 10 };\n    var fn = function() { obj.val = 22 };\n    assert.changes(fn, obj, 'val');",
     "params": [
       {
-        "name": "modifier",
+        "name": "fn",
         "type": "Function",
         "optional": false,
-        "description": "function"
+        "description": "modifier function"
       },
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
-        "description": "or getter function"
+        "description": "object or getter function"
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
-        "description": "name _optional_"
+        "description": "property name _optional_"
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -3479,32 +3558,32 @@
     "body": "Asserts that a function changes the value of a property by an amount (delta).\n\n    var obj = { val: 10 };\n    var fn = function() { obj.val += 2 };\n    assert.changesBy(fn, obj, 'val', 2);",
     "params": [
       {
-        "name": "modifier",
+        "name": "fn",
         "type": "Function",
         "optional": false,
-        "description": "function"
+        "description": "modifier function"
       },
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
-        "description": "or getter function"
+        "description": "object or getter function"
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
-        "description": "name _optional_"
+        "description": "property name _optional_"
       },
       {
-        "name": "change",
-        "type": "Number",
+        "name": "delta",
+        "type": "number",
         "optional": false,
-        "description": "amount (delta)"
+        "description": "msg change amount (delta)"
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -3515,29 +3594,29 @@
     "name": "doesNotChange",
     "category": "Assert",
     "summary": "### .doesNotChange(function, object, property, [message])",
-    "body": "Asserts that a function does not change the value of a property.\n\n    var obj = { val: 10 };\n    var fn = function() { console.log('foo'); };\n    assert.doesNotChange(fn, obj, 'val');",
+    "body": "Asserts that a function does not change the value of a property.\n\n  var obj = { val: 10 };\n  var fn = function() { console.log('foo'); };\n  assert.doesNotChange(fn, obj, 'val');",
     "params": [
       {
-        "name": "modifier",
+        "name": "fn",
         "type": "Function",
         "optional": false,
-        "description": "function"
+        "description": "modifier function"
       },
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
-        "description": "or getter function"
+        "description": "object or getter function"
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
-        "description": "name _optional_"
+        "description": "property name _optional_"
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -3551,34 +3630,34 @@
     "body": "Asserts that a function does not change the value of a property or of a function's return value by an amount (delta)\n\n    var obj = { val: 10 };\n    var fn = function() { obj.val += 10 };\n    assert.changesButNotBy(fn, obj, 'val', 5);",
     "params": [
       {
-        "name": "modifier",
+        "name": "fn",
         "type": "Function",
         "optional": false,
-        "description": "function"
+        "description": "- modifier function"
       },
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
-        "description": "or getter function"
+        "description": "- object or getter function"
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
-        "description": "name _optional_"
+        "description": "- property name _optional_"
       },
       {
-        "name": "change",
-        "type": "Number",
+        "name": "delta",
+        "type": "number",
         "optional": false,
-        "description": "amount (delta)"
+        "description": "- change amount (delta)"
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
-        "description": "_optional_"
+        "description": "- message _optional_"
       }
     ],
     "see": []
@@ -3590,28 +3669,28 @@
     "body": "Asserts that a function increases a numeric object property.\n\n    var obj = { val: 10 };\n    var fn = function() { obj.val = 13 };\n    assert.increases(fn, obj, 'val');",
     "params": [
       {
-        "name": "modifier",
+        "name": "fn",
         "type": "Function",
         "optional": false,
-        "description": "function"
+        "description": "- modifier function"
       },
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
-        "description": "or getter function"
+        "description": "- object or getter function"
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
-        "description": "name _optional_"
+        "description": "- property name _optional_"
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
-        "description": "_optional_"
+        "description": "- message _optional_"
       }
     ],
     "see": []
@@ -3623,34 +3702,34 @@
     "body": "Asserts that a function increases a numeric object property or a function's return value by an amount (delta).\n\n    var obj = { val: 10 };\n    var fn = function() { obj.val += 10 };\n    assert.increasesBy(fn, obj, 'val', 10);",
     "params": [
       {
-        "name": "modifier",
+        "name": "fn",
         "type": "Function",
         "optional": false,
-        "description": "function"
+        "description": "- modifier function"
       },
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
-        "description": "or getter function"
+        "description": "- object or getter function"
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
-        "description": "name _optional_"
+        "description": "- property name _optional_"
       },
       {
-        "name": "change",
-        "type": "Number",
+        "name": "delta",
+        "type": "number",
         "optional": false,
-        "description": "amount (delta)"
+        "description": "- change amount (delta)"
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
-        "description": "_optional_"
+        "description": "- message _optional_"
       }
     ],
     "see": []
@@ -3662,26 +3741,26 @@
     "body": "Asserts that a function does not increase a numeric object property.\n\n    var obj = { val: 10 };\n    var fn = function() { obj.val = 8 };\n    assert.doesNotIncrease(fn, obj, 'val');",
     "params": [
       {
-        "name": "modifier",
+        "name": "fn",
         "type": "Function",
         "optional": false,
-        "description": "function"
+        "description": "modifier function"
       },
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
-        "description": "or getter function"
+        "description": "object or getter function"
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
-        "description": "name _optional_"
+        "description": "property name _optional_"
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -3695,32 +3774,32 @@
     "body": "Asserts that a function does not increase a numeric object property or function's return value by an amount (delta).\n\n    var obj = { val: 10 };\n    var fn = function() { obj.val = 15 };\n    assert.increasesButNotBy(fn, obj, 'val', 10);",
     "params": [
       {
-        "name": "modifier",
+        "name": "fn",
         "type": "Function",
         "optional": false,
-        "description": "function"
+        "description": "modifier function"
       },
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
-        "description": "or getter function"
+        "description": "object or getter function"
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
-        "description": "name _optional_"
+        "description": "property name _optional_"
       },
       {
-        "name": "change",
-        "type": "Number",
+        "name": "delta",
+        "type": "number",
         "optional": false,
-        "description": "amount (delta)"
+        "description": "change amount (delta)"
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -3734,26 +3813,26 @@
     "body": "Asserts that a function decreases a numeric object property.\n\n    var obj = { val: 10 };\n    var fn = function() { obj.val = 5 };\n    assert.decreases(fn, obj, 'val');",
     "params": [
       {
-        "name": "modifier",
+        "name": "fn",
         "type": "Function",
         "optional": false,
-        "description": "function"
+        "description": "modifier function"
       },
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
-        "description": "or getter function"
+        "description": "object or getter function"
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
-        "description": "name _optional_"
+        "description": "property name _optional_"
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -3767,32 +3846,32 @@
     "body": "Asserts that a function decreases a numeric object property or a function's return value by an amount (delta)\n\n    var obj = { val: 10 };\n    var fn = function() { obj.val -= 5 };\n    assert.decreasesBy(fn, obj, 'val', 5);",
     "params": [
       {
-        "name": "modifier",
+        "name": "fn",
         "type": "Function",
         "optional": false,
-        "description": "function"
+        "description": "modifier function"
       },
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
-        "description": "or getter function"
+        "description": "object or getter function"
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
-        "description": "name _optional_"
+        "description": "property name _optional_"
       },
       {
-        "name": "change",
-        "type": "Number",
+        "name": "delta",
+        "type": "number",
         "optional": false,
-        "description": "amount (delta)"
+        "description": "change amount (delta)"
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -3806,26 +3885,26 @@
     "body": "Asserts that a function does not decreases a numeric object property.\n\n    var obj = { val: 10 };\n    var fn = function() { obj.val = 15 };\n    assert.doesNotDecrease(fn, obj, 'val');",
     "params": [
       {
-        "name": "modifier",
+        "name": "fn",
         "type": "Function",
         "optional": false,
-        "description": "function"
+        "description": "modifier function"
       },
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
-        "description": "or getter function"
+        "description": "object or getter function"
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
-        "description": "name _optional_"
+        "description": "property name _optional_"
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -3839,32 +3918,32 @@
     "body": "Asserts that a function does not decreases a numeric object property or a function's return value by an amount (delta)\n\n    var obj = { val: 10 };\n    var fn = function() { obj.val = 5 };\n    assert.doesNotDecreaseBy(fn, obj, 'val', 1);",
     "params": [
       {
-        "name": "modifier",
+        "name": "fn",
         "type": "Function",
         "optional": false,
-        "description": "function"
+        "description": "modifier function"
       },
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
-        "description": "or getter function"
+        "description": "object or getter function"
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
-        "description": "name _optional_"
+        "description": "property name _optional_"
       },
       {
-        "name": "change",
-        "type": "Number",
+        "name": "delta",
+        "type": "number",
         "optional": false,
-        "description": "amount (delta)"
+        "description": "change amount (delta)"
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -3878,34 +3957,49 @@
     "body": "Asserts that a function does not decreases a numeric object property or a function's return value by an amount (delta)\n\n    var obj = { val: 10 };\n    var fn = function() { obj.val = 5 };\n    assert.decreasesButNotBy(fn, obj, 'val', 1);",
     "params": [
       {
-        "name": "modifier",
+        "name": "fn",
         "type": "Function",
         "optional": false,
-        "description": "function"
+        "description": "modifier function"
       },
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
-        "description": "or getter function"
+        "description": "object or getter function"
       },
       {
-        "name": "property",
-        "type": "String",
+        "name": "prop",
+        "type": "string",
         "optional": false,
-        "description": "name _optional_"
+        "description": "property name _optional_"
       },
       {
-        "name": "change",
-        "type": "Number",
+        "name": "delta",
+        "type": "number",
         "optional": false,
-        "description": "amount (delta)"
+        "description": "change amount (delta)"
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
+      }
+    ],
+    "see": []
+  },
+  {
+    "name": "ifError",
+    "category": "Assert",
+    "summary": "### .ifError(object)",
+    "body": "Asserts if value is not a false value, and throws if it is a true value.\nThis is added to allow for chai to be a drop-in replacement for Node's\nassert class.\n\n    var err = new Error('I am a custom error');\n    assert.ifError(err); // Rethrows err!",
+    "params": [
+      {
+        "name": "val",
+        "type": "object",
+        "optional": false,
+        "description": ""
       }
     ],
     "see": []
@@ -3917,14 +4011,14 @@
     "body": "Asserts that `object` is extensible (can have new properties added to it).\n\n    assert.isExtensible({});",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -3938,14 +4032,14 @@
     "body": "Asserts that `object` is _not_ extensible.\n\n    var nonExtensibleObject = Object.preventExtensions({});\n    var sealedObject = Object.seal({});\n    var frozenObject = Object.freeze({});\n\n    assert.isNotExtensible(nonExtensibleObject);\n    assert.isNotExtensible(sealedObject);\n    assert.isNotExtensible(frozenObject);",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -3959,14 +4053,14 @@
     "body": "Asserts that `object` is sealed (cannot have new properties added to it\nand its existing properties cannot be removed).\n\n    var sealedObject = Object.seal({});\n    var frozenObject = Object.seal({});\n\n    assert.isSealed(sealedObject);\n    assert.isSealed(frozenObject);",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -3980,14 +4074,14 @@
     "body": "Asserts that `object` is _not_ sealed.\n\n    assert.isNotSealed({});",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -4001,14 +4095,14 @@
     "body": "Asserts that `object` is frozen (cannot have new properties added to it\nand its existing properties cannot be modified).\n\n    var frozenObject = Object.freeze({});\n    assert.frozen(frozenObject);",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -4022,14 +4116,14 @@
     "body": "Asserts that `object` is _not_ frozen.\n\n    assert.isNotFrozen({});",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -4043,14 +4137,14 @@
     "body": "Asserts that the target does not contain any values.\nFor arrays and strings, it checks the `length` property.\nFor `Map` and `Set` instances, it checks the `size` property.\nFor non-function objects, it gets the count of own\nenumerable string keys.\n\n    assert.isEmpty([]);\n    assert.isEmpty('');\n    assert.isEmpty(new Map);\n    assert.isEmpty({});",
     "params": [
       {
-        "name": "target",
-        "type": "Object|Array|String|Map|Set",
+        "name": "val",
+        "type": "object | Array | string | Map | Set",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -4064,14 +4158,68 @@
     "body": "Asserts that the target contains values.\nFor arrays and strings, it checks the `length` property.\nFor `Map` and `Set` instances, it checks the `size` property.\nFor non-function objects, it gets the count of own\nenumerable string keys.\n\n    assert.isNotEmpty([1, 2]);\n    assert.isNotEmpty('34');\n    assert.isNotEmpty(new Set([5, 6]));\n    assert.isNotEmpty({ key: 7 });",
     "params": [
       {
-        "name": "target",
-        "type": "Object|Array|String|Map|Set",
+        "name": "val",
+        "type": "object | Array | string | Map | Set",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
+        "optional": false,
+        "description": "_optional_"
+      }
+    ],
+    "see": []
+  },
+  {
+    "name": "containsSubset",
+    "category": "Assert",
+    "summary": "### .containsSubset(target, subset[, msg])",
+    "body": "Asserts that `target` object/array deeply contains all of the provided\n`subset`'s properties/elements at the same nested structure. This is useful\nfor partial matching of complex objects without needing to specify all fields.\n\nWhen `target` is an object, `containsSubset` asserts that all of `subset`'s\nproperties exist in `target` with the same values, at the same nested depth.\nThe target may have additional properties that are not in `subset`.\n\n    assert.containsSubset(\n      {name: {first: \"John\", last: \"Smith\"}, age: 30},\n      {name: {first: \"John\"}}\n    );\n\nWhen `target` is an array, `containsSubset` asserts that for each element\nin the `subset` array, there exists at least one matching element in the\n`target` array. Order does not matter.\n\n    assert.containsSubset(\n      [{name: {first: \"John\", last: \"Smith\"}}, {name: {first: \"Jane\", last: \"Doe\"}}],\n      [{name: {first: \"Jane\"}}]\n    );\n\nFunctions in the `subset` are treated as validators. The corresponding value\nin `target` is passed to the function, and the assertion passes if the\nfunction returns a truthy value.\n\n    assert.containsSubset({age: 25}, {age: (val) => val > 18});\n\nAdd `.not` to use `doesNotContainSubset`.",
+    "params": [
+      {
+        "name": "val",
+        "type": "unknown",
+        "optional": false,
+        "description": ""
+      },
+      {
+        "name": "exp",
+        "type": "unknown",
+        "optional": false,
+        "description": ""
+      },
+      {
+        "name": "msg",
+        "type": "string",
+        "optional": false,
+        "description": "_optional_"
+      }
+    ],
+    "see": []
+  },
+  {
+    "name": "doesNotContainSubset",
+    "category": "Assert",
+    "summary": "### .doesNotContainSubset(target, subset[, msg])",
+    "body": "Asserts that `target` object/array does NOT deeply contain all of the\nprovided `subset`'s properties/elements. This is the negation of\n`containsSubset`.\n\n    assert.doesNotContainSubset({a: 1, b: 2}, {a: 3});\n    assert.doesNotContainSubset([1, 2, 3], [4, 5]);",
+    "params": [
+      {
+        "name": "val",
+        "type": "unknown",
+        "optional": false,
+        "description": ""
+      },
+      {
+        "name": "exp",
+        "type": "unknown",
+        "optional": false,
+        "description": ""
+      },
+      {
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": "_optional_"
       }
@@ -4080,32 +4228,32 @@
   },
   {
     "name": "fail",
-    "category": "BDD",
+    "category": "expect",
     "summary": "### .fail([message])\n### .fail(actual, expected, [message], [operator])",
     "body": "Throw a failure.\n\n    expect.fail();\n    expect.fail(\"custom error message\");\n    expect.fail(1, 2);\n    expect.fail(1, 2, \"custom error message\");\n    expect.fail(1, 2, \"custom error message\", \">\");\n    expect.fail(1, 2, undefined, \">\");",
     "params": [
       {
         "name": "actual",
-        "type": "Mixed",
-        "optional": false,
+        "type": "unknown",
+        "optional": true,
         "description": ""
       },
       {
         "name": "expected",
-        "type": "Mixed",
-        "optional": false,
+        "type": "unknown",
+        "optional": true,
         "description": ""
       },
       {
         "name": "message",
-        "type": "String",
-        "optional": false,
+        "type": "string",
+        "optional": true,
         "description": ""
       },
       {
         "name": "operator",
-        "type": "String",
-        "optional": false,
+        "type": "string",
+        "optional": true,
         "description": ""
       }
     ],
@@ -4119,25 +4267,25 @@
     "params": [
       {
         "name": "actual",
-        "type": "Mixed",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "expected",
-        "type": "Mixed",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "message",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": ""
       },
       {
         "name": "operator",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -4152,19 +4300,19 @@
     "params": [
       {
         "name": "actual",
-        "type": "Mixed",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "expected",
-        "type": "Mixed",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "message",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -4178,26 +4326,26 @@
     "body": "Asserts that `function` will throw an error that is an instance of\n`constructor`, or alternately that it will throw an error with message\nmatching `regexp`.\n\n    should.throw(fn, 'function throws a reference error');\n    should.throw(fn, /function throws a reference error/);\n    should.throw(fn, ReferenceError);\n    should.throw(fn, ReferenceError, 'function throws a reference error');\n    should.throw(fn, ReferenceError, /function throws a reference error/);",
     "params": [
       {
-        "name": "function",
+        "name": "fn",
         "type": "Function",
         "optional": false,
         "description": ""
       },
       {
-        "name": "constructor",
-        "type": "ErrorConstructor",
+        "name": "errt",
+        "type": "Error",
         "optional": false,
         "description": ""
       },
       {
-        "name": "regexp",
+        "name": "errs",
         "type": "RegExp",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -4210,8 +4358,21 @@
     "name": "exist",
     "category": "Should",
     "summary": "### .exist",
-    "body": "Asserts that the target is neither `null` nor `undefined`.\n\n    var foo = 'hi';\n\n    should.exist(foo, 'foo exists');",
-    "params": [],
+    "body": "Asserts that the target is neither `null` nor `undefined`.\n\n    var foo = 'hi';\n    should.exist(foo, 'foo exists');",
+    "params": [
+      {
+        "name": "val",
+        "type": "unknown",
+        "optional": false,
+        "description": ""
+      },
+      {
+        "name": "msg",
+        "type": "string",
+        "optional": false,
+        "description": ""
+      }
+    ],
     "see": []
   },
   {
@@ -4222,19 +4383,19 @@
     "params": [
       {
         "name": "actual",
-        "type": "Mixed",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
         "name": "expected",
-        "type": "Mixed",
+        "type": "unknown",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -4248,26 +4409,26 @@
     "body": "Asserts that `function` will _not_ throw an error that is an instance of\n`constructor`, or alternately that it will not throw an error with message\nmatching `regexp`.\n\n    should.not.throw(fn, Error, 'function does not throw');",
     "params": [
       {
-        "name": "function",
+        "name": "fn",
         "type": "Function",
         "optional": false,
         "description": ""
       },
       {
-        "name": "constructor",
-        "type": "ErrorConstructor",
+        "name": "errt",
+        "type": "Error",
         "optional": false,
         "description": ""
       },
       {
-        "name": "regexp",
+        "name": "errs",
         "type": "RegExp",
         "optional": false,
         "description": ""
       },
       {
-        "name": "message",
-        "type": "String",
+        "name": "msg",
+        "type": "string",
         "optional": false,
         "description": ""
       }
@@ -4280,38 +4441,51 @@
     "name": "not.exist",
     "category": "Should",
     "summary": "### .not.exist",
-    "body": "Asserts that the target is neither `null` nor `undefined`.\n\n    var bar = null;\n\n    should.not.exist(bar, 'bar does not exist');",
-    "params": [],
+    "body": "Asserts that the target is neither `null` nor `undefined`.\n\n    var bar = null;\n    should.not.exist(bar, 'bar does not exist');",
+    "params": [
+      {
+        "name": "val",
+        "type": "unknown",
+        "optional": false,
+        "description": ""
+      },
+      {
+        "name": "msg",
+        "type": "string",
+        "optional": false,
+        "description": ""
+      }
+    ],
     "see": []
   },
   {
     "name": "addChainableMethod",
     "category": "Utils",
     "summary": "### .addChainableMethod(ctx, name, method, chainingBehavior)",
-    "body": "Adds a method to an object, such that the method can also be chained.\n\n    utils.addChainableMethod(chai.Assertion.prototype, 'foo', function (str) {\n      var obj = utils.flag(this, 'object');\n      new chai.Assertion(obj).to.be.equal(str);\n    });\n\nCan also be accessed directly from `chai.Assertion`.\n\n    chai.Assertion.addChainableMethod('foo', fn, chainingBehavior);\n\nThe result can then be used as both a method assertion, executing both `method` and\n`chainingBehavior`, or as a language chain, which only executes `chainingBehavior`.\n\n    expect(fooStr).to.be.foo('bar');\n    expect(fooStr).to.be.foo.equal('foo');",
+    "body": "Adds a method to an object, such that the method can also be chained.\n\n    utils.addChainableMethod(chai.Assertion.prototype, 'foo', function (str) {\n        var obj = utils.flag(this, 'object');\n        new chai.Assertion(obj).to.be.equal(str);\n    });\n\nCan also be accessed directly from `chai.Assertion`.\n\n    chai.Assertion.addChainableMethod('foo', fn, chainingBehavior);\n\nThe result can then be used as both a method assertion, executing both `method` and\n`chainingBehavior`, or as a language chain, which only executes `chainingBehavior`.\n\n    expect(fooStr).to.be.foo('bar');\n    expect(fooStr).to.be.foo.equal('foo');",
     "params": [
       {
         "name": "ctx",
-        "type": "Object",
+        "type": "T",
         "optional": false,
         "description": "object to which the method is added"
       },
       {
         "name": "name",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "of method to add"
       },
       {
         "name": "method",
-        "type": "Function",
+        "type": "(...args: never) => unknown",
         "optional": false,
         "description": "function to be used for `name`, when called"
       },
       {
         "name": "chainingBehavior",
-        "type": "Function",
-        "optional": false,
+        "type": "(() => void)",
+        "optional": true,
         "description": "function to be called every time the property is accessed"
       }
     ],
@@ -4331,13 +4505,13 @@
       },
       {
         "name": "assertionName",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": ""
       },
       {
         "name": "isChainable",
-        "type": "Boolean",
+        "type": "boolean",
         "optional": false,
         "description": ""
       }
@@ -4348,17 +4522,17 @@
     "name": "addMethod",
     "category": "Utils",
     "summary": "### .addMethod(ctx, name, method)",
-    "body": "Adds a method to the prototype of an object.\n\n    utils.addMethod(chai.Assertion.prototype, 'foo', function (str) {\n      var obj = utils.flag(this, 'object');\n      new chai.Assertion(obj).to.be.equal(str);\n    });\n\nCan also be accessed directly from `chai.Assertion`.\n\n    chai.Assertion.addMethod('foo', fn);\n\nThen can be used as any other assertion.\n\n    expect(fooStr).to.be.foo('bar');",
+    "body": "Adds a method to the prototype of an object.\n\n    utils.addMethod(chai.Assertion.prototype, 'foo', function (str) {\n        var obj = utils.flag(this, 'object');\n        new chai.Assertion(obj).to.be.equal(str);\n    });\n\nCan also be accessed directly from `chai.Assertion`.\n\n    chai.Assertion.addMethod('foo', fn);\n\nThen can be used as any other assertion.\n\n    expect(fooStr).to.be.foo('bar');",
     "params": [
       {
         "name": "ctx",
-        "type": "Object",
+        "type": "T",
         "optional": false,
         "description": "object to which the method is added"
       },
       {
         "name": "name",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "of method to add"
       },
@@ -4375,17 +4549,17 @@
     "name": "addProperty",
     "category": "Utils",
     "summary": "### .addProperty(ctx, name, getter)",
-    "body": "Adds a property to the prototype of an object.\n\n    utils.addProperty(chai.Assertion.prototype, 'foo', function () {\n      var obj = utils.flag(this, 'object');\n      new chai.Assertion(obj).to.be.instanceof(Foo);\n    });\n\nCan also be accessed directly from `chai.Assertion`.\n\n    chai.Assertion.addProperty('foo', fn);\n\nThen can be used as any other assertion.\n\n    expect(myFoo).to.be.foo;",
+    "body": "Adds a property to the prototype of an object.\n\n    utils.addProperty(chai.Assertion.prototype, 'foo', function () {\n        var obj = utils.flag(this, 'object');\n        new chai.Assertion(obj).to.be.instanceof(Foo);\n    });\n\nCan also be accessed directly from `chai.Assertion`.\n\n    chai.Assertion.addProperty('foo', fn);\n\nThen can be used as any other assertion.\n\n    expect(myFoo).to.be.foo;",
     "params": [
       {
         "name": "ctx",
-        "type": "Object",
+        "type": "object",
         "optional": false,
         "description": "object to which the property is added"
       },
       {
         "name": "name",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "of property to add"
       },
@@ -4405,16 +4579,16 @@
     "body": "To be used as a compareFunction with Array.prototype.sort. Compares elements\nusing inspect instead of default behavior of using toString so that Symbols\nand objects with irregular/missing toString can still be sorted without a\nTypeError.",
     "params": [
       {
-        "name": "first",
-        "type": "Mixed",
+        "name": "a",
+        "type": "unknown",
         "optional": false,
-        "description": "element to compare"
+        "description": "first element to compare"
       },
       {
-        "name": "second",
-        "type": "Mixed",
+        "name": "b",
+        "type": "unknown",
         "optional": false,
-        "description": "element to compare"
+        "description": "second element to compare"
       }
     ],
     "see": []
@@ -4427,13 +4601,13 @@
     "params": [
       {
         "name": "obj",
-        "type": "Mixed",
+        "type": "object",
         "optional": false,
         "description": "constructed Assertion"
       },
       {
-        "name": "type",
-        "type": "Array",
+        "name": "types",
+        "type": "string[]",
         "optional": false,
         "description": "A list of allowed types for this assertion"
       }
@@ -4447,22 +4621,22 @@
     "body": "Get or set a flag value on an object. If a\nvalue is provided it will be set, else it will\nreturn the currently set value or `undefined` if\nthe value is not set.\n\n    utils.flag(this, 'foo', 'bar'); // setter\n    utils.flag(this, 'foo'); // getter, returns `bar`",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "T",
         "optional": false,
-        "description": "constructed Assertion"
+        "description": "object constructed Assertion"
       },
       {
         "name": "key",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": ""
       },
       {
         "name": "value",
-        "type": "Mixed",
-        "optional": false,
-        "description": "(optional)"
+        "type": "unknown",
+        "optional": true,
+        "description": ""
       }
     ],
     "see": []
@@ -4474,31 +4648,16 @@
     "body": "Returns the `actual` value for an Assertion.",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "Assertion",
         "optional": false,
-        "description": "(constructed Assertion)"
+        "description": "object (constructed Assertion)"
       },
       {
-        "name": "chai.Assertion.prototype.assert",
-        "type": "Arguments",
+        "name": "args",
+        "type": "ArrayLike<unknown>",
         "optional": false,
-        "description": "arguments"
-      }
-    ],
-    "see": []
-  },
-  {
-    "name": "getEnumerableProperties",
-    "category": "Utils",
-    "summary": "### .getEnumerableProperties(object)",
-    "body": "This allows the retrieval of enumerable property names of an object,\ninherited or not.",
-    "params": [
-      {
-        "name": "object",
-        "type": "Object",
-        "optional": false,
-        "description": ""
+        "description": "chai.Assertion.prototype.assert arguments"
       }
     ],
     "see": []
@@ -4510,16 +4669,16 @@
     "body": "Construct the error message based on flags\nand template tags. Template tags will return\na stringified inspection of the object referenced.\n\nMessage template tags:\n- `#{this}` current asserted object\n- `#{act}` actual value\n- `#{exp}` expected value",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "Assertion",
         "optional": false,
-        "description": "(constructed Assertion)"
+        "description": "object (constructed Assertion)"
       },
       {
-        "name": "chai.Assertion.prototype.assert",
-        "type": "Arguments",
+        "name": "args",
+        "type": "ArrayLike<unknown>",
         "optional": false,
-        "description": "arguments"
+        "description": "chai.Assertion.prototype.assert arguments"
       }
     ],
     "see": []
@@ -4531,16 +4690,16 @@
     "body": "Extract the operator from error message.\nOperator defined is based on below link\nhttps://nodejs.org/api/assert.html#assert_assert.\n\nReturns the `operator` or `undefined` value for an Assertion.",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
-        "description": "(constructed Assertion)"
+        "description": "object (constructed Assertion)"
       },
       {
-        "name": "chai.Assertion.prototype.assert",
-        "type": "Arguments",
+        "name": "args",
+        "type": "ArrayLike<unknown>",
         "optional": false,
-        "description": "arguments"
+        "description": "chai.Assertion.prototype.assert arguments"
       }
     ],
     "see": []
@@ -4552,8 +4711,8 @@
     "body": "This allows the retrieval of directly-owned enumerable property names and\nsymbols of an object. This function is necessary because Object.keys only\nreturns enumerable property names, not enumerable property symbols.",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
         "description": ""
       }
@@ -4567,8 +4726,8 @@
     "body": "This allows the retrieval of directly-owned enumerable property symbols of an\nobject. This function is necessary because Object.getOwnPropertySymbols\nreturns both enumerable and non-enumerable property symbols.",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
         "description": ""
       }
@@ -4583,7 +4742,7 @@
     "params": [
       {
         "name": "object",
-        "type": "Object",
+        "type": "object",
         "optional": false,
         "description": ""
       }
@@ -4598,26 +4757,26 @@
     "params": [
       {
         "name": "obj",
-        "type": "Object",
+        "type": "unknown",
         "optional": false,
         "description": "The object to print out."
       },
       {
         "name": "showHidden",
-        "type": "Boolean",
-        "optional": false,
+        "type": "boolean",
+        "optional": true,
         "description": "Flag that shows hidden (not enumerable)\n   properties of objects. Default is false."
       },
       {
         "name": "depth",
-        "type": "Number",
-        "optional": false,
+        "type": "number",
+        "optional": true,
         "description": "Depth in which to descend in object. Default is 2."
       },
       {
         "name": "colors",
-        "type": "Boolean",
-        "optional": false,
+        "type": "boolean",
+        "optional": true,
         "description": "Flag to turn on ANSI escape codes to color the\n   output. Default is false (no coloring)."
       }
     ],
@@ -4638,10 +4797,10 @@
     "body": "Determines if an object or an array matches\ncriteria to be inspected in-line for error\nmessages or should be truncated.",
     "params": [
       {
-        "name": "javascript",
-        "type": "Mixed",
+        "name": "obj",
+        "type": "unknown",
         "optional": false,
-        "description": "object to inspect"
+        "description": "javascript object to inspect"
       }
     ],
     "see": []
@@ -4650,17 +4809,17 @@
     "name": "overwriteChainableMethod",
     "category": "Utils",
     "summary": "### .overwriteChainableMethod(ctx, name, method, chainingBehavior)",
-    "body": "Overwrites an already existing chainable method\nand provides access to the previous function or\nproperty.  Must return functions to be used for\nname.\n\n    utils.overwriteChainableMethod(chai.Assertion.prototype, 'lengthOf',\n      function (_super) {\n      }\n    , function (_super) {\n      }\n    );\n\nCan also be accessed directly from `chai.Assertion`.\n\n    chai.Assertion.overwriteChainableMethod('foo', fn, fn);\n\nThen can be used as any other assertion.\n\n    expect(myFoo).to.have.lengthOf(3);\n    expect(myFoo).to.have.lengthOf.above(3);",
+    "body": "Overwrites an already existing chainable method\nand provides access to the previous function or\nproperty.  Must return functions to be used for\nname.\n\n    utils.overwriteChainableMethod(chai.Assertion.prototype, 'lengthOf',\n        function (_super) {\n        }\n        , function (_super) {\n        }\n    );\n\nCan also be accessed directly from `chai.Assertion`.\n\n    chai.Assertion.overwriteChainableMethod('foo', fn, fn);\n\nThen can be used as any other assertion.\n\n    expect(myFoo).to.have.lengthOf(3);\n    expect(myFoo).to.have.lengthOf.above(3);",
     "params": [
       {
         "name": "ctx",
-        "type": "Object",
+        "type": "T",
         "optional": false,
         "description": "object whose method / property is to be overwritten"
       },
       {
         "name": "name",
-        "type": "String",
+        "type": "string",
         "optional": false,
         "description": "of method / property to overwrite"
       },
@@ -4683,17 +4842,17 @@
     "name": "overwriteMethod",
     "category": "Utils",
     "summary": "### .overwriteMethod(ctx, name, fn)",
-    "body": "Overwrites an already existing method and provides\naccess to previous function. Must return function\nto be used for name.\n\n    utils.overwriteMethod(chai.Assertion.prototype, 'equal', function (_super) {\n      return function (str) {\n        var obj = utils.flag(this, 'object');\n        if (obj instanceof Foo) {\n          new chai.Assertion(obj.value).to.equal(str);\n        } else {\n          _super.apply(this, arguments);\n        }\n      }\n    });\n\nCan also be accessed directly from `chai.Assertion`.\n\n    chai.Assertion.overwriteMethod('foo', fn);\n\nThen can be used as any other assertion.\n\n    expect(myFoo).to.equal('bar');",
+    "body": "Overwrites an already existing method and provides\naccess to previous function. Must return function\nto be used for name.\n\n    utils.overwriteMethod(chai.Assertion.prototype, 'equal', function (_super) {\n        return function (str) {\n            var obj = utils.flag(this, 'object');\n            if (obj instanceof Foo) {\n                new chai.Assertion(obj.value).to.equal(str);\n            } else {\n                _super.apply(this, arguments);\n            }\n        }\n    });\n\nCan also be accessed directly from `chai.Assertion`.\n\n    chai.Assertion.overwriteMethod('foo', fn);\n\nThen can be used as any other assertion.\n\n    expect(myFoo).to.equal('bar');",
     "params": [
       {
         "name": "ctx",
-        "type": "Object",
+        "type": "object",
         "optional": false,
         "description": "object whose method is to be overwritten"
       },
       {
         "name": "name",
-        "type": "String",
+        "type": "PropertyKey",
         "optional": false,
         "description": "of method to overwrite"
       },
@@ -4710,17 +4869,17 @@
     "name": "overwriteProperty",
     "category": "Utils",
     "summary": "### .overwriteProperty(ctx, name, fn)",
-    "body": "Overwrites an already existing property getter and provides\naccess to previous value. Must return function to use as getter.\n\n    utils.overwriteProperty(chai.Assertion.prototype, 'ok', function (_super) {\n      return function () {\n        var obj = utils.flag(this, 'object');\n        if (obj instanceof Foo) {\n          new chai.Assertion(obj.name).to.equal('bar');\n        } else {\n          _super.call(this);\n        }\n      }\n    });\n\n\nCan also be accessed directly from `chai.Assertion`.\n\n    chai.Assertion.overwriteProperty('foo', fn);\n\nThen can be used as any other assertion.\n\n    expect(myFoo).to.be.ok;",
+    "body": "Overwrites an already existing property getter and provides\naccess to previous value. Must return function to use as getter.\n\n    utils.overwriteProperty(chai.Assertion.prototype, 'ok', function (_super) {\n        return function () {\n            var obj = utils.flag(this, 'object');\n            if (obj instanceof Foo) {\n                new chai.Assertion(obj.name).to.equal('bar');\n            } else {\n                _super.call(this);\n            }\n        }\n    });\n\nCan also be accessed directly from `chai.Assertion`.\n\n    chai.Assertion.overwriteProperty('foo', fn);\n\nThen can be used as any other assertion.\n\n    expect(myFoo).to.be.ok;",
     "params": [
       {
         "name": "ctx",
-        "type": "Object",
+        "type": "T",
         "optional": false,
         "description": "object whose property is to be overwritten"
       },
       {
         "name": "name",
-        "type": "String",
+        "type": "PropertyKey",
         "optional": false,
         "description": "of property to overwrite"
       },
@@ -4734,43 +4893,22 @@
     "see": []
   },
   {
-    "name": "proxify",
-    "category": "Utils",
-    "summary": "### .proxify(object)",
-    "body": "Return a proxy of given object that throws an error when a non-existent\nproperty is read. By default, the root cause is assumed to be a misspelled\nproperty, and thus an attempt is made to offer a reasonable suggestion from\nthe list of existing properties. However, if a nonChainableMethodName is\nprovided, then the root cause is instead a failure to invoke a non-chainable\nmethod prior to reading the non-existent property.\n\nIf proxies are unsupported or disabled via the user's Chai config, then\nreturn object without modification.",
-    "params": [
-      {
-        "name": "obj",
-        "type": "Object",
-        "optional": false,
-        "description": ""
-      },
-      {
-        "name": "nonChainableMethodName",
-        "type": "String",
-        "optional": false,
-        "description": ""
-      }
-    ],
-    "see": []
-  },
-  {
     "name": "test",
     "category": "Utils",
     "summary": "### .test(object, expression)",
-    "body": "Test and object for expression.",
+    "body": "Test an object for expression.",
     "params": [
       {
-        "name": "object",
-        "type": "Object",
+        "name": "obj",
+        "type": "object",
         "optional": false,
         "description": "(constructed Assertion)"
       },
       {
-        "name": "chai.Assertion.prototype.assert",
-        "type": "Arguments",
+        "name": "args",
+        "type": "ArrayLike<unknown>",
         "optional": false,
-        "description": "arguments"
+        "description": ""
       }
     ],
     "see": []
@@ -4779,24 +4917,24 @@
     "name": "transferFlags",
     "category": "Utils",
     "summary": "### .transferFlags(assertion, object, includeAll = true)",
-    "body": "Transfer all the flags for `assertion` to `object`. If\n`includeAll` is set to `false`, then the base Chai\nassertion flags (namely `object`, `ssfi`, `lockSsfi`,\nand `message`) will not be transferred.\n\n\n    var newAssertion = new Assertion();\n    utils.transferFlags(assertion, newAssertion);\n\n    var anotherAssertion = new Assertion(myObj);\n    utils.transferFlags(assertion, anotherAssertion, false);",
+    "body": "Transfer all the flags for `assertion` to `object`. If\n`includeAll` is set to `false`, then the base Chai\nassertion flags (namely `object`, `ssfi`, `lockSsfi`,\nand `message`) will not be transferred.\n\n    var newAssertion = new Assertion();\n    utils.transferFlags(assertion, newAssertion);\n\n    var anotherAssertion = new Assertion(myObj);\n    utils.transferFlags(assertion, anotherAssertion, false);",
     "params": [
       {
-        "name": "assertion",
-        "type": "Assertion",
+        "name": "source",
+        "type": "object",
         "optional": false,
-        "description": "the assertion to transfer the flags from"
+        "description": "the object to transfer the flags from; usually an assertion"
       },
       {
         "name": "object",
-        "type": "Object",
+        "type": "object",
         "optional": false,
         "description": "the object to transfer the flags to; usually a new assertion"
       },
       {
         "name": "includeAll",
-        "type": "Boolean",
-        "optional": false,
+        "type": "boolean",
+        "optional": true,
         "description": ""
       }
     ],

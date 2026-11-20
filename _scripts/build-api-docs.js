@@ -43,8 +43,8 @@ for (const file of listFiles(process.argv[2])) {
         .filter((tag) => tag.tag === 'param')
         .map((tag) => ({
           name: tag.name,
-          type: tag.type,
-          optional: tag.optional,
+          type: tag.type.replace(/=$/, ''),
+          optional: tag.optional || tag.type.endsWith('='),
           description: tag.description.trim()
         })),
       see: block.tags.filter((tag) => tag.tag === 'see').map(tagValue)
